@@ -1,9 +1,9 @@
 public class Ramo{
-    String nombreRamo;
-    String codigoRamo;
-    String nombreProfesor;
-    int creditosOtorga;
-    int cantidadAlumnos;
+    private String nombreRamo;
+    private String codigoRamo;
+    private String nombreProfesor;
+    private int creditosOtorga;
+    private int cantidadAlumnos;
 
     public Ramo() {
 

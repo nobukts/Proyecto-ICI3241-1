@@ -1,10 +1,10 @@
 public class Alumno {
-    String nombreAlumno;
-    String mallaCurricular[];
-    String ramosAprobados[];
-    String ramosActuales[];
-    String ramosFaltantes[];
-    int cantCreditos;
+    private String nombreAlumno;
+    private String mallaCurricular[];
+    private String ramosAprobados[];
+    private String ramosActuales[];
+    private String ramosFaltantes[];
+    private int cantCreditos;
 
     public Alumno(){
         
