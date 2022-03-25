@@ -6,7 +6,11 @@ public class Ramo {
     private String nombreProfesor;
     private int creditosOtorga;
     private int cantidadAlumnos;
-
+    
+    public Ramo(){
+        
+    }
+    
     public String getNombreRamo() {
         return nombreRamo;
     }
@@ -45,7 +49,5 @@ public class Ramo {
 
     public void setCantidadAlumnos(int cantidadAlumnos) {
         this.cantidadAlumnos = cantidadAlumnos;
-    }
-    
-    
+    } 
 }

@@ -6,8 +6,12 @@ public class Alumno {
     private String[] ramosAprobados;
     private String[] ramosActuales;
     private String[] ramosFaltantes;
-    int cantCreditos;
+    private int cantCreditos;
 
+    public Alumno(){
+        
+    }
+    
     public String getNombreAlumno() {
         return nombreAlumno;
     }
