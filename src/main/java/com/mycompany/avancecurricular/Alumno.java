@@ -1,62 +1,64 @@
 package com.mycompany.avancecurricular;
+import java.util.ArrayList;
 
 public class Alumno {
     private String nombreAlumno;
-    private String[] mallaCurricular;
-    private String[] ramosAprobados;
-    private String[] ramosActuales;
-    private String[] ramosFaltantes;
+    private ArrayList<Ramo> mallaCurricular;
+    private ArrayList<Ramo> ramosAprobados;
+    private ArrayList<Ramo>  ramosActuales;
+    private ArrayList<Ramo> ramosFaltantes;
     private int cantCreditos;
 
     public Alumno(){
         
     }
-    
+
     public String getNombreAlumno() {
         return nombreAlumno;
-    }
-
-    public String[] getMallaCurricular() {
-        return mallaCurricular;
-    }
-
-    public String[] getRamosAprobados() {
-        return ramosAprobados;
-    }
-
-    public String[] getRamosActuales() {
-        return ramosActuales;
-    }
-
-    public String[] getRamosFaltantes() {
-        return ramosFaltantes;
-    }
-
-    public int getCantCreditos() {
-        return cantCreditos;
     }
 
     public void setNombreAlumno(String nombreAlumno) {
         this.nombreAlumno = nombreAlumno;
     }
 
-    public void setMallaCurricular(String[] mallaCurricular) {
+    public ArrayList<Ramo> getMallaCurricular() {
+        return mallaCurricular;
+    }
+
+    public void setMallaCurricular(ArrayList<Ramo> mallaCurricular) {
         this.mallaCurricular = mallaCurricular;
     }
 
-    public void setRamosAprobados(String[] ramosAprobados) {
+    public ArrayList<Ramo> getRamosAprobados() {
+        return ramosAprobados;
+    }
+
+    public void setRamosAprobados(ArrayList<Ramo> ramosAprobados) {
         this.ramosAprobados = ramosAprobados;
     }
 
-    public void setRamosActuales(String[] ramosActuales) {
+    public ArrayList<Ramo> getRamosActuales() {
+        return ramosActuales;
+    }
+
+    public void setRamosActuales(ArrayList<Ramo> ramosActuales) {
         this.ramosActuales = ramosActuales;
     }
 
-    public void setRamosFaltantes(String[] ramosFaltantes) {
+    public ArrayList<Ramo> getRamosFaltantes() {
+        return ramosFaltantes;
+    }
+
+    public void setRamosFaltantes(ArrayList<Ramo> ramosFaltantes) {
         this.ramosFaltantes = ramosFaltantes;
     }
 
+    public int getCantCreditos() {
+        return cantCreditos;
+    }
+
     public void setCantCreditos(int cantCreditos) {
+        if(cantCreditos < 0) cantCreditos *= -1;
         this.cantCreditos = cantCreditos;
     }
 

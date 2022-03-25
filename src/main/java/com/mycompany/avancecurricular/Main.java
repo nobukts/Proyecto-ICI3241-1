@@ -1,42 +1,30 @@
 package com.mycompany.avancecurricular;
 import java.io.* ;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Main {
     public static void main(String[] args) throws IOException {
+        HashMap<String, Alumno> mapaAlumnos = new HashMap<>();
+        
         BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));
         
-        //Vamos a inicializar las variables
-        int tamañoArreglo;
+        for (int i = 0; i < 10; i++) {
+            Alumno alumnoActual = new Alumno();
+            System.out.println("Ingresar el nombre del alumno (o \"no\" para dejar de agregar alumnos)");
+            String palabraIngresada = lector.readLine();
+            alumnoActual.setNombreAlumno(palabraIngresada);
 
-        System.out.println("Ingrese la cantidad de alumnos:");
-        tamañoArreglo = Integer.parseInt(lector.readLine());
-        Alumno[] listaAlumnos = new Alumno[tamañoArreglo];
+            if(palabraIngresada.equalsIgnoreCase("no")) break;
+            
+            System.out.println("Ingresar la cantidad de creditos");
+            alumnoActual.setCantCreditos(Integer.parseInt(lector.readLine()));
 
-        //De momento los ramos seran siempre los mismos
-        String[] malla = {"ICI3241" , "ICI3243" , "EST3107"};
-
-        //Se ingresa el nombre del alumno y una malla base
-        for(int i=0 ; i < listaAlumnos.length; i++){
-            System.out.println("Ingrese el alumno " + (i+1) + "/" + listaAlumnos.length + ":");
-            listaAlumnos[i] = new Alumno();
-            listaAlumnos[i].setNombreAlumno(lector.readLine());
-            listaAlumnos[i].setMallaCurricular(malla);
+            mapaAlumnos.put(alumnoActual.getNombreAlumno(), alumnoActual);   
         }
         
-        //Se muestra la informacion que se tiene de momento
-        for(int i=0 ; i < listaAlumnos.length; i++){
-            System.out.print("El alumno " + (i+1) + "/" + listaAlumnos.length + ": ");
-            System.out.println(listaAlumnos[i].getNombreAlumno());
-            System.out.print("Su malla es: ");
-            
-            for(int k=0 ; k < 3; k++){
-                String[] mallaAux = new String[3];
-                mallaAux = listaAlumnos[i].getMallaCurricular();
-                System.out.println(mallaAux[k]);
-            }
-
+        for (String clave: mapaAlumnos.keySet()) {
+            System.out.println(mapaAlumnos.get(clave).getNombreAlumno() + " " + mapaAlumnos.get(clave).getCantCreditos());
         }
-
-    }
-    
+    }    
 }
