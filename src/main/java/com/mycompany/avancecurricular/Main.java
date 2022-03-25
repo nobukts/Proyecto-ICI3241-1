@@ -10,8 +10,8 @@ public class Main {
         
         BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));
         for (int i = 0; i < 10; i++) {
-            String palabraIngresada = lector.readLine();
             System.out.println("Ingresar el nombre del alumno");
+            String palabraIngresada = lector.readLine();
             alumnoActual.setNombreAlumno(palabraIngresada);
 
             if(palabraIngresada.equals("No")) break;
