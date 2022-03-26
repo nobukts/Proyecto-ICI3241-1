@@ -19,9 +19,10 @@ public class Main {
         mallaCurricularAux.add(ramo1);
         mallaCurricularAux.add(ramo2);
         mallaCurricularAux.add(ramo3);
+        ArrayList<Ramo> ramosVaciosAux = new ArrayList<Ramo>();
         String palabraIngresada = new String();
 
-        while(palabraIngresada != "no"){
+        while(true){
             cont++;
             Alumno alumnoActual = new Alumno();
             System.out.println("Ingresar el nombre del alumno " + cont + "/? (o \"no\" para dejar de agregar alumnos)");
@@ -34,24 +35,25 @@ public class Main {
             alumnoActual.setCantCreditos(Integer.parseInt(lector.readLine()));
 
             alumnoActual.setMallaCurricular(mallaCurricularAux);
+            alumnoActual.setRamosActuales(mallaCurricularAux);
+            alumnoActual.setRamosAprobados(ramosVaciosAux);
+            alumnoActual.setRamosFaltantes(ramosVaciosAux);
 
             mapaAlumnos.put(alumnoActual.getNombreAlumno(), alumnoActual);
         }
         
         cont = 0;
-        
-        ArrayList<Ramo> mallaParaMostrar = new ArrayList<Ramo>();
 
         for (String clave: mapaAlumnos.keySet()) {
             cont++;
             System.out.println("Alumno " + cont + ": " + mapaAlumnos.get(clave).getNombreAlumno() + " (" + mapaAlumnos.get(clave).getCantCreditos() + " creditos) Malla: ");
-            mallaParaMostrar = mapaAlumnos.get(clave).getMallaCurricular();
             
-            Iterator itr=mallaParaMostrar.iterator();
+            Iterator itr=mapaAlumnos.get(clave).getMallaCurricular().iterator();
             while(itr.hasNext()){
                 Ramo ramoMostrar=(Ramo)itr.next();
                 System.out.println(ramoMostrar.getNombreRamo() + " / "+ramoMostrar.getCodigoRamo() + " / " + ramoMostrar.getNombreProfesor());
             }
+            
 
         }
     }    
