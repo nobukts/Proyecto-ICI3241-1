@@ -10,6 +10,14 @@ public class Ramo {
     public Ramo(){
         
     }
+
+    public Ramo(String nombreRamo, String codigoRamo, String nombreProfesor, int creditosOtorga, int cantidadAlumnos){
+        this.nombreRamo = nombreRamo;
+        this.codigoRamo = codigoRamo;
+        this.nombreProfesor = nombreProfesor;
+        this.creditosOtorga = creditosOtorga;
+        this.cantidadAlumnos = cantidadAlumnos;
+    }
     
     public String getNombreRamo() {
         return nombreRamo;
