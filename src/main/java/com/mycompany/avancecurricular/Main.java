@@ -2,12 +2,10 @@ package com.mycompany.avancecurricular;
 import java.io.* ;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 
 public class Main {
     public static void main(String[] args) throws IOException {
         HashMap<String, Alumno> mapaAlumnos = new HashMap<>();
-        
         BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));
         int cont = 0;
 
@@ -15,11 +13,11 @@ public class Main {
         Ramo ramo1 = new Ramo("BASE DE DATOS","ICI2340","RICARDO GONZALES",3,10);
         Ramo ramo2 = new Ramo("PROGRAMACION AVANZADA","ICI4150","PABLO ESCAMILLA",4,5);
         Ramo ramo3 = new Ramo("MATEMATICAS","MAT1150","SARA TORRES",3,20);
-        ArrayList<Ramo> mallaCurricularAux = new ArrayList<Ramo>();
+        ArrayList<Ramo> mallaCurricularAux = new ArrayList<>();
         mallaCurricularAux.add(ramo1);
         mallaCurricularAux.add(ramo2);
         mallaCurricularAux.add(ramo3);
-        ArrayList<Ramo> ramosVaciosAux = new ArrayList<Ramo>();
+        ArrayList<Ramo> ramosVaciosAux = new ArrayList<>();
         String palabraIngresada = new String();
 
         while(true){
@@ -48,13 +46,9 @@ public class Main {
             cont++;
             System.out.println("Alumno " + cont + ": " + mapaAlumnos.get(clave).getNombreAlumno() + " (" + mapaAlumnos.get(clave).getCantCreditos() + " creditos) Malla: ");
             
-            Iterator itr=mapaAlumnos.get(clave).getMallaCurricular().iterator();
-            while(itr.hasNext()){
-                Ramo ramoMostrar=(Ramo)itr.next();
+            mapaAlumnos.get(clave).getMallaCurricular().forEach(ramoMostrar -> {
                 System.out.println(ramoMostrar.getNombreRamo() + " / "+ramoMostrar.getCodigoRamo() + " / " + ramoMostrar.getNombreProfesor());
-            }
-            
-
+            });
         }
     }    
 }
