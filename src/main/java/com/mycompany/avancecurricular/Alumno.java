@@ -5,12 +5,21 @@ public class Alumno {
     private String nombreAlumno;
     private ArrayList<Ramo> mallaCurricular;
     private ArrayList<Ramo> ramosAprobados;
-    private ArrayList<Ramo>  ramosActuales;
+    private ArrayList<Ramo> ramosActuales;
     private ArrayList<Ramo> ramosFaltantes;
     private int cantCreditos;
 
     public Alumno(){
         
+    }
+
+    public Alumno(String nombreAlumno, ArrayList<Ramo> mallaCurricular, ArrayList<Ramo> ramosAprobados, ArrayList<Ramo> ramosActuales, ArrayList<Ramo> ramosFaltantes, int cantCreditos){
+        this.nombreAlumno = nombreAlumno;
+        this.mallaCurricular = mallaCurricular;
+        this.ramosAprobados = ramosAprobados;
+        this.ramosActuales = ramosActuales;
+        this.ramosFaltantes = ramosFaltantes;
+        this.cantCreditos = cantCreditos;
     }
 
     public String getNombreAlumno() {
