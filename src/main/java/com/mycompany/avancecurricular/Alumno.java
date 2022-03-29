@@ -13,6 +13,10 @@ public class Alumno {
         
     }
 
+    public Alumno(String nombreAlumno){
+        this.nombreAlumno = nombreAlumno;
+    }
+
     public Alumno(String nombreAlumno, ArrayList<Ramo> mallaCurricular, ArrayList<Ramo> ramosAprobados, ArrayList<Ramo> ramosActuales, ArrayList<Ramo> ramosFaltantes, int cantCreditos){
         this.nombreAlumno = nombreAlumno;
         this.mallaCurricular = mallaCurricular;
