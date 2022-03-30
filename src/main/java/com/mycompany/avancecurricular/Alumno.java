@@ -15,6 +15,11 @@ public class Alumno {
 
     public Alumno(String nombreAlumno){
         this.nombreAlumno = nombreAlumno;
+        this.mallaCurricular = new ArrayList<>();
+        this.ramosAprobados = new ArrayList<>();
+        this.ramosActuales = new ArrayList<>();
+        this.ramosFaltantes = new ArrayList<>();
+        this.cantCreditos = 0;
     }
 
     public Alumno(String nombreAlumno, ArrayList<Ramo> mallaCurricular, ArrayList<Ramo> ramosAprobados, ArrayList<Ramo> ramosActuales, ArrayList<Ramo> ramosFaltantes, int cantCreditos){

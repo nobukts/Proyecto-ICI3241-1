@@ -27,6 +27,16 @@ public class Instituto {
         listaAlumnos.add(nuevoAlumno);
     }
 
+    public void agregarDatosAlumno(String nombreAlumno,Ramo mallaCurricular){
+        mapaAlumnos.get(nombreAlumno).getMallaCurricular().add(mallaCurricular);
+        int ultimoDato = listaAlumnos.size() - 1;
+        listaAlumnos.get(ultimoDato).getMallaCurricular().add(mallaCurricular);
+    }
+
+    public void agregarDatosAlumno(Ramo mallaCurricular, Ramo ramosActuales){
+
+    }
+    
     public void mostrarAlumnos(){
         System.out.println("\nAlumnos de la sede " + this.nombreSede + "\n");
         if(listaAlumnos.size() == 0){
@@ -36,6 +46,10 @@ public class Instituto {
         else{
             for (int i = 0; i < listaAlumnos.size(); i++) {
                 System.out.println("Nombre: " + listaAlumnos.get(i).getNombreAlumno());
+                System.out.println("Malla: ");
+                for (int j = 0; j < listaAlumnos.get(i).getMallaCurricular().size(); j++) {
+                    System.out.println(listaAlumnos.get(i).getMallaCurricular().get(j));
+                }
             }
         }
     }
