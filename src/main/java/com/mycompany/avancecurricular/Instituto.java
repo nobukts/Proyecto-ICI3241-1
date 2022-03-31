@@ -29,12 +29,11 @@ public class Instituto {
 
     public void agregarDatosAlumno(String nombreAlumno,Ramo mallaCurricular){
         mapaAlumnos.get(nombreAlumno).getMallaCurricular().add(mallaCurricular);
-        int ultimoDato = listaAlumnos.size() - 1;
-        listaAlumnos.get(ultimoDato).getMallaCurricular().add(mallaCurricular);
     }
 
-    public void agregarDatosAlumno(Ramo mallaCurricular, Ramo ramosActuales){
-
+    public void agregarDatosAlumno(String nombreAlumno, ArrayList<Ramo> mallaCurricular, Ramo ramosActuales){
+        mapaAlumnos.get(nombreAlumno).setMallaCurricular(mallaCurricular);
+        mapaAlumnos.get(nombreAlumno).getRamosActuales().add(ramosActuales);
     }
     
     public void mostrarAlumnos(){
@@ -47,8 +46,14 @@ public class Instituto {
             for (int i = 0; i < listaAlumnos.size(); i++) {
                 System.out.println("Nombre: " + listaAlumnos.get(i).getNombreAlumno());
                 System.out.println("Malla: ");
+
                 for (int j = 0; j < listaAlumnos.get(i).getMallaCurricular().size(); j++) {
-                    System.out.println(listaAlumnos.get(i).getMallaCurricular().get(j));
+                    System.out.println(listaAlumnos.get(i).getMallaCurricular().get(j).getNombreRamo());
+                }
+
+                System.out.println("Ramos actuales: ");
+                for (int j = 0; j < listaAlumnos.get(i).getRamosActuales().size(); j++) {
+                    System.out.println(listaAlumnos.get(i).getRamosActuales().get(j).getNombreRamo());
                 }
             }
         }
