@@ -14,7 +14,10 @@ public class Main {
             String nombreAlumno = lector.readLine();
             if(nombreAlumno.equalsIgnoreCase("no")) break;
 
-            Alumno alumnoIngresado = new Alumno(nombreAlumno);
+            System.out.print("Ingrese el rut del alumno " + contAlumnos + " a agregar (Sin puntos ni guión Ej: 12345678k): ");
+            String rutAlumno = lector.readLine();
+
+            Alumno alumnoIngresado = new Alumno(nombreAlumno,rutAlumno);
             sedeActual.agregarAlumnos(alumnoIngresado);
             contAlumnos++;
 

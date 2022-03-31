@@ -3,6 +3,7 @@ import java.util.ArrayList;
 
 public class Alumno {
     private String nombreAlumno;
+    private String rutAlumno;
     private ArrayList<Ramo> mallaCurricular;
     private ArrayList<Ramo> ramosAprobados;
     private ArrayList<Ramo> ramosActuales;
@@ -13,8 +14,9 @@ public class Alumno {
         
     }
 
-    public Alumno(String nombreAlumno){
+    public Alumno(String nombreAlumno, String rutAlumno){
         this.nombreAlumno = nombreAlumno;
+        this.rutAlumno = rutAlumno;
         this.mallaCurricular = new ArrayList<>();
         this.ramosAprobados = new ArrayList<>();
         this.ramosActuales = new ArrayList<>();
@@ -22,8 +24,9 @@ public class Alumno {
         this.cantCreditos = 0;
     }
 
-    public Alumno(String nombreAlumno, ArrayList<Ramo> mallaCurricular, ArrayList<Ramo> ramosAprobados, ArrayList<Ramo> ramosActuales, ArrayList<Ramo> ramosFaltantes, int cantCreditos){
+    public Alumno(String nombreAlumno, String rutAlumno, ArrayList<Ramo> mallaCurricular, ArrayList<Ramo> ramosAprobados, ArrayList<Ramo> ramosActuales, ArrayList<Ramo> ramosFaltantes, int cantCreditos){
         this.nombreAlumno = nombreAlumno;
+        this.rutAlumno = rutAlumno;
         this.mallaCurricular = mallaCurricular;
         this.ramosAprobados = ramosAprobados;
         this.ramosActuales = ramosActuales;
@@ -37,6 +40,14 @@ public class Alumno {
 
     public void setNombreAlumno(String nombreAlumno) {
         this.nombreAlumno = nombreAlumno;
+    }
+
+    public String getRutAlumno() {
+        return nombreAlumno;
+    }
+
+    public void setRutAlumno(String rutAlumno) {
+        this.rutAlumno = rutAlumno;
     }
 
     public ArrayList<Ramo> getMallaCurricular() {

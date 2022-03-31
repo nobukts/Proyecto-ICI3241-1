@@ -58,4 +58,12 @@ public class Instituto {
             }
         }
     }
+
+    public void buscarAlumno(String nombreAlumno){
+
+    }
+
+    public void buscarAlumno(int digitosRut, String digitoVerificador){
+        
+    }
 }
