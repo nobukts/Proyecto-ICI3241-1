@@ -10,11 +10,11 @@ public class Main {
         int contAlumnos = 1;
 
         while(true){
-            System.out.print("Ingrese el nombre del alumno " + contAlumnos + " a agregar, para cancelar coloque \"no\": ");
+            System.out.println("Ingrese el nombre del alumno " + contAlumnos + " a agregar, para cancelar coloque \"no\": ");
             String nombreAlumno = lector.readLine();
             if(nombreAlumno.equalsIgnoreCase("no")) break;
 
-            System.out.print("Ingrese el rut del alumno " + contAlumnos + " a agregar (Sin puntos ni guión Ej: 12345678k): ");
+            System.out.println("Ingrese el rut del alumno " + contAlumnos + " a agregar (Sin puntos ni guión Ej: 12345678k): ");
             String rutAlumno = lector.readLine();
 
             Alumno alumnoIngresado = new Alumno(nombreAlumno,rutAlumno);
@@ -34,7 +34,7 @@ public class Main {
                         ramoIngresado = lector.readLine();
                         if(ramoIngresado.equalsIgnoreCase("no")) break;
 
-                        sedeActual.agregarDatosAlumno(nombreAlumno, new Ramo(ramoIngresado));
+                        sedeActual.agregarDatosAlumno(nombreAlumno, new Ramo(ramoIngresado), rutAlumno);
                     }
                     break;
                 case 2:
@@ -50,7 +50,7 @@ public class Main {
                         ramoIngresado = lector.readLine();
                         if(ramoIngresado.equalsIgnoreCase("no")) break;
 
-                        sedeActual.agregarDatosAlumno(nombreAlumno, ramosIngresados,new Ramo(ramoIngresado));
+                        sedeActual.agregarDatosAlumno(nombreAlumno, ramosIngresados,new Ramo(ramoIngresado), rutAlumno);
                     }
                     break;
                 default:
@@ -58,6 +58,40 @@ public class Main {
                     break;
             }
         }
+
+        while(true){
+            System.out.println("Funcionalidad (Ingrese el número de la opción):");
+            System.out.println("1) Buscar alumnos");
+            System.out.println("2) Salir");
+
+            int opcion;
+            opcion = Integer.parseInt(lector.readLine());
+            if(opcion == 1){
+                System.out.println("Como desea buscar el alumno?");
+                System.out.println("1) Nombre");
+                System.out.println("2) Rut");
+
+                int opcionBuscar = Integer.parseInt(lector.readLine());
+                if(opcionBuscar == 1){
+                    System.out.println("Ingrese el nombre: ");
+                    String nombreAlumno = lector.readLine();
+
+                    sedeActual.buscarAlumno(nombreAlumno);
+                }else{
+                    System.out.println("Ingrese los primeros 8 digitos del rut: ");
+                    int digitos = Integer.parseInt(lector.readLine());
+                    System.out.println("Ingrese el digito verificador: ");
+                    String digitoVerificador = lector.readLine();
+
+                    sedeActual.buscarAlumno(digitos, digitoVerificador);
+                }
+            }else{
+                break;
+            }
+        }
+
+        
+
 
         sedeActual.mostrarAlumnos();
     }

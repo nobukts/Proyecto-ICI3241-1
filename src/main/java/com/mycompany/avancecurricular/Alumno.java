@@ -43,7 +43,7 @@ public class Alumno {
     }
 
     public String getRutAlumno() {
-        return nombreAlumno;
+        return rutAlumno;
     }
 
     public void setRutAlumno(String rutAlumno) {
