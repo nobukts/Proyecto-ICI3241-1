@@ -36,7 +36,7 @@ public class Main {
                         ramoIngresado = lector.readLine();
                         if(ramoIngresado.equalsIgnoreCase("no")) break;
 
-                        System.out.println("Ingresar codigo del ramo ingresado: ");
+                        System.out.println("Ingresar codigo del ramo ingresado de la forma 3 letras y 4 digitos: ");
                         ramoCodigoIngresado = lector.readLine();
 
                         sedeActual.agregarDatosAlumno(nombreAlumno, new Ramo(ramoIngresado,ramoCodigoIngresado), rutAlumno);
@@ -48,7 +48,7 @@ public class Main {
                         ramoIngresado = lector.readLine();
                         if(ramoIngresado.equalsIgnoreCase("no")) break;
 
-                        System.out.println("Ingresar codigo del ramo ingresado: ");
+                        System.out.println("Ingresar codigo del ramo ingresado de la forma 3 letras y 4 digitos: ");
                         ramoCodigoIngresado = lector.readLine();
 
                         ramosIngresados.add(new Ramo(ramoIngresado,ramoCodigoIngresado));
@@ -59,7 +59,7 @@ public class Main {
                         ramoIngresado = lector.readLine();
                         if(ramoIngresado.equalsIgnoreCase("no")) break;
 
-                        System.out.println("Ingresar codigo del ramo ingresado: ");
+                        System.out.println("Ingresar codigo del ramo ingresado de la forma 3 letras y 4 digitos: ");
                         ramoCodigoIngresado = lector.readLine();
 
                         sedeActual.agregarDatosAlumno(nombreAlumno, ramosIngresados,new Ramo(ramoIngresado,ramoCodigoIngresado), rutAlumno);
