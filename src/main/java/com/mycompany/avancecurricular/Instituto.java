@@ -1,5 +1,6 @@
 package com.mycompany.avancecurricular;
 
+import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -80,9 +81,39 @@ public class Instituto {
         }
     }
 
-    public void buscarAlumno(String nombreAlumno){
+    public void buscarAlumno(String nombreAlumno) throws IOException{
         System.out.println("Nombre: " + mapaAlumnosNombre.get(nombreAlumno).getNombreAlumno());
         System.out.println("Rut: " + mapaAlumnosNombre.get(nombreAlumno).getRutAlumno());
+
+        BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));
+
+        System.out.println("Desea buscar mas informacion sobre un ramo de la malla del alumno?");
+        System.out.println("1) Buscar informacion un ramo ramo");
+        System.out.println("2) salir");
+
+        int opcion = Integer.parseInt(lector.readLine());
+        int opcionBuscar;
+
+        if(opcion == 1){
+            System.out.println("Como desea buscar el ramo?");
+            System.out.println("1) Nombre");
+            System.out.println("2) Codigo");
+
+            opcionBuscar = Integer.parseInt(lector.readLine());
+            if(opcionBuscar == 1){
+                System.out.println("Ingrese el nombre: ");
+                String nombreRamo = lector.readLine();
+
+                mapaAlumnosNombre.get(nombreAlumno).buscarRamo(nombreRamo);
+            }else{
+                System.out.println("Ingrese las 3 letras en MAYUSCULAS del codigo del ramo: ");
+                String letrasCodigo = lector.readLine();
+                System.out.println("Ingrese los 4 digitos del codigo del ramo: ");
+                int digitosCodigo = Integer.parseInt(lector.readLine());
+
+                mapaAlumnosNombre.get(nombreAlumno).buscarRamo(letrasCodigo, digitosCodigo);
+            }
+        }
     }
 
     public void buscarAlumno(int digitosRut, String digitoVerificador){
@@ -90,6 +121,7 @@ public class Instituto {
 
         System.out.println("Nombre: " + mapaAlumnosRut.get(rut).getNombreAlumno());
         System.out.println("Rut: " + mapaAlumnosRut.get(rut).getRutAlumno());
+        
         
     }
 }

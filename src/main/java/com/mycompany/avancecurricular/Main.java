@@ -26,6 +26,7 @@ public class Main {
             System.out.println("2) Malla curricular y cursos actuales");
 
             String ramoIngresado;
+            String ramoCodigoIngresado;
             ArrayList<Ramo> ramosIngresados = new ArrayList<>();
 
             switch(Integer.parseInt(lector.readLine())){
@@ -35,7 +36,10 @@ public class Main {
                         ramoIngresado = lector.readLine();
                         if(ramoIngresado.equalsIgnoreCase("no")) break;
 
-                        sedeActual.agregarDatosAlumno(nombreAlumno, new Ramo(ramoIngresado), rutAlumno);
+                        System.out.println("Ingresar codigo del ramo ingresado: ");
+                        ramoCodigoIngresado = lector.readLine();
+
+                        sedeActual.agregarDatosAlumno(nombreAlumno, new Ramo(ramoIngresado,ramoCodigoIngresado), rutAlumno);
                     }
                     break;
                 case 2:
@@ -43,7 +47,11 @@ public class Main {
                         System.out.println("Ingresar ramo de la malla curricular (Para cancelar escriba \"no\"): ");
                         ramoIngresado = lector.readLine();
                         if(ramoIngresado.equalsIgnoreCase("no")) break;
-                        ramosIngresados.add(new Ramo(ramoIngresado));
+
+                        System.out.println("Ingresar codigo del ramo ingresado: ");
+                        ramoCodigoIngresado = lector.readLine();
+
+                        ramosIngresados.add(new Ramo(ramoIngresado,ramoCodigoIngresado));
                     }
                     
                     while(true){
@@ -51,7 +59,10 @@ public class Main {
                         ramoIngresado = lector.readLine();
                         if(ramoIngresado.equalsIgnoreCase("no")) break;
 
-                        sedeActual.agregarDatosAlumno(nombreAlumno, ramosIngresados,new Ramo(ramoIngresado), rutAlumno);
+                        System.out.println("Ingresar codigo del ramo ingresado: ");
+                        ramoCodigoIngresado = lector.readLine();
+
+                        sedeActual.agregarDatosAlumno(nombreAlumno, ramosIngresados,new Ramo(ramoIngresado,ramoCodigoIngresado), rutAlumno);
                     }
                     break;
                 default:
@@ -66,13 +77,14 @@ public class Main {
             System.out.println("2) Salir");
 
             int opcion;
+            int opcionBuscar;
             opcion = Integer.parseInt(lector.readLine());
             if(opcion == 1){
                 System.out.println("Como desea buscar el alumno?");
                 System.out.println("1) Nombre");
                 System.out.println("2) Rut");
 
-                int opcionBuscar = Integer.parseInt(lector.readLine());
+                opcionBuscar = Integer.parseInt(lector.readLine());
                 if(opcionBuscar == 1){
                     System.out.println("Ingrese el nombre: ");
                     String nombreAlumno = lector.readLine();
@@ -88,6 +100,7 @@ public class Main {
                 }
             }else{
                 break;
+                
             }
         }
 

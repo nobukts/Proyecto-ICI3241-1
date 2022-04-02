@@ -15,6 +15,11 @@ public class Ramo {
         this.nombreRamo = nombreRamo;
     }
 
+    public Ramo(String nombreRamo, String codigoRamo){
+        this.nombreRamo = nombreRamo;
+        this.codigoRamo = codigoRamo;
+    }
+
     public Ramo(String nombreRamo, String codigoRamo, String nombreProfesor, int creditosOtorga, int cantidadAlumnos){
         this.nombreRamo = nombreRamo;
         this.codigoRamo = codigoRamo;

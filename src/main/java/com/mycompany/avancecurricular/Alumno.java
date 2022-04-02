@@ -93,20 +93,22 @@ public class Alumno {
 
     public void buscarRamo(String nombreRamo){
         for(int i = 0 ; i < mallaCurricular.size() ; i++){
-            if(mallaCurricular.get(i).getNombreRamo() == nombreRamo){
+            if(mallaCurricular.get(i).getNombreRamo().equalsIgnoreCase(nombreRamo)){
                 System.out.print("- Informacion del ramo " + nombreRamo + ": ");
                 System.out.println("Codigo ramo: " + mallaCurricular.get(i).getCodigoRamo());
+                break;
             }
         }
     }
 
     public void buscarRamo(String codigoLetras, int codigoNumeros){
         String codigoRamo = codigoLetras + String.valueOf(codigoNumeros);
+        System.out.println(codigoRamo);
         for(int i = 0 ; i < mallaCurricular.size() ; i++){
-            if(mallaCurricular.get(i).getNombreRamo() == codigoRamo){
+            if(mallaCurricular.get(i).getCodigoRamo().equalsIgnoreCase(codigoRamo)){
                 System.out.print("- Informacion del ramo " + codigoRamo + ": ");
-                System.out.println("Codigo ramo: " + mallaCurricular.get(i).getCodigoRamo());
-                
+                System.out.println("Nombre ramo: " + mallaCurricular.get(i).getNombreRamo());
+                break;
             }
         }
     }
