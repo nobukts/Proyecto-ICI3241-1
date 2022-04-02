@@ -91,4 +91,24 @@ public class Alumno {
         this.cantCreditos = cantCreditos;
     }
 
+    public void buscarRamo(String nombreRamo){
+        for(int i = 0 ; i < mallaCurricular.size() ; i++){
+            if(mallaCurricular.get(i).getNombreRamo() == nombreRamo){
+                System.out.print("- Informacion del ramo " + nombreRamo + ": ");
+                System.out.println("Codigo ramo: " + mallaCurricular.get(i).getCodigoRamo());
+            }
+        }
+    }
+
+    public void buscarRamo(String codigoLetras, int codigoNumeros){
+        String codigoRamo = codigoLetras + String.valueOf(codigoNumeros);
+        for(int i = 0 ; i < mallaCurricular.size() ; i++){
+            if(mallaCurricular.get(i).getNombreRamo() == codigoRamo){
+                System.out.print("- Informacion del ramo " + codigoRamo + ": ");
+                System.out.println("Codigo ramo: " + mallaCurricular.get(i).getCodigoRamo());
+                
+            }
+        }
+    }
+
 }

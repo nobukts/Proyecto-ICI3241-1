@@ -44,7 +44,7 @@ public class Instituto {
     }
     
     public void mostrarAlumnos(){
-        System.out.println("\nAlumnos de la sede " + this.nombreSede + "\n");
+        System.out.println("\n[Alumnos de la sede " + this.nombreSede + "]\n");
         if(listaAlumnos.size() == 0){
             System.out.println("No ha ingresado ningun alumno por el momento");
             return;
@@ -52,16 +52,28 @@ public class Instituto {
         else{
             for (int i = 0; i < listaAlumnos.size(); i++) {
                 System.out.println("- Nombre: " + listaAlumnos.get(i).getNombreAlumno());
-                System.out.println("- Malla: ");
+                System.out.print("- Malla: ");
+                byte auxComa = 0;
 
                 for (int j = 0; j < listaAlumnos.get(i).getMallaCurricular().size(); j++) {
-                    System.out.println(listaAlumnos.get(i).getMallaCurricular().get(j).getNombreRamo());
+                    if(auxComa == 1){ System.out.print(" , ");}
+                    else{
+                        auxComa = 1;
+                    }
+                    System.out.print(listaAlumnos.get(i).getMallaCurricular().get(j).getNombreRamo());
                 }
+                System.out.println();
+                auxComa = 0;
 
                 if(listaAlumnos.get(i).getRamosActuales().isEmpty() == false){
-                    System.out.println("- Ramos actuales: ");
+                    System.out.print("- Ramos actuales: ");
+                    
                     for (int j = 0; j < listaAlumnos.get(i).getRamosActuales().size(); j++) {
-                        System.out.println(listaAlumnos.get(i).getRamosActuales().get(j).getNombreRamo());
+                        if(auxComa == 1){ System.out.print(" , ");}
+                        else{
+                            auxComa = 1;
+                        }
+                        System.out.print(listaAlumnos.get(i).getRamosActuales().get(j).getNombreRamo());
                     }
                 }
             }

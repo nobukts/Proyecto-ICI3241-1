@@ -21,6 +21,7 @@ public class Main {
             sedeActual.agregarAlumnos(alumnoIngresado);
             contAlumnos++;
 
+            System.out.println("Eliga la opcion para agregar los datos correspondientes al alumno");
             System.out.println("1) Solo malla curricular");
             System.out.println("2) Malla curricular y cursos actuales");
 
@@ -30,7 +31,7 @@ public class Main {
             switch(Integer.parseInt(lector.readLine())){
                 case 1:
                     while(true){
-                        System.out.println("Ingresar ramo de la malla curricular");
+                        System.out.println("Ingresar ramo de la malla curricular (Para cancelar escriba \"no\"): ");
                         ramoIngresado = lector.readLine();
                         if(ramoIngresado.equalsIgnoreCase("no")) break;
 
@@ -39,14 +40,14 @@ public class Main {
                     break;
                 case 2:
                     while(true){
-                        System.out.println("Ingresar ramo de la malla curricular");
+                        System.out.println("Ingresar ramo de la malla curricular (Para cancelar escriba \"no\"): ");
                         ramoIngresado = lector.readLine();
                         if(ramoIngresado.equalsIgnoreCase("no")) break;
                         ramosIngresados.add(new Ramo(ramoIngresado));
                     }
                     
                     while(true){
-                        System.out.println("Ingresar ramo que esta cursando");
+                        System.out.println("Ingresar ramo que esta cursando (Para cancelar escriba \"no\"): ");
                         ramoIngresado = lector.readLine();
                         if(ramoIngresado.equalsIgnoreCase("no")) break;
 
@@ -91,7 +92,7 @@ public class Main {
         }
 
         
-
+        
 
         sedeActual.mostrarAlumnos();
     }
