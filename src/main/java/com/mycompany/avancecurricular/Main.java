@@ -1,54 +1,112 @@
 package com.mycompany.avancecurricular;
-import java.io.* ;
+import java.io.*;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        HashMap<String, Alumno> mapaAlumnos = new HashMap<>();
         BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));
-        int cont = 0;
-
-        //Se usaran los mismos ramos para todos de momento
-        Ramo ramo1 = new Ramo("BASE DE DATOS","ICI2340","RICARDO GONZALES",3,10);
-        Ramo ramo2 = new Ramo("PROGRAMACION AVANZADA","ICI4150","PABLO ESCAMILLA",4,5);
-        Ramo ramo3 = new Ramo("MATEMATICAS","MAT1150","SARA TORRES",3,20);
-        ArrayList<Ramo> mallaCurricularAux = new ArrayList<>();
-        mallaCurricularAux.add(ramo1);
-        mallaCurricularAux.add(ramo2);
-        mallaCurricularAux.add(ramo3);
-        ArrayList<Ramo> ramosVaciosAux = new ArrayList<>();
-        String palabraIngresada = new String();
+        System.out.println("Ingresar el nombre del instituto");
+        Instituto sedeActual = new Instituto(lector.readLine());
+        int contAlumnos = 1;
 
         while(true){
-            cont++;
-            Alumno alumnoActual = new Alumno();
-            System.out.println("Ingresar el nombre del alumno " + cont + "/? (o \"no\" para dejar de agregar alumnos)");
-            palabraIngresada = lector.readLine();
-            alumnoActual.setNombreAlumno(palabraIngresada);
+            System.out.println("Ingrese el nombre del alumno " + contAlumnos + " a agregar, para cancelar coloque \"no\": ");
+            String nombreAlumno = lector.readLine();
+            if(nombreAlumno.equalsIgnoreCase("no")) break;
 
-            if(palabraIngresada.equalsIgnoreCase("no")) break;
-            
-            System.out.println("Ingresar la cantidad de creditos del alumno " + cont);
-            alumnoActual.setCantCreditos(Integer.parseInt(lector.readLine()));
+            System.out.println("Ingrese el rut del alumno " + contAlumnos + " a agregar (Sin puntos ni guión Ej: 12345678k): ");
+            String rutAlumno = lector.readLine();
 
-            alumnoActual.setMallaCurricular(mallaCurricularAux);
-            alumnoActual.setRamosActuales(mallaCurricularAux);
-            alumnoActual.setRamosAprobados(ramosVaciosAux);
-            alumnoActual.setRamosFaltantes(ramosVaciosAux);
+            Alumno alumnoIngresado = new Alumno(nombreAlumno,rutAlumno);
+            sedeActual.agregarAlumnos(alumnoIngresado);
+            contAlumnos++;
 
-            mapaAlumnos.put(alumnoActual.getNombreAlumno(), alumnoActual);
+            System.out.println("Eliga la opcion para agregar los datos correspondientes al alumno");
+            System.out.println("1) Solo malla curricular");
+            System.out.println("2) Malla curricular y cursos actuales");
+
+            String ramoIngresado;
+            String ramoCodigoIngresado;
+            ArrayList<Ramo> ramosIngresados = new ArrayList<>();
+
+            switch(Integer.parseInt(lector.readLine())){
+                case 1:
+                    while(true){
+                        System.out.println("Ingresar ramo de la malla curricular (Para cancelar escriba \"no\"): ");
+                        ramoIngresado = lector.readLine();
+                        if(ramoIngresado.equalsIgnoreCase("no")) break;
+
+                        System.out.println("Ingresar codigo del ramo ingresado: ");
+                        ramoCodigoIngresado = lector.readLine();
+
+                        sedeActual.agregarDatosAlumno(nombreAlumno, new Ramo(ramoIngresado,ramoCodigoIngresado), rutAlumno);
+                    }
+                    break;
+                case 2:
+                    while(true){
+                        System.out.println("Ingresar ramo de la malla curricular (Para cancelar escriba \"no\"): ");
+                        ramoIngresado = lector.readLine();
+                        if(ramoIngresado.equalsIgnoreCase("no")) break;
+
+                        System.out.println("Ingresar codigo del ramo ingresado: ");
+                        ramoCodigoIngresado = lector.readLine();
+
+                        ramosIngresados.add(new Ramo(ramoIngresado,ramoCodigoIngresado));
+                    }
+                    
+                    while(true){
+                        System.out.println("Ingresar ramo que esta cursando (Para cancelar escriba \"no\"): ");
+                        ramoIngresado = lector.readLine();
+                        if(ramoIngresado.equalsIgnoreCase("no")) break;
+
+                        System.out.println("Ingresar codigo del ramo ingresado: ");
+                        ramoCodigoIngresado = lector.readLine();
+
+                        sedeActual.agregarDatosAlumno(nombreAlumno, ramosIngresados,new Ramo(ramoIngresado,ramoCodigoIngresado), rutAlumno);
+                    }
+                    break;
+                default:
+                    System.out.println("Ingreso una opcion invalida");
+                    break;
+            }
         }
+
+        while(true){
+            System.out.println("Funcionalidad (Ingrese el número de la opción):");
+            System.out.println("1) Buscar alumnos");
+            System.out.println("2) Salir");
+
+            int opcion;
+            int opcionBuscar;
+            opcion = Integer.parseInt(lector.readLine());
+            if(opcion == 1){
+                System.out.println("Como desea buscar el alumno?");
+                System.out.println("1) Nombre");
+                System.out.println("2) Rut");
+
+                opcionBuscar = Integer.parseInt(lector.readLine());
+                if(opcionBuscar == 1){
+                    System.out.println("Ingrese el nombre: ");
+                    String nombreAlumno = lector.readLine();
+
+                    sedeActual.buscarAlumno(nombreAlumno);
+                }else{
+                    System.out.println("Ingrese los primeros 8 digitos del rut: ");
+                    int digitos = Integer.parseInt(lector.readLine());
+                    System.out.println("Ingrese el digito verificador: ");
+                    String digitoVerificador = lector.readLine();
+
+                    sedeActual.buscarAlumno(digitos, digitoVerificador);
+                }
+            }else{
+                break;
+                
+            }
+        }
+
         
-        cont = 0;
+        
 
-        for (String clave: mapaAlumnos.keySet()) {
-            cont++;
-            System.out.println("Alumno " + cont + ": " + mapaAlumnos.get(clave).getNombreAlumno() + " (" + mapaAlumnos.get(clave).getCantCreditos() + " creditos) Malla: ");
-            
-            mapaAlumnos.get(clave).getMallaCurricular().forEach(ramoMostrar -> {
-                System.out.println(ramoMostrar.getNombreRamo() + " / "+ramoMostrar.getCodigoRamo() + " / " + ramoMostrar.getNombreProfesor());
-            });
-        }
-    }    
+        sedeActual.mostrarAlumnos();
+    }
 }

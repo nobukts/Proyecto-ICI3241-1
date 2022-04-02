@@ -3,6 +3,7 @@ import java.util.ArrayList;
 
 public class Alumno {
     private String nombreAlumno;
+    private String rutAlumno;
     private ArrayList<Ramo> mallaCurricular;
     private ArrayList<Ramo> ramosAprobados;
     private ArrayList<Ramo> ramosActuales;
@@ -13,8 +14,19 @@ public class Alumno {
         
     }
 
-    public Alumno(String nombreAlumno, ArrayList<Ramo> mallaCurricular, ArrayList<Ramo> ramosAprobados, ArrayList<Ramo> ramosActuales, ArrayList<Ramo> ramosFaltantes, int cantCreditos){
+    public Alumno(String nombreAlumno, String rutAlumno){
         this.nombreAlumno = nombreAlumno;
+        this.rutAlumno = rutAlumno;
+        this.mallaCurricular = new ArrayList<>();
+        this.ramosAprobados = new ArrayList<>();
+        this.ramosActuales = new ArrayList<>();
+        this.ramosFaltantes = new ArrayList<>();
+        this.cantCreditos = 0;
+    }
+
+    public Alumno(String nombreAlumno, String rutAlumno, ArrayList<Ramo> mallaCurricular, ArrayList<Ramo> ramosAprobados, ArrayList<Ramo> ramosActuales, ArrayList<Ramo> ramosFaltantes, int cantCreditos){
+        this.nombreAlumno = nombreAlumno;
+        this.rutAlumno = rutAlumno;
         this.mallaCurricular = mallaCurricular;
         this.ramosAprobados = ramosAprobados;
         this.ramosActuales = ramosActuales;
@@ -28,6 +40,14 @@ public class Alumno {
 
     public void setNombreAlumno(String nombreAlumno) {
         this.nombreAlumno = nombreAlumno;
+    }
+
+    public String getRutAlumno() {
+        return rutAlumno;
+    }
+
+    public void setRutAlumno(String rutAlumno) {
+        this.rutAlumno = rutAlumno;
     }
 
     public ArrayList<Ramo> getMallaCurricular() {
@@ -69,6 +89,28 @@ public class Alumno {
     public void setCantCreditos(int cantCreditos) {
         if(cantCreditos < 0) cantCreditos *= -1;
         this.cantCreditos = cantCreditos;
+    }
+
+    public void buscarRamo(String nombreRamo){
+        for(int i = 0 ; i < mallaCurricular.size() ; i++){
+            if(mallaCurricular.get(i).getNombreRamo().equalsIgnoreCase(nombreRamo)){
+                System.out.print("- Informacion del ramo " + nombreRamo + ": ");
+                System.out.println("Codigo ramo: " + mallaCurricular.get(i).getCodigoRamo());
+                break;
+            }
+        }
+    }
+
+    public void buscarRamo(String codigoLetras, int codigoNumeros){
+        String codigoRamo = codigoLetras + String.valueOf(codigoNumeros);
+        System.out.println(codigoRamo);
+        for(int i = 0 ; i < mallaCurricular.size() ; i++){
+            if(mallaCurricular.get(i).getCodigoRamo().equalsIgnoreCase(codigoRamo)){
+                System.out.print("- Informacion del ramo " + codigoRamo + ": ");
+                System.out.println("Nombre ramo: " + mallaCurricular.get(i).getNombreRamo());
+                break;
+            }
+        }
     }
 
 }
