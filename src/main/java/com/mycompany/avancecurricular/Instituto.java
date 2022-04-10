@@ -45,12 +45,12 @@ public class Instituto {
     }
     
     public void mostrarAlumnos(){
-        System.out.println("\n[Alumnos de la sede " + this.nombreSede + "]\n");
         if(listaAlumnos.size() == 0){
             System.out.println("No ha ingresado ningun alumno por el momento");
             return;
         }
         else{
+            System.out.println("\n[Alumnos de la sede " + this.nombreSede + "]\n");
             for (int i = 0; i < listaAlumnos.size(); i++) {
                 System.out.println("- Nombre: " + listaAlumnos.get(i).getNombreAlumno());
                 System.out.print("- Malla: ");
@@ -76,6 +76,7 @@ public class Instituto {
                         }
                         System.out.print(listaAlumnos.get(i).getRamosActuales().get(j).getNombreRamo());
                     }
+                    System.out.println();
                 }
             }
         }
@@ -88,8 +89,9 @@ public class Instituto {
         BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));
 
         System.out.println("Desea buscar mas informacion sobre un ramo de la malla del alumno?");
-        System.out.println("1) Buscar informacion un ramo ramo");
-        System.out.println("2) salir");
+        System.out.println("1) Buscar informacion de un ramo");
+        System.out.println("2) Mostrar todos los ramos del alumno");
+        System.out.println("0) salir");
 
         int opcion = Integer.parseInt(lector.readLine());
         int opcionBuscar;
@@ -113,6 +115,11 @@ public class Instituto {
 
                 mapaAlumnosNombre.get(nombreAlumno).buscarRamo(letrasCodigo, digitosCodigo);
             }
+        }else{
+            if(opcion == 2){
+                System.out.println("\nEl alumno " + nombreAlumno + " tiene en su malla curricular todos los siguientes ramos:");
+                mapaAlumnosNombre.get(nombreAlumno).mostrarTodosRamos();
+            }
         }
     }
 
@@ -124,4 +131,28 @@ public class Instituto {
         
         
     }
+
+    public void agregarRamo(String nombreAlumno, String ramoIngresado, String ramoCodigoIngresado, String cursando){
+        //Agregar a la malla
+        Ramo ramoAgregar = new Ramo();
+        ramoAgregar.setNombreRamo(ramoIngresado);
+        ramoAgregar.setCodigoRamo(ramoCodigoIngresado);
+        mapaAlumnosNombre.get(nombreAlumno).getMallaCurricular().add(ramoAgregar);
+
+        //Agregar a los ramos cursando en el caso de que si sea
+        if(cursando.equalsIgnoreCase("si")){
+            System.out.println("Agregando a los ramos cursados");
+            mapaAlumnosNombre.get(nombreAlumno).getRamosActuales().add(ramoAgregar);
+        }else{
+            System.out.println("No se agrega a los ramos cursados");
+        }
+    }
+
+    public int hayDatosMapa(){
+        if(mapaAlumnosNombre.size() == 0){
+            return 0;
+        }
+        return 1;
+    }
 }
+//ramo ramo

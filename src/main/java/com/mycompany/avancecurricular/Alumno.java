@@ -113,4 +113,10 @@ public class Alumno {
         }
     }
 
+    public void mostrarTodosRamos(){
+        for(int i = 0 ; i < mallaCurricular.size() ; i++){
+            System.out.println("Ramo " + (i+1) + ": " + mallaCurricular.get(i).getNombreRamo());
+        }
+    }
+
 }
