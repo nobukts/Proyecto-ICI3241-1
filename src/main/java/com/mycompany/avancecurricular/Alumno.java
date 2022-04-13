@@ -1,4 +1,4 @@
-package com.mycompany.AvanceCurricular;
+package com.mycompany.avancecurricular;
 
 import java.util.ArrayList;
 
