@@ -19,14 +19,31 @@ public class Carrera {
         this.nombreCarrera = nombreCarrera;
     }
 
-    public void agregarAlumno(String nombreAlumno){
-        Alumno nuevoAlumno = new Alumno(nombreAlumno);
-        mapaAlumnos.put(nombreAlumno, nuevoAlumno);
-        listaAlumnos.add(nuevoAlumno);
+    public boolean agregarAlumno(Alumno al){
+        for (int i = 0; i < listaAlumnos.size(); i++) {
+            if(listaAlumnos.get(i).getRut() == al.getRut()){
+                return false;
+            }
+        }
+        
+        listaAlumnos.add(al);
+        mapaAlumnos.put(al.getNombreAlumno(), al);
+        return true;
+    }
+    
+    public boolean eliminarAlumno(String nombreAlumno){
+        for (int i = 0; i < listaAlumnos.size(); i++) {
+            if(listaAlumnos.get(i).getNombreAlumno().equalsIgnoreCase(nombreAlumno)){
+                mapaAlumnos.remove(nombreAlumno);
+                listaAlumnos.remove(i);
+                return true;
+            }
+        }
+        return false;
     }
 
     public void mostrarListaAlumnos(){
-        if(listaAlumnos.size() == 0){
+        if(listaAlumnos.isEmpty()){
             System.out.println("No hay alumnos matriculados");
             return;
         }

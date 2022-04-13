@@ -4,17 +4,27 @@ import java.util.ArrayList;
 
 public class Alumno {
     private String nombreAlumno;
+    private int cantidadCreditos;
+    private int rut;
     private ArrayList<Ramo> ramosAprobados;
     private ArrayList<Ramo> ramosActuales;
     private ArrayList<Ramo> ramosPorCursar;
-    private int cantidadCreditos;
 
-    public Alumno(String nombreAlumno){
+    public Alumno(String nombreAlumno, int rut){
         this.nombreAlumno = nombreAlumno;
+        this.rut = rut;
+    }
+
+    public int getRut() {
+        return rut;
+    }
+
+    public void setRut(int rut) {
+        this.rut = rut;
     }
 
     public void mostrarAlumno(){
-        System.out.println(this.nombreAlumno);
+        System.out.println("Nombre: " + this.nombreAlumno + " Rut: " + this.rut);
     }
 
     public String getNombreAlumno() {
