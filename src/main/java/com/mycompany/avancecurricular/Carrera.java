@@ -1,7 +1,6 @@
-package com.mycompany.proyecto2;
+package com.mycompany.avancecurricular;
 
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.*;
 
 public class Carrera {
     private String nombreCarrera;

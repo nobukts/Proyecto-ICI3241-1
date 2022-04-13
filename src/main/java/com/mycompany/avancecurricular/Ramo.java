@@ -1,4 +1,4 @@
-package com.mycompany.proyecto2;
+package com.mycompany.AvanceCurricular;
 
 public class Ramo {
     private String nombreRamo;
