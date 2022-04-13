@@ -5,7 +5,7 @@ public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader lectorGeneral = new BufferedReader(new InputStreamReader(System.in));
 
-        Carrera carreraInformatica = new Carrera("Ingenieria en informatica");
+        Carrera carreraInformatica = new Carrera("Ingenieria Civil en informatica");
         
         while(true){
             System.out.println("1) Matricular Alumno");
@@ -20,12 +20,11 @@ public class Main {
                     System.out.println("Ingrese el rut del alumno");
                     int rutAlumno = Integer.parseInt(lectorGeneral.readLine());
                     
-                    if(carreraInformatica.agregarAlumno(new Alumno(nombreAlumno, rutAlumno))){
+                    if(carreraInformatica.agregarAlumno(new Alumno(nombreAlumno, rutAlumno))) 
                         System.out.println("Alumno ingresado");
-                    }
-                    else{
+                    else 
                         System.out.println("Alumno ya estaba matriculado");
-                    }
+                    
                     break;
                 
                 case 2:
@@ -33,12 +32,23 @@ public class Main {
                     break;
                 
                 case 3:
-                    if(carreraInformatica.eliminarAlumno(lectorGeneral.readLine())){
-                        System.out.println("Se elimino el alumno");
+                    System.out.println("1) Eliminar alumno por rut");
+                    System.out.println("2) Eliminar alumno por nombre");
+                    switch (Integer.parseInt(lectorGeneral.readLine())) {
+                        case 1:
+                            if(carreraInformatica.eliminarAlumno(Integer.parseInt(lectorGeneral.readLine())))
+                                System.out.println("Se elimino el alumno");
+                            else
+                                System.out.println("Alumno no matriculado");
+                            break;
+                        case 2:
+                            if(carreraInformatica.eliminarAlumno(lectorGeneral.readLine()))
+                                System.out.println("Se elimino el alumno");
+                            else
+                                System.out.println("Alumno no matriculado");
+                            break;
                     }
-                    else{
-                        System.out.println("Alumno no matriculado");
-                    }
+                    
                     break;
                 case 0:
                     System.out.println("Salio del programa con exito");

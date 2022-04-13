@@ -32,9 +32,23 @@ public class Carrera {
     }
     
     public boolean eliminarAlumno(String nombreAlumno){
+        if(listaAlumnos.isEmpty()) return false;
         for (int i = 0; i < listaAlumnos.size(); i++) {
             if(listaAlumnos.get(i).getNombreAlumno().equalsIgnoreCase(nombreAlumno)){
                 mapaAlumnos.remove(nombreAlumno);
+                listaAlumnos.remove(i);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean eliminarAlumno(int rutAlumno){
+        if(listaAlumnos.isEmpty()) return false;
+
+        for (int i = 0; i < listaAlumnos.size(); i++) {
+            if(listaAlumnos.get(i).getRut() == rutAlumno){
+                mapaAlumnos.remove(listaAlumnos.get(i).getNombreAlumno());
                 listaAlumnos.remove(i);
                 return true;
             }
