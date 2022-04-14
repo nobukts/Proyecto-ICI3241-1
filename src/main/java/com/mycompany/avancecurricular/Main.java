@@ -12,6 +12,7 @@ public class Main {
             System.out.println("2) Eliminar Alumno");
             System.out.println("3) Mostrar lista de alumnos");
             System.out.println("4) Añadir nuevo ramo cursado a un alumno");
+            System.out.println("5) Mostrar ramos de las carreras");
             System.out.println("0) Salir del programa");
 
             switch (Integer.parseInt(lectorGeneral.readLine())) {
@@ -65,6 +66,9 @@ public class Main {
                     else{
                         System.out.println("El ramo ya estaba agregado");
                     }
+                    break;
+                case 5:
+                    carreraInformatica.mostrarRamosCarrera();
                     break;
                 case 0:
                     System.out.println("Salio del programa con exito");
