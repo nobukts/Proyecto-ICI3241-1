@@ -9,8 +9,8 @@ public class Main {
         
         while(true){
             System.out.println("1) Matricular Alumno");
-            System.out.println("2) Mostrar lista de alumnos");
-            System.out.println("3) Eliminar Alumno");
+            System.out.println("2) Eliminar Alumno");
+            System.out.println("3) Mostrar lista de alumnos");
             System.out.println("4) Añadir nuevo ramo cursado a un alumno");
             System.out.println("0) Salir del programa");
 
@@ -27,12 +27,7 @@ public class Main {
                         System.out.println("Alumno ya estaba matriculado");
                     
                     break;
-                
                 case 2:
-                    carreraInformatica.mostrarListaAlumnos();
-                    break;
-                
-                case 3:
                     System.out.println("1) Eliminar alumno por rut");
                     System.out.println("2) Eliminar alumno por nombre");
                     switch (Integer.parseInt(lectorGeneral.readLine())) {
@@ -50,6 +45,9 @@ public class Main {
                             break;
                     }
                     
+                    break;
+                case 3:
+                carreraInformatica.mostrarListaAlumnos();
                     break;
                 case 4:
                     System.out.println("Ingrese el nombre del alumno");
