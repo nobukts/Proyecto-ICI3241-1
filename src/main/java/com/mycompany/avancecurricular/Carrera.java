@@ -90,9 +90,14 @@ public class Carrera {
     }
 
     public void mostrarRamosCarrera(){
+        if(listaRamos.isEmpty()){
+            System.out.println("No se ha ingresado ningun ramo de la carrera");
+            return;
+        }
+        
         System.out.println("Ramos de la carrera " + nombreCarrera);
         for (int i = 0; i < listaRamos.size(); i++) {
-            System.out.println(listaRamos.get(i).getNombreRamo() + " " + listaRamos.get(i).getCantidadAlumnos());
+            listaRamos.get(i).mostrarInformacion();
         }
     }
 }

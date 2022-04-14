@@ -5,7 +5,8 @@ public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader lectorGeneral = new BufferedReader(new InputStreamReader(System.in));
 
-        Carrera carreraInformatica = new Carrera("Ingenieria Civil en informatica");
+        System.out.println("Ingrese el nombre de la carrera");
+        Carrera carreraInformatica = new Carrera(lectorGeneral.readLine());
         
         while(true){
             System.out.println("1) Matricular Alumno");

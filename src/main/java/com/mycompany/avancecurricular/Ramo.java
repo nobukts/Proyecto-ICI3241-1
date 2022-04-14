@@ -43,4 +43,8 @@ public class Ramo {
     public void aumentarCantidadAlumnos(){
         cantidadAlumnos++;
     }
+    
+    public void mostrarInformacion(){
+        System.out.println("Nombre del ramo " + nombreRamo + " Cantidad de Alumnos " + cantidadAlumnos + " Cantidad de creditos " + cantidadCreditos);
+    }
 }
