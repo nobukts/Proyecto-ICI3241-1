@@ -4,11 +4,13 @@ import java.util.*;
 
 public class Carrera {
     private String nombreCarrera;
-    private HashMap<String, Alumno> mapaAlumnos = new HashMap<>();
-    private ArrayList<Alumno> listaAlumnos = new ArrayList<>();
+    private HashMap<String, Alumno> mapaAlumnos;
+    private ArrayList<Alumno> listaAlumnos;
     
     public Carrera(String nombreCarrera){
         this.nombreCarrera = nombreCarrera;
+        listaAlumnos = new ArrayList<>();
+        mapaAlumnos = new HashMap<>();
     }
 
     public String getNombreCarrera() {
@@ -66,5 +68,9 @@ public class Carrera {
         for (int i = 0; i < listaAlumnos.size(); i++) {
             listaAlumnos.get(i).mostrarAlumno();
         }
+    }
+
+    public boolean agregarRamoActual(String nombreAlumno, Ramo nuevoRamo){
+        return mapaAlumnos.get(nombreAlumno).agregarRamoActual(nuevoRamo);
     }
 }

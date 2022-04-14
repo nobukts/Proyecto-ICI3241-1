@@ -11,6 +11,7 @@ public class Main {
             System.out.println("1) Matricular Alumno");
             System.out.println("2) Mostrar lista de alumnos");
             System.out.println("3) Eliminar Alumno");
+            System.out.println("4) Añadir nuevo ramo cursado a un alumno");
             System.out.println("0) Salir del programa");
 
             switch (Integer.parseInt(lectorGeneral.readLine())) {
@@ -49,6 +50,23 @@ public class Main {
                             break;
                     }
                     
+                    break;
+                case 4:
+                    System.out.println("Ingrese el nombre del alumno");
+                    nombreAlumno = lectorGeneral.readLine();
+                    System.out.println("Ingrese el codigo del ramo");
+                    String codigoRamo = lectorGeneral.readLine();
+                    System.out.println("Ingrese el nombre del ramo");
+                    String nombreRamo = lectorGeneral.readLine();
+                    System.out.println("Ingrese la cantidad de creditos que otorga el ramo");
+                    int cantCreditos = Integer.parseInt(lectorGeneral.readLine());
+
+                    if(carreraInformatica.agregarRamoActual(nombreAlumno, new Ramo(nombreRamo, codigoRamo, cantCreditos))){
+                        System.out.println("Ramo agregado");
+                    }
+                    else{
+                        System.out.println("El ramo ya estaba agregado");
+                    }
                     break;
                 case 0:
                     System.out.println("Salio del programa con exito");

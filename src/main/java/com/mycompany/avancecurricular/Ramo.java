@@ -5,6 +5,12 @@ public class Ramo {
     private String codigoRamo;
     private int cantidadCreditos;
 
+    public Ramo(String nombreRamo, String codigoRamo, int cantidadCreditos){
+        this.cantidadCreditos = cantidadCreditos;
+        this.codigoRamo = codigoRamo;
+        this.nombreRamo = nombreRamo;
+    }
+
     public String getNombreRamo() {
         return nombreRamo;
     }
