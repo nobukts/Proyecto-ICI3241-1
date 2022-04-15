@@ -6,16 +6,12 @@ public class Alumno {
     private String nombreAlumno;
     private int cantidadCreditos;
     private int rut;
-    private ArrayList<Ramo> ramosAprobados;
-    private ArrayList<Ramo> ramosActuales;
-    private ArrayList<Ramo> ramosPorCursar;
+    private ArrayList<Ramo> ramosAlumno;
 
     public Alumno(String nombreAlumno, int rut){
         this.nombreAlumno = nombreAlumno;
         this.rut = rut;
-        ramosActuales = new ArrayList<>();
-        ramosAprobados = new ArrayList<>();
-        ramosPorCursar = new ArrayList<>();
+        ramosAlumno = new ArrayList<>();
     }
 
     public void mostrarAlumno(){
@@ -48,28 +44,27 @@ public class Alumno {
 
     public boolean agregarRamoActual(Ramo nuevoRamo){
         Ramo ramoAuxiliar;
-        for (int i = 0; i < ramosAprobados.size(); i++) {
-            ramoAuxiliar = ramosAprobados.get(i);
-            if (ramoAuxiliar.getNombreRamo().equalsIgnoreCase(nuevoRamo.getNombreRamo()) || ramoAuxiliar.getCodigoRamo().equalsIgnoreCase(nuevoRamo.getCodigoRamo())){
+        for (int i = 0; i < ramosAlumno.size(); i++) {
+            ramoAuxiliar = ramosAlumno.get(i);
+            if(ramoAuxiliar.getEstadoRamo() == 1 || ramoAuxiliar.getEstadoRamo() == 2){
                 return false;
             }
         }
-
-        for (int i = 0; i < ramosActuales.size(); i++) {
-            ramoAuxiliar = ramosActuales.get(i);
-            if (ramoAuxiliar.getNombreRamo().equalsIgnoreCase(nuevoRamo.getNombreRamo()) || ramoAuxiliar.getCodigoRamo().equalsIgnoreCase(nuevoRamo.getCodigoRamo())){
-                return false;
-            }
-        }
-
-        ramosActuales.add(nuevoRamo);
-
-        for (int i = 0; i < ramosPorCursar.size(); i++) {
-            ramoAuxiliar = ramosPorCursar.get(i);
-            if (ramoAuxiliar.getNombreRamo().equalsIgnoreCase(nuevoRamo.getNombreRamo()) || ramoAuxiliar.getCodigoRamo().equalsIgnoreCase(nuevoRamo.getCodigoRamo())){
-                ramosPorCursar.remove(i);
-            }
-        }
+        
+        nuevoRamo.setEstadoRamo(1);
+        ramosAlumno.add(nuevoRamo);
         return true;
+    }
+    
+    public boolean actualizarRamo(String codigoRamo, int estadoRamo){
+        Ramo ramoAuxiliar;
+        
+        for (int i = 0; i < ramosAlumno.size(); i++) {
+            ramoAuxiliar = ramosAlumno.get(i);
+            if(ramoAuxiliar.getCodigoRamo().equalsIgnoreCase(codigoRamo)){
+                return ramoAuxiliar.actualizarRamo(estadoRamo);
+            }
+        }
+        return false;
     }
 }

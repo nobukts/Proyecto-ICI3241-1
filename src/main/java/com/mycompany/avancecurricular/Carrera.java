@@ -25,11 +25,8 @@ public class Carrera {
 
     public boolean agregarAlumno(Alumno al){
         for (int i = 0; i < listaAlumnos.size(); i++) {
-            if(listaAlumnos.get(i).getRut() == al.getRut()){
-                return false;
-            }
-        }
-        
+            if(listaAlumnos.get(i).getRut() == al.getRut()) return false;
+        } 
         listaAlumnos.add(al);
         mapaAlumnos.put(al.getNombreAlumno(), al);
         return true;
@@ -87,6 +84,10 @@ public class Carrera {
         listaRamos.add(nuevoRamo);
         listaRamos.get(listaRamos.size()-1).aumentarCantidadAlumnos();
         return true;
+    }
+    
+    public boolean actualizarRamo(String nombreAlumno, String codigoRamo, int estadoRamo){
+        return mapaAlumnos.get(nombreAlumno).actualizarRamo(codigoRamo, estadoRamo);
     }
 
     public void mostrarRamosCarrera(){
