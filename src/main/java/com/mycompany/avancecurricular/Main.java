@@ -6,42 +6,63 @@ public class Main {
         BufferedReader lectorGeneral = new BufferedReader(new InputStreamReader(System.in));
 
         System.out.println("Ingrese el nombre de la carrera");
-        Carrera carrera  = new Carrera(lectorGeneral.readLine());
+        Instituto inst = new Instituto();
         
         while(true){
-            System.out.println("1) Matricular Alumno");
-            System.out.println("2) Eliminar Alumno");
-            System.out.println("3) Mostrar lista de alumnos");
-            System.out.println("4) Agregar nuevo ramo cursado a un alumno");
-            System.out.println("5) Actualizar estado de un ramo de un alumno");
-            System.out.println("6) Mostrar ramos de las carreras");
+            System.out.println("1) Agregar Carrera");
+            System.out.println("2) Matricular Alumno");
+            System.out.println("3) Eliminar Alumno");
+            System.out.println("4) Mostrar lista de alumnos");
+            System.out.println("5) Agregar nuevo ramo cursado a un alumno");
+            System.out.println("6) Actualizar estado de un ramo de un alumno");
+            System.out.println("7) Mostrar ramos de las carreras");
+            System.out.println("8) Mostrar todas las carreras");
             System.out.println("0) Salir del programa");
 
             switch (Integer.parseInt(lectorGeneral.readLine())) {
                 case 1:
+                    System.out.println("Ingrese el nombre de la carrera");
+                    if(inst.agregarCarrera(new Carrera(lectorGeneral.readLine()))){
+                        System.out.println("La carrera se ingreso sin ningun problema");
+                    }
+                    else{
+                        System.out.println("La carrera ya se encuentra ingresada");
+                    }
+                    break;
+                case 2:
                     System.out.println("Ingrese el nombre del alumno");
                     String nombreAlumno = lectorGeneral.readLine();
                     System.out.println("Ingrese el rut del alumno");
                     int rutAlumno = Integer.parseInt(lectorGeneral.readLine());
+                    System.out.println("Ingresar el nombre de la carrera");
+                    String nombreCarrera = lectorGeneral.readLine();
                     
-                    if(carrera.agregarAlumno(new Alumno(nombreAlumno, rutAlumno))) 
+                    if(inst.agregarAlumno(new Alumno(nombreAlumno, rutAlumno), nombreCarrera)) 
                         System.out.println("Alumno ingresado");
                     else 
                         System.out.println("Alumno ya estaba matriculado");
                     
                     break;
-                case 2:
+                case 3:
                     System.out.println("1) Eliminar alumno por rut");
                     System.out.println("2) Eliminar alumno por nombre");
                     switch (Integer.parseInt(lectorGeneral.readLine())) {
                         case 1:
-                            if(carrera.eliminarAlumno(Integer.parseInt(lectorGeneral.readLine())))
+                            System.out.println("Ingrese el rut del alumno");
+                            rutAlumno = Integer.parseInt(lectorGeneral.readLine());
+                            System.out.println("Ingrese el nombre de la carrera");
+                            nombreCarrera = lectorGeneral.readLine();
+                            if(inst.eliminarAlumno(rutAlumno, nombreCarrera))
                                 System.out.println("Se elimino el alumno");
                             else
                                 System.out.println("Alumno no matriculado");
                             break;
                         case 2:
-                            if(carrera.eliminarAlumno(lectorGeneral.readLine()))
+                            System.out.println("Ingrese el nombre del alumno");
+                            nombreAlumno = lectorGeneral.readLine();
+                            System.out.println("Ingrese el nombre de la carrera");
+                            nombreCarrera = lectorGeneral.readLine();
+                            if(inst.eliminarAlumno(nombreAlumno, nombreCarrera))
                                 System.out.println("Se elimino el alumno");
                             else
                                 System.out.println("Alumno no matriculado");
@@ -49,10 +70,11 @@ public class Main {
                     }
                     
                     break;
-                case 3:
-                    carrera.mostrarListaAlumnos();
-                    break;
                 case 4:
+                    System.out.println("Ingresar nombre de la carrera");
+                    inst.mostrarListaAlumnos(lectorGeneral.readLine());
+                    break;
+                case 5:
                     System.out.println("Ingrese el nombre del alumno");
                     nombreAlumno = lectorGeneral.readLine();
                     System.out.println("Ingrese el codigo del ramo");
@@ -61,29 +83,36 @@ public class Main {
                     String nombreRamo = lectorGeneral.readLine();
                     System.out.println("Ingrese la cantidad de creditos que otorga el ramo");
                     int cantCreditos = Integer.parseInt(lectorGeneral.readLine());
+                    System.out.println("Ingrese el nombre de la Carrera");
+                    nombreCarrera = lectorGeneral.readLine();
 
-                    if(carrera.agregarRamoActual(nombreAlumno, new Ramo(nombreRamo, codigoRamo, cantCreditos)))
+                    if(inst.agregarRamoActual(nombreAlumno, new Ramo(nombreRamo, codigoRamo, cantCreditos), nombreCarrera))
                         System.out.println("Ramo agregado");
                     else
                         System.out.println("El ramo ya estaba agregado");
                     
                     break;
-                case 5:
+                case 6:
                     System.out.println("Ingrese nombre del alumno");
                     nombreAlumno = lectorGeneral.readLine();
                     System.out.println("Ingrese el codigo del ramo");
                     codigoRamo = lectorGeneral.readLine();
                     System.out.println("Ingrese el estado del ram (0 = por cursar, 1 = cursando, 2 = aprobado)");
                     int estadoRamo = Integer.parseInt(lectorGeneral.readLine());
+                    System.out.println("Ingrese el nombre de la Carrera");
+                    nombreCarrera = lectorGeneral.readLine();
                     
-                    if(carrera.actualizarRamo(nombreAlumno, codigoRamo, estadoRamo)) 
+                    if(inst.actualizarRamo(nombreAlumno, codigoRamo, estadoRamo, nombreCarrera)) 
                         System.out.println("Se actualizo el estado");
                     else 
                         System.out.println("No se pudo actualizar la informacion");
                     
                     break;
-                case 6:
-                    carrera.mostrarRamosCarrera();
+                case 7:
+                    inst.mostrarRamosCarrera(lectorGeneral.readLine());
+                    break;
+                case 8:
+                    inst.mostrarCarreras();
                     break;
                 case 0:
                     System.out.println("Salio del programa con exito");

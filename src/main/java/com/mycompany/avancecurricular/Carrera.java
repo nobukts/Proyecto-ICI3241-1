@@ -7,14 +7,24 @@ public class Carrera {
     private HashMap<String, Alumno> mapaAlumnos;
     private ArrayList<Alumno> listaAlumnos;
     private ArrayList<Ramo> listaRamos;
+    private int cantidadAlumnos;
     
     public Carrera(String nombreCarrera){
         this.nombreCarrera = nombreCarrera;
         listaAlumnos = new ArrayList<>();
         mapaAlumnos = new HashMap<>();
         listaRamos = new ArrayList<>();
+        cantidadAlumnos = 0;
     }
 
+    public int getCantidadAlumnos() {
+        return cantidadAlumnos;
+    }
+
+    public void setCantidadAlumnos(int cantidadAlumnos) {
+        this.cantidadAlumnos = cantidadAlumnos;
+    }
+    
     public String getNombreCarrera() {
         return nombreCarrera;
     }
@@ -29,6 +39,7 @@ public class Carrera {
         } 
         listaAlumnos.add(al);
         mapaAlumnos.put(al.getNombreAlumno(), al);
+        cantidadAlumnos++;
         return true;
     }
     
@@ -38,6 +49,7 @@ public class Carrera {
             if(listaAlumnos.get(i).getNombreAlumno().equalsIgnoreCase(nombreAlumno)){
                 mapaAlumnos.remove(nombreAlumno);
                 listaAlumnos.remove(i);
+                cantidadAlumnos--;
                 return true;
             }
         }
@@ -51,6 +63,7 @@ public class Carrera {
             if(listaAlumnos.get(i).getRut() == rutAlumno){
                 mapaAlumnos.remove(listaAlumnos.get(i).getNombreAlumno());
                 listaAlumnos.remove(i);
+                cantidadAlumnos--;
                 return true;
             }
         }
@@ -100,5 +113,9 @@ public class Carrera {
         for (int i = 0; i < listaRamos.size(); i++) {
             listaRamos.get(i).mostrarInformacion();
         }
+    }
+
+    public boolean verificarAlumnos(String nombreAlumno){
+        return mapaAlumnos.containsKey(nombreAlumno);
     }
 }
