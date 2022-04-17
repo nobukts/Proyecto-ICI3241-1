@@ -20,6 +20,17 @@ public class Instituto {
         return true;
     }
     
+    public boolean eliminarCarrera(String nombreCarrera){
+        for (int i = 0; i < listaCarreras.size(); i++) {
+            if(listaCarreras.get(i).getNombreCarrera().equalsIgnoreCase(nombreCarrera)){
+                listaCarreras.remove(i);
+                return true;
+            }
+        }
+        
+        return false;
+    }
+    
     public boolean agregarAlumno(Alumno al, String nombreCarrera){
         for (int i = 0; i < listaCarreras.size(); i++) {
             if(listaCarreras.get(i).verificarAlumnos(al.getNombreAlumno())){

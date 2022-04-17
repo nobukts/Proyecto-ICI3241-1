@@ -10,13 +10,14 @@ public class Main {
         
         while(true){
             System.out.println("1) Agregar Carrera");
-            System.out.println("2) Matricular Alumno");
-            System.out.println("3) Eliminar Alumno");
-            System.out.println("4) Mostrar lista de alumnos");
-            System.out.println("5) Agregar nuevo ramo cursado a un alumno");
-            System.out.println("6) Actualizar estado de un ramo de un alumno");
-            System.out.println("7) Mostrar ramos de las carreras");
-            System.out.println("8) Mostrar todas las carreras");
+            System.out.println("2) Eliminar Carrera");
+            System.out.println("3) Matricular Alumno");
+            System.out.println("4) Eliminar Alumno");
+            System.out.println("5) Mostrar lista de alumnos de una carrera");
+            System.out.println("6) Agregar nuevo ramo cursado a un alumno");
+            System.out.println("7) Actualizar estado de un ramo de un alumno");
+            System.out.println("8) Mostrar ramos de las carreras");
+            System.out.println("9) Mostrar todas las carreras");
             System.out.println("0) Salir del programa");
 
             switch (Integer.parseInt(lectorGeneral.readLine())) {
@@ -30,6 +31,15 @@ public class Main {
                     }
                     break;
                 case 2:
+                    System.out.println("Ingrese el nombre de la carrera");
+                    if(inst.eliminarCarrera(lectorGeneral.readLine())){
+                        System.out.println("La carrera se elimino con exito");
+                    }
+                    else{
+                        System.out.println("La carrera no se pudo eliminar");
+                    }
+                    break;
+                case 3:
                     System.out.println("Ingrese el nombre del alumno");
                     String nombreAlumno = lectorGeneral.readLine();
                     System.out.println("Ingrese el rut del alumno");
@@ -43,7 +53,7 @@ public class Main {
                         System.out.println("Alumno ya estaba matriculado");
                     
                     break;
-                case 3:
+                case 4:
                     System.out.println("1) Eliminar alumno por rut");
                     System.out.println("2) Eliminar alumno por nombre");
                     switch (Integer.parseInt(lectorGeneral.readLine())) {
@@ -70,11 +80,11 @@ public class Main {
                     }
                     
                     break;
-                case 4:
+                case 5:
                     System.out.println("Ingresar nombre de la carrera");
                     inst.mostrarListaAlumnos(lectorGeneral.readLine());
                     break;
-                case 5:
+                case 6:
                     System.out.println("Ingrese el nombre del alumno");
                     nombreAlumno = lectorGeneral.readLine();
                     System.out.println("Ingrese el codigo del ramo");
@@ -92,7 +102,7 @@ public class Main {
                         System.out.println("El ramo ya estaba agregado");
                     
                     break;
-                case 6:
+                case 7:
                     System.out.println("Ingrese nombre del alumno");
                     nombreAlumno = lectorGeneral.readLine();
                     System.out.println("Ingrese el codigo del ramo");
@@ -108,10 +118,10 @@ public class Main {
                         System.out.println("No se pudo actualizar la informacion");
                     
                     break;
-                case 7:
+                case 8:
                     inst.mostrarRamosCarrera(lectorGeneral.readLine());
                     break;
-                case 8:
+                case 9:
                     inst.mostrarCarreras();
                     break;
                 case 0:

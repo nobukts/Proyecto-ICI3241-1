@@ -19,7 +19,7 @@ public class Ramo {
         this.cantidadCreditos = cantidadCreditos;
         this.codigoRamo = codigoRamo;
         this.nombreRamo = nombreRamo;
-        this.estadoRamo = 0;
+        this.estadoRamo = estadoRamo;
         cantidadAlumnos = 0;
     }
 
