@@ -97,7 +97,7 @@ public class Carrera {
     }
 
     public boolean agregarRamoActual(String nombreAlumno, Ramo nuevoRamo){
-        if(!mapaAlumnos.get(nombreAlumno).agregarRamoActual(nuevoRamo)){
+        if(!mapaAlumnos.get(nombreAlumno).verificarRamo(nuevoRamo.getNombreRamo())){
             return false;
         }
 
@@ -144,5 +144,14 @@ public class Carrera {
 
     public boolean verificarAlumnos(String nombreAlumno){
         return mapaAlumnos.containsKey(nombreAlumno);
+    }
+    
+    public boolean buscarRamo(String nombreRamo){
+        for (int i = 0; i < listaRamos.size(); i++) {
+            if(listaRamos.get(i).getNombreRamo().equalsIgnoreCase(nombreRamo)){
+                return true;
+            }
+        }
+        return false;
     }
 }

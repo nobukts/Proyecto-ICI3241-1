@@ -121,4 +121,13 @@ public class Instituto {
             System.out.println("Carrera: " + listaCarreras.get(i).getNombreCarrera() + " Alumnos: " + listaCarreras.get(i).getCantidadAlumnos());
         }
     }
+    
+    public boolean buscarRamo(String nombreRamo){
+        for(int i = 0; i < listaCarreras.size(); i++){
+            if(listaCarreras.get(i).buscarRamo(nombreRamo)){
+                return true;
+            }
+        }
+        return false;
+    }
 }

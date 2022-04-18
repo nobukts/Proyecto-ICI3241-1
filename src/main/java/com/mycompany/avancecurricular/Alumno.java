@@ -78,4 +78,14 @@ public class Alumno {
         }
         return false;
     }
+    
+    public boolean verificarRamo(String nombreRamo){
+        for (int i = 0; i < ramosAlumno.size(); i++) {
+            if(ramosAlumno.get(i).getNombreRamo().equalsIgnoreCase(nombreRamo)){
+                return false;
+            }
+            
+        }
+        return true;
+    }
 }

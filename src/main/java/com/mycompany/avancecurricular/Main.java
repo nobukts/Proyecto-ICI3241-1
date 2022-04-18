@@ -18,6 +18,7 @@ public class Main {
             System.out.println("7) Actualizar estado de un ramo de un alumno");
             System.out.println("8) Mostrar ramos de las carreras"); //<---------------------------
             System.out.println("9) Mostrar todas las carreras"); //<---------------------------
+            System.out.println("10) Busqueda de ramo");
             System.out.println("0) Salir del programa");
 
             //Creando los archivos
@@ -136,6 +137,16 @@ public class Main {
                     break;
                 case 9:
                     inst.mostrarCarreras(); //<------------------------------------------------------------------------------------------------------------
+                    break;
+                case 10:
+                    System.out.println("Ingrese el nombre del ramo");
+                    nombreRamo = lectorGeneral.readLine();
+                    
+                    if(inst.buscarRamo(nombreRamo)){
+                        System.out.println("Encontrado");
+                    }else{
+                        System.out.println("No se pudo buscar el ramo");
+                    }
                     break;
                 case 0:
                     System.out.println("Salio del programa con exito");
