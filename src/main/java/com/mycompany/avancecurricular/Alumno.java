@@ -1,6 +1,7 @@
 package com.mycompany.avancecurricular;
 
 import java.util.ArrayList;
+import java.io.*;
 
 public class Alumno {
     private String nombreAlumno;
@@ -15,7 +16,17 @@ public class Alumno {
     }
 
     public void mostrarAlumno(){
+        //Escribir en pantalla
         System.out.println("Nombre: " + this.nombreAlumno + " Rut: " + this.rut);
+    }
+
+    public void mostrarAlumno(FileWriter archivo){
+        //Escribir en el archivo
+        try{
+            archivo.write("Nombre: " + this.nombreAlumno + " Rut: " + this.rut + "\n");
+        }catch(IOException e){
+            e.printStackTrace();
+        }
     }
 
     public int getRut() {

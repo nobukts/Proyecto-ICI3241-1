@@ -13,12 +13,25 @@ public class Main {
             System.out.println("2) Eliminar Carrera");
             System.out.println("3) Matricular Alumno");
             System.out.println("4) Eliminar Alumno");
-            System.out.println("5) Mostrar lista de alumnos de una carrera");
+            System.out.println("5) Mostrar lista de alumnos de una carrera"); //<---------------------------
             System.out.println("6) Agregar nuevo ramo cursado a un alumno");
             System.out.println("7) Actualizar estado de un ramo de un alumno");
-            System.out.println("8) Mostrar ramos de las carreras");
-            System.out.println("9) Mostrar todas las carreras");
+            System.out.println("8) Mostrar ramos de las carreras"); //<---------------------------
+            System.out.println("9) Mostrar todas las carreras"); //<---------------------------
             System.out.println("0) Salir del programa");
+
+            //Creando los archivos
+            try{
+                File archivo = new File("listaAlumnosXCarrera.txt");
+                archivo.createNewFile();
+                File archivo2 = new File("ramosXCarrera.txt");
+                archivo2.createNewFile();
+                File archivo3 = new File("todasLasCarreras.txt");
+                archivo3.createNewFile();
+
+            }catch(IOException e){
+                e.printStackTrace();
+            }
 
             switch (Integer.parseInt(lectorGeneral.readLine())) {
                 case 1:
@@ -82,7 +95,7 @@ public class Main {
                     break;
                 case 5:
                     System.out.println("Ingresar nombre de la carrera");
-                    inst.mostrarListaAlumnos(lectorGeneral.readLine());
+                    inst.mostrarListaAlumnos(lectorGeneral.readLine()); //<-----------------------------------------------------------------------------------------------
                     break;
                 case 6:
                     System.out.println("Ingrese el nombre del alumno");
@@ -119,10 +132,10 @@ public class Main {
                     
                     break;
                 case 8:
-                    inst.mostrarRamosCarrera(lectorGeneral.readLine());
+                    inst.mostrarRamosCarrera(lectorGeneral.readLine()); //<---------------------------------------------------------------------------------
                     break;
                 case 9:
-                    inst.mostrarCarreras();
+                    inst.mostrarCarreras(); //<------------------------------------------------------------------------------------------------------------
                     break;
                 case 0:
                     System.out.println("Salio del programa con exito");

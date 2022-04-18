@@ -1,6 +1,7 @@
 package com.mycompany.avancecurricular;
 
 import java.util.*;
+import java.io.*;
 
 public class Carrera {
     private String nombreCarrera;
@@ -76,6 +77,19 @@ public class Carrera {
             return;
         }
 
+        //Escribir en el archivo
+        try{
+            FileWriter archivo = new FileWriter("listaAlumnosXCarrera.txt");
+            archivo.write("Lista de los alumnos en " + this.nombreCarrera + ":\n");
+            for (int i = 0; i < listaAlumnos.size(); i++) {
+                listaAlumnos.get(i).mostrarAlumno(archivo);
+            }
+            archivo.close();
+        }catch(IOException e){
+            e.printStackTrace();
+        }
+
+        //Escribir en pantalla
         System.out.println("Lista de los alumnos en " + this.nombreCarrera + ":");
         for (int i = 0; i < listaAlumnos.size(); i++) {
             listaAlumnos.get(i).mostrarAlumno();
@@ -109,6 +123,19 @@ public class Carrera {
             return;
         }
         
+        //Escribir en el archivo
+        try{
+            FileWriter archivo = new FileWriter("ramosXCarrera.txt");
+            archivo.write("Ramos de la carrera " + nombreCarrera + "\n");
+            for (int i = 0; i < listaRamos.size(); i++) {
+                listaRamos.get(i).mostrarInformacion(archivo);
+            }
+            archivo.close();
+        }catch(IOException e){
+            e.printStackTrace();
+        }
+
+        //Escribir por pantalla
         System.out.println("Ramos de la carrera " + nombreCarrera);
         for (int i = 0; i < listaRamos.size(); i++) {
             listaRamos.get(i).mostrarInformacion();

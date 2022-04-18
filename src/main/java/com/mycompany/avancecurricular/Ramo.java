@@ -1,5 +1,7 @@
 package com.mycompany.avancecurricular;
 
+import java.io.*;
+
 public class Ramo {
     private String nombreRamo;
     private String codigoRamo;
@@ -63,9 +65,19 @@ public class Ramo {
     }
     
     public void mostrarInformacion(){
+        //Mostrar por pantalla
         System.out.println("Nombre del ramo: " + nombreRamo + " Cantidad de Alumnos: " + cantidadAlumnos + " Cantidad de creditos: " + cantidadCreditos);
     }
     
+    public void mostrarInformacion(FileWriter archivo){
+        //Escribir en el archivo
+        try{
+            archivo.write("Nombre del ramo: " + nombreRamo + " Cantidad de Alumnos: " + cantidadAlumnos + " Cantidad de creditos: " + cantidadCreditos + "\n");
+        }catch(IOException e){
+            e.printStackTrace();
+        }
+    }
+
     public boolean actualizarRamo(int estadoRamo){
         if(this.estadoRamo == estadoRamo) return false;
         

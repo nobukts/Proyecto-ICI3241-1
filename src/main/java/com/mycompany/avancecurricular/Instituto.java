@@ -1,6 +1,7 @@
 package com.mycompany.avancecurricular;
 
 import java.util.ArrayList;
+import java.io.*;
 
 public class Instituto {
     private ArrayList<Carrera> listaCarreras;
@@ -104,6 +105,18 @@ public class Instituto {
     }
     
     public void mostrarCarreras(){
+        //Escribir en el archivo
+        try{
+            FileWriter archivo = new FileWriter("todasLasCarreras.txt");
+            for (int i = 0; i < listaCarreras.size(); i++) {
+                archivo.write("Carrera: " + listaCarreras.get(i).getNombreCarrera() + " Alumnos: " + listaCarreras.get(i).getCantidadAlumnos() + "\n");
+            }
+            archivo.close();
+        }catch(IOException e){
+            e.printStackTrace();
+        }
+
+        //Escribir en pantalla
         for (int i = 0; i < listaCarreras.size(); i++) {
             System.out.println("Carrera: " + listaCarreras.get(i).getNombreCarrera() + " Alumnos: " + listaCarreras.get(i).getCantidadAlumnos());
         }
