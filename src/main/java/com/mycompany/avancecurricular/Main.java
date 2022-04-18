@@ -1,6 +1,6 @@
 package com.mycompany.avancecurricular;
 import java.io.*;
-        
+
 public class Main {
     public static void main(String[] args) throws IOException{
         BufferedReader lectorGeneral = new BufferedReader(new InputStreamReader(System.in));
@@ -19,6 +19,7 @@ public class Main {
             System.out.println("8) Mostrar ramos de las carreras"); //<---------------------------
             System.out.println("9) Mostrar todas las carreras"); //<---------------------------
             System.out.println("10) Busqueda de ramo");
+            System.out.println("11) Importar datos para probar el codigo");
             System.out.println("0) Salir del programa");
 
             //Creando los archivos
@@ -147,6 +148,33 @@ public class Main {
                     }else{
                         System.out.println("No se pudo buscar el ramo");
                     }
+                    break;
+                case 11:
+                    CSV datosCSV = new CSV("importarDatos");
+                    String linea = datosCSV.firstLine();
+                    linea = datosCSV.nextLine();
+                    
+                    //Agregar carrera
+                    if(inst.agregarCarrera(new Carrera(datosCSV.get_csvField(linea, 0)))){
+                        System.out.println("La carrera se ingreso sin ningun problema");
+                    }
+                    else{
+                        System.out.println("La carrera ya se encuentra ingresada");
+                    }
+                    
+                    //Matricular alumno
+                    while(true){
+                        nombreAlumno = datosCSV.get_csvField(linea, 1);
+                        rutAlumno = Integer.parseInt(datosCSV.get_csvField(linea, 2));
+                        nombreCarrera = datosCSV.get_csvField(linea, 0);
+                        if(inst.agregarAlumno(new Alumno(nombreAlumno, rutAlumno), nombreCarrera)) 
+                            System.out.println("Alumno ingresado");
+                        else 
+                            System.out.println("Alumno ya estaba matriculado " + nombreAlumno);
+                        linea = datosCSV.nextLine();
+                        if(linea == null) break;
+                    }
+                    
                     break;
                 case 0:
                     System.out.println("Salio del programa con exito");
