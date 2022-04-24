@@ -12,14 +12,15 @@ public class Main {
             System.out.println("1) Agregar Carrera");
             System.out.println("2) Eliminar Carrera");
             System.out.println("3) Matricular Alumno");
-            System.out.println("4) Eliminar Alumno");
-            System.out.println("5) Mostrar lista de alumnos de una carrera"); //<---------------------------
-            System.out.println("6) Agregar nuevo ramo cursado a un alumno");
-            System.out.println("7) Actualizar estado de un ramo de un alumno");
-            System.out.println("8) Mostrar ramos de las carreras"); //<---------------------------
-            System.out.println("9) Mostrar todas las carreras"); //<---------------------------
-            System.out.println("10) Busqueda de ramo");
-            System.out.println("11) Importar datos para probar el codigo");
+            System.out.println("4) Editar Carrera/Alumno/Ramo");
+            System.out.println("5) Eliminar Alumno");
+            System.out.println("6) Mostrar lista de alumnos de una carrera"); //<---------------------------
+            System.out.println("7) Agregar nuevo ramo cursado a un alumno");
+            System.out.println("8) Actualizar estado de un ramo de un alumno");
+            System.out.println("9) Mostrar ramos de las carreras"); //<---------------------------
+            System.out.println("10) Mostrar todas las carreras"); //<---------------------------
+            System.out.println("11) Busqueda de ramo");
+            System.out.println("12) Importar datos para probar el codigo");
             System.out.println("0) Salir del programa");
 
             //Creando los archivos
@@ -69,6 +70,49 @@ public class Main {
                     
                     break;
                 case 4:
+                    System.out.println("1) Editar nombre Carrera");
+                    System.out.println("2) Editar nombre Alumno");
+                    System.out.println("3) Editar nombre Ramo");
+                    switch (Integer.parseInt(lectorGeneral.readLine())){
+                        case 1:
+                            System.out.println("Ingrese el nombre de la carrera");
+                            nombreCarrera = lectorGeneral.readLine();
+                            System.out.println("Ingrese el nuevo nombre de la carrera");
+                            String nuevoNombreCarrera = lectorGeneral.readLine();
+                            if(inst.editarCarrera(nombreCarrera, nuevoNombreCarrera))
+                                System.out.println("Se edito correctamente");
+                            else
+                                System.out.println("No se encontro la carrera");
+                            break;
+                        case 2:
+                            System.out.println("Ingrese el nombre del alumno");
+                            nombreAlumno = lectorGeneral.readLine();
+                            System.out.println("Ingrese el nombre de la carrera");
+                            nombreCarrera = lectorGeneral.readLine();
+                            System.out.println("Ingrese el nuevo nombre del alumno");
+                            String nuevoNombreAlumno = lectorGeneral.readLine();
+                            if(inst.editarAlumno(nombreCarrera, nombreAlumno, nuevoNombreAlumno))
+                                System.out.println("Se edito correctamente");
+                            else
+                                System.out.println("No se encontro al alumno");
+                            break;
+                        case 3:
+                            System.out.println("Ingrese el nombre del alumno");
+                            nombreAlumno = lectorGeneral.readLine();
+                            System.out.println("Ingrese el nombre de la carrera");
+                            nombreCarrera = lectorGeneral.readLine();
+                            System.out.println("Ingrese nombre del ramo");
+                            String nombreRamo = lectorGeneral.readLine();
+                            System.out.println("Ingrese nuevo nombre del ramo");
+                            String nuevoNombreRamo = lectorGeneral.readLine();
+                            if(inst.editarRamo(nombreCarrera, nombreAlumno, nombreRamo, nuevoNombreRamo))
+                                System.out.println("Editado correctamente");
+                            else
+                                System.out.println("No se encontro el ramo");
+                            break;    
+                    }
+                    break;
+                case 5:
                     System.out.println("1) Eliminar alumno por rut");
                     System.out.println("2) Eliminar alumno por nombre");
                     switch (Integer.parseInt(lectorGeneral.readLine())) {
@@ -95,11 +139,11 @@ public class Main {
                     }
                     
                     break;
-                case 5:
+                case 6:
                     System.out.println("Ingresar nombre de la carrera");
                     inst.mostrarListaAlumnos(lectorGeneral.readLine()); //<-----------------------------------------------------------------------------------------------
                     break;
-                case 6:
+                case 7:
                     System.out.println("Ingrese el nombre del alumno");
                     nombreAlumno = lectorGeneral.readLine();
                     System.out.println("Ingrese el codigo del ramo");
@@ -117,7 +161,7 @@ public class Main {
                         System.out.println("El ramo ya estaba agregado");
                     
                     break;
-                case 7:
+                case 8:
                     System.out.println("Ingrese nombre del alumno");
                     nombreAlumno = lectorGeneral.readLine();
                     System.out.println("Ingrese el codigo del ramo");
@@ -133,13 +177,13 @@ public class Main {
                         System.out.println("No se pudo actualizar la informacion");
                     
                     break;
-                case 8:
+                case 9:
                     inst.mostrarRamosCarrera(lectorGeneral.readLine()); //<---------------------------------------------------------------------------------
                     break;
-                case 9:
+                case 10:
                     inst.mostrarCarreras(); //<------------------------------------------------------------------------------------------------------------
                     break;
-                case 10:
+                case 11:
                     System.out.println("Ingrese el nombre del ramo");
                     nombreRamo = lectorGeneral.readLine();
                     
@@ -149,7 +193,7 @@ public class Main {
                         System.out.println("No se pudo buscar el ramo");
                     }
                     break;
-                case 11:
+                case 12:
                     CSV datosCSV = new CSV("importarDatos");
                     String linea = datosCSV.firstLine();
                     linea = datosCSV.nextLine();

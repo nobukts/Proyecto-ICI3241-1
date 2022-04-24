@@ -154,4 +154,29 @@ public class Carrera {
         }
         return false;
     }
+    
+    public boolean editarAlumno(String nombreAlumno, String nuevoNombreAlumno){
+        if(listaAlumnos.isEmpty()) return false;
+        for (int i = 0; i < listaAlumnos.size(); i++) {
+            if(listaAlumnos.get(i).getNombreAlumno().equalsIgnoreCase(nombreAlumno)){
+                Alumno al = mapaAlumnos.get(nombreAlumno);
+                mapaAlumnos.remove(nombreAlumno);
+                al.setNombreAlumno(nuevoNombreAlumno);
+                mapaAlumnos.put(nuevoNombreAlumno, al);
+                listaAlumnos.get(i).setNombreAlumno(nuevoNombreAlumno);
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    public boolean editarRamo(String nombreAlumno, String nombreRamo, String nuevoNombreRamo){
+        if(listaAlumnos.isEmpty()) return false;
+        for(int i = 0; i < listaAlumnos.size(); i++){
+            if(listaAlumnos.get(i).getNombreAlumno().equalsIgnoreCase(nombreAlumno)){
+                if(listaAlumnos.get(i).editarRamo(nombreRamo, nuevoNombreRamo)) return true;
+            }
+        }
+        return false;
+    }
 }

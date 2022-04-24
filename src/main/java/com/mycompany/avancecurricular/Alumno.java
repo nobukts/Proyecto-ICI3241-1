@@ -88,4 +88,15 @@ public class Alumno {
         }
         return true;
     }
+    
+    public boolean editarRamo(String nombreRamo, String nuevoNombreRamo){
+        for(int i = 0; i < ramosAlumno.size(); i++){
+            if(ramosAlumno.get(i).getNombreRamo().equalsIgnoreCase(nombreRamo)){
+                System.out.println("Ingrese nuevo nombre del ramo");
+                ramosAlumno.get(i).setNombreRamo(nuevoNombreRamo);
+                return true;
+            }
+        }
+        return false;
+    }
 }

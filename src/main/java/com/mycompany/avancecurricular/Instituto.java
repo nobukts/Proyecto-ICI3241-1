@@ -130,4 +130,33 @@ public class Instituto {
         }
         return false;
     }
+    
+    public boolean editarCarrera(String nombreCarrera, String nuevoNombreCarrera){
+         for(int i = 0; i < listaCarreras.size(); i++){
+            
+            if(listaCarreras.get(i).getNombreCarrera().equalsIgnoreCase(nombreCarrera)){
+                listaCarreras.get(i).setNombreCarrera(nuevoNombreCarrera);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean editarAlumno(String nombreCarrera, String nombreAlumno, String nuevoNombreAlumno){
+        for(int i = 0; i < listaCarreras.size(); i++){
+            if(listaCarreras.get(i).getNombreCarrera().equalsIgnoreCase(nombreCarrera)){
+                if(listaCarreras.get(i).editarAlumno(nombreAlumno, nuevoNombreAlumno)) return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean editarRamo(String nombreCarrera, String nombreAlumno, String nombreRamo, String nuevoNombreRamo){
+        for(int i = 0; i < listaCarreras.size(); i++){
+            if(listaCarreras.get(i).getNombreCarrera().equalsIgnoreCase(nombreCarrera)){
+                if(listaCarreras.get(i).editarRamo(nombreAlumno, nombreRamo, nuevoNombreRamo)) return true;
+            }
+        }
+        return false;
+    }
 }
