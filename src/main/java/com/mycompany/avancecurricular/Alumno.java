@@ -1,7 +1,6 @@
 package com.mycompany.avancecurricular;
 
 import java.util.ArrayList;
-import java.io.*;
 
 public class Alumno {
     private String nombreAlumno;
@@ -13,20 +12,6 @@ public class Alumno {
         this.nombreAlumno = nombreAlumno;
         this.rut = rut;
         ramosAlumno = new ArrayList<>();
-    }
-
-    public void mostrarAlumno(){
-        //Escribir en pantalla
-        System.out.println("Nombre: " + this.nombreAlumno + " Rut: " + this.rut);
-    }
-
-    public void mostrarAlumno(FileWriter archivo){
-        //Escribir en el archivo
-        try{
-            archivo.write("Nombre: " + this.nombreAlumno + " Rut: " + this.rut + "\n");
-        }catch(IOException e){
-            e.printStackTrace();
-        }
     }
 
     public int getRut() {
@@ -53,6 +38,17 @@ public class Alumno {
         this.cantidadCreditos = cantidadCreditos;
     }
 
+    public void mostrarAlumno(){
+        System.out.println("Nombre: " + nombreAlumno + " Rut: " + rut + " Cantidad de creditos: " + cantidadCreditos);
+    }
+    
+    public void copiarMalla(ArrayList<Ramo> mallaCurricular){
+        ramosAlumno.addAll(mallaCurricular);
+        for (int i = 0; i < mallaCurricular.size(); i++) {
+            mallaCurricular.get(i).aumentarCantidadAlumnos();
+        }
+    }
+
     public boolean agregarRamoActual(Ramo nuevoRamo){
         Ramo ramoAuxiliar;
         for (int i = 0; i < ramosAlumno.size(); i++) {
@@ -73,30 +69,23 @@ public class Alumno {
         for (int i = 0; i < ramosAlumno.size(); i++) {
             ramoAuxiliar = ramosAlumno.get(i);
             if(ramoAuxiliar.getCodigoRamo().equalsIgnoreCase(codigoRamo)){
-                return ramoAuxiliar.actualizarRamo(estadoRamo);
+                boolean resultado = ramoAuxiliar.actualizarRamo(estadoRamo);
+                if(resultado == true && estadoRamo == 2){
+                    cantidadCreditos += ramoAuxiliar.getCantidadCreditos();
+                    return true;
+                }
             }
         }
         return false;
     }
     
-    public boolean verificarRamo(String nombreRamo){
+    public boolean verificarRamo(String codigoRamo){
         for (int i = 0; i < ramosAlumno.size(); i++) {
-            if(ramosAlumno.get(i).getNombreRamo().equalsIgnoreCase(nombreRamo)){
+            if(ramosAlumno.get(i).getCodigoRamo().equalsIgnoreCase(codigoRamo)){
                 return false;
             }
             
         }
         return true;
-    }
-    
-    public boolean editarRamo(String nombreRamo, String nuevoNombreRamo){
-        for(int i = 0; i < ramosAlumno.size(); i++){
-            if(ramosAlumno.get(i).getNombreRamo().equalsIgnoreCase(nombreRamo)){
-                System.out.println("Ingrese nuevo nombre del ramo");
-                ramosAlumno.get(i).setNombreRamo(nuevoNombreRamo);
-                return true;
-            }
-        }
-        return false;
     }
 }

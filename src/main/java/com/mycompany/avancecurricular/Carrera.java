@@ -1,20 +1,19 @@
 package com.mycompany.avancecurricular;
 
 import java.util.*;
-import java.io.*;
 
 public class Carrera {
     private String nombreCarrera;
     private HashMap<String, Alumno> mapaAlumnos;
     private ArrayList<Alumno> listaAlumnos;
-    private ArrayList<Ramo> listaRamos;
+    private ArrayList<Ramo> mallaCurricular;
     private int cantidadAlumnos;
     
     public Carrera(String nombreCarrera){
         this.nombreCarrera = nombreCarrera;
         listaAlumnos = new ArrayList<>();
         mapaAlumnos = new HashMap<>();
-        listaRamos = new ArrayList<>();
+        mallaCurricular = new ArrayList<>();
         cantidadAlumnos = 0;
     }
 
@@ -40,6 +39,7 @@ public class Carrera {
         } 
         listaAlumnos.add(al);
         mapaAlumnos.put(al.getNombreAlumno(), al);
+        listaAlumnos.get(listaAlumnos.size() - 1).copiarMalla(mallaCurricular);
         cantidadAlumnos++;
         return true;
     }
@@ -76,41 +76,31 @@ public class Carrera {
             System.out.println("No hay alumnos matriculados");
             return;
         }
-
-        //Escribir en el archivo
-        try{
-            FileWriter archivo = new FileWriter("listaAlumnosXCarrera.txt");
-            archivo.write("Lista de los alumnos en " + this.nombreCarrera + ":\n");
-            for (int i = 0; i < listaAlumnos.size(); i++) {
-                listaAlumnos.get(i).mostrarAlumno(archivo);
-            }
-            archivo.close();
-        }catch(IOException e){
-            e.printStackTrace();
-        }
-
-        //Escribir en pantalla
         System.out.println("Lista de los alumnos en " + this.nombreCarrera + ":");
         for (int i = 0; i < listaAlumnos.size(); i++) {
             listaAlumnos.get(i).mostrarAlumno();
         }
     }
 
-    public boolean agregarRamoActual(String nombreAlumno, Ramo nuevoRamo){
-        if(!mapaAlumnos.get(nombreAlumno).verificarRamo(nuevoRamo.getNombreRamo())){
-            return false;
-        }
-
-        for (int i = 0; i < listaRamos.size(); i++) {
-            if(listaRamos.get(i).getCodigoRamo().equalsIgnoreCase(nuevoRamo.getCodigoRamo())){
-                listaRamos.get(i).aumentarCantidadAlumnos();
-                return true;
+    public boolean agregarRamoMalla(Ramo nuevoRamo){
+        for (int i = 0; i < mallaCurricular.size(); i++) {
+            if(mallaCurricular.get(i).getCodigoRamo().equalsIgnoreCase(nuevoRamo.getCodigoRamo())){
+                return false;
             }
         }
 
-        listaRamos.add(nuevoRamo);
-        listaRamos.get(listaRamos.size()-1).aumentarCantidadAlumnos();
+        mallaCurricular.add(nuevoRamo);
         return true;
+    }
+
+    public boolean agregarRamoActual(String nombreAlumno, Ramo nuevoRamo){
+        if(mapaAlumnos.containsKey(nombreAlumno)){
+            if(mapaAlumnos.get(nombreAlumno).verificarRamo(nuevoRamo.getCodigoRamo())){
+                return mapaAlumnos.get(nombreAlumno).agregarRamoActual(nuevoRamo);
+            } 
+        }
+
+        return false;
     }
     
     public boolean actualizarRamo(String nombreAlumno, String codigoRamo, int estadoRamo){
@@ -118,27 +108,14 @@ public class Carrera {
     }
 
     public void mostrarRamosCarrera(){
-        if(listaRamos.isEmpty()){
+        if(mallaCurricular.isEmpty()){
             System.out.println("No se ha ingresado ningun ramo de la carrera");
             return;
         }
-        
-        //Escribir en el archivo
-        try{
-            FileWriter archivo = new FileWriter("ramosXCarrera.txt");
-            archivo.write("Ramos de la carrera " + nombreCarrera + "\n");
-            for (int i = 0; i < listaRamos.size(); i++) {
-                listaRamos.get(i).mostrarInformacion(archivo);
-            }
-            archivo.close();
-        }catch(IOException e){
-            e.printStackTrace();
-        }
 
-        //Escribir por pantalla
         System.out.println("Ramos de la carrera " + nombreCarrera);
-        for (int i = 0; i < listaRamos.size(); i++) {
-            listaRamos.get(i).mostrarInformacion();
+        for (int i = 0; i < mallaCurricular.size(); i++) {
+            mallaCurricular.get(i).mostrarInformacion();
         }
     }
 
@@ -146,9 +123,9 @@ public class Carrera {
         return mapaAlumnos.containsKey(nombreAlumno);
     }
     
-    public boolean buscarRamo(String nombreRamo){
-        for (int i = 0; i < listaRamos.size(); i++) {
-            if(listaRamos.get(i).getNombreRamo().equalsIgnoreCase(nombreRamo)){
+    public boolean buscarRamo(String codigoRamo){
+        for (int i = 0; i < mallaCurricular.size(); i++) {
+            if(mallaCurricular.get(i).getCodigoRamo().equalsIgnoreCase(codigoRamo)){
                 return true;
             }
         }
@@ -170,11 +147,12 @@ public class Carrera {
         return false;
     }
     
-    public boolean editarRamo(String nombreAlumno, String nombreRamo, String nuevoNombreRamo){
-        if(listaAlumnos.isEmpty()) return false;
+    public boolean editarRamo(String codigoRamo, String nuevoNombreRamo){
+        if(mallaCurricular.isEmpty()) return false;
         for(int i = 0; i < listaAlumnos.size(); i++){
-            if(listaAlumnos.get(i).getNombreAlumno().equalsIgnoreCase(nombreAlumno)){
-                if(listaAlumnos.get(i).editarRamo(nombreRamo, nuevoNombreRamo)) return true;
+            if(mallaCurricular.get(i).getCodigoRamo().equalsIgnoreCase(codigoRamo)){
+                mallaCurricular.get(i).setNombreRamo(nuevoNombreRamo);
+                return true;
             }
         }
         return false;
