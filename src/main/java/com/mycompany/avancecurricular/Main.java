@@ -47,7 +47,7 @@ public class Main {
                 case 3:
                     System.out.println("Ingrese el nombre del alumno");
                     nombreAlumno = lectorGeneral.readLine();
-                    System.out.println("Ingrese el rut del alumno");
+                    System.out.println("Ingrese el rut del alumno (Sin digito verificador)");
                     rutAlumno = Integer.parseInt(lectorGeneral.readLine());
                     System.out.println("Ingresar el nombre de la carrera");
                     nombreCarrera = lectorGeneral.readLine();
@@ -86,7 +86,7 @@ public class Main {
                         case 3:
                             System.out.println("Ingrese el nombre de la carrera");
                             nombreCarrera = lectorGeneral.readLine();
-                            System.out.println("Ingrese codigo del ramo");
+                            System.out.println("Ingrese codigo del ramo (Formato XXX000)");
                             codigoRamo = lectorGeneral.readLine();
                             System.out.println("Ingrese nuevo nombre del ramo");
                             nuevoNombreRamo = lectorGeneral.readLine();
@@ -102,7 +102,7 @@ public class Main {
                     System.out.println("2) Eliminar alumno por nombre");
                     switch (Integer.parseInt(lectorGeneral.readLine())) {
                         case 1:
-                            System.out.println("Ingrese el rut del alumno");
+                            System.out.println("Ingrese el rut del alumno (Sin digito verificador)");
                             rutAlumno = Integer.parseInt(lectorGeneral.readLine());
                             System.out.println("Ingrese el nombre de la carrera");
                             nombreCarrera = lectorGeneral.readLine();
@@ -131,7 +131,7 @@ public class Main {
                 case 7:
                     System.out.println("Ingrese el nombre del alumno");
                     nombreAlumno = lectorGeneral.readLine();
-                    System.out.println("Ingrese el codigo del ramo");
+                    System.out.println("Ingrese el codigo del ramo (Formato XXX000)");
                     codigoRamo = lectorGeneral.readLine();
                     System.out.println("Ingrese el nombre del ramo");
                     nombreRamo = lectorGeneral.readLine();
@@ -147,7 +147,7 @@ public class Main {
                 case 8:
                     System.out.println("Ingrese nombre del alumno");
                     nombreAlumno = lectorGeneral.readLine();
-                    System.out.println("Ingrese el codigo del ramo");
+                    System.out.println("Ingrese el codigo del ramo (Formato XXX000)");
                     codigoRamo = lectorGeneral.readLine();
                     System.out.println("Ingrese el estado del ram (0 = por cursar, 1 = cursando, 2 = aprobado)");
                     estadoRamo = Integer.parseInt(lectorGeneral.readLine());
@@ -166,13 +166,11 @@ public class Main {
                     inst.mostrarCarreras();
                     break;
                 case 11:
-                    System.out.println("Ingrese el codigo del ramo");
+                    System.out.println("Ingrese el codigo del ramo (Formato XXX000)");
                     codigoRamo = lectorGeneral.readLine();
                     
-                    if(inst.buscarRamo(codigoRamo)){
-                        System.out.println("Encontrado");
-                    }else{
-                        System.out.println("No se pudo buscar el ramo");
+                    if(!inst.buscarRamo(codigoRamo)){
+                        System.out.println("Hubo un problema en la busqueda");
                     }
                     break;
                 case 0:

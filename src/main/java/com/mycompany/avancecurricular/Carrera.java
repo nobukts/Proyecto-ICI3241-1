@@ -171,6 +171,7 @@ public class Carrera {
     public boolean buscarRamo(String codigoRamo){
         for (int i = 0; i < mallaCurricular.size(); i++) {
             if(mallaCurricular.get(i).getCodigoRamo().equalsIgnoreCase(codigoRamo)){
+                mallaCurricular.get(i).mostrarInformacion();
                 return true;
             }
         }
@@ -213,5 +214,20 @@ public class Carrera {
             }
         }
         return false;
+    }
+    
+    /**
+     * Metodo que verifica si un ramo se encuentra entre la malla curricular de la carera
+     * @param codigoRamo String que contiene el codigo del ramo que estamos verificando
+     * @return boolean
+     */
+    public boolean verificarRamo(String codigoRamo){
+        for (int i = 0; i < mallaCurricular.size(); i++) {
+            if(mallaCurricular.get(i).getCodigoRamo().equalsIgnoreCase(codigoRamo)){
+                return false;
+            }
+            
+        }
+        return true;
     }
 }

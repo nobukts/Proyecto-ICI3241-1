@@ -27,19 +27,21 @@ public class Instituto {
         listaCarreras.add(nuevaCarrera);
         System.out.println("Ahora ingrese la malla curricular de la carrera");
         System.out.println("===============================================");
+        
         while(true){
             BufferedReader lectorGeneral = new BufferedReader(new InputStreamReader(System.in));
-            System.out.println("Ingrese el nombre del ramo");
+            System.out.println("Ingrese el nombre del ramo, para terminar ingrese \"NO\"");
             String nombreRamo = lectorGeneral.readLine();
             if(nombreRamo.equalsIgnoreCase("no")) break;
-            System.out.println("Ingrese el codigo del ramo");
+            System.out.println("Ingrese el codigo del ramo (Formato XXX000)");
             String codigoRamo = lectorGeneral.readLine();
             System.out.println("Ingrese la cantidad de creditos");
             int cantCreditos = Integer.parseInt(lectorGeneral.readLine());
-            System.out.println(("Ingrese el estado del ramo"));
+            System.out.println(("Ingrese el estado del ramo (0 = no cursado o 1 = cursando)"));
             int estadoRamo = Integer.parseInt(lectorGeneral.readLine());
 
-            nuevaCarrera.agregarRamoMalla(new Ramo(nombreRamo, codigoRamo, cantCreditos, estadoRamo));
+            if(nuevaCarrera.verificarRamo(codigoRamo)) nuevaCarrera.agregarRamoMalla(new Ramo(nombreRamo, codigoRamo, cantCreditos, estadoRamo));
+            else System.out.println("El ramo ya se encuentra ingresado");
         }
 
         return true;
