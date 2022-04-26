@@ -58,20 +58,31 @@ public class Ramo {
         this.cantidadCreditos = cantidadCreditos;
     }
 
+    /**
+     * Metodo que aumenta la cantidad de alumnos, usado al copiar la malla
+     */
     public void aumentarCantidadAlumnos(){
         cantidadAlumnos++;
     }
-    
+
+    /**
+     * Metodo que permite mostrar la informacion de un ramo
+     */
     public void mostrarInformacion(){
-        System.out.println("Nombre del ramo: " + nombreRamo + " Cantidad de Alumnos: " + cantidadAlumnos + " Cantidad de creditos: " + cantidadCreditos);
+        System.out.println("Nombre del ramo: " + nombreRamo + " Codigo del ramo: " + codigoRamo + " Cantidad de Alumnos: " + cantidadAlumnos + " Cantidad de creditos: " + cantidadCreditos);
     }
 
-
+    /**
+     * Metodo que permite la actualizacion de informacion al cambiar el estado de un ramo
+     * @param estadoRamo Entero que contiene el estado del ramo (0 = No cursado, 1 = Cursando y 2 = Aprobado)
+     * @return boolean
+     */
     public boolean actualizarRamo(int estadoRamo){
         if(this.estadoRamo == estadoRamo) return false;
         
         this.estadoRamo = estadoRamo;
         if(estadoRamo == 0 || estadoRamo == 2) cantidadAlumnos--;
+        else cantidadAlumnos++;
         
         return true;
     }

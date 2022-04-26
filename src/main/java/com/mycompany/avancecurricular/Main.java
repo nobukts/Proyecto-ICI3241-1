@@ -18,7 +18,7 @@ public class Main {
             System.out.println("4) Editar Carrera/Alumno/Ramo");
             System.out.println("5) Eliminar Alumno");
             System.out.println("6) Mostrar lista de alumnos de una carrera"); 
-            System.out.println("7) Agregar nuevo ramo cursado a un alumno");
+            System.out.println("7) Agregar ramo que no pertenece a la malla curricular");
             System.out.println("8) Actualizar estado de un ramo de un alumno");
             System.out.println("9) Mostrar ramos de las carreras"); 
             System.out.println("10) Mostrar todas las carreras"); 
@@ -138,7 +138,7 @@ public class Main {
                     System.out.println("Ingrese la cantidad de creditos que otorga el ramo");
                     int cantCreditos = Integer.parseInt(lectorGeneral.readLine());
 
-                    if(inst.agregarRamoActual(nombreAlumno, new Ramo(nombreRamo, codigoRamo, cantCreditos)))
+                    if(inst.agregarRamoOpcional(nombreAlumno, new Ramo(nombreRamo, codigoRamo, cantCreditos)))
                         System.out.println("Ramo agregado");
                     else
                         System.out.println("El ramo ya estaba agregado");

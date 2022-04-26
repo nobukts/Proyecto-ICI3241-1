@@ -25,7 +25,8 @@ public class Instituto {
         }
 
         listaCarreras.add(nuevaCarrera);
-
+        System.out.println("Ahora ingrese la malla curricular de la carrera");
+        System.out.println("===============================================");
         while(true){
             BufferedReader lectorGeneral = new BufferedReader(new InputStreamReader(System.in));
             System.out.println("Ingrese el nombre del ramo");
@@ -133,9 +134,9 @@ public class Instituto {
      * @param nuevoRamo Objeto de la clase Ramo
      * @return boolean
      */
-    public boolean agregarRamoActual(String nombreAlumno, Ramo nuevoRamo){
+    public boolean agregarRamoOpcional(String nombreAlumno, Ramo nuevoRamo){
         for (int i = 0; i < listaCarreras.size(); i++) {
-            if(listaCarreras.get(i).agregarRamoActual(nombreAlumno, nuevoRamo)){
+            if(listaCarreras.get(i).agregarRamoOpcional(nombreAlumno, nuevoRamo)){
                 return true;
             }
         }

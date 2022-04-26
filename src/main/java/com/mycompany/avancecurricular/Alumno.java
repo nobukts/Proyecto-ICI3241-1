@@ -38,10 +38,18 @@ public class Alumno {
         this.cantidadCreditos = cantidadCreditos;
     }
 
+    /**
+     * Metodo que permite mostrar la informacion del alumno
+     */
     public void mostrarAlumno(){
         System.out.println("Nombre: " + nombreAlumno + " Rut: " + rut + " Cantidad de creditos: " + cantidadCreditos);
     }
     
+    /**
+     * Metodo que permite copiar la informacion de la malla curricular de la carrera al alumno, para poder realizar 
+        de forma personalizada cambios en los ramos
+     * @param mallaCurricular ArrayList que contiene la malla curricular de la carrera
+     */
     public void copiarMalla(ArrayList<Ramo> mallaCurricular){
         ramosAlumno.addAll(mallaCurricular);
         for (int i = 0; i < mallaCurricular.size(); i++) {
@@ -49,7 +57,12 @@ public class Alumno {
         }
     }
 
-    public boolean agregarRamoActual(Ramo nuevoRamo){
+    /**
+     * Metodo para agregar un ramo opcional a un solo alumno
+     * @param nuevoRamo Objeto de la clase Ramo que se desea agregar a los ramos del alumno
+     * @return boolean
+     */
+    public boolean agregarRamoOpcional(Ramo nuevoRamo){
         Ramo ramoAuxiliar;
         for (int i = 0; i < ramosAlumno.size(); i++) {
             ramoAuxiliar = ramosAlumno.get(i);
@@ -63,6 +76,12 @@ public class Alumno {
         return true;
     }
     
+    /**
+     * Metodo para actualizar el estado de un ramo del alumno
+     * @param codigoRamo String que contiene el codigo del ramo que se esta buscando en el alumno
+     * @param estadoRamo Entero que contiene el estado del ramo
+     * @return boolean
+     */
     public boolean actualizarRamo(String codigoRamo, int estadoRamo){
         Ramo ramoAuxiliar;
         
@@ -79,6 +98,11 @@ public class Alumno {
         return false;
     }
     
+    /**
+     * Metodo que verifica si un ramo se encuentra entre los ramos del alumno
+     * @param codigoRamo String que contiene el codigo del ramo que estamos verificando
+     * @return boolean
+     */
     public boolean verificarRamo(String codigoRamo){
         for (int i = 0; i < ramosAlumno.size(); i++) {
             if(ramosAlumno.get(i).getCodigoRamo().equalsIgnoreCase(codigoRamo)){
