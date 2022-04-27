@@ -1,5 +1,6 @@
 package com.mycompany.avancecurricular;
 
+import java.io.*;
 import java.util.*;
 
 public class Carrera {
@@ -244,4 +245,35 @@ public class Carrera {
         }
         return false;
     }
+
+    /*
+        Metodo para escribir en el archivo reporte.txt los datos de los alumnos
+        @param archivo FileWriter que contiene el nombre del archivo en donde se escribirá la información
+    */
+    public void reporteAlumno(FileWriter archivo){
+        try{
+            for(int i = 0 ; i < listaAlumnos.size() ; i++){
+                Alumno al = listaAlumnos.get(i);
+                archivo.write(String.format("%20d %1d",al.getRut(), al.getCantidadCreditos()) + "\n");;
+            }
+        }catch(IOException e){
+            e.printStackTrace();
+        }
+    }
+
+    /*
+        Metodo para escribir en el archivo reporte.txt los datos de los ramos
+        @param archivo FileWriter que contiene el nombre del archivo en donde se escribirá la información
+    */
+    public void reporteRamo(FileWriter archivo){
+        try{
+            for(int i = 0 ; i < mallaCurricular.size() ; i++){
+                Ramo rm = mallaCurricular.get(i);
+                archivo.write(String.format("%20s %1d",rm.getCodigoRamo(), rm.getCantidadAlumnos()) + "\n");;
+            }
+        }catch(IOException e){
+            e.printStackTrace();
+        }
+    }
 }
+

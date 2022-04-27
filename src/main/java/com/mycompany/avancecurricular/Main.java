@@ -24,6 +24,7 @@ public class Main {
             System.out.println("10) Mostrar ramos de las carreras"); 
             System.out.println("11) Mostrar todas las carreras"); 
             System.out.println("12) Busqueda de ramo");
+            System.out.println("13) Crear reporte");
             System.out.println("0) Salir del programa");
 
             switch (Integer.parseInt(lectorGeneral.readLine())) {
@@ -183,6 +184,9 @@ public class Main {
                     if(!inst.buscarRamo(codigoRamo)){
                         System.out.println("Hubo un problema en la busqueda");
                     }
+                    break;
+                case 13:
+                    inst.crearReporte();
                     break;
                 case 0:
                     System.out.println("Salio del programa con exito");

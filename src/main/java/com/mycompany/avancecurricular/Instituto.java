@@ -260,4 +260,47 @@ public class Instituto {
         }
         return false;
     }
+
+    /**
+     * Metodo que crea un reporte en un archivo txt que muestra datos de las colecciones anidadas
+     */
+    public void crearReporte(){
+        //Se crea el archivo reporte
+        try{
+            File archivo = new File("reporte.txt");
+            archivo.createNewFile();
+        }catch(IOException e){
+            e.printStackTrace();
+        }
+
+        //Se imprime en el archivo reporte
+        try{
+            FileWriter archivo = new FileWriter("reporte.txt");
+            archivo.write("  Nombre de la carrera Cantidad Alumnos\n");
+            for(int i = 0 ; i < listaCarreras.size() ; i++){
+                Carrera cr = listaCarreras.get(i);
+                archivo.write(String.format("%20s %1d",cr.getNombreCarrera(), cr.getCantidadAlumnos()) + "\n");
+            }
+
+            archivo.write("---------------------------------------------\n");
+            archivo.write("         Rut alumnos Cantidad creditos\n");
+
+            for(int i = 0 ; i < listaCarreras.size() ; i++){
+                Carrera cr = listaCarreras.get(i);
+                cr.reporteAlumno(archivo);
+            }
+
+            archivo.write("---------------------------------------------\n");
+            archivo.write("      codigo del ramo Cantidad alumnos\n");
+
+            for(int i = 0 ; i < listaCarreras.size() ; i++){
+                Carrera cr = listaCarreras.get(i);
+                cr.reporteRamo(archivo);
+            }
+
+            archivo.close();
+        }catch(IOException e){
+            e.printStackTrace();
+        }
+    }
 }
