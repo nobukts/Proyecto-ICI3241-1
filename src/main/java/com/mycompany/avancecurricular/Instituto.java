@@ -276,14 +276,14 @@ public class Instituto {
         //Se imprime en el archivo reporte
         try{
             FileWriter archivo = new FileWriter("reporte.txt");
-            archivo.write("  Nombre de la carrera Cantidad Alumnos\n");
+            archivo.write("Nombre de la carrera Cantidad Alumnos\n");
             for(int i = 0 ; i < listaCarreras.size() ; i++){
                 Carrera cr = listaCarreras.get(i);
                 archivo.write(String.format("%20s %1d",cr.getNombreCarrera(), cr.getCantidadAlumnos()) + "\n");
             }
 
             archivo.write("---------------------------------------------\n");
-            archivo.write("         Rut alumnos Cantidad creditos\n");
+            archivo.write("         RUT alumnos Cantidad creditos\n");
 
             for(int i = 0 ; i < listaCarreras.size() ; i++){
                 Carrera cr = listaCarreras.get(i);
@@ -291,7 +291,7 @@ public class Instituto {
             }
 
             archivo.write("---------------------------------------------\n");
-            archivo.write("      codigo del ramo Cantidad alumnos\n");
+            archivo.write("     codigo del ramo Cantidad alumnos\n");
 
             for(int i = 0 ; i < listaCarreras.size() ; i++){
                 Carrera cr = listaCarreras.get(i);
