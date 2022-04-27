@@ -6,6 +6,9 @@ import java.util.ArrayList;
 public class Instituto {
     private ArrayList<Carrera> listaCarreras;
     
+    /**
+     * Constructor de la clase instituto
+     */
     public Instituto(){
         listaCarreras = new ArrayList<>();
     }
@@ -13,10 +16,9 @@ public class Instituto {
     /**
      * Metodo que agrega una carrera del ramo, e ingresa la malla curricular del mismo
      * @param nuevaCarrera Objeto de la clase carrera
-     * @return boolean
+     * @return boolean Verdadero si se logro agregar la carrera correctamente y falso si no se pudo agregar
      * @throws IOException
      */
-
     public boolean agregarCarrera(Carrera nuevaCarrera) throws IOException{
         for (int i = 0; i < listaCarreras.size(); i++) {
             if(nuevaCarrera.getNombreCarrera().equalsIgnoreCase(listaCarreras.get(i).getNombreCarrera())){
@@ -52,7 +54,6 @@ public class Instituto {
      * @param nombreCarrera String que contiene el nombre de una carrera
      * @return boolean Verdadero si es que se elimino la carrera y falso si no se pudo eliminar
      */
-    
     public boolean eliminarCarrera(String nombreCarrera){
         for (int i = 0; i < listaCarreras.size(); i++) {
             if(listaCarreras.get(i).getNombreCarrera().equalsIgnoreCase(nombreCarrera)){
@@ -70,8 +71,7 @@ public class Instituto {
      * @param nombreCarrera String que contiene el nombre de una carrera
      * @return boolean Verdadero si se pudo agregar al alumno y  falso si no se pudo agregar
      */
-
-    public boolean agregarAlumno(Alumno al, String nombreCarrera){
+    public boolean matricularAlumno(Alumno al, String nombreCarrera){
         for (int i = 0; i < listaCarreras.size(); i++) {
             if(listaCarreras.get(i).verificarAlumnos(al.getNombreAlumno())){
                 return false;
@@ -80,17 +80,18 @@ public class Instituto {
 
         for (int i = 0; i < listaCarreras.size(); i++) {
             if(nombreCarrera.equalsIgnoreCase(listaCarreras.get(i).getNombreCarrera())){
-                return listaCarreras.get(i).agregarAlumno(al);
+                return listaCarreras.get(i).matricularAlumno(al);
             }
         }
         
         return false;
     }
+
     /**
      * Metodo para eliminar a un alumno a traves de su rut y la carrera en la cual esta matriculado
      * @param rut Entero que contiene el rut del alumno
      * @param nombreCarrera String que contiene el nombre de una carrera
-     * @return boolean
+     * @return boolean Verdadero si se pudo eliminar el alumno y falso si no se logro eliminar
      */
     public boolean eliminarAlumno(int rut, String nombreCarrera){
         for (int i = 0; i < listaCarreras.size(); i++) {
@@ -105,7 +106,7 @@ public class Instituto {
      * Metodo para eliminar a un alumno a traves del nombre y la carrera en la cual esta matriculado
      * @param nombreAlumno String que contiene el nombre del alumno
      * @param nombreCarrera String que contiene el nombre de una carrera
-     * @return boolean
+     * @return boolean Verdadero si se pudo eliminar el alumno y falso si no se logro eliminar
      */
     public boolean eliminarAlumno(String nombreAlumno, String nombreCarrera){
         for (int i = 0; i < listaCarreras.size(); i++) {
@@ -123,7 +124,7 @@ public class Instituto {
     public void mostrarListaAlumnos(String nombreCarrera){
         for (int i = 0; i < listaCarreras.size(); i++) {
             if(nombreCarrera.equalsIgnoreCase(listaCarreras.get(i).getNombreCarrera())){
-                System.out.println("Cantidad de alumnos:" + listaCarreras.get(i).getCantidadAlumnos() + "\n");
+                System.out.println("\nCantidad de alumnos:" + listaCarreras.get(i).getCantidadAlumnos() + "\n");
                 listaCarreras.get(i).mostrarListaAlumnos();
                 return;
             }
@@ -134,7 +135,7 @@ public class Instituto {
      * Metodo para agregar un ramo fuera de la mallla curricular de la carrera a un alumno
      * @param nombreAlumno String que contiene el nombre de un alumno
      * @param nuevoRamo Objeto de la clase Ramo
-     * @return boolean
+     * @return boolean Verdadero si se pudo agregar el ramo correctamente y falso si no se pudo agregar
      */
     public boolean agregarRamoOpcional(String nombreAlumno, Ramo nuevoRamo){
         for (int i = 0; i < listaCarreras.size(); i++) {
@@ -150,7 +151,7 @@ public class Instituto {
      * @param nombreAlumno String que contiene el nombre de un alumno de alguna carrera
      * @param codigoRamo String que contiene el codigo de un ramo de alguna carrera
      * @param estadoRamo Entero que contiene una de 3 opciones para cambiar el estado del ramo (0 = no cursado, 1 = cursando y 2 = aprobado)
-     * @return boolean
+     * @return boolean Verdadero si se pudo utilizar y falso si no se pudo actualizar
      */
     public boolean actualizarRamo(String nombreAlumno, String codigoRamo, int estadoRamo){
         for (int i = 0; i < listaCarreras.size(); i++) {
@@ -187,7 +188,7 @@ public class Instituto {
     /**
      * Metodo para la busqueda de un ramo y entregar su informacion respectiva
      * @param codigoRamo String del codigo de un ramo
-     * @return boolean
+     * @return boolean Verdadero si encontro el ramo y falso si no existe el ramo
      */
     public boolean buscarRamo(String codigoRamo){
         for(int i = 0; i < listaCarreras.size(); i++){
@@ -202,7 +203,7 @@ public class Instituto {
      * Metodo para editar el nombre de una carrera
      * @param nombreCarrera String que contiene el nombre de una carrera
      * @param nuevoNombreCarrera String que contiene el nombre a cambiar de la carrera
-     * @return boolean
+     * @return boolean Verdadero si se pudo editar la carrera y falso si no se pudo editar
      */
     public boolean editarCarrera(String nombreCarrera, String nuevoNombreCarrera){
         for(int i = 0; i < listaCarreras.size(); i++){
@@ -219,7 +220,7 @@ public class Instituto {
      * Metodo para editar el nombre de un alumno de alguna carrera
      * @param nombreAlumno String que contiene el nombre de un alumno de alguna carrera
      * @param nuevoNombreAlumno String que contiene el nuevo nombre del alumno que se trata de encontrar
-     * @return boolean
+     * @return boolean Verdadero si se pudo editar el alumno y falso si no se pudo editar
      */
     public boolean editarAlumno(String nombreAlumno, String nuevoNombreAlumno){
         for(int i = 0; i < listaCarreras.size(); i++){
@@ -235,7 +236,7 @@ public class Instituto {
      * @param nombreCarrera String que contiene el nombre de una carrera
      * @param codigoRamo String que contiene el codigo del ramo de una malla curricular de alguna carrera
      * @param nuevoNombreRamo String que contiene el nuevo nombre del ramo que se desea modificar
-     * @return boolean
+     * @return boolean Verdadero si se pudo editar el ramo y falso si no se pudo editar
      */
     public boolean editarRamo(String nombreCarrera, String codigoRamo, String nuevoNombreRamo){
         for(int i = 0; i < listaCarreras.size(); i++){
@@ -249,7 +250,7 @@ public class Instituto {
         Metodo que en caso de encontrar un ramo con el codigo señalado, lo elimina de la malla curricular de la carrera señalada
         @param codigoRamo String que contiene el codigo del ramo a eliminar
         @param nombreCarrera String que indica de que carrera se quiere eliminar el ramo
-        @return boolean
+        @return boolean Verdadero si se pudo eliminar el ramo y falso si no se pudo eliminar
     */
 
     public boolean eliminarRamo(String nombreCarrera, String codigoRamo){

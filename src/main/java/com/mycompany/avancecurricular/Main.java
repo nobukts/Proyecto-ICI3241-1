@@ -34,7 +34,7 @@ public class Main {
                         System.out.println("La carrera se ingreso sin ningun problema");
                     }
                     else{
-                        System.out.println("La carrera ya se encuentra ingresada");
+                        System.out.println("La carrera no se pudo agregar correctamente");
                     }
                     break;
                 case 2:
@@ -43,7 +43,7 @@ public class Main {
                         System.out.println("La carrera se elimino con exito");
                     }
                     else{
-                        System.out.println("La carrera no se pudo eliminar");
+                        System.out.println("La carrera no se pudo eliminar correctamente");
                     }
                     break;
                 case 3:
@@ -54,10 +54,10 @@ public class Main {
                     System.out.println("Ingresar el nombre de la carrera");
                     nombreCarrera = lectorGeneral.readLine();
                     
-                    if(inst.agregarAlumno(new Alumno(nombreAlumno, rutAlumno), nombreCarrera)) 
+                    if(inst.matricularAlumno(new Alumno(nombreAlumno, rutAlumno), nombreCarrera)) 
                         System.out.println("Alumno ingresado");
                     else 
-                        System.out.println("Alumno ya estaba matriculado");
+                        System.out.println("Alumno no se pudo matricular correctamente");
                     
                     break;
                 case 4:
@@ -153,7 +153,7 @@ public class Main {
                     if(inst.agregarRamoOpcional(nombreAlumno, new Ramo(nombreRamo, codigoRamo, cantCreditos)))
                         System.out.println("Ramo agregado");
                     else
-                        System.out.println("El ramo ya estaba agregado");
+                        System.out.println("El ramo no se pudo agregar correctamente");
                     
                     break;
                 case 9:
