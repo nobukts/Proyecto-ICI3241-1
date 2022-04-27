@@ -69,7 +69,7 @@ public class Alumno {
     public void copiarMalla(ArrayList<Ramo> mallaCurricular){
         ramosAlumno.addAll(mallaCurricular);
         for (int i = 0; i < mallaCurricular.size(); i++) {
-            mallaCurricular.get(i).aumentarCantidadAlumnos();
+            if(mallaCurricular.get(i).getEstadoRamo() == 1) mallaCurricular.get(i).aumentarCantidadAlumnos();
         }
     }
 
