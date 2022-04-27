@@ -230,4 +230,18 @@ public class Carrera {
         }
         return true;
     }
+    /*
+        Metodo que en caso de encontrar un ramo con el codigo señalado, lo elimina de la malla curricular
+        @param codigoRamo String que contiene el codigo del ramo a eliminar
+        @return boolean
+    */
+    public boolean eliminarRamo(String codigoRamo){
+        for (int i = 0; i < mallaCurricular.size(); i++){
+            if(mallaCurricular.get(i).getCodigoRamo().equalsIgnoreCase(codigoRamo)){
+                mallaCurricular.remove(i);
+                return true;
+            }
+        }
+        return false;
+    }
 }

@@ -245,4 +245,19 @@ public class Instituto {
         }
         return false;
     }
+    /*
+        Metodo que en caso de encontrar un ramo con el codigo señalado, lo elimina de la malla curricular de la carrera señalada
+        @param codigoRamo String que contiene el codigo del ramo a eliminar
+        @param nombreCarrera String que indica de que carrera se quiere eliminar el ramo
+        @return boolean
+    */
+
+    public boolean eliminarRamo(String nombreCarrera, String codigoRamo){
+        for(int i = 0; i < listaCarreras.size(); i++){
+            if(listaCarreras.get(i).getNombreCarrera().equalsIgnoreCase(nombreCarrera)){
+                return listaCarreras.get(i).eliminarRamo(codigoRamo);
+            }
+        }
+        return false;
+    }
 }

@@ -16,13 +16,14 @@ public class Main {
             System.out.println("2) Eliminar Carrera");
             System.out.println("3) Matricular Alumno");
             System.out.println("4) Editar Carrera/Alumno/Ramo");
-            System.out.println("5) Eliminar Alumno");
-            System.out.println("6) Mostrar lista de alumnos de una carrera"); 
-            System.out.println("7) Agregar ramo que no pertenece a la malla curricular");
-            System.out.println("8) Actualizar estado de un ramo de un alumno");
-            System.out.println("9) Mostrar ramos de las carreras"); 
-            System.out.println("10) Mostrar todas las carreras"); 
-            System.out.println("11) Busqueda de ramo");
+            System.out.println("5) Eliminar Ramo");
+            System.out.println("6) Eliminar Alumno");
+            System.out.println("7) Mostrar lista de alumnos de una carrera"); 
+            System.out.println("8) Agregar ramo que no pertenece a la malla curricular");
+            System.out.println("9) Actualizar estado de un ramo de un alumno");
+            System.out.println("10) Mostrar ramos de las carreras"); 
+            System.out.println("11) Mostrar todas las carreras"); 
+            System.out.println("12) Busqueda de ramo");
             System.out.println("0) Salir del programa");
 
             switch (Integer.parseInt(lectorGeneral.readLine())) {
@@ -98,6 +99,16 @@ public class Main {
                     }
                     break;
                 case 5:
+                    System.out.println("Ingrese nombre de la carrera");
+                    nombreCarrera = lectorGeneral.readLine();
+                    System.out.println("Ingrese codigo del ramo");
+                    codigoRamo = lectorGeneral.readLine();
+                    if(inst.eliminarRamo(nombreCarrera, codigoRamo))
+                        System.out.println("Ramo eliminado correctamente");
+                    else
+                        System.out.println("No se encontro el ramo");
+                    break;
+                case 6:
                     System.out.println("1) Eliminar alumno por rut");
                     System.out.println("2) Eliminar alumno por nombre");
                     switch (Integer.parseInt(lectorGeneral.readLine())) {
@@ -124,11 +135,11 @@ public class Main {
                     }
                     
                     break;
-                case 6:
+                case 7:
                     System.out.println("Ingresar nombre de la carrera");
                     inst.mostrarListaAlumnos(lectorGeneral.readLine());
                     break;
-                case 7:
+                case 8:
                     System.out.println("Ingrese el nombre del alumno");
                     nombreAlumno = lectorGeneral.readLine();
                     System.out.println("Ingrese el codigo del ramo (Formato XXX000)");
@@ -144,7 +155,7 @@ public class Main {
                         System.out.println("El ramo ya estaba agregado");
                     
                     break;
-                case 8:
+                case 9:
                     System.out.println("Ingrese nombre del alumno");
                     nombreAlumno = lectorGeneral.readLine();
                     System.out.println("Ingrese el codigo del ramo (Formato XXX000)");
@@ -158,14 +169,14 @@ public class Main {
                         System.out.println("No se pudo actualizar la informacion");
                     
                     break;
-                case 9:
+                case 10:
                     System.out.println("Ingresar el nombre de la carrera");
                     inst.mostrarRamosCarrera(lectorGeneral.readLine());
                     break;
-                case 10:
+                case 11:
                     inst.mostrarCarreras();
                     break;
-                case 11:
+                case 12:
                     System.out.println("Ingrese el codigo del ramo (Formato XXX000)");
                     codigoRamo = lectorGeneral.readLine();
                     
