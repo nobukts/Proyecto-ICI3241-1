@@ -64,13 +64,10 @@ public class Alumno {
     /**
      * Metodo que permite copiar la informacion de la malla curricular de la carrera al alumno, para poder realizar 
         de forma personalizada cambios en los ramos
-     * @param mallaCurricular ArrayList que contiene la malla curricular de la carrera
+     * @param nuevoRamo Instancia de la clase Ramo, que se agrega a los ramos que cursa el alumno
      */
-    public void copiarMalla(ArrayList<Ramo> mallaCurricular){
-        ramosAlumno.addAll(mallaCurricular);
-        for (int i = 0; i < mallaCurricular.size(); i++) {
-            if(mallaCurricular.get(i).getEstadoRamo() == 1) mallaCurricular.get(i).aumentarCantidadAlumnos();
-        }
+    public void copiarMalla(Ramo nuevoRamo){
+        ramosAlumno.add(nuevoRamo);
     }
 
     /**
@@ -81,19 +78,6 @@ public class Alumno {
         nuevoRamo.setEstadoRamo(1);
         ramosAlumno.add(nuevoRamo);
         return true;
-    }
-    
-    /**
-     * Metodo que se utiliza para decrementar en 1 a los ramos del alumno eliminado
-     */
-    public void decrementarAlumnos(){
-        for (int i = 0; i < ramosAlumno.size(); i++) {
-            if(ramosAlumno.get(i).getEstadoRamo() == 1){
-                int cantAlumnos = ramosAlumno.get(i).getCantidadAlumnos();
-                cantAlumnos--;
-                ramosAlumno.get(i).setCantidadAlumnos(cantAlumnos);
-            }
-        }
     }
 
     /**
@@ -111,6 +95,8 @@ public class Alumno {
                 boolean resultado = ramoAuxiliar.actualizarRamo(estadoRamo);
                 if(resultado == true && estadoRamo == 2){
                     cantidadCreditos += ramoAuxiliar.getCantidadCreditos();
+                    return true;
+                } else if(resultado == true){
                     return true;
                 }
             }

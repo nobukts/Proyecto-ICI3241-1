@@ -246,7 +246,7 @@ public class Instituto {
         }
         return false;
     }
-    /*
+    /**
         Metodo que en caso de encontrar un ramo con el codigo señalado, lo elimina de la malla curricular de la carrera señalada
         @param codigoRamo String que contiene el codigo del ramo a eliminar
         @param nombreCarrera String que indica de que carrera se quiere eliminar el ramo
@@ -271,39 +271,36 @@ public class Instituto {
             File archivo = new File("reporte.txt");
             archivo.createNewFile();
         }catch(IOException e){
-            e.printStackTrace();
         }
 
         //Se imprime en el archivo reporte
         try{
-            FileWriter archivo = new FileWriter("reporte.txt");
-            archivo.write("Nombre de la carrera Cantidad Alumnos\n");
-            for(int i = 0 ; i < listaCarreras.size() ; i++){
-                Carrera cr = listaCarreras.get(i);
-                archivo.write(String.format("%20s %16d",cr.getNombreCarrera(), cr.getCantidadAlumnos()) + "\n");
+            try (FileWriter archivo = new FileWriter("reporte.txt")) {
+                archivo.write("Nombre de la carrera Cantidad Alumnos\n");
+                for(int i = 0 ; i < listaCarreras.size() ; i++){
+                    Carrera cr = listaCarreras.get(i);
+                    archivo.write(String.format("%20s %16d",cr.getNombreCarrera(), cr.getCantidadAlumnos()) + "\n");
+                }
+                
+                archivo.write("---------------------------------------------\n");
+                archivo.write("     Nombres alumnos + RUT alumnos + Cantidad creditos\n");
+                
+                for(int i = 0 ; i < listaCarreras.size() ; i++){
+                    Carrera cr = listaCarreras.get(i);
+                    cr.reporteAlumno(archivo);
+                }
+                
+                archivo.write("---------------------------------------------\n");
+                archivo.write("Nombre de la carrera + Codigo ramo + Nombre ramo\n");
+                
+                for(int i = 0 ; i < listaCarreras.size() ; i++){
+                    Carrera cr = listaCarreras.get(i);
+                    archivo.write(String.format("%20s",cr.getNombreCarrera()));
+                    cr.reporteRamo(archivo,true);
+                    cr.reporteRamo(archivo,false);
+                }
             }
-
-            archivo.write("---------------------------------------------\n");
-            archivo.write("     Nombres alumnos + RUT alumnos + Cantidad creditos\n");
-
-            for(int i = 0 ; i < listaCarreras.size() ; i++){
-                Carrera cr = listaCarreras.get(i);
-                cr.reporteAlumno(archivo);
-            }
-
-            archivo.write("---------------------------------------------\n");
-            archivo.write("Nombre de la carrera + Codigo ramo + Nombre ramo + Cantidad alumnos en el ramo \n");
-
-            for(int i = 0 ; i < listaCarreras.size() ; i++){
-                Carrera cr = listaCarreras.get(i);
-                archivo.write(String.format("%20s",cr.getNombreCarrera()));
-                cr.reporteRamo(archivo,true);
-                cr.reporteRamo(archivo,false);
-            }
-
-            archivo.close();
         }catch(IOException e){
-            e.printStackTrace();
         }
     }
 }

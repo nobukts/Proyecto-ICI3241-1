@@ -60,7 +60,10 @@ public class Carrera {
         } 
         listaAlumnos.add(al);
         mapaAlumnos.put(al.getNombreAlumno(), al);
-        listaAlumnos.get(listaAlumnos.size() - 1).copiarMalla(mallaCurricular);
+        for (int i = 0; i < mallaCurricular.size(); i++) {
+            Ramo aux = mallaCurricular.get(i);
+            listaAlumnos.get(listaAlumnos.size() - 1).copiarMalla(new Ramo(aux.getNombreRamo(), aux.getCodigoRamo(), aux.getCantidadCreditos(), aux.getEstadoRamo()));
+        }
         cantidadAlumnos++;
         return true;
     }
@@ -70,13 +73,14 @@ public class Carrera {
      * @param nombreAlumno String que contiene el nombre del alumno a eliminar
      * @return boolean Verdadero si se pudo eliminar con exito al alumno y falso si no se pudo eliminarlo
      */
+
     public boolean eliminarAlumno(String nombreAlumno){
         if(listaAlumnos.isEmpty()) return false;
         for (int i = 0; i < listaAlumnos.size(); i++) {
             if(listaAlumnos.get(i).getNombreAlumno().equalsIgnoreCase(nombreAlumno)){
                 mapaAlumnos.remove(nombreAlumno);
                 listaAlumnos.remove(i);
-                listaAlumnos.get(i).decrementarAlumnos();
+                listaAlumnos.get(i);
                 cantidadAlumnos--;
                 return true;
             }
@@ -158,7 +162,9 @@ public class Carrera {
      * @return boolean Verdadero si se pudo actualizar el estado del ramo y falso si no se pudo realizar
      */
     public boolean actualizarRamo(String nombreAlumno, String codigoRamo, int estadoRamo){
-        return mapaAlumnos.get(nombreAlumno).actualizarRamo(codigoRamo, estadoRamo);
+        if(mapaAlumnos.containsKey(nombreAlumno))
+            return mapaAlumnos.get(nombreAlumno).actualizarRamo(codigoRamo, estadoRamo);
+        return false;
     }
 
     /**
@@ -276,10 +282,9 @@ public class Carrera {
         try{
             for(int i = 0 ; i < listaAlumnos.size() ; i++){
                 Alumno al = listaAlumnos.get(i);
-                archivo.write(String.format("%20s %13d %19d",al.getNombreAlumno(),al.getRut(), al.getCantidadCreditos()) + "\n");;
+                archivo.write(String.format("%20s %13d %19d",al.getNombreAlumno(),al.getRut(), al.getCantidadCreditos()) + "\n");
             }
         }catch(IOException e){
-            e.printStackTrace();
         }
     }
 
@@ -293,16 +298,15 @@ public class Carrera {
             //True si se imprime el primer ramo, False si no es el primer ramo
             if(aux){
                 Ramo rm = mallaCurricular.get(0);
-                archivo.write(String.format("%14s %13s %29d",rm.getCodigoRamo(), rm.getNombreRamo(), rm.getCantidadAlumnos()) + "\n");
+                archivo.write(String.format("%14s %13s",rm.getCodigoRamo(), rm.getNombreRamo()) + "\n");
             }else{
                 for(int i = 1 ; i < mallaCurricular.size() ; i++){
                     Ramo rm = mallaCurricular.get(i);
-                    archivo.write(String.format("%34s %13s %29d",rm.getCodigoRamo(),rm.getNombreRamo(), rm.getCantidadAlumnos()) + "\n");
+                    archivo.write(String.format("%34s %13s",rm.getCodigoRamo(),rm.getNombreRamo()) + "\n");
                 }
             }
             
         }catch(IOException e){
-            e.printStackTrace();
         }
     }
 }

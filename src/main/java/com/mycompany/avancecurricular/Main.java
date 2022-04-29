@@ -4,9 +4,8 @@ import java.io.*;
 public class Main {
     public static void main(String[] args) throws IOException{
         BufferedReader lectorGeneral = new BufferedReader(new InputStreamReader(System.in));
-
         Instituto inst = new Instituto();
-        
+
         //Variables primitivas a usar
         String codigoRamo, nombreRamo, nombreAlumno, nombreCarrera, nuevoNombreAlumno, nuevoNombreCarrera, nuevoNombreRamo;
         int rutAlumno, estadoRamo;

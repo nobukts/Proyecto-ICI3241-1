@@ -5,7 +5,6 @@ public class Ramo {
     private String codigoRamo;
     private int estadoRamo;
     private int cantidadCreditos;
-    private int cantidadAlumnos;
 
     /**
      * Constructor vacio
@@ -25,7 +24,6 @@ public class Ramo {
         this.codigoRamo = codigoRamo;
         this.nombreRamo = nombreRamo;
         estadoRamo = 1;
-        cantidadAlumnos = 0;
     }
     
     /**
@@ -40,16 +38,11 @@ public class Ramo {
         this.codigoRamo = codigoRamo;
         this.nombreRamo = nombreRamo;
         this.estadoRamo = estadoRamo;
-        cantidadAlumnos = 0;
     }
 
     //------------GETTERS
     public int getEstadoRamo() {
         return estadoRamo;
-    }
-
-    public int getCantidadAlumnos() {
-        return cantidadAlumnos;
     }
 
     public String getNombreRamo() {
@@ -65,10 +58,6 @@ public class Ramo {
     }
 
     //------------SETTERS
-    public void setCantidadAlumnos(int cantidadAlumnos) {
-        this.cantidadAlumnos = cantidadAlumnos;
-    }
-
     public void setEstadoRamo(int estadoRamo) {
         this.estadoRamo = estadoRamo;
     }
@@ -86,17 +75,10 @@ public class Ramo {
     }
 
     /**
-     * Metodo que aumenta la cantidad de alumnos, usado al copiar la malla
-     */
-    public void aumentarCantidadAlumnos(){
-        cantidadAlumnos++;
-    }
-
-    /**
      * Metodo que permite mostrar la informacion de un ramo
      */
     public void mostrarInformacion(){
-        System.out.println("Nombre del ramo: " + nombreRamo + " Codigo del ramo: " + codigoRamo + " Cantidad de Alumnos: " + cantidadAlumnos + " Cantidad de creditos: " + cantidadCreditos);
+        System.out.println("Nombre del ramo: " + nombreRamo + " Codigo del ramo: " + codigoRamo + " Cantidad de creditos: " + cantidadCreditos);
     }
 
     /**
@@ -106,11 +88,7 @@ public class Ramo {
      */
     public boolean actualizarRamo(int estadoRamo){
         if(this.estadoRamo == estadoRamo) return false;
-        
         this.estadoRamo = estadoRamo;
-        if(estadoRamo == 0 || estadoRamo == 2) cantidadAlumnos--;
-        else cantidadAlumnos++;
-        
         return true;
     }
     
