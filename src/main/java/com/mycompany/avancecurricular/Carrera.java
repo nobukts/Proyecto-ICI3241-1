@@ -276,7 +276,7 @@ public class Carrera {
         try{
             for(int i = 0 ; i < listaAlumnos.size() ; i++){
                 Alumno al = listaAlumnos.get(i);
-                archivo.write(String.format("%20d %1d",al.getRut(), al.getCantidadCreditos()) + "\n");;
+                archivo.write(String.format("%20s %13d %19d",al.getNombreAlumno(),al.getRut(), al.getCantidadCreditos()) + "\n");;
             }
         }catch(IOException e){
             e.printStackTrace();
@@ -286,13 +286,21 @@ public class Carrera {
     /**
      * Metodo para escribir en el archivo reporte.txt los datos de los ramos
      * @param archivo FileWriter que contiene el nombre del archivo en donde se escribirá la información
+     * @param aux boolean sirve para saber si se imprime el primer ramo o no
      */
-    public void reporteRamo(FileWriter archivo){
+    public void reporteRamo(FileWriter archivo, boolean aux){
         try{
-            for(int i = 0 ; i < mallaCurricular.size() ; i++){
-                Ramo rm = mallaCurricular.get(i);
-                archivo.write(String.format("%20s %1d",rm.getCodigoRamo(), rm.getCantidadAlumnos()) + "\n");;
+            //True si se imprime el primer ramo, False si no es el primer ramo
+            if(aux){
+                Ramo rm = mallaCurricular.get(0);
+                archivo.write(String.format("%14s %13s %29d",rm.getCodigoRamo(), rm.getNombreRamo(), rm.getCantidadAlumnos()) + "\n");
+            }else{
+                for(int i = 1 ; i < mallaCurricular.size() ; i++){
+                    Ramo rm = mallaCurricular.get(i);
+                    archivo.write(String.format("%34s %13s %29d",rm.getCodigoRamo(),rm.getNombreRamo(), rm.getCantidadAlumnos()) + "\n");
+                }
             }
+            
         }catch(IOException e){
             e.printStackTrace();
         }

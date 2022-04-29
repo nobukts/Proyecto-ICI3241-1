@@ -280,11 +280,11 @@ public class Instituto {
             archivo.write("Nombre de la carrera Cantidad Alumnos\n");
             for(int i = 0 ; i < listaCarreras.size() ; i++){
                 Carrera cr = listaCarreras.get(i);
-                archivo.write(String.format("%20s %1d",cr.getNombreCarrera(), cr.getCantidadAlumnos()) + "\n");
+                archivo.write(String.format("%20s %16d",cr.getNombreCarrera(), cr.getCantidadAlumnos()) + "\n");
             }
 
             archivo.write("---------------------------------------------\n");
-            archivo.write("         RUT alumnos Cantidad creditos\n");
+            archivo.write("     Nombres alumnos + RUT alumnos + Cantidad creditos\n");
 
             for(int i = 0 ; i < listaCarreras.size() ; i++){
                 Carrera cr = listaCarreras.get(i);
@@ -292,11 +292,13 @@ public class Instituto {
             }
 
             archivo.write("---------------------------------------------\n");
-            archivo.write("     codigo del ramo Cantidad alumnos\n");
+            archivo.write("Nombre de la carrera + Codigo ramo + Nombre ramo + Cantidad alumnos en el ramo \n");
 
             for(int i = 0 ; i < listaCarreras.size() ; i++){
                 Carrera cr = listaCarreras.get(i);
-                cr.reporteRamo(archivo);
+                archivo.write(String.format("%20s",cr.getNombreCarrera()));
+                cr.reporteRamo(archivo,true);
+                cr.reporteRamo(archivo,false);
             }
 
             archivo.close();
