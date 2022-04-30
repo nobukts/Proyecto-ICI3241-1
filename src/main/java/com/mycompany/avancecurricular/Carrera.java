@@ -335,9 +335,15 @@ public class Carrera {
                     archivo.write("\n");
                     return;
                 }
+<<<<<<< HEAD
                 
                 Asignatura rm = mallaCurricular.get(0);
                 archivo.write(String.format("%14s %13s %14d",rm.getCodigoAsignatura(), rm.getNombreAsignatura(), rm.getCantidadAlumnos()) + "\n");
+=======
+
+                Ramo rm = mallaCurricular.get(0);
+                archivo.write(String.format("%14s %13s",rm.getCodigoRamo(), rm.getNombreRamo()) + "\n");
+>>>>>>> Experimental
             }else{
                 for(int i = 1 ; i < mallaCurricular.size() ; i++){
                     Asignatura rm = mallaCurricular.get(i);
