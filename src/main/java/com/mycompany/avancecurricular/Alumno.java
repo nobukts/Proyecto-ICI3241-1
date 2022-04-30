@@ -16,7 +16,7 @@ public class Alumno {
     }
 
     /**
-     * Constructor de la Clase Alumno
+     * Constructor de la Clase Alumno que instancia el nombre del alumno y el rut
      * @param nombreAlumno String que contiene el nombre del alumno
      * @param rut int que contiene el RUT del alumno
      */
@@ -60,24 +60,13 @@ public class Alumno {
     public void mostrarAlumno(){
         System.out.println("Nombre: " + nombreAlumno + " Rut: " + rut + " Cantidad de creditos: " + cantidadCreditos);
     }
-    
-    /**
-     * Metodo que permite copiar la informacion de la malla curricular de la carrera al alumno, para poder realizar 
-        de forma personalizada cambios en los ramos
-     * @param nuevoRamo Instancia de la clase Ramo, que se agrega a los ramos que cursa el alumno
-     */
-    public void copiarMalla(Ramo nuevoRamo){
-        ramosAlumno.add(nuevoRamo);
-    }
 
     /**
      * Metodo para agregar un ramo opcional a un solo alumno
      * @param nuevoRamo Objeto de la clase Ramo que se desea agregar a los ramos del alumno
      */
-    public boolean agregarRamoOpcional(Ramo nuevoRamo){
-        nuevoRamo.setEstadoRamo(1);
+    public void agregarRamo(Ramo nuevoRamo){
         ramosAlumno.add(nuevoRamo);
-        return true;
     }
 
     /**
@@ -87,21 +76,19 @@ public class Alumno {
      * @return boolean Verdadero si se puede actualizar el estado del ramo y falso si no se pudo actualizar
      */
     public boolean actualizarRamo(String codigoRamo, int estadoRamo){
-        Ramo ramoAuxiliar;
-        
         for (int i = 0; i < ramosAlumno.size(); i++) {
-            ramoAuxiliar = ramosAlumno.get(i);
-            if(ramoAuxiliar.getCodigoRamo().equalsIgnoreCase(codigoRamo)){
-                boolean resultado = ramoAuxiliar.actualizarRamo(estadoRamo);
-                if(resultado == true && estadoRamo == 2){
-                    cantidadCreditos += ramoAuxiliar.getCantidadCreditos();
-                    return true;
-                } else if(resultado == true){
-                    return true;
+            if(ramosAlumno.get(i).getCodigoAsignatura().equalsIgnoreCase(codigoRamo)){
+                boolean res = ramosAlumno.get(i).actualizarRamo(estadoRamo);
+                
+                if(res == true && estadoRamo == 2){
+                    cantidadCreditos += ramosAlumno.get(i).getCantidadCreditos();
                 }
+                
+                return res;
             }
+            
         }
-        return false;
+        return true;
     }
     
     /**
@@ -111,7 +98,7 @@ public class Alumno {
      */
     public boolean verificarRamo(String codigoRamo){
         for (int i = 0; i < ramosAlumno.size(); i++) {
-            if(ramosAlumno.get(i).getCodigoRamo().equalsIgnoreCase(codigoRamo)){
+            if(ramosAlumno.get(i).getCodigoAsignatura().equalsIgnoreCase(codigoRamo)){
                 return false;
             }
             

@@ -1,42 +1,37 @@
 package com.mycompany.avancecurricular;
 
-public class Ramo {
-    private String nombreRamo;
-    private String codigoRamo;
+public class Ramo extends Asignatura{
     private int estadoRamo;
-    private int cantidadCreditos;
-
+    
     /**
-     * Constructor vacio
+     * Constructor vacio que inicializa el estado del ramo como "cursando" (1)
      */
     public Ramo(){
-
-    }
-
-    /**
-     * Constructor de la clase Ramo con 3 parametros
-     * @param nombreRamo String que contiene el nombre del ramo
-     * @param codigoRamo String que contiene el codigo del ramo
-     * @param cantidadCreditos Entero que contiene la cantidad de creditos
-     */
-    public Ramo(String nombreRamo, String codigoRamo, int cantidadCreditos){
-        this.cantidadCreditos = cantidadCreditos;
-        this.codigoRamo = codigoRamo;
-        this.nombreRamo = nombreRamo;
         estadoRamo = 1;
     }
     
     /**
-     * Constructor de la clase Ramo con 4 parametros
-     * @param nombreRamo String que contiene el nombre del ramo
-     * @param codigoRamo String que contiene el codigo del ramo
-     * @param cantidadCreditos Entero que contiene la cantidad de creditos
-     * @param estadoRamo Entero que indica el estado del ramo
+     * Constructor de la SubClase Ramo, que inicializa el nombre y codigo del ramo, ademas de la cantidad de creditos.
+     * Inicializa el estado del ramo como "Cursando" (1)
+     * @param nombre String que contiene el nombre del ramo
+     * @param codigo String que contiene el codigo del ramo
+     * @param totalCreditos Entero que contiene el codigo del ramo
      */
-    public Ramo(String nombreRamo, String codigoRamo, int cantidadCreditos, int estadoRamo){
-        this.cantidadCreditos = cantidadCreditos;
-        this.codigoRamo = codigoRamo;
-        this.nombreRamo = nombreRamo;
+    public Ramo(String nombre, String codigo, int totalCreditos){
+        super(nombre, codigo, totalCreditos);
+        estadoRamo = 1;
+    }
+
+    /**
+     * Constructor de la SubClase Ramo, que inicializa el nombre y codigo del ramo, ademas de la cantidad de creditos.
+     * Inicializa el estado del ramo como "Cursando" (1)
+     * @param nombre String que contiene el nombre del ramo
+     * @param codigo String que contiene el codigo del ramo
+     * @param totalCreditos Entero que contiene el codigo del ramo
+     * @param estadoRamo Entero que indica el estado del ramo (0 = Por cursar, 1 = En curso, 2 = Aprobado)
+     */    
+    public Ramo(String nombre, String codigo, int totalCreditos, int estadoRamo){
+        super(nombre, codigo, totalCreditos);
         this.estadoRamo = estadoRamo;
     }
 
@@ -44,44 +39,13 @@ public class Ramo {
     public int getEstadoRamo() {
         return estadoRamo;
     }
-
-    public String getNombreRamo() {
-        return nombreRamo;
-    }
-
-    public String getCodigoRamo() {
-        return codigoRamo;
-    }
-
-    public int getCantidadCreditos() {
-        return cantidadCreditos;
-    }
-
+    
     //------------SETTERS
     public void setEstadoRamo(int estadoRamo) {
         this.estadoRamo = estadoRamo;
     }
-
-    public void setNombreRamo(String nombreRamo) {
-        this.nombreRamo = nombreRamo;
-    }
-
-    public void setCodigoRamo(String codigoRamo) {
-        this.codigoRamo = codigoRamo;
-    }
-
-    public void setCantidadCreditos(int cantidadCreditos) {
-        this.cantidadCreditos = cantidadCreditos;
-    }
-
-    /**
-     * Metodo que permite mostrar la informacion de un ramo
-     */
-    public void mostrarInformacion(){
-        System.out.println("Nombre del ramo: " + nombreRamo + " Codigo del ramo: " + codigoRamo + " Cantidad de creditos: " + cantidadCreditos);
-    }
-
-    /**
+    
+     /**
      * Metodo que permite la actualizacion de informacion al cambiar el estado de un ramo
      * @param estadoRamo Entero que contiene el estado del ramo (0 = No cursado, 1 = Cursando y 2 = Aprobado)
      * @return boolean Verdadero si se puede actualizar el ramo y falso si no se puede actualizar
@@ -91,5 +55,4 @@ public class Ramo {
         this.estadoRamo = estadoRamo;
         return true;
     }
-    
 }

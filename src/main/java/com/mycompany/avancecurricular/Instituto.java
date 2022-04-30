@@ -7,14 +7,14 @@ public class Instituto {
     private ArrayList<Carrera> listaCarreras;
     
     /**
-     * Constructor de la clase instituto
+     * Constructor de la clase Instituto, que inicializa la coleccion listaCarreras
      */
     public Instituto(){
         listaCarreras = new ArrayList<>();
     }
     
     /**
-     * Metodo que agrega una carrera del ramo, e ingresa la malla curricular del mismo
+     * Metodo que agrega una carrera del instituto, e ingresa la malla curricular del mismo
      * @param nuevaCarrera Objeto de la clase carrera
      * @return boolean Verdadero si se logro agregar la carrera correctamente y falso si no se pudo agregar
      * @throws IOException
@@ -32,18 +32,21 @@ public class Instituto {
         
         while(true){
             BufferedReader lectorGeneral = new BufferedReader(new InputStreamReader(System.in));
-            System.out.println("Ingrese el nombre del ramo, para terminar ingrese \"NO\"");
-            String nombreRamo = lectorGeneral.readLine();
-            if(nombreRamo.equalsIgnoreCase("no")) break;
-            System.out.println("Ingrese el codigo del ramo (Formato XXX000)");
-            String codigoRamo = lectorGeneral.readLine();
+            System.out.println("Ingrese el nombre de la asignatura, para terminar ingrese \"NO\"");
+            String nombreAsignatura = lectorGeneral.readLine();
+            if(nombreAsignatura.equalsIgnoreCase("no")) break;
+            System.out.println("Ingrese el codigo de la asignatura (Formato XXX000)");
+            String codigoAsignatura = lectorGeneral.readLine();
             System.out.println("Ingrese la cantidad de creditos");
             int cantCreditos = Integer.parseInt(lectorGeneral.readLine());
-            System.out.println(("Ingrese el estado del ramo (0 = no cursado o 1 = cursando)"));
-            int estadoRamo = Integer.parseInt(lectorGeneral.readLine());
+            System.out.println(("Es clase de primer semestre (si o no)")); 
+            String res = lectorGeneral.readLine();
 
-            if(nuevaCarrera.verificarRamo(codigoRamo)) nuevaCarrera.agregarRamoMalla(new Ramo(nombreRamo, codigoRamo, cantCreditos, estadoRamo));
-            else System.out.println("El ramo ya se encuentra ingresado");
+            boolean esDePrimero = false;
+            if(res.equalsIgnoreCase("si")) esDePrimero = true;
+
+            if(nuevaCarrera.verificarAsignatura(codigoAsignatura)) nuevaCarrera.agregarAsignaturaMalla(new Asignatura(nombreAsignatura, codigoAsignatura, cantCreditos, esDePrimero));
+            else System.out.println("La asignatura ya se encuentra ingresado");
         }
 
         return true;
@@ -149,13 +152,13 @@ public class Instituto {
     /**
      * Metodo para actualizar el estado de un ramo de un alumno
      * @param nombreAlumno String que contiene el nombre de un alumno de alguna carrera
-     * @param codigoRamo String que contiene el codigo de un ramo de alguna carrera
+     * @param codigoAsignatura String que contiene el codigo de un ramo de alguna carrera
      * @param estadoRamo Entero que contiene una de 3 opciones para cambiar el estado del ramo (0 = no cursado, 1 = cursando y 2 = aprobado)
      * @return boolean Verdadero si se pudo utilizar y falso si no se pudo actualizar
      */
-    public boolean actualizarRamo(String nombreAlumno, String codigoRamo, int estadoRamo){
+    public boolean actualizarRamo(String nombreAlumno, String codigoAsignatura, int estadoRamo){
         for (int i = 0; i < listaCarreras.size(); i++) {
-            if(listaCarreras.get(i).actualizarRamo(nombreAlumno, codigoRamo, estadoRamo)){
+            if(listaCarreras.get(i).actualizarRamo(nombreAlumno, codigoAsignatura, estadoRamo)){
                 return true;
             }
         }
@@ -166,10 +169,10 @@ public class Instituto {
      * Metodo que muestra los ramos de una carrera en especifico y su respectiva informacion
      * @param nombreCarrera String que contiene el nombre de una carrera en especifico
      */
-    public void mostrarRamosCarrera(String nombreCarrera){
+    public void mostrarAsignaturasCarrera(String nombreCarrera){
         for (int i = 0; i < listaCarreras.size(); i++) {
             if(nombreCarrera.equalsIgnoreCase(listaCarreras.get(i).getNombreCarrera())){
-                listaCarreras.get(i).mostrarRamosCarrera();
+                listaCarreras.get(i).mostrarAsignaturas();
                 return;
             }
         }
@@ -186,13 +189,13 @@ public class Instituto {
     }
     
     /**
-     * Metodo para la busqueda de un ramo y entregar su informacion respectiva
-     * @param codigoRamo String del codigo de un ramo
-     * @return boolean Verdadero si encontro el ramo y falso si no existe el ramo
+     * Metodo para la busqueda de una asignatura y entregar su informacion respectiva
+     * @param codigoAsignatura String del codigo de una asignatura
+     * @return boolean Verdadero si encontro el asignatura y falso si no existe la asignatura
      */
-    public boolean buscarRamo(String codigoRamo){
+    public boolean buscarAsignatura(String codigoAsignatura){
         for(int i = 0; i < listaCarreras.size(); i++){
-            if(listaCarreras.get(i).buscarRamo(codigoRamo)){
+            if(listaCarreras.get(i).buscarAsignatura(codigoAsignatura)){
                 return true;
             }
         }
@@ -232,31 +235,31 @@ public class Instituto {
     }
 
     /**
-     * Metodo que edita un ramo de la malla curricular de una carrera en especifico
+     * Metodo que edita una asignatura de la malla curricular de una carrera en especifico
      * @param nombreCarrera String que contiene el nombre de una carrera
-     * @param codigoRamo String que contiene el codigo del ramo de una malla curricular de alguna carrera
-     * @param nuevoNombreRamo String que contiene el nuevo nombre del ramo que se desea modificar
-     * @return boolean Verdadero si se pudo editar el ramo y falso si no se pudo editar
+     * @param codigoAsignatura String que contiene el codigo de la asignatura de una malla curricular de alguna carrera
+     * @param nuevoNombre String que contiene el nuevo nombre de la asignatura que se desea modificar
+     * @return boolean Verdadero si se pudo editar la asignatura y falso si no se pudo editar
      */
-    public boolean editarRamo(String nombreCarrera, String codigoRamo, String nuevoNombreRamo){
+    public boolean editarAsignatura(String nombreCarrera, String codigoAsignatura, String nuevoNombre){
         for(int i = 0; i < listaCarreras.size(); i++){
             if(listaCarreras.get(i).getNombreCarrera().equalsIgnoreCase(nombreCarrera)){
-                return listaCarreras.get(i).editarRamo(codigoRamo, nuevoNombreRamo);
+                return listaCarreras.get(i).editarAsignatura(codigoAsignatura, nuevoNombre);
             }
         }
         return false;
     }
     /**
-        Metodo que en caso de encontrar un ramo con el codigo señalado, lo elimina de la malla curricular de la carrera señalada
-        @param codigoRamo String que contiene el codigo del ramo a eliminar
-        @param nombreCarrera String que indica de que carrera se quiere eliminar el ramo
-        @return boolean Verdadero si se pudo eliminar el ramo y falso si no se pudo eliminar
+    * Metodo que en caso de encontrar una asignatura con el codigo señalado, lo elimina de la malla curricular de la carrera señalada
+    * @param codigoAsignatura String que contiene el codigo de la asignatura a eliminar
+    * @param nombreCarrera String que indica de que carrera se quiere eliminar la asignatura
+    * @return boolean Verdadero si se pudo eliminar la asignatura y falso si no se pudo eliminar
     */
 
-    public boolean eliminarRamo(String nombreCarrera, String codigoRamo){
+    public boolean eliminarAsignatura(String nombreCarrera, String codigoAsignatura){
         for(int i = 0; i < listaCarreras.size(); i++){
             if(listaCarreras.get(i).getNombreCarrera().equalsIgnoreCase(nombreCarrera)){
-                return listaCarreras.get(i).eliminarRamo(codigoRamo);
+                return listaCarreras.get(i).eliminarAsignatura(codigoAsignatura);
             }
         }
         return false;
@@ -291,13 +294,13 @@ public class Instituto {
                 }
                 
                 archivo.write("---------------------------------------------\n");
-                archivo.write("Nombre de la carrera + Codigo ramo + Nombre ramo\n");
+                archivo.write("Nombre de la carrera + Codigo Asignatura + Nombre Asignatura + Cantidad Alumnos\n");
                 
                 for(int i = 0 ; i < listaCarreras.size() ; i++){
                     Carrera cr = listaCarreras.get(i);
                     archivo.write(String.format("%20s",cr.getNombreCarrera()));
-                    cr.reporteRamo(archivo,true);
-                    cr.reporteRamo(archivo,false);
+                    cr.reporteAsignatura(archivo, true);
+                    cr.reporteAsignatura(archivo, false);
                 }
             }
         }catch(IOException e){
