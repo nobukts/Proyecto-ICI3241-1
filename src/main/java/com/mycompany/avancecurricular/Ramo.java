@@ -1,70 +1,58 @@
 package com.mycompany.avancecurricular;
 
-public class Ramo {
-    private String nombreRamo;
-    private String codigoRamo;
-    private String nombreProfesor;
-    private int creditosOtorga;
-    private int cantidadAlumnos;
+public class Ramo extends Asignatura{
+    private int estadoRamo;
     
+    /**
+     * Constructor vacio que inicializa el estado del ramo como "cursando" (1)
+     */
     public Ramo(){
-        
-    }
-
-    public Ramo(String nombreRamo){
-        this.nombreRamo = nombreRamo;
-    }
-
-    public Ramo(String nombreRamo, String codigoRamo){
-        this.nombreRamo = nombreRamo;
-        this.codigoRamo = codigoRamo;
-    }
-
-    public Ramo(String nombreRamo, String codigoRamo, String nombreProfesor, int creditosOtorga, int cantidadAlumnos){
-        this.nombreRamo = nombreRamo;
-        this.codigoRamo = codigoRamo;
-        this.nombreProfesor = nombreProfesor;
-        this.creditosOtorga = creditosOtorga;
-        this.cantidadAlumnos = cantidadAlumnos;
+        estadoRamo = 1;
     }
     
-    public String getNombreRamo() {
-        return nombreRamo;
+    /**
+     * Constructor de la SubClase Ramo, que inicializa el nombre y codigo del ramo, ademas de la cantidad de creditos.
+     * Inicializa el estado del ramo como "Cursando" (1)
+     * @param nombre String que contiene el nombre del ramo
+     * @param codigo String que contiene el codigo del ramo
+     * @param totalCreditos Entero que contiene el codigo del ramo
+     */
+    public Ramo(String nombre, String codigo, int totalCreditos){
+        super(nombre, codigo, totalCreditos);
+        estadoRamo = 1;
     }
 
-    public void setNombreRamo(String nombreRamo) {
-        this.nombreRamo = nombreRamo;
+    /**
+     * Constructor de la SubClase Ramo, que inicializa el nombre y codigo del ramo, ademas de la cantidad de creditos.
+     * Inicializa el estado del ramo como "Cursando" (1)
+     * @param nombre String que contiene el nombre del ramo
+     * @param codigo String que contiene el codigo del ramo
+     * @param totalCreditos Entero que contiene el codigo del ramo
+     * @param estadoRamo Entero que indica el estado del ramo (0 = Por cursar, 1 = En curso, 2 = Aprobado)
+     */    
+    public Ramo(String nombre, String codigo, int totalCreditos, int estadoRamo){
+        super(nombre, codigo, totalCreditos);
+        this.estadoRamo = estadoRamo;
     }
 
-    public String getCodigoRamo() {
-        return codigoRamo;
+    //------------GETTERS
+    public int getEstadoRamo() {
+        return estadoRamo;
     }
-
-    public void setCodigoRamo(String codigoRamo) {
-        this.codigoRamo = codigoRamo;
+    
+    //------------SETTERS
+    public void setEstadoRamo(int estadoRamo) {
+        this.estadoRamo = estadoRamo;
     }
-
-    public String getNombreProfesor() {
-        return nombreProfesor;
+    
+     /**
+     * Metodo que permite la actualizacion de informacion al cambiar el estado de un ramo
+     * @param estadoRamo Entero que contiene el estado del ramo (0 = No cursado, 1 = Cursando y 2 = Aprobado)
+     * @return boolean Verdadero si se puede actualizar el ramo y falso si no se puede actualizar
+     */
+    public boolean actualizarRamo(int estadoRamo){
+        if(this.estadoRamo == estadoRamo) return false;
+        this.estadoRamo = estadoRamo;
+        return true;
     }
-
-    public void setNombreProfesor(String nombreProfesor) {
-        this.nombreProfesor = nombreProfesor;
-    }
-
-    public int getCreditosOtorga() {
-        return creditosOtorga;
-    }
-
-    public void setCreditosOtorga(int creditosOtorga) {
-        this.creditosOtorga = creditosOtorga;
-    }
-
-    public int getCantidadAlumnos() {
-        return cantidadAlumnos;
-    }
-
-    public void setCantidadAlumnos(int cantidadAlumnos) {
-        this.cantidadAlumnos = cantidadAlumnos;
-    } 
 }

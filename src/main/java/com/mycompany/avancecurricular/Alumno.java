@@ -1,122 +1,124 @@
 package com.mycompany.avancecurricular;
+
 import java.util.ArrayList;
 
 public class Alumno {
     private String nombreAlumno;
-    private String rutAlumno;
-    private ArrayList<Ramo> mallaCurricular;
-    private ArrayList<Ramo> ramosAprobados;
-    private ArrayList<Ramo> ramosActuales;
-    private ArrayList<Ramo> ramosFaltantes;
-    private int cantCreditos;
+    private int cantidadCreditos;
+    private int rut;
+    private ArrayList<Ramo> ramosAlumno;
 
+    /**
+     * Constructor vacio que inicializa el ArrayList ramosAlumno
+     */
     public Alumno(){
-        
+        ramosAlumno = new ArrayList<>();
     }
 
-    public Alumno(String nombreAlumno, String rutAlumno){
+    /**
+     * Constructor de la Clase Alumno que instancia el nombre del alumno y el rut
+     * @param nombreAlumno String que contiene el nombre del alumno
+     * @param rut int que contiene el RUT del alumno
+     */
+    public Alumno(String nombreAlumno, int rut){
         this.nombreAlumno = nombreAlumno;
-        this.rutAlumno = rutAlumno;
-        this.mallaCurricular = new ArrayList<>();
-        this.ramosAprobados = new ArrayList<>();
-        this.ramosActuales = new ArrayList<>();
-        this.ramosFaltantes = new ArrayList<>();
-        this.cantCreditos = 0;
+        this.rut = rut;
+        ramosAlumno = new ArrayList<>();
     }
 
-    public Alumno(String nombreAlumno, String rutAlumno, ArrayList<Ramo> mallaCurricular, ArrayList<Ramo> ramosAprobados, ArrayList<Ramo> ramosActuales, ArrayList<Ramo> ramosFaltantes, int cantCreditos){
-        this.nombreAlumno = nombreAlumno;
-        this.rutAlumno = rutAlumno;
-        this.mallaCurricular = mallaCurricular;
-        this.ramosAprobados = ramosAprobados;
-        this.ramosActuales = ramosActuales;
-        this.ramosFaltantes = ramosFaltantes;
-        this.cantCreditos = cantCreditos;
+    //------------GETTERS
+
+    public int getRut() {
+        return rut;
     }
 
     public String getNombreAlumno() {
         return nombreAlumno;
     }
 
+    public int getCantidadCreditos() {
+        return cantidadCreditos;
+    }
+
+    //------------SETTERS
+
+    public void setRut(int rut) {
+        this.rut = rut;
+    }
+
     public void setNombreAlumno(String nombreAlumno) {
         this.nombreAlumno = nombreAlumno;
     }
 
-    public String getRutAlumno() {
-        return rutAlumno;
+    public void setCantidadCreditos(int cantidadCreditos) {
+        this.cantidadCreditos = cantidadCreditos;
     }
 
-    public void setRutAlumno(String rutAlumno) {
-        this.rutAlumno = rutAlumno;
+    /**
+     * Metodo que permite mostrar la informacion del alumno
+     */
+    public void mostrarAlumno(){
+        System.out.println("Nombre: " + nombreAlumno + " Rut: " + rut + " Cantidad de creditos: " + cantidadCreditos);
     }
-
-    public ArrayList<Ramo> getMallaCurricular() {
-        return mallaCurricular;
-    }
-
-    public void setMallaCurricular(ArrayList<Ramo> mallaCurricular) {
-        this.mallaCurricular = mallaCurricular;
-    }
-
-    public ArrayList<Ramo> getRamosAprobados() {
-        return ramosAprobados;
-    }
-
-    public void setRamosAprobados(ArrayList<Ramo> ramosAprobados) {
-        this.ramosAprobados = ramosAprobados;
-    }
-
-    public ArrayList<Ramo> getRamosActuales() {
-        return ramosActuales;
-    }
-
-    public void setRamosActuales(ArrayList<Ramo> ramosActuales) {
-        this.ramosActuales = ramosActuales;
-    }
-
-    public ArrayList<Ramo> getRamosFaltantes() {
-        return ramosFaltantes;
-    }
-
-    public void setRamosFaltantes(ArrayList<Ramo> ramosFaltantes) {
-        this.ramosFaltantes = ramosFaltantes;
-    }
-
-    public int getCantCreditos() {
-        return cantCreditos;
-    }
-
-    public void setCantCreditos(int cantCreditos) {
-        if(cantCreditos < 0) cantCreditos *= -1;
-        this.cantCreditos = cantCreditos;
-    }
-
-    public void buscarRamo(String nombreRamo){
-        for(int i = 0 ; i < mallaCurricular.size() ; i++){
-            if(mallaCurricular.get(i).getNombreRamo().equalsIgnoreCase(nombreRamo)){
-                System.out.print("- Informacion del ramo " + nombreRamo + ": ");
-                System.out.println("Codigo ramo: " + mallaCurricular.get(i).getCodigoRamo());
-                break;
+    
+    /**
+     * Metodo para corroborar que asignaturas esta cursando el alumno
+     * @param codigoAsignatura String que contiene el codigo del ramo que se quiere verificar
+     * @return boolean true si es que el alumno esta cursando el ramo, false si lo tiene aprobado o aun no lo esta cursando
+     */
+    public boolean eliminarAlumno(String codigoAsignatura){
+        for (int i = 0; i < ramosAlumno.size(); i++) {
+            if(ramosAlumno.get(i).getCodigoAsignatura().equalsIgnoreCase(codigoAsignatura)){
+                if(ramosAlumno.get(i).getEstadoRamo() == 1) return true;
+                else return false;
             }
         }
+        
+        return false;
     }
 
-    public void buscarRamo(String codigoLetras, int codigoNumeros){
-        String codigoRamo = codigoLetras + String.valueOf(codigoNumeros);
-        System.out.println(codigoRamo);
-        for(int i = 0 ; i < mallaCurricular.size() ; i++){
-            if(mallaCurricular.get(i).getCodigoRamo().equalsIgnoreCase(codigoRamo)){
-                System.out.print("- Informacion del ramo " + codigoRamo + ": ");
-                System.out.println("Nombre ramo: " + mallaCurricular.get(i).getNombreRamo());
-                break;
+    /**
+     * Metodo para agregar un ramo opcional a un solo alumno
+     * @param nuevoRamo Objeto de la clase Ramo que se desea agregar a los ramos del alumno
+     */
+    public void agregarRamo(Ramo nuevoRamo){
+        ramosAlumno.add(nuevoRamo);
+    }
+
+    /**
+     * Metodo para actualizar el estado de un ramo del alumno
+     * @param codigoRamo String que contiene el codigo del ramo que se esta buscando en el alumno
+     * @param estadoRamo Entero que contiene el estado del ramo
+     * @return boolean Verdadero si se puede actualizar el estado del ramo y falso si no se pudo actualizar
+     */
+    public boolean actualizarRamo(String codigoRamo, int estadoRamo){
+        for (int i = 0; i < ramosAlumno.size(); i++) {
+            if(ramosAlumno.get(i).getCodigoAsignatura().equalsIgnoreCase(codigoRamo)){
+                boolean res = ramosAlumno.get(i).actualizarRamo(estadoRamo);
+                
+                if(res == true && estadoRamo == 2){
+                    cantidadCreditos += ramosAlumno.get(i).getCantidadCreditos();
+                }
+                
+                return res;
             }
+            
         }
+        return true;
     }
-
-    public void mostrarTodosRamos(){
-        for(int i = 0 ; i < mallaCurricular.size() ; i++){
-            System.out.println("Ramo " + (i+1) + ": " + mallaCurricular.get(i).getNombreRamo());
+    
+    /**
+     * Metodo que verifica si un ramo se encuentra entre los ramos del alumno
+     * @param codigoRamo String que contiene el codigo del ramo que estamos verificando
+     * @return boolean Verdadero si no se encuentra el ramo en la malla curricular y falso si ya se encuentra
+     */
+    public boolean verificarRamo(String codigoRamo){
+        for (int i = 0; i < ramosAlumno.size(); i++) {
+            if(ramosAlumno.get(i).getCodigoAsignatura().equalsIgnoreCase(codigoRamo)){
+                return false;
+            }
+            
         }
+        return true;
     }
-
 }
