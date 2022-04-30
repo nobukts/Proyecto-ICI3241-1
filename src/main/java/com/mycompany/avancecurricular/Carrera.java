@@ -297,6 +297,12 @@ public class Carrera {
         try{
             //True si se imprime el primer ramo, False si no es el primer ramo
             if(aux){
+                //Esto evita que si la malla no tenga carrera se caiga el programa
+                if(mallaCurricular.size() == 0){
+                    archivo.write("\n");
+                    return;
+                }
+
                 Ramo rm = mallaCurricular.get(0);
                 archivo.write(String.format("%14s %13s",rm.getCodigoRamo(), rm.getNombreRamo()) + "\n");
             }else{
