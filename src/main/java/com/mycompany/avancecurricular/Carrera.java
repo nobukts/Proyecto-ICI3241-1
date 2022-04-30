@@ -85,13 +85,18 @@ public class Carrera {
         if(listaAlumnos.isEmpty()) return false;
         for (int i = 0; i < listaAlumnos.size(); i++) {
             if(listaAlumnos.get(i).getNombreAlumno().equalsIgnoreCase(nombreAlumno)){
+                
+                //Resta 1 alumno de las asignaturas que tenia en curso el alumno
+                for (int j = 0; j < mallaCurricular.size(); j++) {
+                    if(mapaAlumnos.containsKey(nombreAlumno)){
+                        if(mapaAlumnos.get(nombreAlumno).eliminarAlumno(mallaCurricular.get(j).getCodigoAsignatura())) 
+                            mallaCurricular.get(j).disminuirAlumnos();
+                    }
+                }
+                
                 mapaAlumnos.remove(nombreAlumno);
                 listaAlumnos.remove(i);
-                listaAlumnos.get(i);
                 cantidadAlumnos--;
-                for (int j = 0; j < mallaCurricular.size(); j++) {
-                    mallaCurricular.get(j).disminuirAlumnos();
-                }
                 return true;
             }
         }
@@ -109,12 +114,18 @@ public class Carrera {
 
         for (int i = 0; i < listaAlumnos.size(); i++) {
             if(listaAlumnos.get(i).getRut() == rutAlumno){
+                
+                //Resta 1 alumno de las asignaturas que tenia en curso el alumno
+                for (int j = 0; j < mallaCurricular.size(); j++) {
+                    if(mapaAlumnos.containsKey(listaAlumnos.get(i).getNombreAlumno())){
+                        if(mapaAlumnos.get(listaAlumnos.get(i).getNombreAlumno()).eliminarAlumno(mallaCurricular.get(j).getCodigoAsignatura())) 
+                            mallaCurricular.get(j).disminuirAlumnos();
+                    }
+                }
+                
                 mapaAlumnos.remove(listaAlumnos.get(i).getNombreAlumno());
                 listaAlumnos.remove(i);
                 cantidadAlumnos--;
-                for (int j = 0; j < mallaCurricular.size(); j++) {
-                    mallaCurricular.get(j).disminuirAlumnos();
-                }
                 return true;
             }
         }

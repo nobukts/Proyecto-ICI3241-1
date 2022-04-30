@@ -104,7 +104,7 @@ public class Main {
                     System.out.println("Ingrese codigo de la asignatura");
                     codigoAsignatura = lectorGeneral.readLine();
                     if(inst.eliminarAsignatura(nombreCarrera, codigoAsignatura))
-                        System.out.println("Ramo eliminado correctamente");
+                        System.out.println("Asignatura eliminado correctamente");
                     else
                         System.out.println("No se encontro la asignatura");
                     break;

@@ -2,7 +2,7 @@
 
 <ClassDiagram name="Proyecto-ICI3241-1">
   <ClassDiagramComponents>
-    <Class name="Alumno" package="com.mycompany.avancecurricular" visibility="public" xPosition="1398.0" yPosition="792.0">
+    <Class name="Alumno" package="com.mycompany.avancecurricular" visibility="public" xPosition="44.0" yPosition="20.0">
       <Fields>
         <Field name="nombreAlumno" type="String" visibility="private"/>
         <Field name="cantidadCreditos" type="int" visibility="private"/>
@@ -30,6 +30,9 @@
           <Argument type="int" name="cantidadCreditos"/>
         </Method>
         <Method name="mostrarAlumno" returnType="void" visibility="public"/>
+        <Method name="eliminarAlumno" returnType="boolean" visibility="public">
+          <Argument type="String" name="codigoAsignatura"/>
+        </Method>
         <Method name="agregarRamo" returnType="void" visibility="public">
           <Argument type="Ramo" name="nuevoRamo"/>
         </Method>
@@ -42,7 +45,7 @@
         </Method>
       </Methods>
     </Class>
-    <Class name="Asignatura" package="com.mycompany.avancecurricular" visibility="public" xPosition="1819.0" yPosition="188.0">
+    <Class name="Asignatura" package="com.mycompany.avancecurricular" visibility="public" xPosition="1112.0" yPosition="796.0">
       <Fields>
         <Field name="nombreAsignatura" type="String" visibility="private"/>
         <Field name="codigoAsignatura" type="String" visibility="private"/>
@@ -90,7 +93,7 @@
         <Method name="disminuirAlumnos" returnType="void" visibility="public"/>
       </Methods>
     </Class>
-    <Class name="Carrera" package="com.mycompany.avancecurricular" visibility="public" xPosition="347.0" yPosition="583.0">
+    <Class name="Carrera" package="com.mycompany.avancecurricular" visibility="public" xPosition="44.0" yPosition="796.0">
       <Fields>
         <Field name="nombreCarrera" type="String" visibility="private"/>
         <Field name="mapaAlumnos" type="HashMap&lt;String, Alumno&gt;" visibility="private"/>
@@ -165,7 +168,7 @@
         </Method>
       </Methods>
     </Class>
-    <Class name="CSV" package="com.mycompany.avancecurricular" visibility="public" xPosition="20.0" yPosition="583.0">
+    <Class name="CSV" package="com.mycompany.avancecurricular" visibility="public" xPosition="1927.0" yPosition="333.0">
       <Fields>
         <Field name="file" type="BufferedReader" visibility="private"/>
         <Field name="currentLine" type="String" visibility="private"/>
@@ -194,7 +197,7 @@
         <Method name="close" returnType="void" visibility="public"/>
       </Methods>
     </Class>
-    <Class name="Instituto" package="com.mycompany.avancecurricular" visibility="public" xPosition="309.0" yPosition="20.0">
+    <Class name="Instituto" package="com.mycompany.avancecurricular" visibility="public" xPosition="606.0" yPosition="236.0">
       <Fields>
         <Field name="listaCarreras" type="ArrayList&lt;Carrera&gt;" visibility="private"/>
       </Fields>
@@ -259,7 +262,7 @@
         <Method name="crearReporte" returnType="void" visibility="public"/>
       </Methods>
     </Class>
-    <Class name="Main" package="com.mycompany.avancecurricular" visibility="public" xPosition="20.0" yPosition="445.0">
+    <Class name="Main" package="com.mycompany.avancecurricular" visibility="public" xPosition="1953.0" yPosition="713.0">
       <Fields/>
       <Constructors/>
       <Methods>
@@ -268,7 +271,7 @@
         </Method>
       </Methods>
     </Class>
-    <Class name="Ramo" package="com.mycompany.avancecurricular" visibility="public" xPosition="1135.0" yPosition="84.0">
+    <Class name="Ramo" package="com.mycompany.avancecurricular" visibility="public" xPosition="1643.0" yPosition="20.0">
       <Fields>
         <Field name="estadoRamo" type="int" visibility="private"/>
       </Fields>
@@ -298,18 +301,18 @@
     </Class>
   </ClassDiagramComponents>
   <ClassDiagramRelations>
-    <HasRelation name="listaAlumnos" source="com.mycompany.avancecurricular.Carrera" target="com.mycompany.avancecurricular.Alumno" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="ArrayList&lt;Alumno&gt;"/>
-    <UseRelation source="com.mycompany.avancecurricular.Instituto" target="com.mycompany.avancecurricular.Alumno" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <HasRelation name="listaCarreras" source="com.mycompany.avancecurricular.Instituto" target="com.mycompany.avancecurricular.Carrera" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="ArrayList&lt;Carrera&gt;"/>
-    <UseRelation source="com.mycompany.avancecurricular.Alumno" target="com.mycompany.avancecurricular.Ramo" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <IsRelation name="is" source="com.mycompany.avancecurricular.Ramo" target="com.mycompany.avancecurricular.Asignatura"/>
     <UseRelation source="com.mycompany.avancecurricular.Instituto" target="com.mycompany.avancecurricular.Carrera" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <UseRelation source="com.mycompany.avancecurricular.Instituto" target="com.mycompany.avancecurricular.Ramo" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <UseRelation source="com.mycompany.avancecurricular.Carrera" target="com.mycompany.avancecurricular.Asignatura" sourceCardinality="1..1" targetCardinality="1..1"/>
     <HasRelation name="mallaCurricular" source="com.mycompany.avancecurricular.Carrera" target="com.mycompany.avancecurricular.Asignatura" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="ArrayList&lt;Asignatura&gt;"/>
+    <UseRelation source="com.mycompany.avancecurricular.Carrera" target="com.mycompany.avancecurricular.Ramo" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="listaAlumnos" source="com.mycompany.avancecurricular.Carrera" target="com.mycompany.avancecurricular.Alumno" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="ArrayList&lt;Alumno&gt;"/>
+    <HasRelation name="mapaAlumnos" source="com.mycompany.avancecurricular.Carrera" target="com.mycompany.avancecurricular.Alumno" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="HashMap&lt;String, Alumno&gt;"/>
+    <HasRelation name="listaCarreras" source="com.mycompany.avancecurricular.Instituto" target="com.mycompany.avancecurricular.Carrera" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="ArrayList&lt;Carrera&gt;"/>
+    <UseRelation source="com.mycompany.avancecurricular.Instituto" target="com.mycompany.avancecurricular.Alumno" sourceCardinality="1..1" targetCardinality="1..1"/>
     <HasRelation name="ramosAlumno" source="com.mycompany.avancecurricular.Alumno" target="com.mycompany.avancecurricular.Ramo" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="ArrayList&lt;Ramo&gt;"/>
     <UseRelation source="com.mycompany.avancecurricular.Carrera" target="com.mycompany.avancecurricular.Alumno" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <HasRelation name="mapaAlumnos" source="com.mycompany.avancecurricular.Carrera" target="com.mycompany.avancecurricular.Alumno" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="HashMap&lt;String, Alumno&gt;"/>
-    <UseRelation source="com.mycompany.avancecurricular.Carrera" target="com.mycompany.avancecurricular.Ramo" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="com.mycompany.avancecurricular.Ramo" target="com.mycompany.avancecurricular.Asignatura"/>
+    <UseRelation source="com.mycompany.avancecurricular.Alumno" target="com.mycompany.avancecurricular.Ramo" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="com.mycompany.avancecurricular.Instituto" target="com.mycompany.avancecurricular.Ramo" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="com.mycompany.avancecurricular.Carrera" target="com.mycompany.avancecurricular.Asignatura" sourceCardinality="1..1" targetCardinality="1..1"/>
   </ClassDiagramRelations>
 </ClassDiagram>

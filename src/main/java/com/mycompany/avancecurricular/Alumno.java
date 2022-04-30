@@ -60,6 +60,22 @@ public class Alumno {
     public void mostrarAlumno(){
         System.out.println("Nombre: " + nombreAlumno + " Rut: " + rut + " Cantidad de creditos: " + cantidadCreditos);
     }
+    
+    /**
+     * Metodo para corroborar que asignaturas esta cursando el alumno
+     * @param codigoAsignatura String que contiene el codigo del ramo que se quiere verificar
+     * @return boolean true si es que el alumno esta cursando el ramo, false si lo tiene aprobado o aun no lo esta cursando
+     */
+    public boolean eliminarAlumno(String codigoAsignatura){
+        for (int i = 0; i < ramosAlumno.size(); i++) {
+            if(ramosAlumno.get(i).getCodigoAsignatura().equalsIgnoreCase(codigoAsignatura)){
+                if(ramosAlumno.get(i).getEstadoRamo() == 1) return true;
+                else return false;
+            }
+        }
+        
+        return false;
+    }
 
     /**
      * Metodo para agregar un ramo opcional a un solo alumno
