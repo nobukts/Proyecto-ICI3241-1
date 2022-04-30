@@ -5,7 +5,7 @@ public class Main {
     public static void main(String[] args) throws IOException{
         BufferedReader lectorGeneral = new BufferedReader(new InputStreamReader(System.in));
         Instituto inst = new Instituto();
-
+      
         //Variables primitivas a usar
         String codigoAsignatura, nombreAsignatura, nombreAlumno, nombreCarrera, nuevoNombre;
         int rutAlumno, estadoRamo, cantCreditos;
@@ -196,6 +196,5 @@ public class Main {
                     break;
             }
         }
-
     }
 }
