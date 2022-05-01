@@ -279,7 +279,7 @@ public class Carrera {
      */
     public boolean editarAsignatura(String codigoAsignatura, String nuevoNombreAsignatura){
         if(mallaCurricular.isEmpty()) return false;
-        for(int i = 0; i < listaAlumnos.size(); i++){
+        for(int i = 0; i < mallaCurricular.size(); i++){
             if(mallaCurricular.get(i).getCodigoAsignatura().equalsIgnoreCase(codigoAsignatura)){
                 mallaCurricular.get(i).setNombreAsignatura(nuevoNombreAsignatura);
                 return true;
@@ -347,11 +347,11 @@ public class Carrera {
                     return;
                 }
                 Asignatura rm = mallaCurricular.get(0);
-                archivo.write(String.format("%14s %13s %14d",rm.getCodigoAsignatura(), rm.getNombreAsignatura(), rm.getCantidadAlumnos()) + "\n");
+                archivo.write(String.format("%20s %19s %14d",rm.getCodigoAsignatura(), rm.getNombreAsignatura(), rm.getCantidadAlumnos()) + "\n");
             }else{
                 for(int i = 1 ; i < mallaCurricular.size() ; i++){
                     Asignatura rm = mallaCurricular.get(i);
-                    archivo.write(String.format("%34s %13s %14d",rm.getCodigoAsignatura(),rm.getNombreAsignatura(), rm.getCantidadAlumnos()) + "\n");
+                    archivo.write(String.format("%40s %19s %14d",rm.getCodigoAsignatura(),rm.getNombreAsignatura(), rm.getCantidadAlumnos()) + "\n");
                 }
             }
             

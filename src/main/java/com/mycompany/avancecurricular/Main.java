@@ -75,7 +75,7 @@ public class Main {
                                 System.out.println("No se encontro la carrera");
                             break;
                         case 2:
-                            System.out.println("Ingrese el nombre del alumno");
+                            System.out.println("Ingrese el nombre del alumno (Considerando las mayusculas y minusculas)");
                             nombreAlumno = lectorGeneral.readLine();
                             System.out.println("Ingrese el nuevo nombre del alumno");
                             nuevoNombre = lectorGeneral.readLine();
