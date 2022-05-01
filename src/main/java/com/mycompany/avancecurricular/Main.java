@@ -25,6 +25,7 @@ public class Main {
             System.out.println("12) Busqueda de una asignatura");
             System.out.println("13) Crear reporte");
             System.out.println("0) Salir del programa");
+            System.out.println("Consejo: Consideres las mayusculas y minusculas");
 
             switch (Integer.parseInt(lectorGeneral.readLine())) {
                 case 1:
@@ -75,7 +76,7 @@ public class Main {
                                 System.out.println("No se encontro la carrera");
                             break;
                         case 2:
-                            System.out.println("Ingrese el nombre del alumno (Considerando las mayusculas y minusculas)");
+                            System.out.println("Ingrese el nombre del alumno");
                             nombreAlumno = lectorGeneral.readLine();
                             System.out.println("Ingrese el nuevo nombre del alumno");
                             nuevoNombre = lectorGeneral.readLine();
