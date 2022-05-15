@@ -60,7 +60,7 @@ public class Alumno {
     public void mostrarAlumno(){
         System.out.println("Nombre: " + nombreAlumno + " Rut: " + rut + " Cantidad de creditos: " + cantidadCreditos);
     }
-    
+        
     /**
      * Metodo para corroborar que asignaturas esta cursando el alumno
      * @param codigoAsignatura String que contiene el codigo del ramo que se quiere verificar
@@ -96,15 +96,13 @@ public class Alumno {
             if(ramosAlumno.get(i).getCodigoCurso().equalsIgnoreCase(codigoRamo)){
                 boolean res = ramosAlumno.get(i).actualizarRamo(estadoRamo);
                 
-                if(res == true && estadoRamo == 2){
-                    cantidadCreditos += ramosAlumno.get(i).getCantidadCreditos();
-                }
+                if(res == true && estadoRamo == 2) cantidadCreditos += ramosAlumno.get(i).getCantidadCreditos();
                 
                 return res;
             }
             
         }
-        return true;
+        return false;
     }
     
     /**

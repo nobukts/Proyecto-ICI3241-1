@@ -306,4 +306,17 @@ public class Instituto {
         }catch(IOException e){
         }
     }
+    
+    public ArrayList<Alumno> alumnosMenorCantCreditos(){
+        ArrayList<Alumno> alumnosMenosCreditos = new ArrayList<>();
+        
+        for(int i = 0; i < listaCarreras.size(); i++) {
+           Alumno aux = listaCarreras.get(i).alumnoMenorCreditos();
+           if(aux != null){
+               alumnosMenosCreditos.add(aux);
+           }
+            
+        }
+        return alumnosMenosCreditos;
+    } 
 }

@@ -65,7 +65,7 @@ public class Carrera {
         
         for(int i = 0; i < mallaCurricular.size(); i++){
             Asignatura aux = mallaCurricular.get(i);
-            Ramo nuevoRamo = new Ramo(aux.getNombreCurso(), aux.getNombreCurso(), aux.getCantidadCreditos());
+            Ramo nuevoRamo = new Ramo(aux.getNombreCurso(), aux.getCodigoCurso(), aux.getCantidadCreditos());
             if(aux.getEsDePrimero()){
                 aux.aumentarAlumnos();
                 nuevoRamo.setEstadoRamo(1);
@@ -358,6 +358,17 @@ public class Carrera {
             
         }catch(IOException e){
         }
+    }
+    
+    public Alumno alumnoMenorCreditos(){
+        Alumno alumnoMenorCant = listaAlumnos.get(0);
+        for (int i = 1; i < listaAlumnos.size(); i++) {
+            if(alumnoMenorCant.getCantidadCreditos() > listaAlumnos.get(i).getCantidadCreditos()){
+                alumnoMenorCant = listaAlumnos.get(i);
+            }
+        }
+        
+        return alumnoMenorCant;
     }
 }
 

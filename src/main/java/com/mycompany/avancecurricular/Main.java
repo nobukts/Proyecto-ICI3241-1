@@ -1,5 +1,6 @@
 package com.mycompany.avancecurricular;
 import java.io.*;
+import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args) throws IOException{
@@ -9,6 +10,7 @@ public class Main {
         //Variables primitivas a usar
         String codigoAsignatura, nombreAsignatura, nombreAlumno, nombreCarrera, nuevoNombre;
         int rutAlumno, estadoRamo, cantCreditos;
+        ArrayList<Alumno> listaAlumnosMenorCant;
 
         while(true){
             System.out.println("1) Agregar Carrera");
@@ -24,6 +26,7 @@ public class Main {
             System.out.println("11) Mostrar todas las carreras"); 
             System.out.println("12) Busqueda de una asignatura");
             System.out.println("13) Crear reporte");
+            System.out.println("14) Buscar al alumno con menos creditos de cada carrera");
             System.out.println("0) Salir del programa");
             System.out.println("Consejo: Consideres las mayusculas y minusculas");
 
@@ -187,6 +190,16 @@ public class Main {
                     break;
                 case 13:
                     inst.crearReporte();
+                    break;
+                case 14:
+                    listaAlumnosMenorCant = inst.alumnosMenorCantCreditos();
+                    if(listaAlumnosMenorCant.isEmpty()){
+                        System.out.println("No se pudo realizar");
+                    }else{
+                        for (int i = 0; i < listaAlumnosMenorCant.size(); i++) {
+                            listaAlumnosMenorCant.get(i).mostrarAlumno();
+                        }
+                    }
                     break;
                 case 0:
                     System.out.println("Salio del programa con exito");

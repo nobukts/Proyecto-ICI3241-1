@@ -7,7 +7,6 @@ public class Ramo extends Curso{
      * Constructor vacio que inicializa el estado del ramo como "cursando" (1)
      */
     public Ramo(){
-        estadoRamo = 1;
     }
     
     /**
