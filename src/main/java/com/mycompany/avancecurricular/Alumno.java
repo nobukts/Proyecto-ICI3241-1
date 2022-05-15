@@ -68,7 +68,7 @@ public class Alumno {
      */
     public boolean eliminarAlumno(String codigoAsignatura){
         for (int i = 0; i < ramosAlumno.size(); i++) {
-            if(ramosAlumno.get(i).getCodigoAsignatura().equalsIgnoreCase(codigoAsignatura)){
+            if(ramosAlumno.get(i).getCodigoCurso().equalsIgnoreCase(codigoAsignatura)){
                 if(ramosAlumno.get(i).getEstadoRamo() == 1) return true;
                 else return false;
             }
@@ -93,7 +93,7 @@ public class Alumno {
      */
     public boolean actualizarRamo(String codigoRamo, int estadoRamo){
         for (int i = 0; i < ramosAlumno.size(); i++) {
-            if(ramosAlumno.get(i).getCodigoAsignatura().equalsIgnoreCase(codigoRamo)){
+            if(ramosAlumno.get(i).getCodigoCurso().equalsIgnoreCase(codigoRamo)){
                 boolean res = ramosAlumno.get(i).actualizarRamo(estadoRamo);
                 
                 if(res == true && estadoRamo == 2){
@@ -114,7 +114,7 @@ public class Alumno {
      */
     public boolean verificarRamo(String codigoRamo){
         for (int i = 0; i < ramosAlumno.size(); i++) {
-            if(ramosAlumno.get(i).getCodigoAsignatura().equalsIgnoreCase(codigoRamo)){
+            if(ramosAlumno.get(i).getCodigoCurso().equalsIgnoreCase(codigoRamo)){
                 return false;
             }
             

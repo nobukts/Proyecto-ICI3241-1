@@ -1,6 +1,6 @@
 package com.mycompany.avancecurricular;
 
-public class Ramo extends Asignatura{
+public class Ramo extends Curso{
     private int estadoRamo;
     
     /**
@@ -54,5 +54,24 @@ public class Ramo extends Asignatura{
         if(this.estadoRamo == estadoRamo) return false;
         this.estadoRamo = estadoRamo;
         return true;
+    }
+    
+    /**
+     *
+     */
+    @Override
+    public void mostrarInformacion(){
+        System.out.println("Nombre del Ramo: " + this.getNombreCurso() + " Estado del ramo: ");
+        switch(this.estadoRamo){
+            case 0:
+                System.out.print("No cursado");
+                break;
+            case 1:
+                System.out.print("Cursando");
+                break;
+            case 2:
+                System.out.print("Aprobado");
+                break;
+        }
     }
 }

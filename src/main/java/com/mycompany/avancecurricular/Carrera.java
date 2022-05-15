@@ -5,10 +5,11 @@ import java.util.*;
 
 public class Carrera {
     private String nombreCarrera;
+    private int cantidadAlumnos;
     private HashMap<String, Alumno> mapaAlumnos;
     private ArrayList<Alumno> listaAlumnos;
     private ArrayList<Asignatura> mallaCurricular;
-    private int cantidadAlumnos;
+    
     
     /**
      * Constructor vacio que inicializa las colecciones de la clase
@@ -64,7 +65,7 @@ public class Carrera {
         
         for(int i = 0; i < mallaCurricular.size(); i++){
             Asignatura aux = mallaCurricular.get(i);
-            Ramo nuevoRamo = new Ramo(aux.getNombreAsignatura(), aux.getCodigoAsignatura(), aux.getCantidadCreditos());
+            Ramo nuevoRamo = new Ramo(aux.getNombreCurso(), aux.getNombreCurso(), aux.getCantidadCreditos());
             if(aux.getEsDePrimero()){
                 aux.aumentarAlumnos();
                 nuevoRamo.setEstadoRamo(1);
@@ -89,7 +90,7 @@ public class Carrera {
                 //Resta 1 alumno de las asignaturas que tenia en curso el alumno
                 for (int j = 0; j < mallaCurricular.size(); j++) {
                     if(mapaAlumnos.containsKey(nombreAlumno)){
-                        if(mapaAlumnos.get(nombreAlumno).eliminarAlumno(mallaCurricular.get(j).getCodigoAsignatura())) 
+                        if(mapaAlumnos.get(nombreAlumno).eliminarAlumno(mallaCurricular.get(j).getCodigoCurso())) 
                             mallaCurricular.get(j).disminuirAlumnos();
                     }
                 }
@@ -118,7 +119,7 @@ public class Carrera {
                 //Resta 1 alumno de las asignaturas que tenia en curso el alumno
                 for (int j = 0; j < mallaCurricular.size(); j++) {
                     if(mapaAlumnos.containsKey(listaAlumnos.get(i).getNombreAlumno())){
-                        if(mapaAlumnos.get(listaAlumnos.get(i).getNombreAlumno()).eliminarAlumno(mallaCurricular.get(j).getCodigoAsignatura())) 
+                        if(mapaAlumnos.get(listaAlumnos.get(i).getNombreAlumno()).eliminarAlumno(mallaCurricular.get(j).getCodigoCurso())) 
                             mallaCurricular.get(j).disminuirAlumnos();
                     }
                 }
@@ -153,7 +154,7 @@ public class Carrera {
      */
     public boolean agregarAsignaturaMalla(Asignatura nuevaAsignatura){
         for (int i = 0; i < mallaCurricular.size(); i++) {
-            if(mallaCurricular.get(i).getCodigoAsignatura().equalsIgnoreCase(nuevaAsignatura.getCodigoAsignatura())){
+            if(mallaCurricular.get(i).getCodigoCurso().equalsIgnoreCase(nuevaAsignatura.getCodigoCurso())){
                 return false;
             }
         }
@@ -170,7 +171,7 @@ public class Carrera {
      */
     public boolean agregarRamoOpcional(String nombreAlumno, Ramo nuevoRamo){
         if(mapaAlumnos.containsKey(nombreAlumno)){
-            if(mapaAlumnos.get(nombreAlumno).verificarRamo(nuevoRamo.getCodigoAsignatura())){
+            if(mapaAlumnos.get(nombreAlumno).verificarRamo(nuevoRamo.getCodigoCurso())){
                 mapaAlumnos.get(nombreAlumno).agregarRamo(nuevoRamo);
                 return true;
             }
@@ -193,7 +194,7 @@ public class Carrera {
         
         if(res == true && (estadoRamo == 0 || estadoRamo == 2)){
             for (int i = 0; i < mallaCurricular.size(); i++) {
-                if(mallaCurricular.get(i).getCodigoAsignatura().equalsIgnoreCase(codigoRamo)){
+                if(mallaCurricular.get(i).getCodigoCurso().equalsIgnoreCase(codigoRamo)){
                     mallaCurricular.get(i).disminuirAlumnos();
                 }
                 
@@ -201,7 +202,7 @@ public class Carrera {
         }
         else if(res == true && estadoRamo == 1){
             for (int i = 0; i < mallaCurricular.size(); i++) {
-                if(mallaCurricular.get(i).getCodigoAsignatura().equalsIgnoreCase(codigoRamo)){
+                if(mallaCurricular.get(i).getCodigoCurso().equalsIgnoreCase(codigoRamo)){
                     mallaCurricular.get(i).aumentarAlumnos();
                 }
                 
@@ -242,7 +243,7 @@ public class Carrera {
      */
     public boolean buscarAsignatura(String codigoAsignatura){
         for (int i = 0; i < mallaCurricular.size(); i++) {
-            if(mallaCurricular.get(i).getCodigoAsignatura().equalsIgnoreCase(codigoAsignatura)){
+            if(mallaCurricular.get(i).getCodigoCurso().equalsIgnoreCase(codigoAsignatura)){
                 mallaCurricular.get(i).mostrarInformacion();
                 return true;
             }
@@ -279,9 +280,9 @@ public class Carrera {
      */
     public boolean editarAsignatura(String codigoAsignatura, String nuevoNombreAsignatura){
         if(mallaCurricular.isEmpty()) return false;
-        for(int i = 0; i < listaAlumnos.size(); i++){
-            if(mallaCurricular.get(i).getCodigoAsignatura().equalsIgnoreCase(codigoAsignatura)){
-                mallaCurricular.get(i).setNombreAsignatura(nuevoNombreAsignatura);
+        for(int i = 0; i < mallaCurricular.size(); i++){
+            if(mallaCurricular.get(i).getCodigoCurso().equalsIgnoreCase(codigoAsignatura)){
+                mallaCurricular.get(i).setNombreCurso(nuevoNombreAsignatura);
                 return true;
             }
         }
@@ -295,7 +296,7 @@ public class Carrera {
      */
     public boolean verificarAsignatura(String codigoAsignatura){
         for (int i = 0; i < mallaCurricular.size(); i++) {
-            if(mallaCurricular.get(i).getCodigoAsignatura().equalsIgnoreCase(codigoAsignatura)){
+            if(mallaCurricular.get(i).getCodigoCurso().equalsIgnoreCase(codigoAsignatura)){
                 return false;
             }
             
@@ -310,7 +311,7 @@ public class Carrera {
      */
     public boolean eliminarAsignatura(String codigoAsignatura){
         for (int i = 0; i < mallaCurricular.size(); i++){
-            if(mallaCurricular.get(i).getCodigoAsignatura().equalsIgnoreCase(codigoAsignatura)){
+            if(mallaCurricular.get(i).getCodigoCurso().equalsIgnoreCase(codigoAsignatura)){
                 mallaCurricular.remove(i);
                 return true;
             }
@@ -342,16 +343,16 @@ public class Carrera {
             //True si se imprime la primera asignatura, False si no es la primera asignatura
             if(aux){
                 //Esto evita que si la malla no tenga carrera se caiga el programa
-                if(mallaCurricular.size() == 0){
+                if(mallaCurricular.isEmpty()){
                     archivo.write("\n");
                     return;
                 }
                 Asignatura rm = mallaCurricular.get(0);
-                archivo.write(String.format("%14s %13s %14d",rm.getCodigoAsignatura(), rm.getNombreAsignatura(), rm.getCantidadAlumnos()) + "\n");
+                archivo.write(String.format("%20s %19s %14d",rm.getCodigoCurso(), rm.getNombreCurso(), rm.getCantidadAlumnos()) + "\n");
             }else{
                 for(int i = 1 ; i < mallaCurricular.size() ; i++){
                     Asignatura rm = mallaCurricular.get(i);
-                    archivo.write(String.format("%34s %13s %14d",rm.getCodigoAsignatura(),rm.getNombreAsignatura(), rm.getCantidadAlumnos()) + "\n");
+                    archivo.write(String.format("%40s %19s %14d",rm.getCodigoCurso(),rm.getNombreCurso(), rm.getCantidadAlumnos()) + "\n");
                 }
             }
             

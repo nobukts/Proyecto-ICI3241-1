@@ -25,6 +25,7 @@ public class Main {
             System.out.println("12) Busqueda de una asignatura");
             System.out.println("13) Crear reporte");
             System.out.println("0) Salir del programa");
+            System.out.println("Consejo: Consideres las mayusculas y minusculas");
 
             switch (Integer.parseInt(lectorGeneral.readLine())) {
                 case 1:
