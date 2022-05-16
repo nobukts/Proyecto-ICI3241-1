@@ -319,4 +319,17 @@ public class Instituto {
         }
         return alumnosMenosCreditos;
     } 
+
+    public ArrayList<Alumno> alumnosRangoCredito(int rangoMinimo, int rangoMaximo){
+        ArrayList<Alumno> alumnosRangoCredito = new ArrayList<>();
+        
+        for (int i = 0; i < listaCarreras.size(); i++) {
+            ArrayList<Alumno> listaAux = listaCarreras.get(i).alumnosRangoCredito(rangoMinimo, rangoMaximo);
+            if(!listaAux.isEmpty()){
+                alumnosRangoCredito.addAll(listaAux);
+            }
+        }
+
+        return alumnosRangoCredito;
+    }
 }

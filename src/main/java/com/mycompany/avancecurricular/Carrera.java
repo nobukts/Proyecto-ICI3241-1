@@ -370,5 +370,18 @@ public class Carrera {
         
         return alumnoMenorCant;
     }
+
+    public ArrayList<Alumno> alumnosRangoCredito(int rangoMinimo, int rangoMaximo){
+        ArrayList<Alumno> alumnosRango = new ArrayList<>();
+        
+        for (int i = 0; i < listaAlumnos.size(); i++) {
+            Alumno aux = listaAlumnos.get(i);
+            if(aux.getCantidadCreditos() >= rangoMinimo && aux.getCantidadCreditos() <= rangoMaximo){
+                alumnosRango.add(aux);
+            }
+        }
+        
+        return alumnosRango;
+    }
 }
 

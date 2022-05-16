@@ -9,8 +9,8 @@ public class Main {
       
         //Variables primitivas a usar
         String codigoAsignatura, nombreAsignatura, nombreAlumno, nombreCarrera, nuevoNombre;
-        int rutAlumno, estadoRamo, cantCreditos;
-        ArrayList<Alumno> listaAlumnosMenorCant;
+        int rutAlumno, estadoRamo, cantCreditos, rangoMinimo, rangoMaximo;
+        ArrayList<Alumno> listaAlumnosMenorCant, listaAlumnosRango;
 
         while(true){
             System.out.println("1) Agregar Carrera");
@@ -27,6 +27,7 @@ public class Main {
             System.out.println("12) Busqueda de una asignatura");
             System.out.println("13) Crear reporte");
             System.out.println("14) Buscar al alumno con menos creditos de cada carrera");
+            System.out.println("15) Buscar alumnos segun rango de cantidad de creditos");
             System.out.println("0) Salir del programa");
             System.out.println("Consejo: Consideres las mayusculas y minusculas");
 
@@ -152,7 +153,6 @@ public class Main {
                     nombreAsignatura = lectorGeneral.readLine();
                     System.out.println("Ingrese la cantidad de creditos que otorga el ramo");
                     cantCreditos = Integer.parseInt(lectorGeneral.readLine());
-
                     if(inst.agregarRamoOpcional(nombreAlumno, new Ramo(nombreAsignatura, codigoAsignatura, cantCreditos)))
                         System.out.println("Ramo agregado");
                     else
@@ -198,6 +198,21 @@ public class Main {
                     }else{
                         for (int i = 0; i < listaAlumnosMenorCant.size(); i++) {
                             listaAlumnosMenorCant.get(i).mostrarAlumno();
+                        }
+                    }
+                    break;
+                case 15:
+                    System.out.println("Ingresar el minimo de creditos");
+                    rangoMinimo = Integer.parseInt(lectorGeneral.readLine());
+                    System.out.println("Ingresar el maximo de creditos");
+                    rangoMaximo = Integer.parseInt(lectorGeneral.readLine());
+                    listaAlumnosRango = inst.alumnosRangoCredito(rangoMinimo, rangoMaximo);
+                    
+                    if(listaAlumnosRango.isEmpty()){
+                        System.out.println("No se pudo realizar");
+                    }else{
+                        for (int i = 0; i < listaAlumnosRango.size(); i++) {
+                            listaAlumnosRango.get(i).mostrarAlumno();
                         }
                     }
                     break;
