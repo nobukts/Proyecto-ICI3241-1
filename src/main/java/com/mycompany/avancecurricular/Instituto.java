@@ -149,6 +149,7 @@ public class Instituto {
         for (int i = 0; i < listaCarreras.size(); i++) {
             if(listaCarreras.get(i).agregarRamoOpcional(nombreAlumno, nuevoRamo)){
                 listaCursos.add(new Opcional(nuevoRamo.getNombreCurso(), nuevoRamo.getCodigoCurso(), nuevoRamo.getCantidadCreditos(), escuela));
+                listaCursos.get(listaCarreras.size()-1).aumentarAlumnos();
                 return true;
             }
         }
@@ -243,7 +244,6 @@ public class Instituto {
 
     /**
      * Metodo que edita una asignatura de la malla curricular de una carrera en especifico
-     * @param nombreCarrera String que contiene el nombre de una carrera
      * @param codigoAsignatura String que contiene el codigo de la asignatura de una malla curricular de alguna carrera
      * @param nuevoNombre String que contiene el nuevo nombre de la asignatura que se desea modificar
      * @return boolean Verdadero si se pudo editar la asignatura y falso si no se pudo editar

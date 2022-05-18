@@ -21,7 +21,7 @@ public class Obligatorio extends Asignatura{
 
     @Override
     public void mostrarInformacion(){
-        System.out.print("Nombre del Ramo: " + this.getNombreCurso() + " Carrera: " + carrera); 
+        System.out.print("Nombre del Ramo: " + this.getNombreCurso() + " Carrera: " + carrera + " Cantidad de alumnos: " + this.getCantidadAlumnos()); 
         System.out.println(" Es OBLIGATORIO");
     }
     
