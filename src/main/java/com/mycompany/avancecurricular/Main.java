@@ -8,7 +8,7 @@ public class Main {
         Instituto inst = new Instituto();
       
         //Variables primitivas a usar
-        String codigoAsignatura, nombreAsignatura, nombreAlumno, nombreCarrera, nuevoNombre;
+        String codigoAsignatura, nombreAsignatura, nombreAlumno, nombreCarrera, nuevoNombre, escuela, nuevaInformacion;
         int rutAlumno, estadoRamo, cantCreditos, rangoMinimo, rangoMaximo;
         ArrayList<Alumno> listaAlumnosMenorCant, listaAlumnosRango;
 
@@ -90,13 +90,14 @@ public class Main {
                                 System.out.println("No se encontro al alumno");
                             break;
                         case 3:
-                            System.out.println("Ingrese el nombre de la carrera");
-                            nombreCarrera = lectorGeneral.readLine();
                             System.out.println("Ingrese codigo de la asignatura (Formato XXX000)");
                             codigoAsignatura = lectorGeneral.readLine();
                             System.out.println("Ingrese nuevo nombre de la asignatura");
                             nuevoNombre = lectorGeneral.readLine();
-                            if(inst.editarAsignatura(nombreCarrera, codigoAsignatura, nuevoNombre))
+                            System.out.println("Ingrese la nueva informacion (Escuela o Carrera)");
+                            nuevaInformacion = lectorGeneral.readLine();
+                            
+                            if(inst.editarAsignatura(codigoAsignatura, nuevoNombre, nuevaInformacion))
                                 System.out.println("Editado correctamente");
                             else
                                 System.out.println("No se encontro la asignatura");
@@ -153,7 +154,9 @@ public class Main {
                     nombreAsignatura = lectorGeneral.readLine();
                     System.out.println("Ingrese la cantidad de creditos que otorga el ramo");
                     cantCreditos = Integer.parseInt(lectorGeneral.readLine());
-                    if(inst.agregarRamoOpcional(nombreAlumno, new Ramo(nombreAsignatura, codigoAsignatura, cantCreditos)))
+                    System.out.println("Ingrese la escuela que imparte el ramo");
+                    escuela = lectorGeneral.readLine();
+                    if(inst.agregarRamoOpcional(nombreAlumno, new Ramo(nombreAsignatura, codigoAsignatura, cantCreditos), escuela))
                         System.out.println("Ramo agregado");
                     else
                         System.out.println("El ramo no se pudo agregar correctamente");
@@ -183,8 +186,11 @@ public class Main {
                 case 12:
                     System.out.println("Ingrese el codigo de la asignatura (Formato XXX000)");
                     codigoAsignatura = lectorGeneral.readLine();
-                    
-                    if(!inst.buscarAsignatura(codigoAsignatura)){
+                    Curso asigBuscar =  inst.buscarAsignatura(codigoAsignatura);
+                    if(asigBuscar != null){
+                        asigBuscar.mostrarInformacion();
+                    }
+                    else{
                         System.out.println("Hubo un problema en la busqueda");
                     }
                     break;

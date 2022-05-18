@@ -1,6 +1,6 @@
 package com.mycompany.avancecurricular;
 
-public class Asignatura extends Curso{
+abstract class Asignatura extends Curso{
     private int cantidadAlumnos;
     private boolean esDePrimero;
     
@@ -57,9 +57,9 @@ public class Asignatura extends Curso{
      *
      */
     @Override
-    public void mostrarInformacion(){
-        System.out.println("Nombre: " + this.getNombreCurso() +" Codigo: " + this.getCodigoCurso() + " Cantidad de alumnos: " + this.cantidadAlumnos);
-    }
+    abstract void mostrarInformacion();
+    
+    abstract void cambiarInformacion(String nombreRamo, String nombreImpartido);
     
     /**
      * Metodo que aumenta la cantidad de alumnos de la asignatura

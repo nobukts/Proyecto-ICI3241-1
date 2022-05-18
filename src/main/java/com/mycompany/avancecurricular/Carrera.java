@@ -273,23 +273,6 @@ public class Carrera {
     }
     
     /**
-     * Metodo que permite editar el nombre de una asignatura de la malla curricular (El cambio se vera en los nuevos alumnos matriculados)
-     * @param codigoAsignatura String que contiene el codigo de la asignatura que se desea cambiar su informacion
-     * @param nuevoNombreAsignatura String que contiene el nuevo nombre de la asignatura
-     * @return boolean Verdadero si se pudo editar el asignatura y falso si no se logro editar 
-     */
-    public boolean editarAsignatura(String codigoAsignatura, String nuevoNombreAsignatura){
-        if(mallaCurricular.isEmpty()) return false;
-        for(int i = 0; i < mallaCurricular.size(); i++){
-            if(mallaCurricular.get(i).getCodigoCurso().equalsIgnoreCase(codigoAsignatura)){
-                mallaCurricular.get(i).setNombreCurso(nuevoNombreAsignatura);
-                return true;
-            }
-        }
-        return false;
-    }
-    
-    /**
      * Metodo que verifica si una asignatura se encuentra entre la malla curricular de la carera
      * @param codigoAsignatura String que contiene el codigo del asignatura que estamos verificando
      * @return boolean Verdadero si no se encuentra el asignatura en la malla y falso, si se encuentra

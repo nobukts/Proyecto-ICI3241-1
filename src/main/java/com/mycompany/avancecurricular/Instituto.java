@@ -5,11 +5,13 @@ import java.util.ArrayList;
 
 public class Instituto {
     private ArrayList<Carrera> listaCarreras;
+    private ArrayList<Asignatura> listaCursos;
     
     /**
      * Constructor de la clase Instituto, que inicializa la coleccion listaCarreras
      */
     public Instituto(){
+        listaCursos = new ArrayList<>();
         listaCarreras = new ArrayList<>();
     }
     
@@ -44,9 +46,11 @@ public class Instituto {
 
             boolean esDePrimero = false;
             if(res.equalsIgnoreCase("si")) esDePrimero = true;
-
-            if(nuevaCarrera.verificarAsignatura(codigoAsignatura)) nuevaCarrera.agregarAsignaturaMalla(new Asignatura(nombreAsignatura, codigoAsignatura, cantCreditos, esDePrimero));
+            Asignatura nuevaAsig = new Obligatorio(nombreAsignatura, codigoAsignatura, cantCreditos, esDePrimero, nuevaCarrera.getNombreCarrera());
+            if(nuevaCarrera.verificarAsignatura(codigoAsignatura)) nuevaCarrera.agregarAsignaturaMalla(nuevaAsig);
             else System.out.println("La asignatura ya se encuentra ingresado");
+            
+            listaCursos.add(nuevaAsig);
         }
 
         return true;
@@ -138,11 +142,13 @@ public class Instituto {
      * Metodo para agregar un ramo fuera de la mallla curricular de la carrera a un alumno
      * @param nombreAlumno String que contiene el nombre de un alumno
      * @param nuevoRamo Objeto de la clase Ramo
+     * @param escuela
      * @return boolean Verdadero si se pudo agregar el ramo correctamente y falso si no se pudo agregar
      */
-    public boolean agregarRamoOpcional(String nombreAlumno, Ramo nuevoRamo){
+    public boolean agregarRamoOpcional(String nombreAlumno, Ramo nuevoRamo, String escuela){
         for (int i = 0; i < listaCarreras.size(); i++) {
             if(listaCarreras.get(i).agregarRamoOpcional(nombreAlumno, nuevoRamo)){
+                listaCursos.add(new Opcional(nuevoRamo.getNombreCurso(), nuevoRamo.getCodigoCurso(), nuevoRamo.getCantidadCreditos(), escuela));
                 return true;
             }
         }
@@ -193,13 +199,14 @@ public class Instituto {
      * @param codigoAsignatura String del codigo de una asignatura
      * @return boolean Verdadero si encontro el asignatura y falso si no existe la asignatura
      */
-    public boolean buscarAsignatura(String codigoAsignatura){
-        for(int i = 0; i < listaCarreras.size(); i++){
-            if(listaCarreras.get(i).buscarAsignatura(codigoAsignatura)){
-                return true;
+    public Curso buscarAsignatura(String codigoAsignatura){
+        for(int i = 0; i < listaCursos.size(); i++){
+            System.out.println(listaCursos.get(i).getNombreCurso());
+            if(listaCursos.get(i).getCodigoCurso().equals(codigoAsignatura)){
+                return listaCursos.get(i);
             }
         }
-        return false;
+        return null;
     }
     
     /**
@@ -241,10 +248,10 @@ public class Instituto {
      * @param nuevoNombre String que contiene el nuevo nombre de la asignatura que se desea modificar
      * @return boolean Verdadero si se pudo editar la asignatura y falso si no se pudo editar
      */
-    public boolean editarAsignatura(String nombreCarrera, String codigoAsignatura, String nuevoNombre){
-        for(int i = 0; i < listaCarreras.size(); i++){
-            if(listaCarreras.get(i).getNombreCarrera().equalsIgnoreCase(nombreCarrera)){
-                return listaCarreras.get(i).editarAsignatura(codigoAsignatura, nuevoNombre);
+    public boolean editarAsignatura(String codigoAsignatura, String nuevoNombre, String nuevaInformacion){
+        for(int i = 0; i < listaCursos.size(); i++){
+            if(listaCursos.get(i).getCodigoCurso().equals(codigoAsignatura)){
+                listaCursos.get(i).cambiarInformacion(nuevoNombre, nuevaInformacion);
             }
         }
         return false;

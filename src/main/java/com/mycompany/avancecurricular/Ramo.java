@@ -58,10 +58,9 @@ public class Ramo extends Curso{
     /**
      *
      */
-    @Override
     public void mostrarInformacion(){
         System.out.println("Nombre del Ramo: " + this.getNombreCurso() + " Estado del ramo: ");
-        switch(this.estadoRamo){
+        switch(this.getEstadoRamo()){
             case 0:
                 System.out.print("No cursado");
                 break;
