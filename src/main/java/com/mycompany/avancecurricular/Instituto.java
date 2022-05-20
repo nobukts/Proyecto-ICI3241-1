@@ -347,4 +347,22 @@ public class Instituto{
         }
         return false;
     }
+    
+    public boolean verificarAlumno(String nombreAlumno, String nombreCarrera){
+        for(int i = 0; i < listaCarreras.size(); i++){
+            if(listaCarreras.get(i).getNombreCarrera().equalsIgnoreCase(nombreCarrera)){
+                return listaCarreras.get(i).verificarAlumno(nombreAlumno);
+            }
+        }
+        return false;
+    }
+
+    public boolean verificarRamo(String nombreAlumno, String nombreCarrera, String codRamo){
+        for(int i = 0; i < listaCarreras.size(); i++){
+            if(listaCarreras.get(i).getNombreCarrera().equalsIgnoreCase(nombreCarrera)){
+                return listaCarreras.get(i).verificarRamo(nombreAlumno, codRamo);
+            }
+        }
+        return false;
+    }
 }

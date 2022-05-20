@@ -367,10 +367,19 @@ public class Carrera {
         return alumnosRango;
     }
 
-    public boolean verificar(String nombreAlumno){
+    public boolean verificarAlumno(String nombreAlumno){
         for(int i = 0; i < listaAlumnos.size(); i++){
             if(listaAlumnos.get(i).getNombreAlumno().equalsIgnoreCase(nombreAlumno))
                 return true;
+        }
+        return false;
+    }
+
+    public boolean verificarRamo(String nombreAlumno, String codRamo){
+        for(int i = 0; i < listaAlumnos.size(); i++){
+            if(listaAlumnos.get(i).getNombreAlumno().equalsIgnoreCase(nombreAlumno)){
+                return listaAlumnos.get(i).verificarRamo(codRamo);
+            }
         }
         return false;
     }
