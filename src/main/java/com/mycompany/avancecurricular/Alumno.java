@@ -108,15 +108,14 @@ public class Alumno {
     /**
      * Metodo que verifica si un ramo se encuentra entre los ramos del alumno
      * @param codigoRamo String que contiene el codigo del ramo que estamos verificando
-     * @return boolean Verdadero si no se encuentra el ramo en la malla curricular y falso si ya se encuentra
+     * @return boolean Falso si no se encuentra el ramo en la malla curricular y Verdaderi si ya se encuentra
      */
     public boolean verificarRamo(String codigoRamo){
         for (int i = 0; i < ramosAlumno.size(); i++) {
             if(ramosAlumno.get(i).getCodigoCurso().equalsIgnoreCase(codigoRamo)){
-                return false;
+                return true;
             }
-            
         }
-        return true;
+        return false;
     }
 }

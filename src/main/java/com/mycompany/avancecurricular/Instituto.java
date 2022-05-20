@@ -3,7 +3,7 @@ package com.mycompany.avancecurricular;
 import java.io.*;
 import java.util.ArrayList;
 
-public class Instituto {
+public class Instituto{
     private ArrayList<Carrera> listaCarreras;
     private ArrayList<Asignatura> listaCursos;
     
@@ -338,5 +338,13 @@ public class Instituto {
         }
 
         return alumnosRangoCredito;
+    }
+
+    public boolean verificar(String nombreCarrera){
+        for(int i = 0; i < listaCarreras.size(); i++){
+            if(listaCarreras.get(i).getNombreCarrera().equalsIgnoreCase(nombreCarrera))
+                return true;
+        }
+        return false;
     }
 }
