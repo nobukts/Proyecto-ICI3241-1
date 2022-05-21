@@ -2,7 +2,7 @@ package com.mycompany.avancecurricular;
 
 import java.util.ArrayList;
 
-public class Alumno {
+public class Alumno implements Verificador{
     private String nombreAlumno;
     private int cantidadCreditos;
     private int rut;
@@ -106,15 +106,14 @@ public class Alumno {
     }
     
     /**
-     * Metodo que verifica si un ramo se encuentra entre los ramos del alumno
-     * @param codigoRamo String que contiene el codigo del ramo que estamos verificando
+     * Metodo de la interface que verifica si un ramo se encuentra entre los ramos del alumno
+     * @param codigoCurso String que contiene el codigo del ramo que estamos verificando
      * @return boolean Falso si no se encuentra el ramo en la malla curricular y Verdaderi si ya se encuentra
      */
-    public boolean verificarRamo(String codigoRamo){
+    @Override
+    public boolean verificar(String codigoCurso){
         for (int i = 0; i < ramosAlumno.size(); i++) {
-            if(ramosAlumno.get(i).getCodigoCurso().equalsIgnoreCase(codigoRamo)){
-                return true;
-            }
+            if(codigoCurso.equals(ramosAlumno.get(i).getCodigoCurso())) return true;
         }
         return false;
     }

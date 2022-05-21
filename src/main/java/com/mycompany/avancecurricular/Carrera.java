@@ -3,7 +3,7 @@ package com.mycompany.avancecurricular;
 import java.io.*;
 import java.util.*;
 
-public class Carrera {
+public class Carrera implements Verificador{
     private String nombreCarrera;
     private int cantidadAlumnos;
     private HashMap<String, Alumno> mapaAlumnos;
@@ -58,7 +58,8 @@ public class Carrera {
     public boolean matricularAlumno(Alumno al){
         for (int i = 0; i < listaAlumnos.size(); i++) {
             if(listaAlumnos.get(i).getRut() == al.getRut()) return false;
-        } 
+        }
+        
         listaAlumnos.add(al);
         mapaAlumnos.put(al.getNombreAlumno(), al);
         cantidadAlumnos++;
@@ -153,11 +154,7 @@ public class Carrera {
      * @return boolean Verdadero si se pudo agregar la asignatura a la malla y falso si no se pudo agregar
      */
     public boolean agregarAsignaturaMalla(Asignatura nuevaAsignatura){
-        for (int i = 0; i < mallaCurricular.size(); i++) {
-            if(mallaCurricular.get(i).getCodigoCurso().equalsIgnoreCase(nuevaAsignatura.getCodigoCurso())){
-                return false;
-            }
-        }
+        if(verificar(nuevaAsignatura.getCodigoCurso())) return false;
 
         mallaCurricular.add(nuevaAsignatura);
         return true;
@@ -171,7 +168,7 @@ public class Carrera {
      */
     public boolean agregarRamoOpcional(String nombreAlumno, Ramo nuevoRamo){
         if(mapaAlumnos.containsKey(nombreAlumno)){
-            if(mapaAlumnos.get(nombreAlumno).verificarRamo(nuevoRamo.getCodigoCurso())){
+            if(!mapaAlumnos.get(nombreAlumno).verificar(nuevoRamo.getCodigoCurso())){
                 mapaAlumnos.get(nombreAlumno).agregarRamo(nuevoRamo);
                 return true;
             }
@@ -237,21 +234,6 @@ public class Carrera {
     }
     
     /**
-     * Metodo que busca la informacion de un asignatura de la malla curricular
-     * @param codigoAsignatura String que contiene el codigo de la asignatura que se desea buscar
-     * @return boolean Verdadero si se encontro el asignatura y falso si no se encuentra
-     */
-    public boolean buscarAsignatura(String codigoAsignatura){
-        for (int i = 0; i < mallaCurricular.size(); i++) {
-            if(mallaCurricular.get(i).getCodigoCurso().equalsIgnoreCase(codigoAsignatura)){
-                mallaCurricular.get(i).mostrarInformacion();
-                return true;
-            }
-        }
-        return false;
-    }
-    
-    /**
      * Metodo que permite editar el nombre de un alumno
      * @param nombreAlumno String que contiene el nombre del alumno para realizar la busqueda
      * @param nuevoNombreAlumno String que contiene el nuevo nombre del alumno
@@ -270,21 +252,6 @@ public class Carrera {
             }
         }
         return false;
-    }
-    
-    /**
-     * Metodo que verifica si una asignatura se encuentra entre la malla curricular de la carera
-     * @param codigoAsignatura String que contiene el codigo del asignatura que estamos verificando
-     * @return boolean Verdadero si no se encuentra el asignatura en la malla y falso, si se encuentra
-     */
-    public boolean verificarAsignatura(String codigoAsignatura){
-        for (int i = 0; i < mallaCurricular.size(); i++) {
-            if(mallaCurricular.get(i).getCodigoCurso().equalsIgnoreCase(codigoAsignatura)){
-                return false;
-            }
-            
-        }
-        return true;
     }
 
     /**
@@ -385,11 +352,18 @@ public class Carrera {
         return false;
     }
 
-    public boolean verificarRamo(String nombreAlumno, String codRamo){
-        for(int i = 0; i < listaAlumnos.size(); i++){
-            if(listaAlumnos.get(i).getNombreAlumno().equalsIgnoreCase(nombreAlumno)){
-                return listaAlumnos.get(i).verificarRamo(codRamo);
+    /**
+     * Metodo de la interface que verifica si una asignatura se encuentra entre la malla curricular de la carera
+     * @param codigoAsignatura String que contiene el codigo del asignatura que estamos verificando
+     * @return boolean Verdadero si se encuentra el asignatura en la malla y falso, si no se encuentra
+     */
+    @Override
+    public boolean verificar(String codigoAsignatura){
+        for (int i = 0; i < mallaCurricular.size(); i++) {
+            if(mallaCurricular.get(i).getCodigoCurso().equalsIgnoreCase(codigoAsignatura)){
+                return true;
             }
+            
         }
         return false;
     }

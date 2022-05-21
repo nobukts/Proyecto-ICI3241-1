@@ -3,7 +3,7 @@ package com.mycompany.avancecurricular;
 import java.io.*;
 import java.util.ArrayList;
 
-public class Instituto{
+public class Instituto implements Verificador{
     private ArrayList<Carrera> listaCarreras;
     private ArrayList<Asignatura> listaCursos;
     
@@ -22,10 +22,9 @@ public class Instituto{
      * @throws IOException
      */
     public boolean agregarCarrera(Carrera nuevaCarrera) throws IOException{
-        for (int i = 0; i < listaCarreras.size(); i++) {
-            if(nuevaCarrera.getNombreCarrera().equalsIgnoreCase(listaCarreras.get(i).getNombreCarrera())){
+        for(int i = 0; i < listaCarreras.size(); i++){
+            if(listaCarreras.get(i).getNombreCarrera().equalsIgnoreCase(nuevaCarrera.getNombreCarrera()))
                 return false;
-            }
         }
 
         listaCarreras.add(nuevaCarrera);
@@ -47,7 +46,7 @@ public class Instituto{
             boolean esDePrimero = false;
             if(res.equalsIgnoreCase("si")) esDePrimero = true;
             Asignatura nuevaAsig = new Obligatorio(nombreAsignatura, codigoAsignatura, cantCreditos, esDePrimero, nuevaCarrera.getNombreCarrera());
-            if(nuevaCarrera.verificarAsignatura(codigoAsignatura)) nuevaCarrera.agregarAsignaturaMalla(nuevaAsig);
+            if(!nuevaCarrera.verificar(codigoAsignatura)) nuevaCarrera.agregarAsignaturaMalla(nuevaAsig);
             else System.out.println("La asignatura ya se encuentra ingresado");
             
             listaCursos.add(nuevaAsig);
@@ -79,6 +78,7 @@ public class Instituto{
      * @return boolean Verdadero si se pudo agregar al alumno y  falso si no se pudo agregar
      */
     public boolean matricularAlumno(Alumno al, String nombreCarrera){
+        //Verifica que no exista nadie con el mismo nombre en otra carrera
         for (int i = 0; i < listaCarreras.size(); i++) {
             if(listaCarreras.get(i).verificarAlumnos(al.getNombreAlumno())){
                 return false;
@@ -148,8 +148,13 @@ public class Instituto{
     public boolean agregarRamoOpcional(String nombreAlumno, Ramo nuevoRamo, String escuela){
         for (int i = 0; i < listaCarreras.size(); i++) {
             if(listaCarreras.get(i).agregarRamoOpcional(nombreAlumno, nuevoRamo)){
-                listaCursos.add(new Opcional(nuevoRamo.getNombreCurso(), nuevoRamo.getCodigoCurso(), nuevoRamo.getCantidadCreditos(), escuela));
-                listaCursos.get(listaCarreras.size()-1).aumentarAlumnos();
+                
+                Opcional asigAux = new Opcional(nuevoRamo.getNombreCurso(), nuevoRamo.getCodigoCurso(), nuevoRamo.getCantidadCreditos(), escuela);
+                listaCursos.add(asigAux);
+                
+                if(verificar(asigAux.getCodigoCurso())) asigAux.aumentarAlumnos();
+                else asigAux.disminuirAlumnos();
+                    
                 return true;
             }
         }
@@ -202,7 +207,6 @@ public class Instituto{
      */
     public Curso buscarAsignatura(String codigoAsignatura){
         for(int i = 0; i < listaCursos.size(); i++){
-            System.out.println(listaCursos.get(i).getNombreCurso());
             if(listaCursos.get(i).getCodigoCurso().equals(codigoAsignatura)){
                 return listaCursos.get(i);
             }
@@ -351,29 +355,18 @@ public class Instituto{
         return alumnosRangoCredito;
     }
 
-    public boolean verificar(String nombreCarrera){
-        for(int i = 0; i < listaCarreras.size(); i++){
-            if(listaCarreras.get(i).getNombreCarrera().equalsIgnoreCase(nombreCarrera))
-                return true;
+    /**
+     * Metodo de la interface que verifica si una asignatura se encuentra o no en la lista
+     * @param codigoCurso String que contiene el codigo del curso
+     * @return Boolean
+     */
+    @Override
+    public boolean verificar(String codigoCurso){
+        for (int i = 0; i < listaCursos.size(); i++) {
+            if(codigoCurso.equals(listaCursos.get(i).getCodigoCurso())) return true;
         }
+        
         return false;
     }
     
-    public boolean verificarAlumno(String nombreAlumno, String nombreCarrera){
-        for(int i = 0; i < listaCarreras.size(); i++){
-            if(listaCarreras.get(i).getNombreCarrera().equalsIgnoreCase(nombreCarrera)){
-                return listaCarreras.get(i).verificarAlumno(nombreAlumno);
-            }
-        }
-        return false;
-    }
-
-    public boolean verificarRamo(String nombreAlumno, String nombreCarrera, String codRamo){
-        for(int i = 0; i < listaCarreras.size(); i++){
-            if(listaCarreras.get(i).getNombreCarrera().equalsIgnoreCase(nombreCarrera)){
-                return listaCarreras.get(i).verificarRamo(nombreAlumno, codRamo);
-            }
-        }
-        return false;
-    }
 }
