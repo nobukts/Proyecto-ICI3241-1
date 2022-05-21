@@ -54,11 +54,16 @@ abstract class Asignatura extends Curso{
     }
     
     /**
-     *
+     * Metodo abstracto que muestra la informacion de la asignatura
      */
     @Override
     abstract void mostrarInformacion();
     
+    /**
+     * Metodo abstracto que cambia la informacion de la asignatura
+     * @param nombreRamo String que contiene el nombre de la asignatura
+     * @param nombreImpartido String que contiene, la escuela o carrera que imparte la asignatura
+     */
     abstract void cambiarInformacion(String nombreRamo, String nombreImpartido);
     
     /**

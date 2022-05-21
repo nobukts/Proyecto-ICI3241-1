@@ -11,19 +11,30 @@ public class Opcional extends Asignatura{
         this.escuela = escuela;
     }    
 
+    //Getter
     public String getEscuela() {
         return escuela;
     }
 
+    //Setter
     public void setEscuela(String escuela) {
         this.escuela = escuela;
     }
     
+    /**
+     * Metodo que muestra la informacion de la asignatura opcional
+     */
+    @Override
     public void mostrarInformacion(){
         System.out.print("Nombre del Ramo: " + this.getNombreCurso() + "Lo imparte: " + escuela + " Cantidad de alumnos: " + this.getCantidadAlumnos());
         System.out.println(" Es OPCIONAL");
     }
     
+    /**
+     * Metodo que cambia la informacion de la asignatura opcional
+     * @param nombreRamo String que contiene el nombre de la Asignatura
+     * @param nombreImpartido String que contiene, en este caso, la escuela que imparte la asignatura
+     */
     @Override
     public void cambiarInformacion(String nombreRamo, String nombreImpartido){
         this.setNombreCurso(nombreRamo);

@@ -343,6 +343,10 @@ public class Carrera {
         }
     }
     
+    /**
+     * Metodo que busca el alumno con la menor cantidad de creditos en la carrera
+     * @return Alumno con menor cantidad de creditos
+     */
     public Alumno alumnoMenorCreditos(){
         Alumno alumnoMenorCant = listaAlumnos.get(0);
         for (int i = 1; i < listaAlumnos.size(); i++) {
@@ -354,6 +358,12 @@ public class Carrera {
         return alumnoMenorCant;
     }
 
+    /**
+     * Metodo que busca a los alumnos del rango de creditos ingresados por el usuario
+     * @param rangoMinimo Cantidad minima de creditos 
+     * @param rangoMaximo Cantidad maxima de creditos
+     * @return ArrayList con los alumnos dentro del rango de creditos
+     */
     public ArrayList<Alumno> alumnosRangoCredito(int rangoMinimo, int rangoMaximo){
         ArrayList<Alumno> alumnosRango = new ArrayList<>();
         

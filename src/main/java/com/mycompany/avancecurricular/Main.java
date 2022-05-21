@@ -28,7 +28,6 @@ public class Main {
             System.out.println("13) Crear reporte");
             System.out.println("14) Buscar al alumno con menos creditos de cada carrera");
             System.out.println("15) Buscar alumnos segun rango de cantidad de creditos");
-            System.out.println("16) Verificar existencia de Carrera/Alumno/Ramo");
             System.out.println("0) Salir del programa");
             System.out.println("Consejo: Consideres las mayusculas y minusculas");
 
@@ -223,46 +222,6 @@ public class Main {
                         }
                     }
                     break;
-                case 16:
-                    System.out.println("(1) Verificar Carrera");
-                    System.out.println("(2) Verificar Alumno");
-                    System.out.println("(3) Verificar Ramo");
-                    switch(Integer.parseInt(lectorGeneral.readLine())){
-                        case 1: 
-                            System.out.println("Ingresar el nombre de la carrera a verificar");
-                            nombreCarrera = lectorGeneral.readLine();
-                            if(inst.verificar(nombreCarrera)){
-                                System.out.println("La carrera existe");
-                            }else{
-                                System.out.println("La carrera no existe");
-                            }
-                          break;
-                        case 2: 
-                            System.out.println("Ingrese el nombre del alumno a verificar");
-                            nombreAlumno = lectorGeneral.readLine();
-                            System.out.println("Ingrese la carrera donde se desea verificar");
-                            nombreCarrera = lectorGeneral.readLine();
-                            if(inst.verificarAlumno(nombreCarrera, nombreAlumno))
-                                System.out.println("El alumno existe");
-                            else
-                                System.out.println("No existe el alumno en esa carrerra");
-                          break;
-                        case 3:
-                            System.out.println("Ingrese el nombre del alumno a verificar");
-                            nombreAlumno = lectorGeneral.readLine();
-                            System.out.println("Ingrese la carrera donde se desea verificar");
-                            nombreCarrera = lectorGeneral.readLine();
-                            System.out.println("Ingrese el codigo del ramo a verificar");
-                            codigoAsignatura = lectorGeneral.readLine();
-                            if(inst.verificarRamo(nombreCarrera, nombreAlumno, codigoAsignatura))
-                                System.out.println("El alumno si tiene ese ramo");
-                            else 
-                                System.out.println("El ramo no existe");
-                          break;
-                    }
-                    
-                    
-                        
                 case 0:
                     System.out.println("Salio del programa con exito");
                     return;

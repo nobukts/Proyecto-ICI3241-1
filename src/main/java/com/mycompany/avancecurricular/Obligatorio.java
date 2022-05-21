@@ -2,6 +2,7 @@ package com.mycompany.avancecurricular;
 
 public class Obligatorio extends Asignatura{
     String carrera;
+    
     public Obligatorio(){
         
     }
@@ -11,14 +12,19 @@ public class Obligatorio extends Asignatura{
         this.carrera = carrera;
     }    
 
+    //Getter
     public String getCarrera() {
         return carrera;
     }
 
+    //Setter
     public void setCarrera(String carrera) {
         this.carrera = carrera;
     }
 
+    /**
+     * Metodo que muestra la informacion de la asignatura obligatoria
+     */
     @Override
     public void mostrarInformacion(){
         System.out.print("Nombre del Ramo: " + this.getNombreCurso() + " Carrera: " + carrera + " Cantidad de alumnos: " + this.getCantidadAlumnos()); 
@@ -26,10 +32,11 @@ public class Obligatorio extends Asignatura{
     }
     
     /**
-     *
-     * @param nombreRamo
-     * @param nombreImpartido
+     * Metodo que cambia la informacion de la asignatura obligatoria
+     * @param nombreRamo String que contiene el nombre de la asignatura
+     * @param nombreImpartido String que contiene en este caso, la carrera a la que pertenece este ramo
      */
+    @Override
     public void cambiarInformacion(String nombreRamo, String nombreImpartido){
         this.setNombreCurso(nombreRamo);
         this.setCarrera(nombreImpartido);

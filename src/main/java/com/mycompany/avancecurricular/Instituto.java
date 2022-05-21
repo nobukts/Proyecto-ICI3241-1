@@ -252,6 +252,7 @@ public class Instituto{
         for(int i = 0; i < listaCursos.size(); i++){
             if(listaCursos.get(i).getCodigoCurso().equals(codigoAsignatura)){
                 listaCursos.get(i).cambiarInformacion(nuevoNombre, nuevaInformacion);
+                return true;
             }
         }
         return false;
@@ -314,6 +315,10 @@ public class Instituto{
         }
     }
     
+    /**
+     * Metodo que retorna una lista con los alumnos con menor cantidad de creditos de cada carrera
+     * @return ArrayList de alumnos con menor cantidad de creditos
+     */
     public ArrayList<Alumno> alumnosMenorCantCreditos(){
         ArrayList<Alumno> alumnosMenosCreditos = new ArrayList<>();
         
@@ -327,6 +332,12 @@ public class Instituto{
         return alumnosMenosCreditos;
     } 
 
+    /**
+     * Metodo que retorna una lista con los alumnos que se encuentran en el rango de creditos que se piden
+     * @param rangoMinimo Cantidad de creditos minima
+     * @param rangoMaximo Cantidad de creditos maxima
+     * @return ArrayList de alumnos
+     */
     public ArrayList<Alumno> alumnosRangoCredito(int rangoMinimo, int rangoMaximo){
         ArrayList<Alumno> alumnosRangoCredito = new ArrayList<>();
         
