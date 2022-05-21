@@ -224,14 +224,6 @@ public class Carrera implements Verificador{
         }
     }
 
-    /**
-     * Metodo que verifica si el alumno se encuentra dentro de la carrera
-     * @param nombreAlumno String que contiene el nombre del alumno que se desea verificar
-     * @return boolean Verdadero si contiene al alumno y falso si no lo contiene
-     */
-    public boolean verificarAlumnos(String nombreAlumno){
-        return mapaAlumnos.containsKey(nombreAlumno);
-    }
     
     /**
      * Metodo que permite editar el nombre de un alumno
@@ -344,12 +336,13 @@ public class Carrera implements Verificador{
         return alumnosRango;
     }
 
-    public boolean verificarAlumno(String nombreAlumno){
-        for(int i = 0; i < listaAlumnos.size(); i++){
-            if(listaAlumnos.get(i).getNombreAlumno().equalsIgnoreCase(nombreAlumno))
-                return true;
-        }
-        return false;
+    /**
+     * Metodo que verifica si el alumno se encuentra dentro de la carrera
+     * @param nombreAlumno String que contiene el nombre del alumno que se desea verificar
+     * @return boolean Verdadero si contiene al alumno y falso si no lo contiene
+     */
+    public boolean verificarAlumnos(String nombreAlumno){
+        return mapaAlumnos.containsKey(nombreAlumno);
     }
 
     /**

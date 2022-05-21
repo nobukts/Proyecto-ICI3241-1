@@ -148,13 +148,16 @@ public class Instituto implements Verificador{
     public boolean agregarRamoOpcional(String nombreAlumno, Ramo nuevoRamo, String escuela){
         for (int i = 0; i < listaCarreras.size(); i++) {
             if(listaCarreras.get(i).agregarRamoOpcional(nombreAlumno, nuevoRamo)){
-                
+
                 Opcional asigAux = new Opcional(nuevoRamo.getNombreCurso(), nuevoRamo.getCodigoCurso(), nuevoRamo.getCantidadCreditos(), escuela);
-                listaCursos.add(asigAux);
+                if(verificar(asigAux.getCodigoCurso())){
+                    listaCursos.get(i).aumentarAlumnos();
+                }
+                else{
+                    listaCursos.add(asigAux);
+                    asigAux.aumentarAlumnos();
+                }
                 
-                if(verificar(asigAux.getCodigoCurso())) asigAux.aumentarAlumnos();
-                else asigAux.disminuirAlumnos();
-                    
                 return true;
             }
         }
