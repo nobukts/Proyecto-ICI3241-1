@@ -1,17 +1,17 @@
 package com.mycompany.avancecurricular;
 
 import java.io.*;
-import java.util.ArrayList;
+import java.util.*;
 
 public class Instituto implements Verificador{
     private ArrayList<Carrera> listaCarreras;
-    private ArrayList<Asignatura> listaCursos;
+    private HashMap<String, Asignatura> mapaCursos;
     
     /**
      * Constructor de la clase Instituto, que inicializa la coleccion listaCarreras
      */
     public Instituto(){
-        listaCursos = new ArrayList<>();
+        mapaCursos = new HashMap<>();
         listaCarreras = new ArrayList<>();
     }
     
@@ -49,7 +49,7 @@ public class Instituto implements Verificador{
             if(!nuevaCarrera.verificar(codigoAsignatura)) nuevaCarrera.agregarAsignaturaMalla(nuevaAsig);
             else System.out.println("La asignatura ya se encuentra ingresado");
             
-            listaCursos.add(nuevaAsig);
+            mapaCursos.put(nuevaAsig.getCodigoCurso(), nuevaAsig);
         }
 
         return true;
@@ -151,10 +151,10 @@ public class Instituto implements Verificador{
 
                 Opcional asigAux = new Opcional(nuevoRamo.getNombreCurso(), nuevoRamo.getCodigoCurso(), nuevoRamo.getCantidadCreditos(), escuela);
                 if(verificar(asigAux.getCodigoCurso())){
-                    listaCursos.get(i).aumentarAlumnos();
+                    mapaCursos.get(asigAux.getCodigoCurso()).aumentarAlumnos();
                 }
                 else{
-                    listaCursos.add(asigAux);
+                    mapaCursos.put(asigAux.getCodigoCurso(), asigAux);
                     asigAux.aumentarAlumnos();
                 }
                 
@@ -209,12 +209,8 @@ public class Instituto implements Verificador{
      * @return boolean Verdadero si encontro el asignatura y falso si no existe la asignatura
      */
     public Curso buscarAsignatura(String codigoAsignatura){
-        for(int i = 0; i < listaCursos.size(); i++){
-            if(listaCursos.get(i).getCodigoCurso().equals(codigoAsignatura)){
-                return listaCursos.get(i);
-            }
-        }
-        return null;
+        if(!mapaCursos.containsKey(codigoAsignatura)) return null;
+        return mapaCursos.get(codigoAsignatura);
     }
     
     /**
@@ -257,13 +253,11 @@ public class Instituto implements Verificador{
      * @return boolean Verdadero si se pudo editar la asignatura y falso si no se pudo editar
      */
     public boolean editarAsignatura(String codigoAsignatura, String nuevoNombre, String nuevaInformacion){
-        for(int i = 0; i < listaCursos.size(); i++){
-            if(listaCursos.get(i).getCodigoCurso().equals(codigoAsignatura)){
-                listaCursos.get(i).cambiarInformacion(nuevoNombre, nuevaInformacion);
-                return true;
-            }
-        }
-        return false;
+        if(!mapaCursos.containsKey(codigoAsignatura)) return false;
+        
+        mapaCursos.get(codigoAsignatura).cambiarInformacion(nuevoNombre, nuevaInformacion);
+        
+        return true;
     }
     /**
     * Metodo que en caso de encontrar una asignatura con el codigo señalado, lo elimina de la malla curricular de la carrera señalada
@@ -366,11 +360,7 @@ public class Instituto implements Verificador{
      */
     @Override
     public boolean verificar(String codigoCurso){
-        for (int i = 0; i < listaCursos.size(); i++) {
-            if(codigoCurso.equals(listaCursos.get(i).getCodigoCurso())) return true;
-        }
-        
-        return false;
+        return mapaCursos.containsKey(codigoCurso);
     }
     
 }
