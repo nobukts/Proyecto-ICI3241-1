@@ -2,7 +2,7 @@ package com.mycompany.avancecurricular;
 
 import java.util.ArrayList;
 
-public class Alumno {
+public class Alumno implements Verificador{
     private String nombreAlumno;
     private int cantidadCreditos;
     private int rut;
@@ -60,7 +60,7 @@ public class Alumno {
     public void mostrarAlumno(){
         System.out.println("Nombre: " + nombreAlumno + " Rut: " + rut + " Cantidad de creditos: " + cantidadCreditos);
     }
-    
+        
     /**
      * Metodo para corroborar que asignaturas esta cursando el alumno
      * @param codigoAsignatura String que contiene el codigo del ramo que se quiere verificar
@@ -68,7 +68,7 @@ public class Alumno {
      */
     public boolean eliminarAlumno(String codigoAsignatura){
         for (int i = 0; i < ramosAlumno.size(); i++) {
-            if(ramosAlumno.get(i).getCodigoAsignatura().equalsIgnoreCase(codigoAsignatura)){
+            if(ramosAlumno.get(i).getCodigoCurso().equalsIgnoreCase(codigoAsignatura)){
                 if(ramosAlumno.get(i).getEstadoRamo() == 1) return true;
                 else return false;
             }
@@ -93,32 +93,28 @@ public class Alumno {
      */
     public boolean actualizarRamo(String codigoRamo, int estadoRamo){
         for (int i = 0; i < ramosAlumno.size(); i++) {
-            if(ramosAlumno.get(i).getCodigoAsignatura().equalsIgnoreCase(codigoRamo)){
+            if(ramosAlumno.get(i).getCodigoCurso().equalsIgnoreCase(codigoRamo)){
                 boolean res = ramosAlumno.get(i).actualizarRamo(estadoRamo);
                 
-                if(res == true && estadoRamo == 2){
-                    cantidadCreditos += ramosAlumno.get(i).getCantidadCreditos();
-                }
+                if(res == true && estadoRamo == 2) cantidadCreditos += ramosAlumno.get(i).getCantidadCreditos();
                 
                 return res;
             }
             
         }
-        return true;
+        return false;
     }
     
     /**
-     * Metodo que verifica si un ramo se encuentra entre los ramos del alumno
-     * @param codigoRamo String que contiene el codigo del ramo que estamos verificando
-     * @return boolean Verdadero si no se encuentra el ramo en la malla curricular y falso si ya se encuentra
+     * Metodo de la interface que verifica si un ramo se encuentra entre los ramos del alumno
+     * @param codigoCurso String que contiene el codigo del ramo que estamos verificando
+     * @return boolean Falso si no se encuentra el ramo en la malla curricular y Verdaderi si ya se encuentra
      */
-    public boolean verificarRamo(String codigoRamo){
+    @Override
+    public boolean verificar(String codigoCurso){
         for (int i = 0; i < ramosAlumno.size(); i++) {
-            if(ramosAlumno.get(i).getCodigoAsignatura().equalsIgnoreCase(codigoRamo)){
-                return false;
-            }
-            
+            if(codigoCurso.equals(ramosAlumno.get(i).getCodigoCurso())) return true;
         }
-        return true;
+        return false;
     }
 }

@@ -1,84 +1,54 @@
 package com.mycompany.avancecurricular;
 
-public class Asignatura {
-    private String nombreAsignatura;
-    private String codigoAsignatura;
-    private int cantidadCreditos;
-    private boolean esDePrimero;
+abstract class Asignatura extends Curso{
     private int cantidadAlumnos;
+    private boolean esDePrimero;
     
     /**
      * Constructor vacio
      */
     public Asignatura(){
+        
     }
 
     /**
-     * Constructor de la clase Asignatura que instancia el nombre y codigo de la asignatura, ademas de la cantidad de creditos 
+     * Constructor de la clase Asignatura que instancia el nombre y codigo de la Asignatura, ademas de la cantidad de creditos 
      * @param nombreAsignatura String que contiene el nombre de la Asignatura
      * @param codigoAsignatura String que contiene el codigo de la Asignatura
      * @param cantidadCreditos Entero que contiene la cantidad de creditos
      */
     public Asignatura(String nombreAsignatura, String codigoAsignatura, int cantidadCreditos){
-        this.cantidadCreditos = cantidadCreditos;
-        this.codigoAsignatura = codigoAsignatura;
-        this.nombreAsignatura = nombreAsignatura;
+        super(nombreAsignatura,codigoAsignatura,cantidadCreditos);
         esDePrimero = false;
         cantidadAlumnos = 0;
     }
     
     /**
-     * Constructor de la clase Asignatura que instancia el nombre y codigo de la asignatura, ademas de la cantidad de creditos
-     * y si la asignatura es de primer año
+     * Constructor de la clase Asignatura que instancia el nombre y codigo de la Asignatura, ademas de la cantidad de creditos
+     * y si la Asignatura es de primer año
      * @param nombreAsignatura String que contiene el nombre de la Asignatura
      * @param codigoAsignatura String que contiene el codigo de la Asignatura
      * @param cantidadCreditos Entero que contiene la cantidad de creditos
      * @param esDePrimero Booleano que indica si la carrera se imparte en el primer semestre de primer año
      */
     public Asignatura(String nombreAsignatura, String codigoAsignatura, int cantidadCreditos, boolean esDePrimero){
-        this.cantidadCreditos = cantidadCreditos;
-        this.codigoAsignatura = codigoAsignatura;
-        this.nombreAsignatura = nombreAsignatura;
+        super(nombreAsignatura,codigoAsignatura,cantidadCreditos,esDePrimero);
         this.esDePrimero = esDePrimero;
         cantidadAlumnos = 0;
     }
 
-    //------------GETTERS
+    //Getters
     public boolean getEsDePrimero() {
         return esDePrimero;
     }
     
-    public int getCantidadAlumnos(){
+    public int getCantidadAlumnos() {
         return cantidadAlumnos;
     }
-
-    public String getNombreAsignatura() {
-        return nombreAsignatura;
-    }
-
-    public String getCodigoAsignatura() {
-        return codigoAsignatura;
-    }
-
-    public int getCantidadCreditos() {
-        return cantidadCreditos;
-    }
-
-    //------------SETTERS
+    
+    //Setters
     public void setEsDePrimero(boolean esDePrimero) {
         this.esDePrimero = esDePrimero;
-    }
-
-    public void setNombreAsignatura(String nombreAsignatura) {
-        this.nombreAsignatura = nombreAsignatura;
-    }
-
-    public void setCodigoAsignatura(String codigoAsignatura) {
-        this.codigoAsignatura = codigoAsignatura;
-    }
-
-    public void setCantidadCreditos(int cantidadCreditos) {
-        this.cantidadCreditos = cantidadCreditos;
     }
 
     public void setCantidadAlumnos(int cantidadAlumnos) {
@@ -86,12 +56,18 @@ public class Asignatura {
     }
     
     /**
-     * Metodo que permite mostrar la informacion de una asignatura
+     * Metodo abstracto que muestra la informacion de la asignatura
      */
-    public void mostrarInformacion(){
-        System.out.println("Nombre de la asignatura: " + nombreAsignatura + " Codigo de la asignatura: " + codigoAsignatura + " Cantidad de creditos: " + cantidadCreditos + " Cantidad Alumnos: " + cantidadAlumnos);
-    }
-
+    @Override
+    abstract void mostrarInformacion();
+    
+    /**
+     * Metodo abstracto que cambia la informacion de la asignatura
+     * @param nombreRamo String que contiene el nombre de la asignatura
+     * @param nombreImpartido String que contiene, la escuela o carrera que imparte la asignatura
+     */
+    abstract void cambiarInformacion(String nombreRamo, String nombreImpartido);
+    
     /**
      * Metodo que aumenta la cantidad de alumnos de la asignatura
      */
@@ -104,5 +80,4 @@ public class Asignatura {
     public void disminuirAlumnos(){
         cantidadAlumnos--;
     }
-    
 }
