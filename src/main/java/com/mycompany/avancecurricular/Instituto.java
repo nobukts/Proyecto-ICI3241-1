@@ -253,6 +253,7 @@ public class Instituto implements Verificador{
      * Metodo que edita una asignatura de la malla curricular de una carrera en especifico
      * @param codigoAsignatura String que contiene el codigo de la asignatura de una malla curricular de alguna carrera
      * @param nuevoNombre String que contiene el nuevo nombre de la asignatura que se desea modificar
+     * @param nuevaInformacion Strinf que cambia la informacion, si es Obligatorio cambia la carrera y si es Opcional cambia la escuela que los imparte respectivamente
      * @return boolean Verdadero si se pudo editar la asignatura y falso si no se pudo editar
      */
     public boolean editarAsignatura(String codigoAsignatura, String nuevoNombre, String nuevaInformacion){

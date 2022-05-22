@@ -7,7 +7,7 @@ public class Main {
         BufferedReader lectorGeneral = new BufferedReader(new InputStreamReader(System.in));
         Instituto inst = new Instituto();
       
-        //Variables primitivas a usar
+        //Variables a usar
         String codigoAsignatura, nombreAsignatura, nombreAlumno, nombreCarrera, nuevoNombre, escuela, nuevaInformacion;
         int rutAlumno, estadoRamo, cantCreditos, rangoMinimo, rangoMaximo;
         ArrayList<Alumno> listaAlumnosMenorCant, listaAlumnosRango;

@@ -37,16 +37,18 @@ abstract class Asignatura extends Curso{
         cantidadAlumnos = 0;
     }
 
+    //Getters
     public boolean getEsDePrimero() {
         return esDePrimero;
-    }
-
-    public void setEsDePrimero(boolean esDePrimero) {
-        this.esDePrimero = esDePrimero;
     }
     
     public int getCantidadAlumnos() {
         return cantidadAlumnos;
+    }
+    
+    //Setters
+    public void setEsDePrimero(boolean esDePrimero) {
+        this.esDePrimero = esDePrimero;
     }
 
     public void setCantidadAlumnos(int cantidadAlumnos) {

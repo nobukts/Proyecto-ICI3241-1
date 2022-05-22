@@ -58,6 +58,7 @@ public class Ramo extends Curso{
     /**
      * Metodo que muestra la informacion respectiva del ramo
      */
+    @Override
     public void mostrarInformacion(){
         System.out.println("Nombre del Ramo: " + this.getNombreCurso() + " Estado del ramo: ");
         switch(this.getEstadoRamo()){
