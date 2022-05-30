@@ -10,6 +10,7 @@ public class Main {
         inst.agregarCarrera("Medicina");
         
         inst.agregarMalla(new Obligatorio("Programacion basica", "ICI111", 5, true, "Progamacion"), "Programacion");
+        inst.agregarMalla(new Obligatorio("Programacion avanzada", "ICI222", 5, false, "Progamacion"), "Programacion");
         inst.agregarMalla(new Obligatorio("Biologia basica", "BIO111", 5, true, "Medicina"), "Medicina");
         
         inst.matricularAlumno(new Alumno("Jose", 20972384), "Programacion");
@@ -31,8 +32,7 @@ public class Main {
             System.out.println("5) Eliminar Asignatura");
             System.out.println("6) Eliminar Alumno");
             System.out.println("9) Actualizar estado de un ramo de un alumno");
-            System.out.println("10) Mostrar asignaturas de las carreras"); 
-            System.out.println("12) Busqueda de una asignatura");
+            System.out.println("12) Busqueda de un alumno/asignatura");
             System.out.println("13) Crear reporte");
             System.out.println("14) Buscar al alumno con menos creditos de cada carrera");
             System.out.println("15) Buscar alumnos segun rango de cantidad de creditos");

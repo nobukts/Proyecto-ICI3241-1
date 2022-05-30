@@ -37,6 +37,7 @@ public class MenuMostrar extends javax.swing.JFrame {
         mostrarCarrera = new javax.swing.JButton();
         mostrarAlumnos = new javax.swing.JButton();
         botonAtras = new javax.swing.JButton();
+        botonMostrarMalla = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -64,6 +65,13 @@ public class MenuMostrar extends javax.swing.JFrame {
             }
         });
 
+        botonMostrarMalla.setText("Mostrar Malla");
+        botonMostrarMalla.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonMostrarMallaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -77,7 +85,8 @@ public class MenuMostrar extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(mostrarAlumnos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(mostrarCarrera, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(mostrarCarrera, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(botonMostrarMalla, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(144, 144, 144))))
             .addGroup(layout.createSequentialGroup()
                 .addGap(171, 171, 171)
@@ -93,7 +102,9 @@ public class MenuMostrar extends javax.swing.JFrame {
                 .addComponent(mostrarCarrera)
                 .addGap(18, 18, 18)
                 .addComponent(mostrarAlumnos)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 192, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(botonMostrarMalla)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 152, Short.MAX_VALUE)
                 .addComponent(botonAtras)
                 .addGap(75, 75, 75))
         );
@@ -122,8 +133,16 @@ public class MenuMostrar extends javax.swing.JFrame {
         menuP.setVisible(true);
     }//GEN-LAST:event_botonAtrasActionPerformed
 
+    private void botonMostrarMallaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonMostrarMallaActionPerformed
+        // TODO add your handling code here:
+        MostrarMalla mM = new MostrarMalla(inst);
+        mM.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_botonMostrarMallaActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonAtras;
+    private javax.swing.JButton botonMostrarMalla;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JButton mostrarAlumnos;
     private javax.swing.JButton mostrarCarrera;

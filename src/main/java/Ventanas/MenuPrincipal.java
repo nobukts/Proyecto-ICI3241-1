@@ -52,6 +52,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
         });
 
         botonEliminar.setText("Eliminar");
+        botonEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonEliminarActionPerformed(evt);
+            }
+        });
 
         botonMostrar.setText("Mostrar");
         botonMostrar.addActionListener(new java.awt.event.ActionListener() {
@@ -68,6 +73,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
         });
 
         botonReporte.setText("Reporte");
+        botonReporte.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonReporteActionPerformed(evt);
+            }
+        });
 
         botonEditar.setText("Editar");
 
@@ -141,6 +151,21 @@ public class MenuPrincipal extends javax.swing.JFrame {
             avisoEmergente.setVisible(true);
         }
     }//GEN-LAST:event_botonMostrarActionPerformed
+
+    private void botonReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonReporteActionPerformed
+        // TODO add your handling code here:
+        inst.crearReporte();
+        Aviso avisoEmergente = new Aviso();
+        avisoEmergente.cambiarAviso("Se genero el reporte de las carreras");
+        avisoEmergente.setVisible(true);
+    }//GEN-LAST:event_botonReporteActionPerformed
+
+    private void botonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarActionPerformed
+        // TODO add your handling code here:
+        MenuEliminar menuE = new MenuEliminar(inst);
+        this.dispose();
+        menuE.setVisible(true);
+    }//GEN-LAST:event_botonEliminarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Titulo;
