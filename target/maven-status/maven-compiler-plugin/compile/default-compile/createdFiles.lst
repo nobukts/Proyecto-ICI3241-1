@@ -1,0 +1,10 @@
+Interfaces\Verificador.class
+com\mycompany\avancecurricular\Opcional.class
+com\mycompany\avancecurricular\Asignatura.class
+com\mycompany\avancecurricular\Curso.class
+com\mycompany\avancecurricular\Ramo.class
+com\mycompany\avancecurricular\Obligatorio.class
+com\mycompany\avancecurricular\Carrera.class
+com\mycompany\avancecurricular\Alumno.class
+Ventanas\Main.class
+com\mycompany\avancecurricular\Instituto.class
