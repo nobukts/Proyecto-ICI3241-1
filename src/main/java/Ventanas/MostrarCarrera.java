@@ -31,8 +31,8 @@ public class MostrarCarrera extends javax.swing.JFrame {
         for (int i = 0; i < listaCarreras.length; i++) {
             String[] datosColumna = new String[2];
             String[] carreraSeparada = listaCarreras[i].split(" ");
-            datosColumna[0] = carreraSeparada[2];
-            datosColumna[1] = carreraSeparada[6];
+            datosColumna[0] = carreraSeparada[0];
+            datosColumna[1] = carreraSeparada[1];
             tabla1.addRow(datosColumna);
         }
         

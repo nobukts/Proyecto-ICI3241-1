@@ -27,7 +27,7 @@ public class MostrarAlumnos extends javax.swing.JFrame {
         String[] listaCarreras = inst.mostrarCarreras();
         for (int i = 0; i < listaCarreras.length; i++) {
             String[] carreraSeparada = listaCarreras[i].split(" ");
-            campoCarrera.addItem(carreraSeparada[2]);
+            campoCarrera.addItem(carreraSeparada[0]);
             
         }
         tablaAlumnos.setEnabled(false);
@@ -156,10 +156,10 @@ public class MostrarAlumnos extends javax.swing.JFrame {
         
         for (int i = 0; i < listaAlumnos.length; i++) {
             String[] datosColumna = new String[3];
-            String[] datosSeparados = listaAlumnos[i].split(" ");
-            datosColumna[0] = datosSeparados[1];
-            datosColumna[1] = datosSeparados[3];
-            datosColumna[2] = datosSeparados[7];
+            String[] datosSeparados = listaAlumnos[i].split("-");
+            datosColumna[0] = datosSeparados[0];
+            datosColumna[1] = datosSeparados[1];
+            datosColumna[2] = datosSeparados[2];
             tablaM.addRow(datosColumna);
         }
         

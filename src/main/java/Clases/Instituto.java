@@ -261,13 +261,13 @@ public class Instituto implements Verificador{
         
         return true;
     }
+    
     /**
     * Metodo que en caso de encontrar una asignatura con el codigo señalado, lo elimina de la malla curricular de la carrera señalada
     * @param codigoAsignatura String que contiene el codigo de la asignatura a eliminar
     * @param nombreCarrera String que indica de que carrera se quiere eliminar la asignatura
     * @return boolean Verdadero si se pudo eliminar la asignatura y falso si no se pudo eliminar
     */
-
     public boolean eliminarAsignatura(String nombreCarrera, String codigoAsignatura){
         for(int i = 0; i < listaCarreras.size(); i++){
             if(listaCarreras.get(i).getNombreCarrera().equalsIgnoreCase(nombreCarrera)){

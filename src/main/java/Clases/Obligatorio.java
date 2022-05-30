@@ -28,7 +28,7 @@ public class Obligatorio extends Asignatura{
      */
     @Override
     public String mostrarInformacion(){
-        return ("Nombre del Ramo: " + this.getNombreCurso() + " Carrera: " + carrera + " Cantidad de alumnos: " + this.getCantidadAlumnos() + " es OBLIGATORIO"); 
+        return (this.getNombreCurso() + ' ' + this.getCodigoCurso() + ' ' + this.getCantidadCreditos() + ' ' + getCarrera() + ' ' + this.getCantidadAlumnos());
     }
     
     /**

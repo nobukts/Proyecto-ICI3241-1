@@ -154,7 +154,7 @@ public class Carrera implements Verificador{
     }
     
     public String mostrarCarrera(){
-        return ("Nombre Carrera: " + this.getNombreCarrera() + " Cantidad de alumnos: " + this.getCantidadAlumnos());
+        return (this.getNombreCarrera() + " " + this.getCantidadAlumnos());
     }
 
     /**

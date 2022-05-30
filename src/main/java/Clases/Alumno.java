@@ -60,7 +60,7 @@ public class Alumno implements Verificador{
      * @return 
      */
     public String mostrarAlumno(){
-        return ("Nombre: " + nombreAlumno + " Rut: " + rut + " Cantidad de creditos: " + cantidadCreditos);
+        return (getNombreAlumno() + '-' + getRut() + '-' + getCantidadCreditos());
     }
         
     /**

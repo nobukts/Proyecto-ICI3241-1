@@ -26,7 +26,7 @@ public class Opcional extends Asignatura{
      */
     @Override
     public String mostrarInformacion(){
-        return ("Nombre del Ramo: " + this.getNombreCurso() + " Lo imparte: " + escuela + " Cantidad de alumnos: " + this.getCantidadAlumnos() + " es OPCIONAL");
+        return (this.getNombreCurso() + ' ' + this.getCodigoCurso() + ' ' + this.getCantidadCreditos() + ' ' + getEscuela() + ' ' + this.getCantidadAlumnos());
     }
     
     /**
