@@ -27,13 +27,10 @@ public class Main {
         
         /*
         while(true){
-            System.out.println("2) Eliminar Carrera");
             System.out.println("4) Editar Carrera/Alumno/Asignatura");
             System.out.println("5) Eliminar Asignatura");
-            System.out.println("6) Eliminar Alumno");
             System.out.println("9) Actualizar estado de un ramo de un alumno");
             System.out.println("12) Busqueda de un alumno/asignatura");
-            System.out.println("13) Crear reporte");
             System.out.println("14) Buscar al alumno con menos creditos de cada carrera");
             System.out.println("15) Buscar alumnos segun rango de cantidad de creditos");
         }*/

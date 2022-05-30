@@ -36,6 +36,7 @@ public class MenuEliminar extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         botonEliminarCarrera = new javax.swing.JButton();
         botonAtras = new javax.swing.JButton();
+        botonEliminarAlumno = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -56,6 +57,13 @@ public class MenuEliminar extends javax.swing.JFrame {
             }
         });
 
+        botonEliminarAlumno.setText("Eliminar Alumno");
+        botonEliminarAlumno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonEliminarAlumnoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -68,7 +76,8 @@ public class MenuEliminar extends javax.swing.JFrame {
                 .addGap(149, 149, 149)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(botonEliminarCarrera, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(botonAtras, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(botonAtras, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(botonEliminarAlumno, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -78,7 +87,9 @@ public class MenuEliminar extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addComponent(botonEliminarCarrera)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 237, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(botonEliminarAlumno)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 197, Short.MAX_VALUE)
                 .addComponent(botonAtras)
                 .addGap(70, 70, 70))
         );
@@ -100,8 +111,16 @@ public class MenuEliminar extends javax.swing.JFrame {
         menuP.setVisible(true);
     }//GEN-LAST:event_botonAtrasActionPerformed
 
+    private void botonEliminarAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarAlumnoActionPerformed
+        // TODO add your handling code here:
+        EliminarAlumno eA = new EliminarAlumno(inst);
+        this.dispose();
+        eA.setVisible(true);
+    }//GEN-LAST:event_botonEliminarAlumnoActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonAtras;
+    private javax.swing.JButton botonEliminarAlumno;
     private javax.swing.JButton botonEliminarCarrera;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
