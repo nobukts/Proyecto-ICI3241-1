@@ -118,9 +118,9 @@ public class MostrarCarrera extends javax.swing.JFrame {
 
     private void botonAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAtrasActionPerformed
         // TODO add your handling code here:
-        MenuPrincipal menuP = new MenuPrincipal();
+        MenuMostrar menuM = new MenuMostrar(inst);
         this.dispose();
-        menuP.setVisible(true);
+        menuM.setVisible(true);
     }//GEN-LAST:event_botonAtrasActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

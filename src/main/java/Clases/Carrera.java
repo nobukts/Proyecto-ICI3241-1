@@ -51,6 +51,10 @@ public class Carrera implements Verificador{
         this.nombreCarrera = nombreCarrera;
     }
 
+    public boolean contieneAlumnos(){
+        return listaAlumnos.isEmpty();
+    }
+    
     /**
      * Metodo que agrega un alumno a la lista de alumnos y al mapa de alumnos
      * @param al Objeto de la clase Alumno

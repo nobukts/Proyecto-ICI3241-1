@@ -32,9 +32,9 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="134" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="jButton2" max="32767" attributes="0"/>
+                          <Component id="matricularAlumno" max="32767" attributes="0"/>
                           <Component id="añadirMalla" max="32767" attributes="0"/>
-                          <Component id="jButton3" alignment="0" max="32767" attributes="0"/>
+                          <Component id="botonAñadirOpcional" alignment="0" max="32767" attributes="0"/>
                           <Component id="añadirCarrera" alignment="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
@@ -51,9 +51,9 @@
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="añadirMalla" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="jButton2" min="-2" max="-2" attributes="0"/>
+              <Component id="matricularAlumno" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="jButton3" min="-2" max="-2" attributes="0"/>
+              <Component id="botonAñadirOpcional" min="-2" max="-2" attributes="0"/>
               <EmptySpace pref="133" max="32767" attributes="0"/>
               <Component id="atras" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="89" max="-2" attributes="0"/>
@@ -70,15 +70,21 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="a&#xf1;adirCarreraActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton2">
+    <Component class="javax.swing.JButton" name="matricularAlumno">
       <Properties>
         <Property name="text" type="java.lang.String" value="Matricular alumno"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="matricularAlumnoActionPerformed"/>
+      </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton3">
+    <Component class="javax.swing.JButton" name="botonA&#xf1;adirOpcional">
       <Properties>
         <Property name="text" type="java.lang.String" value="A&#xf1;adir ramo opcional"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonA&#xf1;adirOpcionalActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="atras">
       <Properties>

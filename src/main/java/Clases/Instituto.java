@@ -47,6 +47,11 @@ public class Instituto implements Verificador{
         return listaCarreras.isEmpty();
     }
     
+    public boolean contieneAlumnos(){
+        if(!contieneCarrera()) return listaCarreras.get(0).contieneAlumnos();
+        return false;
+    }
+    
     /**
      * Metodo que busca y elimina una carrera del instituto
      * @param nombreCarrera String que contiene el nombre de una carrera

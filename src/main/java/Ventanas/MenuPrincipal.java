@@ -132,8 +132,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private void botonMostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonMostrarActionPerformed
         // TODO add your handling code here:
         if(!inst.contieneCarrera()){
-            MostrarCarrera mC = new MostrarCarrera(inst);
-            mC.setVisible(true);
+            MenuMostrar menuM = new MenuMostrar(inst);
+            menuM.setVisible(true);
             this.dispose();
         }else{
             Aviso avisoEmergente = new Aviso();
