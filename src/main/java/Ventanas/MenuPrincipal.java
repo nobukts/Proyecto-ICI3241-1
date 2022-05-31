@@ -137,6 +137,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     private void botonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBuscarActionPerformed
         // TODO add your handling code here:
+        MenuBuscar menuB = new MenuBuscar(inst);
+        menuB.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_botonBuscarActionPerformed
 
     private void botonMostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonMostrarActionPerformed

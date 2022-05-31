@@ -365,4 +365,19 @@ public class Instituto implements Verificador{
         return mapaCursos.containsKey(codigoCurso);
     }
     
+    public String buscarAlumno(String nombreCarrera, String nombreAlumno){
+        for (int i = 0; i < listaCarreras.size(); i++) {
+            if(listaCarreras.get(i).getNombreCarrera().equals(nombreCarrera)) return listaCarreras.get(i).buscarAlumno(nombreAlumno);
+        }
+        
+        return null;
+    }
+    
+    public String[] buscarRamosAlumno(String nombreCarrera, String nombreAlumno){
+        for (int i = 0; i < listaCarreras.size(); i++) {
+            if(listaCarreras.get(i).getNombreCarrera().equals(nombreCarrera)) return listaCarreras.get(i).buscarRamos(nombreAlumno);
+        }
+        
+        return null;
+    }
 }

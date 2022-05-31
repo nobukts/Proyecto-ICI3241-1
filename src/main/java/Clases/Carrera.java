@@ -368,5 +368,15 @@ public class Carrera implements Verificador{
         }
         return false;
     }
+    
+    public String buscarAlumno(String nombreAlumno){
+        if(mapaAlumnos.containsKey(nombreAlumno)) return mapaAlumnos.get(nombreAlumno).mostrarAlumno();
+        return null;
+    }
+    
+    public String[] buscarRamos(String nombreAlumno){
+        if(mapaAlumnos.containsKey(nombreAlumno)) return mapaAlumnos.get(nombreAlumno).mostrarRamos();
+        return null;
+    }
 }
 

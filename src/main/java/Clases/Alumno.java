@@ -118,4 +118,15 @@ public class Alumno implements Verificador{
         }
         return false;
     }
+    
+    public String[] mostrarRamos(){
+        String[] listaRamos = new String[ramosAlumno.size()];
+        
+        for (int i = 0; i < ramosAlumno.size(); i++) {
+            listaRamos[i] = ramosAlumno.get(i).mostrarInformacion();
+            
+        }
+        
+        return listaRamos;
+    }
 }

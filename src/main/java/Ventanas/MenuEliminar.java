@@ -37,6 +37,7 @@ public class MenuEliminar extends javax.swing.JFrame {
         botonEliminarCarrera = new javax.swing.JButton();
         botonAtras = new javax.swing.JButton();
         botonEliminarAlumno = new javax.swing.JButton();
+        EliminarAsignatura = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -64,21 +65,29 @@ public class MenuEliminar extends javax.swing.JFrame {
             }
         });
 
+        EliminarAsignatura.setText("Eliminar Asignatura de la malla");
+        EliminarAsignatura.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EliminarAsignaturaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(92, Short.MAX_VALUE)
-                .addComponent(jLabel1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(botonEliminarCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(botonEliminarAlumno, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(EliminarAsignatura)
+                            .addComponent(botonAtras, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(15, 15, 15)))
                 .addGap(92, 92, 92))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(149, 149, 149)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(botonEliminarCarrera, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(botonAtras, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(botonEliminarAlumno, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -89,9 +98,11 @@ public class MenuEliminar extends javax.swing.JFrame {
                 .addComponent(botonEliminarCarrera)
                 .addGap(18, 18, 18)
                 .addComponent(botonEliminarAlumno)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 197, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(EliminarAsignatura)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 155, Short.MAX_VALUE)
                 .addComponent(botonAtras)
-                .addGap(70, 70, 70))
+                .addGap(72, 72, 72))
         );
 
         pack();
@@ -118,7 +129,15 @@ public class MenuEliminar extends javax.swing.JFrame {
         eA.setVisible(true);
     }//GEN-LAST:event_botonEliminarAlumnoActionPerformed
 
+    private void EliminarAsignaturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarAsignaturaActionPerformed
+        // TODO add your handling code here:
+        EliminarAsignatura eAs = new EliminarAsignatura(inst);
+        this.dispose();
+        eAs.setVisible(true);
+    }//GEN-LAST:event_EliminarAsignaturaActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton EliminarAsignatura;
     private javax.swing.JButton botonAtras;
     private javax.swing.JButton botonEliminarAlumno;
     private javax.swing.JButton botonEliminarCarrera;

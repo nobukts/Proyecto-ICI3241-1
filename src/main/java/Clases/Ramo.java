@@ -60,7 +60,7 @@ public class Ramo extends Curso{
      */
     @Override
     public String mostrarInformacion(){
-        String mensaje = (this.getNombreCurso() + " " + this.getCodigoCurso() + " ");
+        String mensaje = (this.getNombreCurso() + "-" + this.getCodigoCurso() + "-");
         switch(this.getEstadoRamo()){
             case 0:
                 mensaje += ("No cursado");
