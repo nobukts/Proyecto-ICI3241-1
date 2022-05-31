@@ -38,6 +38,8 @@ public class MenuBuscar extends javax.swing.JFrame {
         botonBuscarAlumno = new javax.swing.JButton();
         botonAtras = new javax.swing.JButton();
         botonBuscarAsignatura = new javax.swing.JButton();
+        botonBuscarMenorCreditos = new javax.swing.JButton();
+        botonBuscarRango = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -65,25 +67,41 @@ public class MenuBuscar extends javax.swing.JFrame {
             }
         });
 
+        botonBuscarMenorCreditos.setText("Buscar a los alumnos con la menor cantidad de creditos");
+        botonBuscarMenorCreditos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonBuscarMenorCreditosActionPerformed(evt);
+            }
+        });
+
+        botonBuscarRango.setText("Buscar alumnos por rango de creditos");
+        botonBuscarRango.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonBuscarRangoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(146, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(146, 146, 146))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(98, 98, 98)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(141, 141, 141)
+                        .addGap(86, 86, 86)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(botonBuscarAsignatura, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(botonBuscarAlumno, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(botonBuscarMenorCreditos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(botonBuscarAlumno, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(botonBuscarRango, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(210, 210, 210)
+                        .addComponent(botonAtras)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 165, Short.MAX_VALUE)
-                .addComponent(botonAtras)
-                .addGap(161, 161, 161))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -94,9 +112,13 @@ public class MenuBuscar extends javax.swing.JFrame {
                 .addComponent(botonBuscarAlumno)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(botonBuscarAsignatura)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 291, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(botonBuscarMenorCreditos)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(botonBuscarRango)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 219, Short.MAX_VALUE)
                 .addComponent(botonAtras)
-                .addGap(59, 59, 59))
+                .addGap(63, 63, 63))
         );
 
         pack();
@@ -120,10 +142,24 @@ public class MenuBuscar extends javax.swing.JFrame {
         bAs.setVisible(true);
     }//GEN-LAST:event_botonBuscarAsignaturaActionPerformed
 
+    private void botonBuscarMenorCreditosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBuscarMenorCreditosActionPerformed
+        BuscarMenorCreditos bMC = new BuscarMenorCreditos(inst);
+        this.dispose();
+        bMC.setVisible(true);
+    }//GEN-LAST:event_botonBuscarMenorCreditosActionPerformed
+
+    private void botonBuscarRangoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBuscarRangoActionPerformed
+        BuscarRangoCreditos bRC = new BuscarRangoCreditos(inst);
+        this.dispose();
+        bRC.setVisible(true);
+    }//GEN-LAST:event_botonBuscarRangoActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonAtras;
     private javax.swing.JButton botonBuscarAlumno;
     private javax.swing.JButton botonBuscarAsignatura;
+    private javax.swing.JButton botonBuscarMenorCreditos;
+    private javax.swing.JButton botonBuscarRango;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }

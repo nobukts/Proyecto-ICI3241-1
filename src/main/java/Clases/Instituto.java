@@ -323,13 +323,14 @@ public class Instituto implements Verificador{
      * Metodo que retorna una lista con los alumnos con menor cantidad de creditos de cada carrera
      * @return ArrayList de alumnos con menor cantidad de creditos
      */
-    public ArrayList<Alumno> alumnosMenorCantCreditos(){
-        ArrayList<Alumno> alumnosMenosCreditos = new ArrayList<>();
+    public String[] alumnosMenorCantCreditos(){
+        String[] alumnosMenosCreditos = new String[listaCarreras.size()];
         
         for(int i = 0; i < listaCarreras.size(); i++) {
            Alumno aux = listaCarreras.get(i).alumnoMenorCreditos();
            if(aux != null){
-               alumnosMenosCreditos.add(aux);
+               alumnosMenosCreditos[i] = aux.mostrarAlumno();
+               alumnosMenosCreditos[i] += ("-" + listaCarreras.get(i).getNombreCarrera());
            }
             
         }
@@ -342,11 +343,11 @@ public class Instituto implements Verificador{
      * @param rangoMaximo Cantidad de creditos maxima
      * @return ArrayList de alumnos
      */
-    public ArrayList<Alumno> alumnosRangoCredito(int rangoMinimo, int rangoMaximo){
-        ArrayList<Alumno> alumnosRangoCredito = new ArrayList<>();
+    public ArrayList<String> alumnosRangoCredito(int rangoMinimo, int rangoMaximo){
+        ArrayList<String> alumnosRangoCredito = new ArrayList<>();
         
         for (int i = 0; i < listaCarreras.size(); i++) {
-            ArrayList<Alumno> listaAux = listaCarreras.get(i).alumnosRangoCredito(rangoMinimo, rangoMaximo);
+            ArrayList<String> listaAux = listaCarreras.get(i).alumnosRangoCredito(rangoMinimo, rangoMaximo);
             if(!listaAux.isEmpty()){
                 alumnosRangoCredito.addAll(listaAux);
             }

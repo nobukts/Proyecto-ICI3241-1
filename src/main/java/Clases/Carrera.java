@@ -331,13 +331,13 @@ public class Carrera implements Verificador{
      * @param rangoMaximo Cantidad maxima de creditos
      * @return ArrayList con los alumnos dentro del rango de creditos
      */
-    public ArrayList<Alumno> alumnosRangoCredito(int rangoMinimo, int rangoMaximo){
-        ArrayList<Alumno> alumnosRango = new ArrayList<>();
+    public ArrayList<String> alumnosRangoCredito(int rangoMinimo, int rangoMaximo){
+        ArrayList<String> alumnosRango = new ArrayList<>();
         
         for (int i = 0; i < listaAlumnos.size(); i++) {
             Alumno aux = listaAlumnos.get(i);
             if(aux.getCantidadCreditos() >= rangoMinimo && aux.getCantidadCreditos() <= rangoMaximo){
-                alumnosRango.add(aux);
+                alumnosRango.add(aux.mostrarAlumno());
             }
         }
         
