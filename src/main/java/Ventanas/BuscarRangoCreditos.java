@@ -186,9 +186,14 @@ public class BuscarRangoCreditos extends javax.swing.JFrame {
         int rangoMinimo = Integer.parseInt(campoMinimo.getValue().toString());
         int rangoMaximo = Integer.parseInt(campoMaximo.getValue().toString());
         
-        actualizarTabla(rangoMinimo, rangoMaximo);
-        
-        jPanel1.setVisible(true);
+        if(rangoMaximo >= rangoMinimo){
+            actualizarTabla(rangoMinimo, rangoMaximo);
+            jPanel1.setVisible(true);
+        }else{
+            Aviso avisoEmergente = new Aviso();
+            avisoEmergente.cambiarAviso("El rango maximo no puede ser menor que el rango minimo");
+            avisoEmergente.setVisible(true);
+        }
     }//GEN-LAST:event_botonBuscarActionPerformed
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

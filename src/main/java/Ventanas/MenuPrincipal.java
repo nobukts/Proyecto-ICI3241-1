@@ -80,6 +80,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
         });
 
         botonEditar.setText("Editar");
+        botonEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonEditarActionPerformed(evt);
+            }
+        });
 
         Titulo.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         Titulo.setText("Menu Principal");
@@ -169,6 +174,12 @@ public class MenuPrincipal extends javax.swing.JFrame {
         this.dispose();
         menuE.setVisible(true);
     }//GEN-LAST:event_botonEliminarActionPerformed
+
+    private void botonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEditarActionPerformed
+        MenuEditar menuE = new MenuEditar(inst);
+        this.dispose();
+        menuE.setVisible(true);
+    }//GEN-LAST:event_botonEditarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Titulo;
