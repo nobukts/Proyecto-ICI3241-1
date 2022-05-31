@@ -210,9 +210,9 @@ public class Instituto implements Verificador{
      * @param codigoAsignatura String del codigo de una asignatura
      * @return boolean Verdadero si encontro el asignatura y falso si no existe la asignatura
      */
-    public Curso buscarAsignatura(String codigoAsignatura){
+    public String buscarAsignatura(String codigoAsignatura){
         if(!mapaCursos.containsKey(codigoAsignatura)) return null;
-        return mapaCursos.get(codigoAsignatura);
+        return mapaCursos.get(codigoAsignatura).mostrarInformacion();
     }
     
     /**

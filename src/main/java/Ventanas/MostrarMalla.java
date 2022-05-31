@@ -151,7 +151,7 @@ public class MostrarMalla extends javax.swing.JFrame {
         tablaM.addColumn("Nombre de la asignatura");
         tablaM.addColumn("Codigo de la asignatura");
         tablaM.addColumn("Cantidad de Creditos");
-        tablaM.addColumn("Cantida de alumnos");
+        tablaM.addColumn("Cantidad de alumnos");
         tablaM.addColumn("¿Es de primer semestre?");
         
         for (int i = 0; i < mallaCurricular.length; i++) {
@@ -160,8 +160,8 @@ public class MostrarMalla extends javax.swing.JFrame {
             datosColumna[0] = datosSeparados[0];
             datosColumna[1] = datosSeparados[1];
             datosColumna[2] = datosSeparados[2];
-            datosColumna[3] = datosSeparados[3];
-            datosColumna[4] = datosSeparados[4];
+            datosColumna[3] = datosSeparados[4];
+            datosColumna[4] = datosSeparados[5];
             tablaM.addRow(datosColumna);
         }
         

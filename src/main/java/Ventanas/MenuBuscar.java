@@ -37,6 +37,7 @@ public class MenuBuscar extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         botonBuscarAlumno = new javax.swing.JButton();
         botonAtras = new javax.swing.JButton();
+        botonBuscarAsignatura = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -57,6 +58,13 @@ public class MenuBuscar extends javax.swing.JFrame {
             }
         });
 
+        botonBuscarAsignatura.setText("Buscar Asignatura");
+        botonBuscarAsignatura.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonBuscarAsignaturaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -68,7 +76,9 @@ public class MenuBuscar extends javax.swing.JFrame {
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(141, 141, 141)
-                        .addComponent(botonBuscarAlumno)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(botonBuscarAsignatura, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(botonBuscarAlumno, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 165, Short.MAX_VALUE)
@@ -82,7 +92,9 @@ public class MenuBuscar extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addComponent(botonBuscarAlumno)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 325, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(botonBuscarAsignatura)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 291, Short.MAX_VALUE)
                 .addComponent(botonAtras)
                 .addGap(59, 59, 59))
         );
@@ -102,9 +114,16 @@ public class MenuBuscar extends javax.swing.JFrame {
         bA.setVisible(true);
     }//GEN-LAST:event_botonBuscarAlumnoActionPerformed
 
+    private void botonBuscarAsignaturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBuscarAsignaturaActionPerformed
+        BuscarAsignatura bAs = new BuscarAsignatura(inst);
+        this.dispose();
+        bAs.setVisible(true);
+    }//GEN-LAST:event_botonBuscarAsignaturaActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonAtras;
     private javax.swing.JButton botonBuscarAlumno;
+    private javax.swing.JButton botonBuscarAsignatura;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }

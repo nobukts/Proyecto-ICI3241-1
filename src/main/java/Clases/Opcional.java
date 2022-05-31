@@ -26,7 +26,13 @@ public class Opcional extends Asignatura{
      */
     @Override
     public String mostrarInformacion(){
-        return (this.getNombreCurso() + ' ' + this.getCodigoCurso() + ' ' + this.getCantidadCreditos() + ' ' + getEscuela() + ' ' + this.getCantidadAlumnos());
+        String informacion = (this.getNombreCurso() + '-' + this.getCodigoCurso() + '-' + this.getCantidadCreditos() + '-' + getEscuela() + '-' + this.getCantidadAlumnos() + '-');
+        if(this.getEsDePrimero()) informacion += "Si";
+        else informacion += "No";
+        
+        informacion += "-Opcional";
+        
+        return informacion;
     }
     
     /**
