@@ -24,11 +24,5 @@ public class Main {
         
         MenuPrincipal menuP = new MenuPrincipal(inst);
         menuP.setVisible(true);
-        
-        /*
-        while(true){
-            System.out.println("4) Editar Carrera/Alumno/Asignatura");
-            System.out.println("9) Actualizar estado de un ramo de un alumno");
-        }*/
     }
 }

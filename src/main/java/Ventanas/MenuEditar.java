@@ -38,6 +38,7 @@ public class MenuEditar extends javax.swing.JFrame {
         botonAtras = new javax.swing.JButton();
         botonEditarAlumno = new javax.swing.JButton();
         botonEditarEstadoRamo = new javax.swing.JButton();
+        botonEditarAsignatura = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -72,6 +73,13 @@ public class MenuEditar extends javax.swing.JFrame {
             }
         });
 
+        botonEditarAsignatura.setText("Editar Asignatura");
+        botonEditarAsignatura.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonEditarAsignaturaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -88,11 +96,12 @@ public class MenuEditar extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(129, 129, 129)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(botonEditarAlumno, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(botonEditarCarrera, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(botonEditarEstadoRamo)
                                 .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(botonEditarAlumno, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(botonEditarCarrera, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(botonEditarAsignatura, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addGap(117, 117, 117))
         );
         layout.setVerticalGroup(
@@ -105,8 +114,10 @@ public class MenuEditar extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(botonEditarAlumno)
                 .addGap(18, 18, 18)
+                .addComponent(botonEditarAsignatura)
+                .addGap(18, 18, 18)
                 .addComponent(botonEditarEstadoRamo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 252, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 212, Short.MAX_VALUE)
                 .addComponent(botonAtras)
                 .addGap(38, 38, 38))
         );
@@ -138,9 +149,16 @@ public class MenuEditar extends javax.swing.JFrame {
         eER.setVisible(true);
     }//GEN-LAST:event_botonEditarEstadoRamoActionPerformed
 
+    private void botonEditarAsignaturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEditarAsignaturaActionPerformed
+        EditarAsignatura eAs = new EditarAsignatura(inst);
+        this.dispose();
+        eAs.setVisible(true);
+    }//GEN-LAST:event_botonEditarAsignaturaActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonAtras;
     private javax.swing.JButton botonEditarAlumno;
+    private javax.swing.JButton botonEditarAsignatura;
     private javax.swing.JButton botonEditarCarrera;
     private javax.swing.JButton botonEditarEstadoRamo;
     private javax.swing.JLabel jLabel1;

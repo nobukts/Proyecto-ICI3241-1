@@ -37,12 +37,13 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="129" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="botonEditarAlumno" max="32767" attributes="0"/>
+                          <Component id="botonEditarCarrera" max="32767" attributes="0"/>
                           <Group type="102" attributes="0">
                               <Component id="botonEditarEstadoRamo" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
-                          <Component id="botonEditarAlumno" max="32767" attributes="0"/>
-                          <Component id="botonEditarCarrera" max="32767" attributes="0"/>
+                          <Component id="botonEditarAsignatura" max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -60,8 +61,10 @@
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="botonEditarAlumno" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="botonEditarAsignatura" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="botonEditarEstadoRamo" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="252" max="32767" attributes="0"/>
+              <EmptySpace pref="212" max="32767" attributes="0"/>
               <Component id="botonAtras" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
           </Group>
@@ -107,6 +110,14 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonEditarEstadoRamoActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="botonEditarAsignatura">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Editar Asignatura"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonEditarAsignaturaActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>
