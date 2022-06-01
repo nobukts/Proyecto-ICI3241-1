@@ -381,4 +381,12 @@ public class Instituto implements Verificador{
         
         return null;
     }
+    
+    public String[] buscarRamosAlumno(String nombreAlumno){
+        for (int i = 0; i < listaCarreras.size(); i++) {
+            if(listaCarreras.get(i).buscarAlumno(nombreAlumno) != null) return listaCarreras.get(i).buscarRamos(nombreAlumno);
+        }
+        
+        return null;
+    }
 }
