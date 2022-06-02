@@ -116,6 +116,7 @@ public class EditarCarrera extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void actualizarCampoCarrera(){

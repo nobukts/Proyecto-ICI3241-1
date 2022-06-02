@@ -38,6 +38,7 @@ public class MenuAñadir extends javax.swing.JFrame {
         botonAñadirOpcional = new javax.swing.JButton();
         atras = new javax.swing.JButton();
         añadirMalla = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -76,6 +77,9 @@ public class MenuAñadir extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        jLabel1.setText("Menu Añadir");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -86,18 +90,24 @@ public class MenuAñadir extends javax.swing.JFrame {
                         .addGap(170, 170, 170)
                         .addComponent(atras))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(134, 134, 134)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(matricularAlumno, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(añadirMalla, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(botonAñadirOpcional, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(añadirCarrera, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addContainerGap(134, Short.MAX_VALUE))
+                        .addGap(102, 102, 102)
+                        .addComponent(jLabel1))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(botonAñadirOpcional, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(matricularAlumno, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(añadirMalla, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(añadirCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(17, 17, 17)))
+                .addContainerGap(87, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(35, 35, 35)
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addGap(55, 55, 55)
                 .addComponent(añadirCarrera)
                 .addGap(18, 18, 18)
                 .addComponent(añadirMalla)
@@ -105,12 +115,13 @@ public class MenuAñadir extends javax.swing.JFrame {
                 .addComponent(matricularAlumno)
                 .addGap(18, 18, 18)
                 .addComponent(botonAñadirOpcional)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 133, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
                 .addComponent(atras)
                 .addGap(89, 89, 89))
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void atrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_atrasActionPerformed
@@ -143,7 +154,7 @@ public class MenuAñadir extends javax.swing.JFrame {
 
     private void matricularAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_matricularAlumnoActionPerformed
         // TODO add your handling code here:
-        if(!inst.contieneCarrera()){
+        if(!inst.contieneCarrera() && !inst.contieneAlumnos()){
             AñadirAlumno aA = new AñadirAlumno(inst);
             this.dispose();
             aA.setVisible(true);      
@@ -173,6 +184,7 @@ public class MenuAñadir extends javax.swing.JFrame {
     private javax.swing.JButton añadirCarrera;
     private javax.swing.JButton añadirMalla;
     private javax.swing.JButton botonAñadirOpcional;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JButton matricularAlumno;
     // End of variables declaration//GEN-END:variables
 }

@@ -1,15 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package Ventanas;
 
 import Clases.Instituto;
 
-/**
- *
- * @author Nobu
- */
 public class MenuPrincipal extends javax.swing.JFrame {
     private Instituto inst;
     
@@ -131,24 +123,29 @@ public class MenuPrincipal extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonAñadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAñadirActionPerformed
-        // TODO add your handling code here:
         MenuAñadir menuA = new MenuAñadir(inst);
         menuA.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_botonAñadirActionPerformed
 
     private void botonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBuscarActionPerformed
-        // TODO add your handling code here:
-        MenuBuscar menuB = new MenuBuscar(inst);
-        menuB.setVisible(true);
-        this.dispose();
+        if(!inst.contieneCarrera()){
+            MenuBuscar menuB = new MenuBuscar(inst);
+            menuB.setVisible(true);
+            this.dispose();
+        }else{
+            Aviso avisoEmergente = new Aviso();
+            avisoEmergente.cambiarAviso("No hay datos para buscar");
+            avisoEmergente.setVisible(true);
+        }
+        
     }//GEN-LAST:event_botonBuscarActionPerformed
 
     private void botonMostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonMostrarActionPerformed
-        // TODO add your handling code here:
         if(!inst.contieneCarrera()){
             MenuMostrar menuM = new MenuMostrar(inst);
             menuM.setVisible(true);
@@ -161,24 +158,39 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_botonMostrarActionPerformed
 
     private void botonReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonReporteActionPerformed
-        // TODO add your handling code here:
-        inst.crearReporte();
         Aviso avisoEmergente = new Aviso();
-        avisoEmergente.cambiarAviso("Se genero el reporte de las carreras");
+        if(!inst.contieneCarrera()){
+            inst.crearReporte();
+            avisoEmergente.cambiarAviso("Se genero el reporte de las carreras");
+        }else{
+            avisoEmergente.cambiarAviso("No se puede generar el reporte, porque no hay informacion");
+        }
         avisoEmergente.setVisible(true);
     }//GEN-LAST:event_botonReporteActionPerformed
 
     private void botonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarActionPerformed
-        // TODO add your handling code here:
-        MenuEliminar menuE = new MenuEliminar(inst);
-        this.dispose();
-        menuE.setVisible(true);
+        if(!inst.contieneCarrera()){
+            MenuEliminar menuE = new MenuEliminar(inst);
+            this.dispose();
+            menuE.setVisible(true);
+        }else{
+            Aviso avisoEmergente = new Aviso();
+            avisoEmergente.cambiarAviso("No hay datos para eliminar");
+            avisoEmergente.setVisible(true);
+        }
+
     }//GEN-LAST:event_botonEliminarActionPerformed
 
     private void botonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEditarActionPerformed
-        MenuEditar menuE = new MenuEditar(inst);
-        this.dispose();
-        menuE.setVisible(true);
+        if(!inst.contieneCarrera()){
+            MenuEditar menuE = new MenuEditar(inst);
+            this.dispose();
+            menuE.setVisible(true);
+        }else{
+            Aviso avisoEmergente = new Aviso();
+            avisoEmergente.cambiarAviso("No hay datos que modificar");
+        }
+        
     }//GEN-LAST:event_botonEditarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

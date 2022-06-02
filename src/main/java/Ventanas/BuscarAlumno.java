@@ -194,6 +194,7 @@ public class BuscarAlumno extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAtrasActionPerformed
@@ -216,32 +217,39 @@ public class BuscarAlumno extends javax.swing.JFrame {
     }//GEN-LAST:event_botonBuscarCarreraActionPerformed
 
     private void botonBuscarAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBuscarAlumnoActionPerformed
-        DefaultTableModel tabla1 = new DefaultTableModel();
-        DefaultTableModel tabla2 = new DefaultTableModel();
-        
         String nombreCarrera = campoCarrera.getSelectedItem().toString();
         String nombreAlumno = campoNombreAlumno.getSelectedItem().toString();
         String[] infoSeparada = inst.buscarAlumno(nombreCarrera, nombreAlumno).split("-");
 
-        tabla1.addColumn("Nombre");
-        tabla1.addColumn("RUN");
-        tabla1.addColumn("Cantidad de creditos");
-        
         String[] listaRamos = inst.buscarRamosAlumno(nombreCarrera, nombreAlumno);
         
-        tabla2.addColumn("Nombre del ramo");
-        tabla2.addColumn("Codigo del ramo");
-        tabla2.addColumn("Estado del ramo");
+        if(listaRamos != null){
+            DefaultTableModel tabla1 = new DefaultTableModel();
+            DefaultTableModel tabla2 = new DefaultTableModel();
+            tabla1.addColumn("Nombre");
+            tabla1.addColumn("RUN");
+            tabla1.addColumn("Cantidad de creditos");
+
+
+            tabla2.addColumn("Nombre del ramo");
+            tabla2.addColumn("Codigo del ramo");
+            tabla2.addColumn("Estado del ramo");
+
+            for (int i = 0; i < listaRamos.length; i++) {
+                String[] infoRamoSeparada = listaRamos[i].split("-");
+                tabla2.addRow(infoRamoSeparada);
+            } 
+
+            tabla1.addRow(infoSeparada);
+            jPanel1.setVisible(true);
+            tablaInfoAlumno.setModel(tabla1);
+            tablaDeRamos.setModel(tabla2);
+        }else{
+            Aviso avisoEmergente = new Aviso();
+            avisoEmergente.cambiarAviso("No se pudo encontrar al alumno " + nombreAlumno);
+            avisoEmergente.setVisible(true);
+        }
         
-        for (int i = 0; i < listaRamos.length; i++) {
-            String[] infoRamoSeparada = listaRamos[i].split("-");
-            tabla2.addRow(infoRamoSeparada);
-        } 
-        
-        tabla1.addRow(infoSeparada);
-        jPanel1.setVisible(true);
-        tablaInfoAlumno.setModel(tabla1);
-        tablaDeRamos.setModel(tabla2);
     }//GEN-LAST:event_botonBuscarAlumnoActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

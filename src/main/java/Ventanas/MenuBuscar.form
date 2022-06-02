@@ -6,7 +6,7 @@
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
-    <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
+    <SyntheticProperty name="generateCenter" type="boolean" value="true"/>
   </SyntheticProperties>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
@@ -24,14 +24,14 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace pref="146" max="32767" attributes="0"/>
+              <EmptySpace pref="149" max="32767" attributes="0"/>
               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="146" max="-2" attributes="0"/>
           </Group>
           <Group type="102" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="86" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="131" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="botonBuscarAsignatura" alignment="0" max="32767" attributes="0"/>
                           <Component id="botonBuscarMenorCreditos" max="32767" attributes="0"/>
@@ -61,7 +61,7 @@
               <Component id="botonBuscarMenorCreditos" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="botonBuscarRango" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="219" max="32767" attributes="0"/>
+              <EmptySpace pref="35" max="32767" attributes="0"/>
               <Component id="botonAtras" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="63" max="-2" attributes="0"/>
           </Group>
@@ -103,7 +103,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="botonBuscarMenorCreditos">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Buscar a los alumnos con la menor cantidad de creditos"/>
+        <Property name="text" type="java.lang.String" value="Buscar por menor cantidad de creditos"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonBuscarMenorCreditosActionPerformed"/>
