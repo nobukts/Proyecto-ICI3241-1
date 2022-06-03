@@ -193,10 +193,10 @@ public class Carrera implements Verificador{
      * @param estadoRamo Entero que contiene uno de los 3 estados que puede tener un ramo
      * @return boolean Verdadero si se pudo actualizar el estado del ramo y falso si no se pudo realizar
      */
-    public boolean actualizarRamo(String nombreAlumno, String codigoRamo, int estadoRamo){
-        boolean res = false;
-        if(mapaAlumnos.containsKey(nombreAlumno))
-            res = mapaAlumnos.get(nombreAlumno).actualizarRamo(codigoRamo, estadoRamo);
+    public boolean actualizarRamo(String nombreAlumno, String codigoRamo, int estadoRamo){        
+        if(!mapaAlumnos.containsKey(nombreAlumno)) return false;
+        
+        boolean res = mapaAlumnos.get(nombreAlumno).actualizarRamo(codigoRamo, estadoRamo);
         
         if(res == true && (estadoRamo == 0 || estadoRamo == 2)){
             for (int i = 0; i < mallaCurricular.size(); i++) {
