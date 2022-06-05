@@ -35,6 +35,7 @@ public class Instituto implements Verificador{
     
     public boolean agregarMalla(Asignatura nuevaAsignatura, String nombreCarrera){
         if(mapaCursos.containsKey(nuevaAsignatura.getCodigoCurso())) return false;
+        mapaCursos.put(nuevaAsignatura.getCodigoCurso(), nuevaAsignatura);
         
         for (int i = 0; i < listaCarreras.size(); i++) {
             if(listaCarreras.get(i).getNombreCarrera().equals(nombreCarrera)) return listaCarreras.get(i).agregarAsignaturaMalla(nuevaAsignatura);
@@ -124,6 +125,7 @@ public class Instituto implements Verificador{
     /** 
      * Metodo para mostrar la lista de alumnos de una carrera y su respectiva informacion
      * @param nombreCarrera String que contiene el nombre de la carrera
+     * @return 
      */
     public String[] mostrarListaAlumnos(String nombreCarrera){
         for (int i = 0; i < listaCarreras.size(); i++) {

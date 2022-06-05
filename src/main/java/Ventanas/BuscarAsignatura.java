@@ -107,8 +107,6 @@ public class BuscarAsignatura extends javax.swing.JFrame {
             }
         });
 
-        campoCodigoAsignatura.setText(" ");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -167,6 +165,7 @@ public class BuscarAsignatura extends javax.swing.JFrame {
             tabla1.addColumn("Codigo de la asignatura");
             tabla1.addColumn("Cantidad de creditos");
             tabla1.addColumn("Carrera o Escuela");
+            tabla1.addColumn("Cantidad de alumnos");
             tabla1.addColumn("¿Es de primero?");
             tabla1.addColumn("¿De que tipo es?");
 
@@ -179,7 +178,7 @@ public class BuscarAsignatura extends javax.swing.JFrame {
             avisoEmergente.setVisible(true);
         }
         
-        campoCodigoAsignatura.setText(" ");
+        campoCodigoAsignatura.setText("");
     }//GEN-LAST:event_botonBuscarActionPerformed
 
     private void botonAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAtrasActionPerformed

@@ -52,12 +52,6 @@ public class EditarAsignatura extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel3.setText("Ingresar la Escuela o Carrera que imparte la asignatura");
 
-        campoCodigo.setText(" ");
-
-        campoNombre.setText(" ");
-
-        campoInfo.setText(" ");
-
         botonEditar.setText("Editar");
         botonEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

@@ -112,9 +112,9 @@
     <Component class="javax.swing.JLabel" name="jLabel3">
     </Component>
     <Component class="javax.swing.JTextField" name="campoNuevoNombre">
-      <Properties>
-        <Property name="text" type="java.lang.String" value=" "/>
-      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="campoNuevoNombreActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="botonEditar">
       <Properties>
