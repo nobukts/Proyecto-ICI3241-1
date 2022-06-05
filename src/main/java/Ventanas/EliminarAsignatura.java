@@ -132,13 +132,13 @@ public class EliminarAsignatura extends javax.swing.JFrame {
 
     private void botonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarActionPerformed
         String nombreCarrera = campoCarrera.getSelectedItem().toString();
-        String codigoCurso = campoCodigo.getSelectedItem().toString();
+        String[] codigoCurso = campoCodigo.getSelectedItem().toString().split("-");
         Aviso avisoEmergente = new Aviso();
         
-        if(inst.eliminarAsignatura(nombreCarrera, codigoCurso)){
-            avisoEmergente.cambiarAviso("Se ha eliminado con exito la asignatura " + codigoCurso);
+        if(inst.eliminarAsignatura(nombreCarrera, codigoCurso[0])){
+            avisoEmergente.cambiarAviso("Se ha eliminado con exito la asignatura " + codigoCurso[1]);
         }else{
-            avisoEmergente.cambiarAviso("No se ha podido eliminar la asignatura" + codigoCurso);
+            avisoEmergente.cambiarAviso("No se ha podido eliminar la asignatura" + codigoCurso[1]);
         }
         
         avisoEmergente.setVisible(true);
@@ -161,7 +161,7 @@ public class EliminarAsignatura extends javax.swing.JFrame {
         String[] listaAsignaturas = inst.mostrarAsignaturasCarrera(nombreCarrera);
         for (int i = 0; i < listaAsignaturas.length; i++) {
             String[] asignaturaSeparada = listaAsignaturas[i].split("-");
-            campoCodigo.addItem(asignaturaSeparada[1]); 
+            campoCodigo.addItem(asignaturaSeparada[1] + "-" + asignaturaSeparada[0]); 
         }
     }//GEN-LAST:event_botonBuscarActionPerformed
 
