@@ -205,15 +205,6 @@ public class Instituto implements Verificador{
         return carreras;
     }
     
-    /**
-     * Metodo para la busqueda de una asignatura y entregar su informacion respectiva
-     * @param codigoAsignatura String del codigo de una asignatura
-     * @return boolean Verdadero si encontro el asignatura y falso si no existe la asignatura
-     */
-    public String buscarAsignatura(String codigoAsignatura){
-        if(!mapaCursos.containsKey(codigoAsignatura)) return null;
-        return mapaCursos.get(codigoAsignatura).mostrarInformacion();
-    }
     
     /**
      * Metodo para editar el nombre de una carrera
@@ -388,5 +379,15 @@ public class Instituto implements Verificador{
         }
         
         return null;
+    }
+
+    /**
+     * Metodo para la busqueda de una asignatura y entregar su informacion respectiva
+     * @param codigoAsignatura String del codigo de una asignatura
+     * @return boolean Verdadero si encontro el asignatura y falso si no existe la asignatura
+     */
+    public String buscarAsignatura(String codigoAsignatura){
+        if(!mapaCursos.containsKey(codigoAsignatura)) return null;
+        return mapaCursos.get(codigoAsignatura).mostrarInformacion();
     }
 }

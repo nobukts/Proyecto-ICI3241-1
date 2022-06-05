@@ -1,24 +1,23 @@
 package Clases;
 
-import Interfaces.Verificador;
+
 import java.io.*;
 import java.util.*;
 
-public class Carrera implements Verificador{
+public class Carrera{
     private String nombreCarrera;
     private int cantidadAlumnos;
-    private HashMap<String, Alumno> mapaAlumnos;
-    private ArrayList<Alumno> listaAlumnos;
-    private ArrayList<Asignatura> mallaCurricular;
+    private ColeccionAlumnos coleccionAlumnos;
+    private ColeccionAsignatura coleccionAsignatura;
+    //private ArrayList<Asignatura> mallaCurricular;
     
     
     /**
      * Constructor vacio que inicializa las colecciones de la clase
      */
     public Carrera(){
-        listaAlumnos = new ArrayList<>();
-        mapaAlumnos = new HashMap<>();
-        mallaCurricular = new ArrayList<>();
+        coleccionAlumnos = new ColeccionAlumnos();
+        coleccionAsignatura = new ColeccionAsignatura();
     }
 
     /**
@@ -27,9 +26,8 @@ public class Carrera implements Verificador{
      */
     public Carrera(String nombreCarrera){
         this.nombreCarrera = nombreCarrera;
-        listaAlumnos = new ArrayList<>();
-        mapaAlumnos = new HashMap<>();
-        mallaCurricular = new ArrayList<>();
+        coleccionAlumnos = new ColeccionAlumnos();
+        coleccionAsignatura = new ColeccionAsignatura();
         cantidadAlumnos = 0;
     }
 
@@ -52,7 +50,7 @@ public class Carrera implements Verificador{
     }
 
     public boolean contieneAlumnos(){
-        return listaAlumnos.isEmpty();
+        return coleccionAlumnos.contieneAlumnos();
     }
     
     /**
@@ -61,24 +59,12 @@ public class Carrera implements Verificador{
      * @return boolean Verdadero si el alumno se pudo matricular y falso si ya se encontraba matriculado
      */
     public boolean matricularAlumno(Alumno al){
-        for (int i = 0; i < listaAlumnos.size(); i++) {
-            if(listaAlumnos.get(i).getRut() == al.getRut()) return false;
-        }
+        if(coleccionAlumnos.mismoRut(al) == false){return false;}
         
-        listaAlumnos.add(al);
-        mapaAlumnos.put(al.getNombreAlumno(), al);
+        coleccionAlumnos.agregarAlumno(al);
         cantidadAlumnos++;
         
-        for(int i = 0; i < mallaCurricular.size(); i++){
-            Asignatura aux = mallaCurricular.get(i);
-            Ramo nuevoRamo = new Ramo(aux.getNombreCurso(), aux.getCodigoCurso(), aux.getCantidadCreditos());
-            if(aux.getEsDePrimero()){
-                aux.aumentarAlumnos();
-                nuevoRamo.setEstadoRamo(1);
-            }
-            else nuevoRamo.setEstadoRamo(0);
-            al.agregarRamo(nuevoRamo);
-        }
+        coleccionAsignatura.agregarAlumno(al);
         
         return true;
     }
@@ -89,23 +75,10 @@ public class Carrera implements Verificador{
      * @return boolean Verdadero si se pudo eliminar con exito al alumno y falso si no se pudo eliminarlo
      */
     public boolean eliminarAlumno(String nombreAlumno){
-        if(listaAlumnos.isEmpty()) return false;
-        for (int i = 0; i < listaAlumnos.size(); i++) {
-            if(listaAlumnos.get(i).getNombreAlumno().equalsIgnoreCase(nombreAlumno)){
-                
-                //Resta 1 alumno de las asignaturas que tenia en curso el alumno
-                for (int j = 0; j < mallaCurricular.size(); j++) {
-                    if(mapaAlumnos.containsKey(nombreAlumno)){
-                        if(mapaAlumnos.get(nombreAlumno).eliminarAlumno(mallaCurricular.get(j).getCodigoCurso())) 
-                            mallaCurricular.get(j).disminuirAlumnos();
-                    }
-                }
-                
-                mapaAlumnos.remove(nombreAlumno);
-                listaAlumnos.remove(i);
-                cantidadAlumnos--;
-                return true;
-            }
+        if(coleccionAlumnos.contieneAlumnos()) return false;
+        if(coleccionAlumnos.eliminarAlumno(nombreAlumno, coleccionAsignatura)){
+            cantidadAlumnos--;
+            return true;
         }
 
         return false;
@@ -117,44 +90,42 @@ public class Carrera implements Verificador{
      * @return boolean Verdadero si se pudo eliminar con exito al alumno y falso si no se pudo eliminarlo
      */
     public boolean eliminarAlumno(int rutAlumno){
-        if(listaAlumnos.isEmpty()) return false;
-
-        for (int i = 0; i < listaAlumnos.size(); i++) {
-            if(listaAlumnos.get(i).getRut() == rutAlumno){
-                
-                //Resta 1 alumno de las asignaturas que tenia en curso el alumno
-                for (int j = 0; j < mallaCurricular.size(); j++) {
-                    if(mapaAlumnos.containsKey(listaAlumnos.get(i).getNombreAlumno())){
-                        if(mapaAlumnos.get(listaAlumnos.get(i).getNombreAlumno()).eliminarAlumno(mallaCurricular.get(j).getCodigoCurso())) 
-                            mallaCurricular.get(j).disminuirAlumnos();
-                    }
-                }
-                
-                mapaAlumnos.remove(listaAlumnos.get(i).getNombreAlumno());
-                listaAlumnos.remove(i);
-                cantidadAlumnos--;
-                return true;
-            }
+        if(coleccionAlumnos.contieneAlumnos()) return false;
+        if(coleccionAlumnos.eliminarAlumno(rutAlumno, coleccionAsignatura)){
+            cantidadAlumnos--;
+            return true;
         }
+        
         return false;
+    }
+
+    /**
+     * Metodo que en caso de encontrar una asignatura con el codigo señalado, lo elimina de la malla curricular
+     * @param codigoAsignatura String que contiene el codigo de la asignatura a eliminar
+     * @return boolean Verdadero si se puedo eliminar la asignatura, falso si no se pudo eliminar
+     */
+    public boolean eliminarAsignatura(String codigoAsignatura){
+        return coleccionAsignatura.eliminarAsignatura(codigoAsignatura);
     }
 
     /**
      * Metodo que muestra la informacion de la lista de alumnos almacenados de la carrera
      * @return 
      */
-    public String[] mostrarListaAlumnos(){
-        String[] alumnos = new String[listaAlumnos.size()];
-        
-        for (int i = 0; i < listaAlumnos.size(); i++) {
-            alumnos[i] = listaAlumnos.get(i).mostrarAlumno();
-        }
-        
-        return alumnos;
+    public String[] mostrarListaAlumnos(){       
+        return coleccionAlumnos.mostrarAlumno();
     }
     
     public String mostrarCarrera(){
         return (this.getNombreCarrera() + " " + this.getCantidadAlumnos());
+    }
+
+    /**
+     * Metodo que muestra las asignaturas impartidos por la carrera, con su respectiva informacion
+     * @return 
+     */
+    public String[] mostrarAsignaturas(){
+        return coleccionAsignatura.mostrarAsignaturas();
     }
 
     /**
@@ -163,9 +134,9 @@ public class Carrera implements Verificador{
      * @return boolean Verdadero si se pudo agregar la asignatura a la malla y falso si no se pudo agregar
      */
     public boolean agregarAsignaturaMalla(Asignatura nuevaAsignatura){
-        if(verificar(nuevaAsignatura.getCodigoCurso())) return false;
+        if(coleccionAsignatura.verificar(nuevaAsignatura.getCodigoCurso())) return false;
 
-        mallaCurricular.add(nuevaAsignatura);
+        coleccionAsignatura.agregarAsignaturaMalla(nuevaAsignatura);
         return true;
     }
 
@@ -176,14 +147,7 @@ public class Carrera implements Verificador{
      * @return boolean Verdadero si se pudo agregar el ramo a los ramos del alumno y falso si no se pudo agregar
      */
     public boolean agregarRamoOpcional(String nombreAlumno, Ramo nuevoRamo){
-        if(mapaAlumnos.containsKey(nombreAlumno)){
-            if(!mapaAlumnos.get(nombreAlumno).verificar(nuevoRamo.getCodigoCurso())){
-                mapaAlumnos.get(nombreAlumno).agregarRamo(nuevoRamo);
-                return true;
-            }
-        }
-
-        return false;
+        return coleccionAlumnos.agregarRamoOpcional(nombreAlumno, nuevoRamo);
     }
     
     /**
@@ -195,41 +159,16 @@ public class Carrera implements Verificador{
      */
     public boolean actualizarRamo(String nombreAlumno, String codigoRamo, int estadoRamo){
         boolean res = false;
-        if(mapaAlumnos.containsKey(nombreAlumno))
-            res = mapaAlumnos.get(nombreAlumno).actualizarRamo(codigoRamo, estadoRamo);
+        res = coleccionAlumnos.actualizarRamo(nombreAlumno, codigoRamo, estadoRamo);
         
         if(res == true && (estadoRamo == 0 || estadoRamo == 2)){
-            for (int i = 0; i < mallaCurricular.size(); i++) {
-                if(mallaCurricular.get(i).getCodigoCurso().equalsIgnoreCase(codigoRamo)){
-                    mallaCurricular.get(i).disminuirAlumnos();
-                }
-                
-            }
+            coleccionAsignatura.disminuirAlumnos(codigoRamo);
         }
         else if(res == true && estadoRamo == 1){
-            for (int i = 0; i < mallaCurricular.size(); i++) {
-                if(mallaCurricular.get(i).getCodigoCurso().equalsIgnoreCase(codigoRamo)){
-                    mallaCurricular.get(i).aumentarAlumnos();
-                }
-                
-            }
+            coleccionAsignatura.aumentarAlumnos(codigoRamo);
         }
         
         return res;
-    }
-
-    /**
-     * Metodo que muestra las asignaturas impartidos por la carrera, con su respectiva informacion
-     * @return 
-     */
-    public String[] mostrarAsignaturas(){
-        String[] malla = new String[mallaCurricular.size()];
-        
-        for (int i = 0; i < mallaCurricular.size(); i++) {
-            malla[i] = mallaCurricular.get(i).mostrarInformacion();
-        }
-        
-        return malla;
     }
 
     
@@ -240,47 +179,23 @@ public class Carrera implements Verificador{
      * @return boolean Verdadero si se pudo editar el alumno y falso si no se logro editar
      */
     public boolean editarAlumno(String nombreAlumno, String nuevoNombreAlumno){
-        if(listaAlumnos.isEmpty()) return false;
-        for (int i = 0; i < listaAlumnos.size(); i++) {
-            if(listaAlumnos.get(i).getNombreAlumno().equalsIgnoreCase(nombreAlumno)){
-                Alumno al = mapaAlumnos.get(nombreAlumno);
-                mapaAlumnos.remove(nombreAlumno);
-                al.setNombreAlumno(nuevoNombreAlumno);
-                mapaAlumnos.put(nuevoNombreAlumno, al);
-                listaAlumnos.get(i).setNombreAlumno(nuevoNombreAlumno);
-                return true;
-            }
-        }
-        return false;
+        return coleccionAlumnos.editarAlumno(nombreAlumno, nuevoNombreAlumno);
     }
 
-    /**
-     * Metodo que en caso de encontrar una asignatura con el codigo señalado, lo elimina de la malla curricular
-     * @param codigoAsignatura String que contiene el codigo de la asignatura a eliminar
-     * @return boolean Verdadero si se puedo eliminar la asignatura, falso si no se pudo eliminar
-     */
-    public boolean eliminarAsignatura(String codigoAsignatura){
-        for (int i = 0; i < mallaCurricular.size(); i++){
-            if(mallaCurricular.get(i).getCodigoCurso().equalsIgnoreCase(codigoAsignatura)){
-                mallaCurricular.remove(i);
-                return true;
-            }
-        }
-        return false;
-    }
+    
 
     /**
      * Metodo para escribir en el archivo reporte.txt los datos de los alumnos
      * @param archivo FileWriter que contiene el nombre del archivo en donde se escribirá la información
      */
     public void reporteAlumno(FileWriter archivo){
-        try{
-            for(int i = 0 ; i < listaAlumnos.size() ; i++){
-                Alumno al = listaAlumnos.get(i);
-                archivo.write(String.format("%20s %13d %19d",al.getNombreAlumno(),al.getRut(), al.getCantidadCreditos()) + "\n");
-            }
-        }catch(IOException e){
-        }
+        //try{
+        //    for(int i = 0 ; i < listaAlumnos.size() ; i++){
+        //        Alumno al = listaAlumnos.get(i);
+        //        archivo.write(String.format("%20s %13d %19d",al.getNombreAlumno(),al.getRut(), al.getCantidadCreditos()) + "\n");                  ---------------------<
+        //    }
+        //}catch(IOException e){
+        //}
     }
 
     /**
@@ -289,7 +204,7 @@ public class Carrera implements Verificador{
      * @param aux boolean sirve para saber si se imprime la primera asignatura o no
      */
     public void reporteAsignatura(FileWriter archivo, boolean aux){
-        try{
+        /* try{
             //True si se imprime la primera asignatura, False si no es la primera asignatura
             if(aux){
                 //Esto evita que si la malla no tenga carrera se caiga el programa
@@ -307,7 +222,7 @@ public class Carrera implements Verificador{
             }
             
         }catch(IOException e){
-        }
+        } */
     }
     
     /**
@@ -315,14 +230,7 @@ public class Carrera implements Verificador{
      * @return Alumno con menor cantidad de creditos
      */
     public Alumno alumnoMenorCreditos(){
-        Alumno alumnoMenorCant = listaAlumnos.get(0);
-        for (int i = 1; i < listaAlumnos.size(); i++) {
-            if(alumnoMenorCant.getCantidadCreditos() > listaAlumnos.get(i).getCantidadCreditos()){
-                alumnoMenorCant = listaAlumnos.get(i);
-            }
-        }
-        
-        return alumnoMenorCant;
+        return coleccionAlumnos.alumnoMenorCreditos();
     }
 
     /**
@@ -332,16 +240,7 @@ public class Carrera implements Verificador{
      * @return ArrayList con los alumnos dentro del rango de creditos
      */
     public ArrayList<String> alumnosRangoCredito(int rangoMinimo, int rangoMaximo){
-        ArrayList<String> alumnosRango = new ArrayList<>();
-        
-        for (int i = 0; i < listaAlumnos.size(); i++) {
-            Alumno aux = listaAlumnos.get(i);
-            if(aux.getCantidadCreditos() >= rangoMinimo && aux.getCantidadCreditos() <= rangoMaximo){
-                alumnosRango.add(aux.mostrarAlumno());
-            }
-        }
-        
-        return alumnosRango;
+        return coleccionAlumnos.alumnosRangoCredito(rangoMinimo, rangoMaximo);
     }
 
     /**
@@ -350,33 +249,15 @@ public class Carrera implements Verificador{
      * @return boolean Verdadero si contiene al alumno y falso si no lo contiene
      */
     public boolean verificarAlumnos(String nombreAlumno){
-        return mapaAlumnos.containsKey(nombreAlumno);
-    }
-
-    /**
-     * Metodo de la interface que verifica si una asignatura se encuentra entre la malla curricular de la carera
-     * @param codigoAsignatura String que contiene el codigo del asignatura que estamos verificando
-     * @return boolean Verdadero si se encuentra el asignatura en la malla y falso, si no se encuentra
-     */
-    @Override
-    public boolean verificar(String codigoAsignatura){
-        for (int i = 0; i < mallaCurricular.size(); i++) {
-            if(mallaCurricular.get(i).getCodigoCurso().equalsIgnoreCase(codigoAsignatura)){
-                return true;
-            }
-            
-        }
-        return false;
+        return coleccionAlumnos.verificarAlumnos(nombreAlumno);
     }
     
     public String buscarAlumno(String nombreAlumno){
-        if(mapaAlumnos.containsKey(nombreAlumno)) return mapaAlumnos.get(nombreAlumno).mostrarAlumno();
-        return null;
+        return coleccionAlumnos.buscarAlumno(nombreAlumno);
     }
     
     public String[] buscarRamos(String nombreAlumno){
-        if(mapaAlumnos.containsKey(nombreAlumno)) return mapaAlumnos.get(nombreAlumno).mostrarRamos();
-        return null;
+        return coleccionAlumnos.buscarRamos(nombreAlumno);
     }
 }
 
