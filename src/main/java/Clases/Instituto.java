@@ -390,4 +390,13 @@ public class Instituto implements Verificador{
         if(!mapaCursos.containsKey(codigoAsignatura)) return null;
         return mapaCursos.get(codigoAsignatura).mostrarInformacion();
     }
+    
+    public ArrayList mostrarCursos(){
+        ArrayList<String> listaCursos = new ArrayList<>();
+        mapaCursos.forEach((key, value)->{
+            listaCursos.add(value.mostrarInformacion());
+        });
+        
+        return listaCursos;
+    }
 }
