@@ -26,7 +26,7 @@ public class MostrarAlumnos extends javax.swing.JFrame {
         this.inst = inst;
         String[] listaCarreras = inst.mostrarCarreras();
         for (int i = 0; i < listaCarreras.length; i++) {
-            String[] carreraSeparada = listaCarreras[i].split(" ");
+            String[] carreraSeparada = listaCarreras[i].split("-");
             campoCarrera.addItem(carreraSeparada[0]);
             
         }

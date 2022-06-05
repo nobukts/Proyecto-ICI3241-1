@@ -122,7 +122,7 @@ public class EditarCarrera extends javax.swing.JFrame {
         campoCarreraOriginal.addItem(" ");
         String[] listaCarreras = inst.mostrarCarreras();
         for (int i = 0; i < listaCarreras.length; i++) {
-            String[] carreraSeparada = listaCarreras[i].split(" ");
+            String[] carreraSeparada = listaCarreras[i].split("-");
             campoCarreraOriginal.addItem(carreraSeparada[0]);
             
         }

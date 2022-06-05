@@ -117,7 +117,7 @@ public class Carrera{
     }
     
     public String mostrarCarrera(){
-        return (this.getNombreCarrera() + " " + this.getCantidadAlumnos());
+        return (this.getNombreCarrera() + "-" + this.getCantidadAlumnos());
     }
 
     /**
@@ -158,8 +158,7 @@ public class Carrera{
      * @return boolean Verdadero si se pudo actualizar el estado del ramo y falso si no se pudo realizar
      */
     public boolean actualizarRamo(String nombreAlumno, String codigoRamo, int estadoRamo){
-        boolean res = false;
-        res = coleccionAlumnos.actualizarRamo(nombreAlumno, codigoRamo, estadoRamo);
+        boolean res = coleccionAlumnos.actualizarRamo(nombreAlumno, codigoRamo, estadoRamo);
         
         if(res == true && (estadoRamo == 0 || estadoRamo == 2)){
             coleccionAsignatura.disminuirAlumnos(codigoRamo);

@@ -26,7 +26,7 @@ public class AñadirAlumno extends javax.swing.JFrame {
         String[] listaCarreras = inst.mostrarCarreras();
         
         for (int i = 0; i < listaCarreras.length; i++) {
-            String[] carreraSeparada = listaCarreras[i].split(" ");
+            String[] carreraSeparada = listaCarreras[i].split("-");
             campoCarrera.addItem(carreraSeparada[0]);
             
         }
