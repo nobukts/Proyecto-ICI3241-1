@@ -166,7 +166,7 @@ public class EditarEstadoRamo extends javax.swing.JFrame {
     private void botonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEditarActionPerformed
         String nombreAlumno = campoNombre.getText();
         String[] codigoRamo = campoCodigo.getSelectedItem().toString().split(" - ");
-        String estadoRamoTexto = campoCodigo.getSelectedItem().toString();
+        String estadoRamoTexto = campoEstado.getSelectedItem().toString();
         int estadoRamo;
         Aviso avisoEmergente = new Aviso();
         

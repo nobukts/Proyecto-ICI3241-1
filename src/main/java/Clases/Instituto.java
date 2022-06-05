@@ -170,9 +170,7 @@ public class Instituto implements Verificador{
      */
     public boolean actualizarRamo(String nombreAlumno, String codigoAsignatura, int estadoRamo){
         for (int i = 0; i < listaCarreras.size(); i++) {
-            if(listaCarreras.get(i).actualizarRamo(nombreAlumno, codigoAsignatura, estadoRamo)){
-                return true;
-            }
+            return listaCarreras.get(i).actualizarRamo(nombreAlumno, codigoAsignatura, estadoRamo);
         }
         return false;
     }
