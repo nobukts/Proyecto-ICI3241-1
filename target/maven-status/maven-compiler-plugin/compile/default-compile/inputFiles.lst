@@ -1,39 +1,36 @@
-D:\C贸digos\Proyecto-ICI3241-1\src\main\java\Clases\ColeccionRamos.java
-D:\C贸digos\Proyecto-ICI3241-1\src\main\java\Ventanas\MostrarMalla.java
-D:\C贸digos\Proyecto-ICI3241-1\src\main\java\Ventanas\BuscarAsignatura.java
-D:\C贸digos\Proyecto-ICI3241-1\src\main\java\Ventanas\BuscarMenorCreditos.java
-D:\C贸digos\Proyecto-ICI3241-1\src\main\java\Ventanas\EliminarAlumno.java
-D:\C贸digos\Proyecto-ICI3241-1\src\main\java\Ventanas\EliminarAsignatura.java
-D:\C贸digos\Proyecto-ICI3241-1\src\main\java\Ventanas\A帽adirAlumno.java
-D:\C贸digos\Proyecto-ICI3241-1\src\main\java\Clases\ColeccionAlumnos.java
-D:\C贸digos\Proyecto-ICI3241-1\src\main\java\Clases\Opcional.java
-D:\C贸digos\Proyecto-ICI3241-1\src\main\java\Ventanas\A帽adirMalla.java
-D:\C贸digos\Proyecto-ICI3241-1\src\main\java\Ventanas\MenuBuscar.java
-D:\C贸digos\Proyecto-ICI3241-1\src\main\java\Ventanas\MenuPrincipal.java
-D:\C贸digos\Proyecto-ICI3241-1\src\main\java\Ventanas\A帽adirOpcional.java
-D:\C贸digos\Proyecto-ICI3241-1\src\main\java\Clases\ColeccionAsignatura.java
-D:\C贸digos\Proyecto-ICI3241-1\src\main\java\Ventanas\BuscarRangoCreditos.java
-D:\C贸digos\Proyecto-ICI3241-1\src\main\java\Ventanas\Aviso.java
-D:\C贸digos\Proyecto-ICI3241-1\src\main\java\Ventanas\EditarAlumno.java
-D:\C贸digos\Proyecto-ICI3241-1\src\main\java\Clases\Instituto.java
-D:\C贸digos\Proyecto-ICI3241-1\src\main\java\Clases\Obligatorio.java
-D:\C贸digos\Proyecto-ICI3241-1\src\main\java\Ventanas\MenuEditar.java
-D:\C贸digos\Proyecto-ICI3241-1\src\main\java\Interfaces\Verificador.java
-D:\C贸digos\Proyecto-ICI3241-1\src\main\java\Ventanas\MostrarAlumnos.java
-D:\C贸digos\Proyecto-ICI3241-1\src\main\java\Ventanas\A帽adirCarrera.java
-D:\C贸digos\Proyecto-ICI3241-1\src\main\java\Clases\Curso.java
-D:\C贸digos\Proyecto-ICI3241-1\src\main\java\Ventanas\BuscarAlumno.java
-D:\C贸digos\Proyecto-ICI3241-1\src\main\java\Ventanas\MenuEliminar.java
-D:\C贸digos\Proyecto-ICI3241-1\src\main\java\Clases\Alumno.java
-D:\C贸digos\Proyecto-ICI3241-1\src\main\java\Ventanas\EditarEstadoRamo.java
-D:\C贸digos\Proyecto-ICI3241-1\src\main\java\Ventanas\MenuA帽adir.java
-D:\C贸digos\Proyecto-ICI3241-1\src\main\java\Ventanas\MenuMostrar.java
-D:\C贸digos\Proyecto-ICI3241-1\src\main\java\Clases\Carrera.java
-D:\C贸digos\Proyecto-ICI3241-1\src\main\java\Ventanas\EditarAsignatura.java
-D:\C贸digos\Proyecto-ICI3241-1\src\main\java\Ventanas\EliminarCarrera.java
-D:\C贸digos\Proyecto-ICI3241-1\src\main\java\Ventanas\EditarCarrera.java
-D:\C贸digos\Proyecto-ICI3241-1\src\main\java\Clases\Asignatura.java
-D:\C贸digos\Proyecto-ICI3241-1\src\main\java\Ventanas\MostrarCarrera.java
-D:\C贸digos\Proyecto-ICI3241-1\src\main\java\Clases\Ramo.java
-D:\C贸digos\Proyecto-ICI3241-1\src\main\java\Ventanas\Main.java
-D:\C贸digos\Proyecto-ICI3241-1\src\main\java\Ventanas\MostrarCursos.java
+C:\Users\BRYAN\Documents\PROYECTO ICI3241\Proyecto-ICI3241-1\src\main\java\Ventanas\EliminarAsignatura.java
+C:\Users\BRYAN\Documents\PROYECTO ICI3241\Proyecto-ICI3241-1\src\main\java\Clases\Alumno.java
+C:\Users\BRYAN\Documents\PROYECTO ICI3241\Proyecto-ICI3241-1\src\main\java\Ventanas\BuscarAsignatura.java
+C:\Users\BRYAN\Documents\PROYECTO ICI3241\Proyecto-ICI3241-1\src\main\java\Ventanas\EditarAlumno.java
+C:\Users\BRYAN\Documents\PROYECTO ICI3241\Proyecto-ICI3241-1\src\main\java\Interfaces\Verificador.java
+C:\Users\BRYAN\Documents\PROYECTO ICI3241\Proyecto-ICI3241-1\src\main\java\Ventanas\A馻dirOpcional.java
+C:\Users\BRYAN\Documents\PROYECTO ICI3241\Proyecto-ICI3241-1\src\main\java\Ventanas\MostrarCarrera.java
+C:\Users\BRYAN\Documents\PROYECTO ICI3241\Proyecto-ICI3241-1\src\main\java\Clases\Obligatorio.java
+C:\Users\BRYAN\Documents\PROYECTO ICI3241\Proyecto-ICI3241-1\src\main\java\Ventanas\Aviso.java
+C:\Users\BRYAN\Documents\PROYECTO ICI3241\Proyecto-ICI3241-1\src\main\java\Ventanas\A馻dirCarrera.java
+C:\Users\BRYAN\Documents\PROYECTO ICI3241\Proyecto-ICI3241-1\src\main\java\Ventanas\EliminarCarrera.java
+C:\Users\BRYAN\Documents\PROYECTO ICI3241\Proyecto-ICI3241-1\src\main\java\Ventanas\Main.java
+C:\Users\BRYAN\Documents\PROYECTO ICI3241\Proyecto-ICI3241-1\src\main\java\Ventanas\MenuBuscar.java
+C:\Users\BRYAN\Documents\PROYECTO ICI3241\Proyecto-ICI3241-1\src\main\java\Ventanas\MostrarAlumnos.java
+C:\Users\BRYAN\Documents\PROYECTO ICI3241\Proyecto-ICI3241-1\src\main\java\Ventanas\BuscarAlumno.java
+C:\Users\BRYAN\Documents\PROYECTO ICI3241\Proyecto-ICI3241-1\src\main\java\Ventanas\MostrarMalla.java
+C:\Users\BRYAN\Documents\PROYECTO ICI3241\Proyecto-ICI3241-1\src\main\java\Ventanas\MenuEliminar.java
+C:\Users\BRYAN\Documents\PROYECTO ICI3241\Proyecto-ICI3241-1\src\main\java\Ventanas\EditarCarrera.java
+C:\Users\BRYAN\Documents\PROYECTO ICI3241\Proyecto-ICI3241-1\src\main\java\Ventanas\MenuMostrar.java
+C:\Users\BRYAN\Documents\PROYECTO ICI3241\Proyecto-ICI3241-1\src\main\java\Clases\ColeccionAlumnos.java
+C:\Users\BRYAN\Documents\PROYECTO ICI3241\Proyecto-ICI3241-1\src\main\java\Clases\Ramo.java
+C:\Users\BRYAN\Documents\PROYECTO ICI3241\Proyecto-ICI3241-1\src\main\java\Ventanas\MenuPrincipal.java
+C:\Users\BRYAN\Documents\PROYECTO ICI3241\Proyecto-ICI3241-1\src\main\java\Clases\Carrera.java
+C:\Users\BRYAN\Documents\PROYECTO ICI3241\Proyecto-ICI3241-1\src\main\java\Ventanas\BuscarMenorCreditos.java
+C:\Users\BRYAN\Documents\PROYECTO ICI3241\Proyecto-ICI3241-1\src\main\java\Clases\Curso.java
+C:\Users\BRYAN\Documents\PROYECTO ICI3241\Proyecto-ICI3241-1\src\main\java\Ventanas\A馻dirMalla.java
+C:\Users\BRYAN\Documents\PROYECTO ICI3241\Proyecto-ICI3241-1\src\main\java\Ventanas\MenuA馻dir.java
+C:\Users\BRYAN\Documents\PROYECTO ICI3241\Proyecto-ICI3241-1\src\main\java\Clases\Asignatura.java
+C:\Users\BRYAN\Documents\PROYECTO ICI3241\Proyecto-ICI3241-1\src\main\java\Ventanas\MenuEditar.java
+C:\Users\BRYAN\Documents\PROYECTO ICI3241\Proyecto-ICI3241-1\src\main\java\Clases\Opcional.java
+C:\Users\BRYAN\Documents\PROYECTO ICI3241\Proyecto-ICI3241-1\src\main\java\Clases\Instituto.java
+C:\Users\BRYAN\Documents\PROYECTO ICI3241\Proyecto-ICI3241-1\src\main\java\Ventanas\BuscarRangoCreditos.java
+C:\Users\BRYAN\Documents\PROYECTO ICI3241\Proyecto-ICI3241-1\src\main\java\Ventanas\EditarEstadoRamo.java
+C:\Users\BRYAN\Documents\PROYECTO ICI3241\Proyecto-ICI3241-1\src\main\java\Ventanas\EliminarAlumno.java
+C:\Users\BRYAN\Documents\PROYECTO ICI3241\Proyecto-ICI3241-1\src\main\java\Ventanas\EditarAsignatura.java
+C:\Users\BRYAN\Documents\PROYECTO ICI3241\Proyecto-ICI3241-1\src\main\java\Ventanas\A馻dirAlumno.java
