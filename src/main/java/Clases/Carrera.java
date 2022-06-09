@@ -9,8 +9,6 @@ public class Carrera{
     private int cantidadAlumnos;
     private ColeccionAlumnos coleccionAlumnos;
     private ColeccionAsignatura coleccionAsignatura;
-    //private ArrayList<Asignatura> mallaCurricular;
-    
     
     /**
      * Constructor vacio que inicializa las colecciones de la clase
@@ -49,73 +47,18 @@ public class Carrera{
         this.nombreCarrera = nombreCarrera;
     }
 
-    public boolean contieneAlumnos(){
-        return coleccionAlumnos.contieneAlumnos();
-    }
-    
     /**
-     * Metodo que agrega un alumno a la lista de alumnos y al mapa de alumnos
-     * @param al Objeto de la clase Alumno
-     * @return boolean Verdadero si el alumno se pudo matricular y falso si ya se encontraba matriculado
-     */
-    public boolean matricularAlumno(Alumno al){
-        if(coleccionAlumnos.mismoRut(al) == false){return false;}
-        
-        coleccionAlumnos.agregarAlumno(al);
-        cantidadAlumnos++;
-        
-        coleccionAsignatura.agregarAlumno(al);
-        
-        return true;
-    }
-
-    /**
-     * Metodo que elimina un alumno de la lista y del mapa de alumnos a traves del nombre
-     * @param nombreAlumno String que contiene el nombre del alumno a eliminar
-     * @return boolean Verdadero si se pudo eliminar con exito al alumno y falso si no se pudo eliminarlo
-     */
-    public boolean eliminarAlumno(String nombreAlumno){
-        if(coleccionAlumnos.contieneAlumnos()) return false;
-        if(coleccionAlumnos.eliminarAlumno(nombreAlumno, coleccionAsignatura)){
-            cantidadAlumnos--;
-            return true;
-        }
-
-        return false;
-    }
-
-    /**
-     * Metodo que elimina un alumno de la lista y del mapa de alumnos a traves del rut
-     * @param rutAlumno Entero que contiene el rut del alumno a eliminar
-     * @return boolean Verdadero si se pudo eliminar con exito al alumno y falso si no se pudo eliminarlo
-     */
-    public boolean eliminarAlumno(int rutAlumno){
-        if(coleccionAlumnos.contieneAlumnos()) return false;
-        if(coleccionAlumnos.eliminarAlumno(rutAlumno, coleccionAsignatura)){
-            cantidadAlumnos--;
-            return true;
-        }
-        
-        return false;
-    }
-
-    /**
-     * Metodo que en caso de encontrar una asignatura con el codigo señalado, lo elimina de la malla curricular
-     * @param codigoAsignatura String que contiene el codigo de la asignatura a eliminar
-     * @return boolean Verdadero si se puedo eliminar la asignatura, falso si no se pudo eliminar
-     */
-    public boolean eliminarAsignatura(String codigoAsignatura){
-        return coleccionAsignatura.eliminarAsignatura(codigoAsignatura);
-    }
-
-    /**
-     * Metodo que muestra la informacion de la lista de alumnos almacenados de la carrera
+     * Metodo que muestra la informacion de la lista de alumnos
      * @return 
      */
     public String[] mostrarListaAlumnos(){       
-        return coleccionAlumnos.mostrarAlumno();
+        return coleccionAlumnos.mostrarListaAlumnos();
     }
     
+    /**
+     * Metodo que muestra la informacion de la carrera
+     * @return 
+     */
     public String mostrarCarrera(){
         return (this.getNombreCarrera() + "-" + this.getCantidadAlumnos());
     }
@@ -126,6 +69,22 @@ public class Carrera{
      */
     public String[] mostrarAsignaturas(){
         return coleccionAsignatura.mostrarAsignaturas();
+    }
+    
+    /**
+     * Metodo que agrega un alumno a la lista de alumnos y al mapa de alumnos
+     * @param al Objeto de la clase Alumno
+     * @return boolean Verdadero si el alumno se pudo matricular y falso si ya se encontraba matriculado
+     */
+    public boolean matricularAlumno(Alumno al){
+        if(coleccionAlumnos.mismoRut(al.getRut()) == false){return false;}
+        
+        coleccionAlumnos.agregarAlumno(al);
+        cantidadAlumnos++;
+        
+        coleccionAsignatura.agregarAlumno(al);
+        
+        return true;
     }
 
     /**
@@ -149,6 +108,45 @@ public class Carrera{
     public boolean agregarRamoOpcional(String nombreAlumno, Ramo nuevoRamo){
         return coleccionAlumnos.agregarRamoOpcional(nombreAlumno, nuevoRamo);
     }
+
+    /**
+     * Metodo que elimina un alumno de la lista y del mapa de alumnos a traves del nombre
+     * @param nombreAlumno String que contiene el nombre del alumno a eliminar
+     * @return boolean Verdadero si se pudo eliminar con exito al alumno y falso si no se pudo eliminarlo
+     */
+    public boolean eliminarAlumno(String nombreAlumno){
+        if(coleccionAlumnos.noContieneAlumnos()) return false;
+        if(coleccionAlumnos.eliminarAlumno(nombreAlumno, coleccionAsignatura)){
+            cantidadAlumnos--;
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
+     * Metodo que elimina un alumno de la lista y del mapa de alumnos a traves del rut
+     * @param rutAlumno Entero que contiene el rut del alumno a eliminar
+     * @return boolean Verdadero si se pudo eliminar con exito al alumno y falso si no se pudo eliminarlo
+     */
+    public boolean eliminarAlumno(int rutAlumno){
+        if(coleccionAlumnos.noContieneAlumnos()) return false;
+        if(coleccionAlumnos.eliminarAlumno(rutAlumno, coleccionAsignatura)){
+            cantidadAlumnos--;
+            return true;
+        }
+        
+        return false;
+    }
+
+    /**
+     * Metodo que en caso de encontrar una asignatura con el codigo señalado, lo elimina de la malla curricular
+     * @param codigoAsignatura String que contiene el codigo de la asignatura a eliminar
+     * @return boolean Verdadero si se puedo eliminar la asignatura, falso si no se pudo eliminar
+     */
+    public boolean eliminarAsignatura(String codigoAsignatura){
+        return coleccionAsignatura.eliminarAsignatura(codigoAsignatura);
+    }
     
     /**
      * Metodo que actualiza el estado de un ramo que posee el alumno
@@ -158,16 +156,7 @@ public class Carrera{
      * @return boolean Verdadero si se pudo actualizar el estado del ramo y falso si no se pudo realizar
      */
     public boolean actualizarRamo(String nombreAlumno, String codigoRamo, int estadoRamo){
-        boolean res = coleccionAlumnos.actualizarRamo(nombreAlumno, codigoRamo, estadoRamo);
-        
-        if(res == true && (estadoRamo == 0 || estadoRamo == 2)){
-            coleccionAsignatura.disminuirAlumnos(codigoRamo);
-        }
-        else if(res == true && estadoRamo == 1){
-            coleccionAsignatura.aumentarAlumnos(codigoRamo);
-        }
-        
-        return res;
+        return coleccionAlumnos.actualizarRamo(nombreAlumno, codigoRamo, estadoRamo);
     }
 
     
@@ -241,6 +230,24 @@ public class Carrera{
     public ArrayList<String> alumnosRangoCredito(int rangoMinimo, int rangoMaximo){
         return coleccionAlumnos.alumnosRangoCredito(rangoMinimo, rangoMaximo);
     }
+    
+    /**
+     * Metodo que busca un alumno por su nombre y lo muestra
+     * @param nombreAlumno String con el nombre del alumno a buscar
+     * @return String con la informacion del alumno
+     */
+    public String buscarAlumno(String nombreAlumno){
+        return coleccionAlumnos.buscarAlumno(nombreAlumno);
+    }
+    
+    /**
+     * Metodo que busca los ramos de un alumno y los muestra
+     * @param nombreAlumno
+     * @return
+     */
+    public String[] buscarRamos(String nombreAlumno){
+        return coleccionAlumnos.buscarRamos(nombreAlumno);
+    }
 
     /**
      * Metodo que verifica si el alumno se encuentra dentro de la carrera
@@ -250,13 +257,12 @@ public class Carrera{
     public boolean verificarAlumnos(String nombreAlumno){
         return coleccionAlumnos.verificarAlumnos(nombreAlumno);
     }
-    
-    public String buscarAlumno(String nombreAlumno){
-        return coleccionAlumnos.buscarAlumno(nombreAlumno);
-    }
-    
-    public String[] buscarRamos(String nombreAlumno){
-        return coleccionAlumnos.buscarRamos(nombreAlumno);
+
+    /**
+     * Metodo que verifica si la coleccion contiene alumnos
+     * @return boolean Verdadero si contiene alumnos y falso si no los contiene
+     */
+    public boolean noContieneAlumnos(){
+        return coleccionAlumnos.noContieneAlumnos();
     }
 }
-

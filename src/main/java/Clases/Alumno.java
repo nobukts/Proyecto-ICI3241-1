@@ -1,19 +1,18 @@
 package Clases;
 
 import Interfaces.Verificador;
-import java.util.ArrayList;
 
 public class Alumno implements Verificador{
     private String nombreAlumno;
     private int cantidadCreditos;
     private int rut;
-    private ArrayList<Ramo> ramosAlumno;
+    private ColeccionRamos coleccionRamos;
 
     /**
      * Constructor vacio que inicializa el ArrayList ramosAlumno
      */
     public Alumno(){
-        ramosAlumno = new ArrayList<>();
+        coleccionRamos = new ColeccionRamos();
     }
 
     /**
@@ -24,7 +23,7 @@ public class Alumno implements Verificador{
     public Alumno(String nombreAlumno, int rut){
         this.nombreAlumno = nombreAlumno;
         this.rut = rut;
-        ramosAlumno = new ArrayList<>();
+        coleccionRamos = new ColeccionRamos();
     }
 
     //------------GETTERS
@@ -62,20 +61,13 @@ public class Alumno implements Verificador{
     public String mostrarAlumno(){
         return (getNombreAlumno() + '-' + getRut() + '-' + getCantidadCreditos());
     }
-        
+
     /**
-     * Metodo para corroborar que asignaturas esta cursando el alumno
-     * @param codigoAsignatura String que contiene el codigo del ramo que se quiere verificar
-     * @return boolean true si es que el alumno esta cursando el ramo, false si lo tiene aprobado o aun no lo esta cursando
+     * Metodo que permite mostrar la informacion de los ramos de los alumnos
+     * @return arreglo de String con la informacion de los ramos del alumno
      */
-    public boolean eliminarAlumno(String codigoAsignatura){
-        for (int i = 0; i < ramosAlumno.size(); i++) {
-            if(ramosAlumno.get(i).getCodigoCurso().equalsIgnoreCase(codigoAsignatura)){
-                return ramosAlumno.get(i).getEstadoRamo() == 1;
-            }
-        }
-        
-        return false;
+    public String[] mostrarRamos(){
+        return coleccionRamos.mostrarRamos();
     }
 
     /**
@@ -83,7 +75,16 @@ public class Alumno implements Verificador{
      * @param nuevoRamo Objeto de la clase Ramo que se desea agregar a los ramos del alumno
      */
     public void agregarRamo(Ramo nuevoRamo){
-        ramosAlumno.add(nuevoRamo);
+        coleccionRamos.agregarRamo(nuevoRamo);
+    }
+        
+    /**
+     * Metodo para corroborar que asignaturas esta cursando el alumno
+     * @param codigoAsignatura String que contiene el codigo del ramo que se quiere verificar
+     * @return boolean true si es que el alumno esta cursando el ramo, false si lo tiene aprobado o aun no lo esta cursando
+     */
+    public boolean eliminarAlumno(String codigoAsignatura){
+        return coleccionRamos.eliminarAlumno(codigoAsignatura);
     }
 
     /**
@@ -93,15 +94,9 @@ public class Alumno implements Verificador{
      * @return boolean Verdadero si se puede actualizar el estado del ramo y falso si no se pudo actualizar
      */
     public boolean actualizarRamo(String codigoRamo, int estadoRamo){
-        for (int i = 0; i < ramosAlumno.size(); i++) {
-            if(ramosAlumno.get(i).getCodigoCurso().equalsIgnoreCase(codigoRamo)){
-                boolean res = ramosAlumno.get(i).actualizarRamo(estadoRamo);
-                
-                if(res == true && estadoRamo == 2) cantidadCreditos += ramosAlumno.get(i).getCantidadCreditos();
-                
-                return res;
-            }
-            
+        if(coleccionRamos.actualizarRamo(codigoRamo, estadoRamo)){
+            if(estadoRamo == 2) cantidadCreditos += coleccionRamos.getCantidadCreditos(codigoRamo);
+            return true;
         }
         return false;
     }
@@ -109,24 +104,10 @@ public class Alumno implements Verificador{
     /**
      * Metodo de la interface que verifica si un ramo se encuentra entre los ramos del alumno
      * @param codigoCurso String que contiene el codigo del ramo que estamos verificando
-     * @return boolean Falso si no se encuentra el ramo en la malla curricular y Verdaderi si ya se encuentra
+     * @return boolean Falso si no se encuentra el ramo en la malla curricular y Verdadero si ya se encuentra
      */
     @Override
     public boolean verificar(String codigoCurso){
-        for (int i = 0; i < ramosAlumno.size(); i++) {
-            if(codigoCurso.equals(ramosAlumno.get(i).getCodigoCurso())) return true;
-        }
-        return false;
-    }
-    
-    public String[] mostrarRamos(){
-        String[] listaRamos = new String[ramosAlumno.size()];
-        
-        for (int i = 0; i < ramosAlumno.size(); i++) {
-            listaRamos[i] = ramosAlumno.get(i).mostrarInformacion();
-            
-        }
-        
-        return listaRamos;
+        return coleccionRamos.verificarCodigoCurso(codigoCurso);
     }
 }

@@ -140,7 +140,7 @@ public class MenuAñadir extends javax.swing.JFrame {
 
     private void añadirMallaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_añadirMallaActionPerformed
         // TODO add your handling code here:
-        if(!inst.contieneCarrera()){
+        if(!inst.noContieneCarrera()){
             AñadirMalla aM = new AñadirMalla(inst);
             this.dispose();
             aM.setVisible(true);    
@@ -154,7 +154,7 @@ public class MenuAñadir extends javax.swing.JFrame {
 
     private void matricularAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_matricularAlumnoActionPerformed
         // TODO add your handling code here:
-        if(!inst.contieneCarrera() && !inst.contieneAlumnos()){
+        if(!inst.noContieneCarrera() && !inst.noContieneAlumnos()){
             AñadirAlumno aA = new AñadirAlumno(inst);
             this.dispose();
             aA.setVisible(true);      
@@ -167,7 +167,7 @@ public class MenuAñadir extends javax.swing.JFrame {
     }//GEN-LAST:event_matricularAlumnoActionPerformed
 
     private void botonAñadirOpcionalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAñadirOpcionalActionPerformed
-        if(!inst.contieneAlumnos()){
+        if(!inst.noContieneAlumnos()){
             AñadirOpcional aO = new AñadirOpcional(inst);
             this.dispose();
             aO.setVisible(true);      

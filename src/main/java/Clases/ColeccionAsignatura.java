@@ -11,6 +11,24 @@ public class ColeccionAsignatura implements Verificador {
         mallaCurricular = new ArrayList<>();
     }
 
+    /**
+     * Metodo que muestra las asignaturas impartidos por la carrera, con su respectiva informacion
+     * @return 
+     */
+    public String[] mostrarAsignaturas(){
+        String[] malla = new String[mallaCurricular.size()];
+        
+        for (int i = 0; i < mallaCurricular.size(); i++) {
+            malla[i] = mallaCurricular.get(i).mostrarInformacion();
+        }
+        
+        return malla;
+    }
+
+    /**
+     * Metodo que agrega un alumno a la lista de alumnos y al mapa de alumnos
+     * @param al Objeto de la clase Alumno
+     */
     public void agregarAlumno(Alumno al){
         for(int i = 0; i < mallaCurricular.size(); i++){
             Asignatura aux = mallaCurricular.get(i);
@@ -24,38 +42,19 @@ public class ColeccionAsignatura implements Verificador {
         }
     }
 
+    /**
+     * Metodo para agregar una asignatura a la malla curricular
+     * @param nuevaAsignatura La asignatura a agregar
+     */
     public void agregarAsignaturaMalla(Asignatura nuevaAsignatura){
         mallaCurricular.add(nuevaAsignatura);
     }
 
-    public void disminuirAlumnos(String codigoRamo){
-        for (int i = 0; i < mallaCurricular.size(); i++) {
-            if(mallaCurricular.get(i).getCodigoCurso().equalsIgnoreCase(codigoRamo)){
-                mallaCurricular.get(i).disminuirAlumnos();
-            }
-            
-        }
-    }
-
-    public void aumentarAlumnos(String codigoRamo){
-        for (int i = 0; i < mallaCurricular.size(); i++) {
-            if(mallaCurricular.get(i).getCodigoCurso().equalsIgnoreCase(codigoRamo)){
-                mallaCurricular.get(i).aumentarAlumnos();
-            }
-            
-        }
-    }
-
-    public String[] mostrarAsignaturas(){
-        String[] malla = new String[mallaCurricular.size()];
-        
-        for (int i = 0; i < mallaCurricular.size(); i++) {
-            malla[i] = mallaCurricular.get(i).mostrarInformacion();
-        }
-        
-        return malla;
-    }
-
+    /**
+     * Metodo para eliminar una asignatura
+     * @param codigoAsignatura El codigo de la asignatura a eliminar
+     * @return boolean true si se pudo eliminar, false si no se pudo eliminar
+     */
     public boolean eliminarAsignatura(String codigoAsignatura){
         for (int i = 0; i < mallaCurricular.size(); i++){
             if(mallaCurricular.get(i).getCodigoCurso().equalsIgnoreCase(codigoAsignatura)){
@@ -66,21 +65,41 @@ public class ColeccionAsignatura implements Verificador {
         return false;
     }
 
-    public void eliminarAlumno(String nombreAlumno, HashMap<String, Alumno> mapaAlumnos){
+    /**
+     * Metodo para eliminar un alumno de la malla curricular
+     * @param al El alumno a eliminar
+     */
+    public void eliminarAlumno(Alumno al){
         for (int j = 0; j < mallaCurricular.size(); j++) {
-            if(mapaAlumnos.containsKey(nombreAlumno)){
-                if(mapaAlumnos.get(nombreAlumno).eliminarAlumno(mallaCurricular.get(j).getCodigoCurso())) 
-                    mallaCurricular.get(j).disminuirAlumnos();
+            if(al.eliminarAlumno(mallaCurricular.get(j).getCodigoCurso())){
+                mallaCurricular.get(j).disminuirAlumnos();
             }
         }
     }
 
-    public void eliminarAlumno(int rutAlumno, HashMap<String, Alumno> mapaAlumnos, String nombreAlumno){
-        for (int j = 0; j < mallaCurricular.size(); j++) {
-            if(mapaAlumnos.containsKey(nombreAlumno)){
-                if(mapaAlumnos.get(nombreAlumno).eliminarAlumno(mallaCurricular.get(j).getCodigoCurso())) 
-                    mallaCurricular.get(j).disminuirAlumnos();
+    /**
+     * Metodo para disminuir los alumnos en una asignatura de la malla
+     * @param codigoRamo el codigo de la asignatura a disminuir sus alumnos
+     */
+    public void disminuirAlumnos(String codigoRamo){
+        for (int i = 0; i < mallaCurricular.size(); i++) {
+            if(mallaCurricular.get(i).getCodigoCurso().equalsIgnoreCase(codigoRamo)){
+                mallaCurricular.get(i).disminuirAlumnos();
             }
+            
+        }
+    }
+
+    /**
+     * Metodo para aumentar los alumnos en una asignatura de la malla
+     * @param codigoRamo el codigo de la asignatura a aumentar sus alumnos
+     */
+    public void aumentarAlumnos(String codigoRamo){
+        for (int i = 0; i < mallaCurricular.size(); i++) {
+            if(mallaCurricular.get(i).getCodigoCurso().equalsIgnoreCase(codigoRamo)){
+                mallaCurricular.get(i).aumentarAlumnos();
+            }
+            
         }
     }
 

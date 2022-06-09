@@ -43,18 +43,7 @@ public class Ramo extends Curso{
     public void setEstadoRamo(int estadoRamo) {
         this.estadoRamo = estadoRamo;
     }
-    
-     /**
-     * Metodo que permite la actualizacion de informacion al cambiar el estado de un ramo
-     * @param estadoRamo Entero que contiene el estado del ramo (0 = No cursado, 1 = Cursando y 2 = Aprobado)
-     * @return boolean Verdadero si se puede actualizar el ramo y falso si no se puede actualizar
-     */
-    public boolean actualizarRamo(int estadoRamo){
-        if(this.estadoRamo == estadoRamo) return false;
-        this.estadoRamo = estadoRamo;
-        return true;
-    }
-    
+
     /**
      * Metodo que muestra la informacion respectiva del ramo
      */
@@ -74,5 +63,16 @@ public class Ramo extends Curso{
         }
         
         return mensaje;
+    }
+
+     /**
+     * Metodo que permite la actualizacion de informacion al cambiar el estado de un ramo
+     * @param estadoRamo Entero que contiene el estado del ramo (0 = No cursado, 1 = Cursando y 2 = Aprobado)
+     * @return boolean Verdadero si se puede actualizar el ramo y falso si no se puede actualizar
+     */
+    public boolean actualizarRamo(int estadoRamo){
+        if(this.estadoRamo == estadoRamo) return false;
+        this.estadoRamo = estadoRamo;
+        return true;
     }
 }

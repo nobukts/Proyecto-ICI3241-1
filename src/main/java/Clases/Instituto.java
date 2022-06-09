@@ -44,12 +44,20 @@ public class Instituto implements Verificador{
         return false;
     }
 
-    public boolean contieneCarrera(){
+    /**
+     * Metodo que verifica si la lista carreras esta vacia
+     * @return boolean true si la lista carreras esta vacia, false si no esta vacia
+     */
+    public boolean noContieneCarrera(){
         return listaCarreras.isEmpty();
     }
     
-    public boolean contieneAlumnos(){
-        if(!contieneCarrera()) return listaCarreras.get(0).contieneAlumnos();
+    /**
+     * Metodo que verifica si la lista carreras no contiene alumnos
+     * @return boolean true si la lista carreras no contiene alumnos, false si contiene
+     */
+    public boolean noContieneAlumnos(){
+        if(!noContieneCarrera()) return listaCarreras.get(0).noContieneAlumnos();
         return false;
     }
     
@@ -117,7 +125,7 @@ public class Instituto implements Verificador{
         for (int i = 0; i < listaCarreras.size(); i++) {
             if(nombreCarrera.equalsIgnoreCase(listaCarreras.get(i).getNombreCarrera())){
                 return listaCarreras.get(i).eliminarAlumno(nombreAlumno);
-            } 
+            }
         }
         return false;
     }
@@ -171,8 +179,16 @@ public class Instituto implements Verificador{
      * @return boolean Verdadero si se pudo utilizar y falso si no se pudo actualizar
      */
     public boolean actualizarRamo(String nombreAlumno, String codigoAsignatura, int estadoRamo){
-        for (int i = 0; i < listaCarreras.size(); i++) {
-            return listaCarreras.get(i).actualizarRamo(nombreAlumno, codigoAsignatura, estadoRamo);
+        
+        for (int i = 0 ; i < listaCarreras.size() ; i++) {
+            if(listaCarreras.get(i).actualizarRamo(nombreAlumno, codigoAsignatura, estadoRamo)){
+                if(estadoRamo == 0 || estadoRamo == 2){
+                    mapaCursos.get(codigoAsignatura).disminuirAlumnos();
+                }else if(estadoRamo == 1){
+                    mapaCursos.get(codigoAsignatura).aumentarAlumnos();
+                }
+                return true;
+            }
         }
         return false;
     }
@@ -350,13 +366,19 @@ public class Instituto implements Verificador{
     /**
      * Metodo de la interface que verifica si una asignatura se encuentra o no en la lista
      * @param codigoCurso String que contiene el codigo del curso
-     * @return Boolean
+     * @return Boolean true si el codigo se encuentra en el mapa cursos y falso si no se encuentra
      */
     @Override
     public boolean verificar(String codigoCurso){
         return mapaCursos.containsKey(codigoCurso);
     }
     
+    /**
+     * Metodo que busca un alumno y lo muestra
+     * @param nombreCarrera String con el nombre de la carrera
+     * @param nombreAlumno String con el nombre del alumno a buscar
+     * @return String con la informacion del alumno
+     */
     public String buscarAlumno(String nombreCarrera, String nombreAlumno){
         for (int i = 0; i < listaCarreras.size(); i++) {
             if(listaCarreras.get(i).getNombreCarrera().equals(nombreCarrera)) return listaCarreras.get(i).buscarAlumno(nombreAlumno);
@@ -365,6 +387,12 @@ public class Instituto implements Verificador{
         return null;
     }
     
+    /**
+     * Metodo para buscar los ramos de un alumno y mostrarlos
+     * @param nombreCarrera String con el nombre de la carrera
+     * @param nombreAlumno String con el nombre del alumno a buscar
+     * @return cadena de string con la informacion de los ramos de un alumno
+     */
     public String[] buscarRamosAlumno(String nombreCarrera, String nombreAlumno){
         for (int i = 0; i < listaCarreras.size(); i++) {
             if(listaCarreras.get(i).getNombreCarrera().equals(nombreCarrera)) return listaCarreras.get(i).buscarRamos(nombreAlumno);
@@ -373,6 +401,11 @@ public class Instituto implements Verificador{
         return null;
     }
     
+    /**
+     * Metodo para buscar los ramos de un alumno y mostrarlos
+     * @param nombreAlumno String con el nombre del alumno a buscar
+     * @return cadena de string con la informacion de los ramos de un alumno
+     */
     public String[] buscarRamosAlumno(String nombreAlumno){
         for (int i = 0; i < listaCarreras.size(); i++) {
             if(listaCarreras.get(i).buscarAlumno(nombreAlumno) != null) return listaCarreras.get(i).buscarRamos(nombreAlumno);
@@ -391,7 +424,11 @@ public class Instituto implements Verificador{
         return mapaCursos.get(codigoAsignatura).mostrarInformacion();
     }
     
-    public ArrayList mostrarCursos(){
+    /**
+     * Metodo para mostrar los cursos que existen
+     * @return arraylist con la informacion de todos los cursos
+     */
+    public ArrayList<String> mostrarCursos(){
         ArrayList<String> listaCursos = new ArrayList<>();
         mapaCursos.forEach((key, value)->{
             listaCursos.add(value.mostrarInformacion());

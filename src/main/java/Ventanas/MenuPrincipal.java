@@ -133,7 +133,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_botonAñadirActionPerformed
 
     private void botonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBuscarActionPerformed
-        if(!inst.contieneCarrera()){
+        if(!inst.noContieneCarrera()){
             MenuBuscar menuB = new MenuBuscar(inst);
             menuB.setVisible(true);
             this.dispose();
@@ -146,7 +146,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_botonBuscarActionPerformed
 
     private void botonMostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonMostrarActionPerformed
-        if(!inst.contieneCarrera()){
+        if(!inst.noContieneCarrera()){
             MenuMostrar menuM = new MenuMostrar(inst);
             menuM.setVisible(true);
             this.dispose();
@@ -159,7 +159,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     private void botonReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonReporteActionPerformed
         Aviso avisoEmergente = new Aviso();
-        if(!inst.contieneCarrera()){
+        if(!inst.noContieneCarrera()){
             inst.crearReporte();
             avisoEmergente.cambiarAviso("Se genero el reporte de las carreras");
         }else{
@@ -169,7 +169,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_botonReporteActionPerformed
 
     private void botonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarActionPerformed
-        if(!inst.contieneCarrera()){
+        if(!inst.noContieneCarrera()){
             MenuEliminar menuE = new MenuEliminar(inst);
             this.dispose();
             menuE.setVisible(true);
@@ -182,7 +182,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_botonEliminarActionPerformed
 
     private void botonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEditarActionPerformed
-        if(!inst.contieneCarrera()){
+        if(!inst.noContieneCarrera()){
             MenuEditar menuE = new MenuEditar(inst);
             this.dispose();
             menuE.setVisible(true);
