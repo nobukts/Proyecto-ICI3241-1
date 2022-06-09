@@ -25,10 +25,6 @@ public class ColeccionAlumnos {
         return alumnos;
     }
     
-    public ArrayList getLista(){
-        return listaAlumnos;
-    }
-
     /**
      * Metodo para agregar alumno a la lista y al mapa alumnos
      * @param al el alumno que se agregara a las colecciones

@@ -179,7 +179,7 @@ public class Carrera{
      * @param cr
      */
     public void reporteAlumno(FileWriter archivo, Carrera cr){
-        ArrayList listaAlumnos;
+/*        ArrayList listaAlumnos;
         listaAlumnos = cr.coleccionAlumnos.getLista();
         try{
             for(int i = 0 ; i < listaAlumnos.size() ; i++){
@@ -187,7 +187,7 @@ public class Carrera{
                 archivo.write(String.format("%20s %13d %19d",al.getNombreAlumno(),al.getRut(), al.getCantidadCreditos()) + "\n");
             }
         }catch(IOException e){
-        }
+        }*/
     }
 
     /**
@@ -197,7 +197,7 @@ public class Carrera{
      * @param cr para obetener la malla curricular
      */
     public void reporteAsignatura(FileWriter archivo, boolean aux, Carrera cr){
-        ArrayList mallaCurricular = cr.coleccionAsignatura.getLista();
+    /*    ArrayList mallaCurricular = cr.coleccionAsignatura.getLista();
          try{
             //True si se imprime la primera asignatura, False si no es la primera asignatura
             if(aux){
@@ -217,6 +217,7 @@ public class Carrera{
             
         }catch(IOException e){
         } 
+    */
     }
     
     /**

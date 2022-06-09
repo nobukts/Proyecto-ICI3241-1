@@ -24,10 +24,6 @@ public class ColeccionAsignatura implements Verificador {
         
         return malla;
     }
-    
-    public ArrayList getLista(){
-        return mallaCurricular;
-    }
 
     /**
      * Metodo que agrega un alumno a la lista de alumnos y al mapa de alumnos
