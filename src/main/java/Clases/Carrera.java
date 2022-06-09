@@ -115,14 +115,16 @@ public class Carrera{
      * @param nombreAlumno String que contiene el nombre del alumno a eliminar
      * @return boolean Verdadero si se pudo eliminar con exito al alumno y falso si no se pudo eliminarlo
      */
-    public boolean eliminarAlumno(String nombreAlumno){
-        if(coleccionAlumnos.noContieneAlumnos()) return false;
-        if(coleccionAlumnos.eliminarAlumno(nombreAlumno, coleccionAsignatura)){
+    public String[] eliminarAlumno(String nombreAlumno){
+        if(coleccionAlumnos.noContieneAlumnos()) return null;
+        
+        String[] listaRamos = coleccionAlumnos.eliminarAlumno(nombreAlumno);
+        if(listaRamos != null){
             cantidadAlumnos--;
-            return true;
+            return listaRamos;
         }
 
-        return false;
+        return null;
     }
 
     /**
@@ -130,14 +132,15 @@ public class Carrera{
      * @param rutAlumno Entero que contiene el rut del alumno a eliminar
      * @return boolean Verdadero si se pudo eliminar con exito al alumno y falso si no se pudo eliminarlo
      */
-    public boolean eliminarAlumno(int rutAlumno){
-        if(coleccionAlumnos.noContieneAlumnos()) return false;
-        if(coleccionAlumnos.eliminarAlumno(rutAlumno, coleccionAsignatura)){
+    public String[] eliminarAlumno(int rutAlumno){
+        if(coleccionAlumnos.noContieneAlumnos()) return null;
+        String[] listaRamos = coleccionAlumnos.eliminarAlumno(rutAlumno);
+        if(listaRamos != null){
             cantidadAlumnos--;
-            return true;
+            return listaRamos;
         }
         
-        return false;
+        return listaRamos;
     }
 
     /**

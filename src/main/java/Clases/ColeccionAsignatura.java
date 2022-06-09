@@ -66,18 +66,6 @@ public class ColeccionAsignatura implements Verificador {
     }
 
     /**
-     * Metodo para eliminar un alumno de la malla curricular
-     * @param al El alumno a eliminar
-     */
-    public void eliminarAlumno(Alumno al){
-        for (int j = 0; j < mallaCurricular.size(); j++) {
-            if(al.eliminarAlumno(mallaCurricular.get(j).getCodigoCurso())){
-                mallaCurricular.get(j).disminuirAlumnos();
-            }
-        }
-    }
-
-    /**
      * Metodo para disminuir los alumnos en una asignatura de la malla
      * @param codigoRamo el codigo de la asignatura a disminuir sus alumnos
      */

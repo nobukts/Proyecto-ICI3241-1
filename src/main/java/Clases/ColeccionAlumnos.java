@@ -57,19 +57,17 @@ public class ColeccionAlumnos {
      * @param coleccionAsignatura contiene la coleccion de asignatura para eliminar el alumno
      * @return boolean Verdadero si se pudo eliminar y falso si no se puedo eliminar
      */
-    public boolean eliminarAlumno(String nombreAlumno, ColeccionAsignatura coleccionAsignatura){
+    public String[] eliminarAlumno(String nombreAlumno){
         for (int i = 0; i < listaAlumnos.size(); i++) {
             if(listaAlumnos.get(i).getNombreAlumno().equalsIgnoreCase(nombreAlumno)){
-                
-                //Resta 1 alumno de las asignaturas que tenia en curso el alumno
-                coleccionAsignatura.eliminarAlumno(mapaAlumnos.get(nombreAlumno));
+                String[] listaRamos = mapaAlumnos.get(nombreAlumno).mostrarRamos();
                 
                 mapaAlumnos.remove(nombreAlumno);
                 listaAlumnos.remove(i);
-                return true;
+                return listaRamos;
             }
         }
-        return false;
+        return null;
     }
 
     /**
@@ -78,19 +76,17 @@ public class ColeccionAlumnos {
      * @param coleccionAsignatura contiene la coleccion de asignatura para eliminar el alumno
      * @return boolean Verdadero si se pudo eliminar y falso si no se puedo eliminar
      */
-    public boolean eliminarAlumno(int rutAlumno, ColeccionAsignatura coleccionAsignatura){
+    public String[] eliminarAlumno(int rutAlumno){
         for (int i = 0; i < listaAlumnos.size(); i++) {
             if(listaAlumnos.get(i).getRut() == rutAlumno){
-                
-                //Resta 1 alumno de las asignaturas que tenia en curso el alumno
-                coleccionAsignatura.eliminarAlumno(listaAlumnos.get(i));
+                String[] listaRamos = listaAlumnos.get(i).mostrarRamos();
                 
                 mapaAlumnos.remove(listaAlumnos.get(i).getNombreAlumno());
                 listaAlumnos.remove(i);
-                return true;
+                return listaRamos;
             }
         }
-        return false;
+        return null;
     }
 
     /**

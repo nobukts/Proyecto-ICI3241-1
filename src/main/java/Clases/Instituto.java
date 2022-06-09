@@ -109,7 +109,16 @@ public class Instituto implements Verificador{
     public boolean eliminarAlumno(int rut, String nombreCarrera){
         for (int i = 0; i < listaCarreras.size(); i++) {
             if(nombreCarrera.equalsIgnoreCase(listaCarreras.get(i).getNombreCarrera())){
-                return listaCarreras.get(i).eliminarAlumno(rut);
+                String[] listaRamos = listaCarreras.get(i).eliminarAlumno(rut);
+                if(listaRamos != null){
+                    for (int j = 0; j < listaRamos.length; j++) {
+                        String[] infoSeparada = listaRamos[j].split("-");
+                        if(infoSeparada[2].equals("Cursando")) mapaCursos.get(infoSeparada[1]).disminuirAlumnos();
+
+                    }
+                    return true;    
+                }
+                
             } 
         }
         return false;
@@ -124,7 +133,15 @@ public class Instituto implements Verificador{
     public boolean eliminarAlumno(String nombreAlumno, String nombreCarrera){
         for (int i = 0; i < listaCarreras.size(); i++) {
             if(nombreCarrera.equalsIgnoreCase(listaCarreras.get(i).getNombreCarrera())){
-                return listaCarreras.get(i).eliminarAlumno(nombreAlumno);
+                String[] listaRamos = listaCarreras.get(i).eliminarAlumno(nombreAlumno);
+                if(listaRamos != null){
+                    for (int j = 0; j < listaRamos.length; j++) {
+                        String[] infoSeparada = listaRamos[j].split("-");
+                        if(infoSeparada[2].equals("Cursando")) mapaCursos.get(infoSeparada[1]).disminuirAlumnos();
+
+                    }
+                    return true;    
+                }
             }
         }
         return false;
