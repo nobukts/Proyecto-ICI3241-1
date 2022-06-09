@@ -24,6 +24,10 @@ public class ColeccionAlumnos {
 
         return alumnos;
     }
+    
+    public ArrayList getLista(){
+        return listaAlumnos;
+    }
 
     /**
      * Metodo para agregar alumno a la lista y al mapa alumnos

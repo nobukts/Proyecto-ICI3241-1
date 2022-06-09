@@ -30,6 +30,8 @@
                   <Component id="botonAñadir" alignment="1" max="32767" attributes="0"/>
                   <Component id="botonEliminar" alignment="1" max="32767" attributes="0"/>
               </Group>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="importarCSV" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Component id="botonMostrar" alignment="1" max="32767" attributes="0"/>
@@ -64,6 +66,7 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="botonEditar" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="botonReporte" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="importarCSV" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="21" max="32767" attributes="0"/>
           </Group>
@@ -126,6 +129,14 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Menu Principal"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="importarCSV">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Importar CSV"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="importarCSVActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

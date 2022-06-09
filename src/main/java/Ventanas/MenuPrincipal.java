@@ -33,6 +33,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         botonReporte = new javax.swing.JButton();
         botonEditar = new javax.swing.JButton();
         Titulo = new javax.swing.JLabel();
+        importarCSV = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -81,6 +82,13 @@ public class MenuPrincipal extends javax.swing.JFrame {
         Titulo.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         Titulo.setText("Menu Principal");
 
+        importarCSV.setText("Importar CSV");
+        importarCSV.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                importarCSVActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -91,6 +99,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
                     .addComponent(botonReporte, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(botonAñadir, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(botonEliminar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(importarCSV)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(botonMostrar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -118,7 +128,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(botonEditar)
-                    .addComponent(botonReporte))
+                    .addComponent(botonReporte)
+                    .addComponent(importarCSV))
                 .addContainerGap(21, Short.MAX_VALUE))
         );
 
@@ -193,6 +204,13 @@ public class MenuPrincipal extends javax.swing.JFrame {
         
     }//GEN-LAST:event_botonEditarActionPerformed
 
+    private void importarCSVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_importarCSVActionPerformed
+        MenuCSV mCSV = new MenuCSV(inst);
+        this.dispose();
+        mCSV.setVisible(true);
+        
+    }//GEN-LAST:event_importarCSVActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Titulo;
     private javax.swing.JButton botonAñadir;
@@ -201,5 +219,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton botonEliminar;
     private javax.swing.JButton botonMostrar;
     private javax.swing.JButton botonReporte;
+    private javax.swing.JButton importarCSV;
     // End of variables declaration//GEN-END:variables
 }

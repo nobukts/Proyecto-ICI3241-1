@@ -309,7 +309,7 @@ public class Instituto implements Verificador{
                 
                 for(int i = 0 ; i < listaCarreras.size() ; i++){
                     Carrera cr = listaCarreras.get(i);
-                    cr.reporteAlumno(archivo);
+                    cr.reporteAlumno(archivo,cr);
                 }
                 
                 archivo.write("---------------------------------------------\n");
@@ -318,8 +318,8 @@ public class Instituto implements Verificador{
                 for(int i = 0 ; i < listaCarreras.size() ; i++){
                     Carrera cr = listaCarreras.get(i);
                     archivo.write(String.format("%20s",cr.getNombreCarrera()));
-                    cr.reporteAsignatura(archivo, true);
-                    cr.reporteAsignatura(archivo, false);
+                    cr.reporteAsignatura(archivo, true, cr);
+                    cr.reporteAsignatura(archivo, false, cr);
                 }
             }
         }catch(IOException e){
