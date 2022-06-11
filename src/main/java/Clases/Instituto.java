@@ -1,20 +1,19 @@
 package Clases;
 
-import Interfaces.Verificador;
-
 import java.io.*;
 import java.util.*;
 
-public class Instituto implements Verificador{
-    private ArrayList<Carrera> listaCarreras;
-    private HashMap<String, Asignatura> mapaCursos;
+public class Instituto{
+    private ColeccionCarreras lista_Carreras2;
+    private ColeccionCursos mapa_Cursos;
+    
     
     /**
      * Constructor de la clase Instituto, que inicializa la coleccion listaCarreras
      */
     public Instituto(){
-        mapaCursos = new HashMap<>();
-        listaCarreras = new ArrayList<>();
+        mapa_Cursos = new ColeccionCursos();
+        lista_Carreras2 = new ColeccionCarreras();
     }
 
     /**
@@ -22,55 +21,33 @@ public class Instituto implements Verificador{
      * @return arraylist con la informacion de todos los cursos
      */
     public ArrayList<String> mostrarCursos(){
-        ArrayList<String> listaCursos = new ArrayList<>();
-        mapaCursos.forEach((key, value)->{
-            listaCursos.add(value.mostrarInformacion());
-        });
-
-        return listaCursos;
+        return mapa_Cursos.mostrarCursos();
     }
 
     /**
      * Metodo que muestra los ramos de una carrera en especifico y su respectiva informacion
      * @param nombreCarrera String que contiene el nombre de una carrera en especifico
-     * @return 
+     * @return String[]
      */
     public String[] mostrarAsignaturasCarrera(String nombreCarrera){
-        for (int i = 0; i < listaCarreras.size(); i++) {
-            if(nombreCarrera.equalsIgnoreCase(listaCarreras.get(i).getNombreCarrera())){
-                return listaCarreras.get(i).mostrarAsignaturas();
-            }
-        }
-
-        return null;
+        return lista_Carreras2.mostrarAsignaturasCarrera(nombreCarrera);
     }
     
     /**
      * Metodo que muestra la informacion respectiva de todas las carreras del instituto
-     * @return 
+     * @return String[]
      */
     public String[] mostrarCarreras(){
-        String[] carreras = new String[listaCarreras.size()];
-        for (int i = 0; i < listaCarreras.size(); i++) {
-            carreras[i] = listaCarreras.get(i).mostrarCarrera();
-        }
-
-        return carreras;
+        return lista_Carreras2.mostrarCarreras();
     }
 
     /** 
      * Metodo para mostrar la lista de alumnos de una carrera y su respectiva informacion
      * @param nombreCarrera String que contiene el nombre de la carrera
-     * @return 
+     * @return String[]
      */
     public String[] mostrarListaAlumnos(String nombreCarrera){
-        for (int i = 0; i < listaCarreras.size(); i++) {
-            if(nombreCarrera.equalsIgnoreCase(listaCarreras.get(i).getNombreCarrera())){
-                return listaCarreras.get(i).mostrarListaAlumnos();
-            }
-        }
-        
-        return null;
+        return lista_Carreras2.mostrarListaAlumnos(nombreCarrera);
     }
     
     /**
@@ -79,26 +56,20 @@ public class Instituto implements Verificador{
      * @return boolean Verdadero si se logro agregar la carrera correctamente y falso si no se pudo agregar
      */
     public boolean agregarCarrera(String nombreCarrera){
-        for(int i = 0; i < listaCarreras.size(); i++){
-            if(listaCarreras.get(i).getNombreCarrera().equalsIgnoreCase(nombreCarrera))
-                return false;
-        }
-
-        listaCarreras.add(new Carrera(nombreCarrera));
-        
-        return true;
+        return lista_Carreras2.agregarCarrera(nombreCarrera);
     }
     
-    
+    /**
+     * Metodo para agregar una malla curricular
+     * @param nuevaAsignatura Asignatura a agregar
+     * @param nombreCarrera String con el nombre dela carrera
+     * @return boolean Verdadero si se logro agregar y falso si no se pudo agregar
+     */
     public boolean agregarMalla(Asignatura nuevaAsignatura, String nombreCarrera){
-        if(mapaCursos.containsKey(nuevaAsignatura.getCodigoCurso())) return false;
-        mapaCursos.put(nuevaAsignatura.getCodigoCurso(), nuevaAsignatura);
+        if(mapa_Cursos.verificar(nuevaAsignatura.getCodigoCurso())) return false;
+        mapa_Cursos.agregarMalla(nuevaAsignatura);
         
-        for (int i = 0; i < listaCarreras.size(); i++) {
-            if(listaCarreras.get(i).getNombreCarrera().equals(nombreCarrera)) return listaCarreras.get(i).agregarAsignaturaMalla(nuevaAsignatura);
-            
-        }
-        return false;
+        return lista_Carreras2.agregarAsignaturaMalla(nuevaAsignatura, nombreCarrera);
     }
 
     /**
@@ -109,22 +80,7 @@ public class Instituto implements Verificador{
      * @return boolean Verdadero si se pudo agregar el ramo correctamente y falso si no se pudo agregar
      */
     public boolean agregarRamoOpcional(String nombreAlumno, Ramo nuevoRamo, String escuela){
-        for (int i = 0; i < listaCarreras.size(); i++) {
-            if(listaCarreras.get(i).agregarRamoOpcional(nombreAlumno, nuevoRamo)){
-
-                Opcional asigAux = new Opcional(nuevoRamo.getNombreCurso(), nuevoRamo.getCodigoCurso(), nuevoRamo.getCantidadCreditos(), escuela);
-                if(verificar(asigAux.getCodigoCurso())){
-                    mapaCursos.get(asigAux.getCodigoCurso()).aumentarAlumnos();
-                }
-                else{
-                    mapaCursos.put(asigAux.getCodigoCurso(), asigAux);
-                    asigAux.aumentarAlumnos();
-                }
-                
-                return true;
-            }
-        }
-        return false;
+        return lista_Carreras2.agregarRamoOpcional(nombreAlumno, nuevoRamo, escuela, mapa_Cursos);
     }
 
     /**
@@ -134,20 +90,7 @@ public class Instituto implements Verificador{
      * @return boolean Verdadero si se pudo agregar al alumno y  falso si no se pudo agregar
      */
     public boolean matricularAlumno(Alumno al, String nombreCarrera){
-        //Verifica que no exista nadie con el mismo nombre en otra carrera
-        for (int i = 0; i < listaCarreras.size(); i++) {
-            if(listaCarreras.get(i).verificarAlumnos(al.getNombreAlumno())){
-                return false;
-            }
-        }
-
-        for (int i = 0; i < listaCarreras.size(); i++) {
-            if(nombreCarrera.equalsIgnoreCase(listaCarreras.get(i).getNombreCarrera())){
-                return listaCarreras.get(i).matricularAlumno(al);
-            }
-        }
-        
-        return false;
+        return lista_Carreras2.matricularAlumno(al, nombreCarrera);
     }
 
     /**
@@ -156,14 +99,7 @@ public class Instituto implements Verificador{
      * @return boolean Verdadero si es que se elimino la carrera y falso si no se pudo eliminar
      */
     public boolean eliminarCarrera(String nombreCarrera){
-        for (int i = 0; i < listaCarreras.size(); i++) {
-            if(listaCarreras.get(i).getNombreCarrera().equalsIgnoreCase(nombreCarrera)){
-                listaCarreras.remove(i);
-                return true;
-            }
-        }
-        
-        return false;
+        return lista_Carreras2.eliminarCarrera(nombreCarrera);
     }
 
     /**
@@ -173,21 +109,7 @@ public class Instituto implements Verificador{
      * @return boolean Verdadero si se pudo eliminar el alumno y falso si no se logro eliminar
      */
     public boolean eliminarAlumno(int rut, String nombreCarrera){
-        for (int i = 0; i < listaCarreras.size(); i++) {
-            if(nombreCarrera.equalsIgnoreCase(listaCarreras.get(i).getNombreCarrera())){
-                String[] listaRamos = listaCarreras.get(i).eliminarAlumno(rut);
-                if(listaRamos != null){
-                    for (int j = 0; j < listaRamos.length; j++) {
-                        String[] infoSeparada = listaRamos[j].split("-");
-                        if(infoSeparada[2].equals("Cursando")) mapaCursos.get(infoSeparada[1]).disminuirAlumnos();
-
-                    }
-                    return true;    
-                }
-                
-            } 
-        }
-        return false;
+        return lista_Carreras2.eliminarAlumno(rut, nombreCarrera, mapa_Cursos);
     }
     
     /**
@@ -197,20 +119,7 @@ public class Instituto implements Verificador{
      * @return boolean Verdadero si se pudo eliminar el alumno y falso si no se logro eliminar
      */
     public boolean eliminarAlumno(String nombreAlumno, String nombreCarrera){
-        for (int i = 0; i < listaCarreras.size(); i++) {
-            if(nombreCarrera.equalsIgnoreCase(listaCarreras.get(i).getNombreCarrera())){
-                String[] listaRamos = listaCarreras.get(i).eliminarAlumno(nombreAlumno);
-                if(listaRamos != null){
-                    for (int j = 0; j < listaRamos.length; j++) {
-                        String[] infoSeparada = listaRamos[j].split("-");
-                        if(infoSeparada[2].equals("Cursando")) mapaCursos.get(infoSeparada[1]).disminuirAlumnos();
-
-                    }
-                    return true;    
-                }
-            }
-        }
-        return false;
+        return lista_Carreras2.eliminarAlumno(nombreAlumno, nombreCarrera, mapa_Cursos);
     }
 
     /**
@@ -220,12 +129,7 @@ public class Instituto implements Verificador{
     * @return boolean Verdadero si se pudo eliminar la asignatura y falso si no se pudo eliminar
     */
     public boolean eliminarAsignatura(String nombreCarrera, String codigoAsignatura){
-        for(int i = 0; i < listaCarreras.size(); i++){
-            if(listaCarreras.get(i).getNombreCarrera().equalsIgnoreCase(nombreCarrera)){
-                return listaCarreras.get(i).eliminarAsignatura(codigoAsignatura);
-            }
-        }
-        return false;
+        return lista_Carreras2.eliminarAsignatura(nombreCarrera, codigoAsignatura);
     }
     
     /**
@@ -236,18 +140,7 @@ public class Instituto implements Verificador{
      * @return boolean Verdadero si se pudo utilizar y falso si no se pudo actualizar
      */
     public boolean actualizarRamo(String nombreAlumno, String codigoAsignatura, int estadoRamo){
-        
-        for (int i = 0 ; i < listaCarreras.size() ; i++) {
-            if(listaCarreras.get(i).actualizarRamo(nombreAlumno, codigoAsignatura, estadoRamo)){
-                if(estadoRamo == 0 || estadoRamo == 2){
-                    mapaCursos.get(codigoAsignatura).disminuirAlumnos();
-                }else if(estadoRamo == 1){
-                    mapaCursos.get(codigoAsignatura).aumentarAlumnos();
-                }
-                return true;
-            }
-        }
-        return false;
+        return lista_Carreras2.actualizarRamo(nombreAlumno, codigoAsignatura, estadoRamo, mapa_Cursos);
     }
     
     /**
@@ -257,14 +150,7 @@ public class Instituto implements Verificador{
      * @return boolean Verdadero si se pudo editar la carrera y falso si no se pudo editar
      */
     public boolean editarCarrera(String nombreCarrera, String nuevoNombreCarrera){
-        for(int i = 0; i < listaCarreras.size(); i++){
-        
-            if(listaCarreras.get(i).getNombreCarrera().equalsIgnoreCase(nombreCarrera)){
-                listaCarreras.get(i).setNombreCarrera(nuevoNombreCarrera);
-                return true;
-            }
-        }
-        return false;
+        return lista_Carreras2.editarCarrera(nombreCarrera, nuevoNombreCarrera);
     }
 
     /**
@@ -274,12 +160,7 @@ public class Instituto implements Verificador{
      * @return boolean Verdadero si se pudo editar el alumno y falso si no se pudo editar
      */
     public boolean editarAlumno(String nombreAlumno, String nuevoNombreAlumno){
-        for(int i = 0; i < listaCarreras.size(); i++){
-            if(listaCarreras.get(i).editarAlumno(nombreAlumno, nuevoNombreAlumno)){
-                return true;
-            }
-        }
-        return false;
+        return lista_Carreras2.editarAlumno(nombreAlumno, nuevoNombreAlumno);
     }
 
     /**
@@ -290,11 +171,7 @@ public class Instituto implements Verificador{
      * @return boolean Verdadero si se pudo editar la asignatura y falso si no se pudo editar
      */
     public boolean editarAsignatura(String codigoAsignatura, String nuevoNombre, String nuevaInformacion){
-        if(!mapaCursos.containsKey(codigoAsignatura)) return false;
-        
-        mapaCursos.get(codigoAsignatura).cambiarInformacion(nuevoNombre, nuevaInformacion);
-        
-        return true;
+        return mapa_Cursos.editarAsignatura(codigoAsignatura, nuevoNombre, nuevaInformacion);
     }
     
     /**
@@ -302,18 +179,8 @@ public class Instituto implements Verificador{
      * @return ArrayList de alumnos con menor cantidad de creditos
      */
     public String[] alumnosMenorCantCreditos(){
-        String[] alumnosMenosCreditos = new String[listaCarreras.size()];
-        
-        for(int i = 0; i < listaCarreras.size(); i++) {
-           Alumno aux = listaCarreras.get(i).alumnoMenorCreditos();
-           if(aux != null){
-               alumnosMenosCreditos[i] = aux.mostrarAlumno();
-               alumnosMenosCreditos[i] += ("-" + listaCarreras.get(i).getNombreCarrera());
-           }
-            
-        }
-        return alumnosMenosCreditos;
-    } 
+        return lista_Carreras2.alumnosMenorCantCreditos();
+    }
 
     /**
      * Metodo que retorna una lista con los alumnos que se encuentran en el rango de creditos que se piden
@@ -322,16 +189,7 @@ public class Instituto implements Verificador{
      * @return ArrayList de alumnos
      */
     public ArrayList<String> alumnosRangoCredito(int rangoMinimo, int rangoMaximo){
-        ArrayList<String> alumnosRangoCredito = new ArrayList<>();
-        
-        for (int i = 0; i < listaCarreras.size(); i++) {
-            ArrayList<String> listaAux = listaCarreras.get(i).alumnosRangoCredito(rangoMinimo, rangoMaximo);
-            if(!listaAux.isEmpty()){
-                alumnosRangoCredito.addAll(listaAux);
-            }
-        }
-
-        return alumnosRangoCredito;
+        return lista_Carreras2.alumnosRangoCredito(rangoMinimo, rangoMaximo);
     }
     
     /**
@@ -341,11 +199,7 @@ public class Instituto implements Verificador{
      * @return String con la informacion del alumno
      */
     public String buscarAlumno(String nombreCarrera, String nombreAlumno){
-        for (int i = 0; i < listaCarreras.size(); i++) {
-            if(listaCarreras.get(i).getNombreCarrera().equals(nombreCarrera)) return listaCarreras.get(i).buscarAlumno(nombreAlumno);
-        }
-        
-        return null;
+        return lista_Carreras2.buscarAlumno(nombreCarrera, nombreAlumno);
     }
     
     /**
@@ -355,11 +209,7 @@ public class Instituto implements Verificador{
      * @return cadena de string con la informacion de los ramos de un alumno
      */
     public String[] buscarRamosAlumno(String nombreCarrera, String nombreAlumno){
-        for (int i = 0; i < listaCarreras.size(); i++) {
-            if(listaCarreras.get(i).getNombreCarrera().equals(nombreCarrera)) return listaCarreras.get(i).buscarRamos(nombreAlumno);
-        }
-        
-        return null;
+        return lista_Carreras2.buscarRamosAlumno(nombreCarrera, nombreAlumno);
     }
     
     /**
@@ -368,11 +218,7 @@ public class Instituto implements Verificador{
      * @return cadena de string con la informacion de los ramos de un alumno
      */
     public String[] buscarRamosAlumno(String nombreAlumno){
-        for (int i = 0; i < listaCarreras.size(); i++) {
-            if(listaCarreras.get(i).buscarAlumno(nombreAlumno) != null) return listaCarreras.get(i).buscarRamos(nombreAlumno);
-        }
-        
-        return null;
+        return lista_Carreras2.buscarRamosAlumno(nombreAlumno);
     }
 
     /**
@@ -381,8 +227,7 @@ public class Instituto implements Verificador{
      * @return boolean Verdadero si encontro el asignatura y falso si no existe la asignatura
      */
     public String buscarAsignatura(String codigoAsignatura){
-        if(!mapaCursos.containsKey(codigoAsignatura)) return null;
-        return mapaCursos.get(codigoAsignatura).mostrarInformacion();
+        return mapa_Cursos.buscarAsignatura(codigoAsignatura);
     }
 
     /**
@@ -390,7 +235,7 @@ public class Instituto implements Verificador{
      * @return boolean true si la lista carreras esta vacia, false si no esta vacia
      */
     public boolean noContieneCarrera(){
-        return listaCarreras.isEmpty();
+        return lista_Carreras2.noContieneCarrera();
     }
     
     /**
@@ -398,18 +243,7 @@ public class Instituto implements Verificador{
      * @return boolean true si la lista carreras no contiene alumnos, false si contiene
      */
     public boolean noContieneAlumnos(){
-        if(!noContieneCarrera()) return listaCarreras.get(0).noContieneAlumnos();
-        return false;
-    }
-
-    /**
-     * Metodo de la interface que verifica si una asignatura se encuentra o no en la lista
-     * @param codigoCurso String que contiene el codigo del curso
-     * @return Boolean true si el codigo se encuentra en el mapa cursos y falso si no se encuentra
-     */
-    @Override
-    public boolean verificar(String codigoCurso){
-        return mapaCursos.containsKey(codigoCurso);
+        return lista_Carreras2.noContieneAlumnos();
     }
 
     /**
@@ -426,47 +260,30 @@ public class Instituto implements Verificador{
         //Se imprime en el archivo reporte
         try{
             try (FileWriter archivo = new FileWriter("reporte.txt")) {
-                String[] infoObtenida;
                 String[] infoSeparada;
-                ArrayList<String> infoObtenida2 = mostrarCursos();
+                ArrayList<String> infoObtenida;
 
                 archivo.write("[Nombre de la carrera] + [Cantidad Alumnos]\n");
-                for(int i = 0 ; i < listaCarreras.size() ; i++){
-                    infoSeparada = listaCarreras.get(i).mostrarCarrera().split("-");
-                    archivo.write(String.format("[%-20s] + [%-16S]\n",infoSeparada[0],infoSeparada[1]));
-                }
+                archivo.write(lista_Carreras2.reporteCarrera());
                 
                 archivo.write("---------------------------------------------\n");
                 archivo.write("[Nombres alumnos] + [RUT alumnos] + [Cantidad creditos]\n");
-                for(int i = 0 ; i < listaCarreras.size() ; i++){
-                    infoObtenida = listaCarreras.get(i).mostrarListaAlumnos();
-
-                    for(int k = 0 ; k < infoObtenida.length ; k++){
-                        infoSeparada = infoObtenida[k].split("-"); //Se separa la informacion por un guion
-                        archivo.write(String.format("[%-15s] + [%-11s] + [%-17s]\n",infoSeparada[0],infoSeparada[1],infoSeparada[2]));
-                    }
-                }
+                archivo.write(lista_Carreras2.reporteAlumnos());
                 
                 archivo.write("---------------------------------------------\n");
                 archivo.write("_____________\n");
                 archivo.write("[OBLIGATORIO]\n");
                 archivo.write("^^^^^^^^^^^^^\n");
                 archivo.write("[Nombre del curso              ] + [Codigo del curso] + [Cantidad de creditos] + [Carrera o Escuela] + [cantidad de alumnos] + [Es de primero?]\n");
-                for(int i = 0 ; i < listaCarreras.size() ; i++){
-                    infoObtenida = listaCarreras.get(i).mostrarAsignaturas();
-
-                    for(int k = 0 ; k < infoObtenida.length ; k++){
-                        infoSeparada = infoObtenida[k].split("-"); //Se separa la informacion por un guion
-                        archivo.write(String.format("[%-30s] + [%-16s] + [%-20s] + [%-17s] + [%-19s] + [%-14s]\n",infoSeparada[0],infoSeparada[1],infoSeparada[2],infoSeparada[3],infoSeparada[4],infoSeparada[5]));
-                    }
-                }
+                archivo.write(lista_Carreras2.reporteCursos());
 
                 archivo.write("__________\n");
                 archivo.write("[OPCIONAL]\n");
                 archivo.write("^^^^^^^^^^\n");
                 archivo.write("[Nombre del curso              ] + [Codigo del curso] + [Cantidad de creditos] + [Carrera o Escuela] + [cantidad de alumnos] + [Es de primero?]\n");
-                for(int i = 0 ; i < infoObtenida2.size() ; i++){
-                    infoSeparada = infoObtenida2.get(i).split("-");
+                infoObtenida = mostrarCursos();
+                for(int i = 0 ; i < infoObtenida.size() ; i++){
+                    infoSeparada = infoObtenida.get(i).split("-");
                     if(infoSeparada[6].equals("Opcional")){
                         archivo.write(String.format("[%-30s] + [%-16s] + [%-20s] + [%-17s] + [%-19s] + [%-14s]\n",infoSeparada[0],infoSeparada[1],infoSeparada[2],infoSeparada[3],infoSeparada[4],infoSeparada[5]));
                     }
