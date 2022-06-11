@@ -54,7 +54,6 @@ public class ColeccionAlumnos {
     /**
      * Metodo que elimina un alumno de la lista y del mapa de alumnos a traves del nombre
      * @param nombreAlumno String que contiene el nombre del alumno a eliminar
-     * @param coleccionAsignatura contiene la coleccion de asignatura para eliminar el alumno
      * @return boolean Verdadero si se pudo eliminar y falso si no se puedo eliminar
      */
     public String[] eliminarAlumno(String nombreAlumno){
@@ -73,7 +72,6 @@ public class ColeccionAlumnos {
     /**
      * Metodo que elimina un alumno de la lista y del mapa de alumnos a traves del rut
      * @param rutAlumno Entero que contiene el rut del alumno a eliminar
-     * @param coleccionAsignatura contiene la coleccion de asignatura para eliminar el alumno
      * @return boolean Verdadero si se pudo eliminar y falso si no se puedo eliminar
      */
     public String[] eliminarAlumno(int rutAlumno){
@@ -160,7 +158,7 @@ public class ColeccionAlumnos {
     /**
      * Metodo que busca un alumno y lo muestra
      * @param nombreAlumno nombre del alumno a buscar
-     * @return
+     * @return String que contiene la informacion de un unico alumno
      */
     public String buscarAlumno(String nombreAlumno){
         if(mapaAlumnos.containsKey(nombreAlumno)) return mapaAlumnos.get(nombreAlumno).mostrarAlumno();
@@ -170,7 +168,7 @@ public class ColeccionAlumnos {
     /**
      * Metodo que busca un alumno y muestra sus ramos
      * @param nombreAlumno nombre del alumno a buscar
-     * @return
+     * @return Array de Strings que contiene la informacion de los ramos de un alumno en especifico
      */
     public String[] buscarRamos(String nombreAlumno){
         if(mapaAlumnos.containsKey(nombreAlumno)) return mapaAlumnos.get(nombreAlumno).mostrarRamos();
@@ -180,18 +178,18 @@ public class ColeccionAlumnos {
     /**
      * Metodo que verifica si en el mapa alumnos se encuentra el alumno a buscar
      * @param nombreAlumno nombre del alumno a buscar
-     * @return
+     * @return Boolean, verdadero si se encuentra el alumno y falso si no se encuentra el alumno
      */
-    public boolean verificarAlumnos(String nombreAlumno){
+    public boolean verificarAlumno(String nombreAlumno){
         return mapaAlumnos.containsKey(nombreAlumno);
     }
 
     /**
      * Metodo que verifica si en la lista alumnos se encuentra alguien con el rut ingresado
      * @param rut es el rut que se desea buscar en la lsita
-     * @return
+     * @return Boolean, verdadero si se no se encuentra el rut y falso si se encuentra el rut en la lista
      */
-    public boolean mismoRut(int rut){
+    public boolean verificarRut(int rut){
         for (int i = 0; i < listaAlumnos.size(); i++) {
             if(listaAlumnos.get(i).getRut() == rut) return false;
         }

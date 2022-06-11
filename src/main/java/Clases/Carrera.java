@@ -75,7 +75,7 @@ public class Carrera{
      * @return boolean Verdadero si el alumno se pudo matricular y falso si ya se encontraba matriculado
      */
     public boolean matricularAlumno(Alumno al){
-        if(coleccionAlumnos.mismoRut(al.getRut()) == false){return false;}
+        if(coleccionAlumnos.verificarRut(al.getRut()) == false){return false;}
         
         coleccionAlumnos.agregarAlumno(al);
         cantidadAlumnos++;
@@ -213,7 +213,7 @@ public class Carrera{
      * @return boolean Verdadero si contiene al alumno y falso si no lo contiene
      */
     public boolean verificarAlumnos(String nombreAlumno){
-        return coleccionAlumnos.verificarAlumnos(nombreAlumno);
+        return coleccionAlumnos.verificarAlumno(nombreAlumno);
     }
 
     /**

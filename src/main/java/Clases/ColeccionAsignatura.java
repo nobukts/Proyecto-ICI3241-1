@@ -13,7 +13,7 @@ public class ColeccionAsignatura implements Verificador {
 
     /**
      * Metodo que muestra las asignaturas impartidos por la carrera, con su respectiva informacion
-     * @return 
+     * @return Array de String que contiene las asignaturas de la malla curricular
      */
     public String[] mostrarAsignaturas(){
         String[] malla = new String[mallaCurricular.size()];

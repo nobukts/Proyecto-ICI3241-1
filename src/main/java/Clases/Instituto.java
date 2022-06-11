@@ -4,16 +4,16 @@ import java.io.*;
 import java.util.*;
 
 public class Instituto{
-    private ColeccionCarreras lista_Carreras2;
-    private ColeccionCursos mapa_Cursos;
+    private ColeccionCarreras listaCarreras;
+    private ColeccionCursos mapaCursos;
     
     
     /**
      * Constructor de la clase Instituto, que inicializa la coleccion listaCarreras
      */
     public Instituto(){
-        mapa_Cursos = new ColeccionCursos();
-        lista_Carreras2 = new ColeccionCarreras();
+        mapaCursos = new ColeccionCursos();
+        listaCarreras = new ColeccionCarreras();
     }
 
     /**
@@ -21,7 +21,7 @@ public class Instituto{
      * @return arraylist con la informacion de todos los cursos
      */
     public ArrayList<String> mostrarCursos(){
-        return mapa_Cursos.mostrarCursos();
+        return mapaCursos.mostrarCursos();
     }
 
     /**
@@ -30,7 +30,7 @@ public class Instituto{
      * @return String[]
      */
     public String[] mostrarAsignaturasCarrera(String nombreCarrera){
-        return lista_Carreras2.mostrarAsignaturasCarrera(nombreCarrera);
+        return listaCarreras.mostrarAsignaturasCarrera(nombreCarrera);
     }
     
     /**
@@ -38,7 +38,7 @@ public class Instituto{
      * @return String[]
      */
     public String[] mostrarCarreras(){
-        return lista_Carreras2.mostrarCarreras();
+        return listaCarreras.mostrarCarreras();
     }
 
     /** 
@@ -47,7 +47,7 @@ public class Instituto{
      * @return String[]
      */
     public String[] mostrarListaAlumnos(String nombreCarrera){
-        return lista_Carreras2.mostrarListaAlumnos(nombreCarrera);
+        return listaCarreras.mostrarListaAlumnos(nombreCarrera);
     }
     
     /**
@@ -56,7 +56,7 @@ public class Instituto{
      * @return boolean Verdadero si se logro agregar la carrera correctamente y falso si no se pudo agregar
      */
     public boolean agregarCarrera(String nombreCarrera){
-        return lista_Carreras2.agregarCarrera(nombreCarrera);
+        return listaCarreras.agregarCarrera(nombreCarrera);
     }
     
     /**
@@ -66,10 +66,10 @@ public class Instituto{
      * @return boolean Verdadero si se logro agregar y falso si no se pudo agregar
      */
     public boolean agregarMalla(Asignatura nuevaAsignatura, String nombreCarrera){
-        if(mapa_Cursos.verificar(nuevaAsignatura.getCodigoCurso())) return false;
-        mapa_Cursos.agregarMalla(nuevaAsignatura);
+        if(mapaCursos.verificar(nuevaAsignatura.getCodigoCurso())) return false;
+        mapaCursos.agregarMalla(nuevaAsignatura);
         
-        return lista_Carreras2.agregarAsignaturaMalla(nuevaAsignatura, nombreCarrera);
+        return listaCarreras.agregarAsignaturaMalla(nuevaAsignatura, nombreCarrera);
     }
 
     /**
@@ -80,7 +80,7 @@ public class Instituto{
      * @return boolean Verdadero si se pudo agregar el ramo correctamente y falso si no se pudo agregar
      */
     public boolean agregarRamoOpcional(String nombreAlumno, Ramo nuevoRamo, String escuela){
-        return lista_Carreras2.agregarRamoOpcional(nombreAlumno, nuevoRamo, escuela, mapa_Cursos);
+        return listaCarreras.agregarRamoOpcional(nombreAlumno, nuevoRamo, escuela, mapaCursos);
     }
 
     /**
@@ -90,7 +90,7 @@ public class Instituto{
      * @return boolean Verdadero si se pudo agregar al alumno y  falso si no se pudo agregar
      */
     public boolean matricularAlumno(Alumno al, String nombreCarrera){
-        return lista_Carreras2.matricularAlumno(al, nombreCarrera);
+        return listaCarreras.matricularAlumno(al, nombreCarrera);
     }
 
     /**
@@ -99,7 +99,7 @@ public class Instituto{
      * @return boolean Verdadero si es que se elimino la carrera y falso si no se pudo eliminar
      */
     public boolean eliminarCarrera(String nombreCarrera){
-        return lista_Carreras2.eliminarCarrera(nombreCarrera);
+        return listaCarreras.eliminarCarrera(nombreCarrera);
     }
 
     /**
@@ -109,7 +109,7 @@ public class Instituto{
      * @return boolean Verdadero si se pudo eliminar el alumno y falso si no se logro eliminar
      */
     public boolean eliminarAlumno(int rut, String nombreCarrera){
-        return lista_Carreras2.eliminarAlumno(rut, nombreCarrera, mapa_Cursos);
+        return listaCarreras.eliminarAlumno(rut, nombreCarrera, mapaCursos);
     }
     
     /**
@@ -119,7 +119,7 @@ public class Instituto{
      * @return boolean Verdadero si se pudo eliminar el alumno y falso si no se logro eliminar
      */
     public boolean eliminarAlumno(String nombreAlumno, String nombreCarrera){
-        return lista_Carreras2.eliminarAlumno(nombreAlumno, nombreCarrera, mapa_Cursos);
+        return listaCarreras.eliminarAlumno(nombreAlumno, nombreCarrera, mapaCursos);
     }
 
     /**
@@ -129,7 +129,7 @@ public class Instituto{
     * @return boolean Verdadero si se pudo eliminar la asignatura y falso si no se pudo eliminar
     */
     public boolean eliminarAsignatura(String nombreCarrera, String codigoAsignatura){
-        return lista_Carreras2.eliminarAsignatura(nombreCarrera, codigoAsignatura);
+        return listaCarreras.eliminarAsignatura(nombreCarrera, codigoAsignatura);
     }
     
     /**
@@ -140,7 +140,7 @@ public class Instituto{
      * @return boolean Verdadero si se pudo utilizar y falso si no se pudo actualizar
      */
     public boolean actualizarRamo(String nombreAlumno, String codigoAsignatura, int estadoRamo){
-        return lista_Carreras2.actualizarRamo(nombreAlumno, codigoAsignatura, estadoRamo, mapa_Cursos);
+        return listaCarreras.actualizarRamo(nombreAlumno, codigoAsignatura, estadoRamo, mapaCursos);
     }
     
     /**
@@ -150,7 +150,7 @@ public class Instituto{
      * @return boolean Verdadero si se pudo editar la carrera y falso si no se pudo editar
      */
     public boolean editarCarrera(String nombreCarrera, String nuevoNombreCarrera){
-        return lista_Carreras2.editarCarrera(nombreCarrera, nuevoNombreCarrera);
+        return listaCarreras.editarCarrera(nombreCarrera, nuevoNombreCarrera);
     }
 
     /**
@@ -160,7 +160,7 @@ public class Instituto{
      * @return boolean Verdadero si se pudo editar el alumno y falso si no se pudo editar
      */
     public boolean editarAlumno(String nombreAlumno, String nuevoNombreAlumno){
-        return lista_Carreras2.editarAlumno(nombreAlumno, nuevoNombreAlumno);
+        return listaCarreras.editarAlumno(nombreAlumno, nuevoNombreAlumno);
     }
 
     /**
@@ -171,7 +171,7 @@ public class Instituto{
      * @return boolean Verdadero si se pudo editar la asignatura y falso si no se pudo editar
      */
     public boolean editarAsignatura(String codigoAsignatura, String nuevoNombre, String nuevaInformacion){
-        return mapa_Cursos.editarAsignatura(codigoAsignatura, nuevoNombre, nuevaInformacion);
+        return mapaCursos.editarAsignatura(codigoAsignatura, nuevoNombre, nuevaInformacion);
     }
     
     /**
@@ -179,7 +179,7 @@ public class Instituto{
      * @return ArrayList de alumnos con menor cantidad de creditos
      */
     public String[] alumnosMenorCantCreditos(){
-        return lista_Carreras2.alumnosMenorCantCreditos();
+        return listaCarreras.alumnosMenorCantCreditos();
     }
 
     /**
@@ -189,7 +189,7 @@ public class Instituto{
      * @return ArrayList de alumnos
      */
     public ArrayList<String> alumnosRangoCredito(int rangoMinimo, int rangoMaximo){
-        return lista_Carreras2.alumnosRangoCredito(rangoMinimo, rangoMaximo);
+        return listaCarreras.alumnosRangoCredito(rangoMinimo, rangoMaximo);
     }
     
     /**
@@ -199,7 +199,7 @@ public class Instituto{
      * @return String con la informacion del alumno
      */
     public String buscarAlumno(String nombreCarrera, String nombreAlumno){
-        return lista_Carreras2.buscarAlumno(nombreCarrera, nombreAlumno);
+        return listaCarreras.buscarAlumno(nombreCarrera, nombreAlumno);
     }
     
     /**
@@ -209,7 +209,7 @@ public class Instituto{
      * @return cadena de string con la informacion de los ramos de un alumno
      */
     public String[] buscarRamosAlumno(String nombreCarrera, String nombreAlumno){
-        return lista_Carreras2.buscarRamosAlumno(nombreCarrera, nombreAlumno);
+        return listaCarreras.buscarRamosAlumno(nombreCarrera, nombreAlumno);
     }
     
     /**
@@ -218,7 +218,7 @@ public class Instituto{
      * @return cadena de string con la informacion de los ramos de un alumno
      */
     public String[] buscarRamosAlumno(String nombreAlumno){
-        return lista_Carreras2.buscarRamosAlumno(nombreAlumno);
+        return listaCarreras.buscarRamosAlumno(nombreAlumno);
     }
 
     /**
@@ -227,7 +227,7 @@ public class Instituto{
      * @return boolean Verdadero si encontro el asignatura y falso si no existe la asignatura
      */
     public String buscarAsignatura(String codigoAsignatura){
-        return mapa_Cursos.buscarAsignatura(codigoAsignatura);
+        return mapaCursos.buscarAsignatura(codigoAsignatura);
     }
 
     /**
@@ -235,7 +235,7 @@ public class Instituto{
      * @return boolean true si la lista carreras esta vacia, false si no esta vacia
      */
     public boolean noContieneCarrera(){
-        return lista_Carreras2.noContieneCarrera();
+        return listaCarreras.noContieneCarrera();
     }
     
     /**
@@ -243,7 +243,7 @@ public class Instituto{
      * @return boolean true si la lista carreras no contiene alumnos, false si contiene
      */
     public boolean noContieneAlumnos(){
-        return lista_Carreras2.noContieneAlumnos();
+        return listaCarreras.noContieneAlumnos();
     }
 
     /**
@@ -264,18 +264,18 @@ public class Instituto{
                 ArrayList<String> infoObtenida;
 
                 archivo.write("[Nombre de la carrera] + [Cantidad Alumnos]\n");
-                archivo.write(lista_Carreras2.reporteCarrera());
+                archivo.write(listaCarreras.reporteCarrera());
                 
                 archivo.write("---------------------------------------------\n");
                 archivo.write("[Nombres alumnos] + [RUT alumnos] + [Cantidad creditos]\n");
-                archivo.write(lista_Carreras2.reporteAlumnos());
+                archivo.write(listaCarreras.reporteAlumnos());
                 
                 archivo.write("---------------------------------------------\n");
                 archivo.write("_____________\n");
                 archivo.write("[OBLIGATORIO]\n");
                 archivo.write("^^^^^^^^^^^^^\n");
                 archivo.write("[Nombre del curso              ] + [Codigo del curso] + [Cantidad de creditos] + [Carrera o Escuela] + [cantidad de alumnos] + [Es de primero?]\n");
-                archivo.write(lista_Carreras2.reporteCursos());
+                archivo.write(listaCarreras.reporteCursos());
 
                 archivo.write("__________\n");
                 archivo.write("[OPCIONAL]\n");
