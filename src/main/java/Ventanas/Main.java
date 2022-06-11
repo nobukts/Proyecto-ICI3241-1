@@ -5,7 +5,14 @@ import Clases.*;
 public class Main {
     public static void main(String[] args){
         Instituto inst = new Instituto();
+        insertarDatosPrimerizos(inst);
         
+        
+        MenuPrincipal menuP = new MenuPrincipal(inst);
+        menuP.setVisible(true);
+    }
+
+    public static void insertarDatosPrimerizos(Instituto inst){
         inst.agregarCarrera("Programacion");
         inst.agregarCarrera("Medicina");
         
@@ -21,8 +28,5 @@ public class Main {
         inst.agregarRamoOpcional("Jose", new Ramo("Principio de poesia estricta", "LEN201", 3) , "Lengua");
         inst.agregarRamoOpcional("Alva", new Ramo("Principios de la biblia", "TEO321", 2) , "Teologia");
         inst.agregarRamoOpcional("Rick", new Ramo("Programacion en Java", "ICI232", 4) , "Informatica");
-        
-        MenuPrincipal menuP = new MenuPrincipal(inst);
-        menuP.setVisible(true);
     }
 }

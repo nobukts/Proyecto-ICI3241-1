@@ -1,8 +1,5 @@
 package Clases;
 
-
-import java.io.*;
-import java.lang.reflect.Array;
 import java.util.*;
 
 public class Carrera{
@@ -58,7 +55,7 @@ public class Carrera{
     
     /**
      * Metodo que muestra la informacion de la carrera
-     * @return 
+     * @return String
      */
     public String mostrarCarrera(){
         return (this.getNombreCarrera() + "-" + this.getCantidadAlumnos());
@@ -172,55 +169,6 @@ public class Carrera{
      */
     public boolean editarAlumno(String nombreAlumno, String nuevoNombreAlumno){
         return coleccionAlumnos.editarAlumno(nombreAlumno, nuevoNombreAlumno);
-    }
-
-    
-
-    /**
-     * Metodo para escribir en el archivo reporte.txt los datos de los alumnos
-     * @param archivo FileWriter que contiene el nombre del archivo en donde se escribirá la información
-     * @param cr
-     */
-    public void reporteAlumno(FileWriter archivo, Carrera cr){
-/*        ArrayList listaAlumnos;
-        listaAlumnos = cr.coleccionAlumnos.getLista();
-        try{
-            for(int i = 0 ; i < listaAlumnos.size() ; i++){
-                Alumno al = (Alumno) listaAlumnos.get(i);
-                archivo.write(String.format("%20s %13d %19d",al.getNombreAlumno(),al.getRut(), al.getCantidadCreditos()) + "\n");
-            }
-        }catch(IOException e){
-        }*/
-    }
-
-    /**
-     * Metodo para escribir en el archivo reporte.txt los datos de las asignaturas
-     * @param archivo FileWriter que contiene el nombre del archivo en donde se escribirá la información
-     * @param aux boolean sirve para saber si se imprime la primera asignatura o no
-     * @param cr para obetener la malla curricular
-     */
-    public void reporteAsignatura(FileWriter archivo, boolean aux, Carrera cr){
-    /*    ArrayList mallaCurricular = cr.coleccionAsignatura.getLista();
-         try{
-            //True si se imprime la primera asignatura, False si no es la primera asignatura
-            if(aux){
-                //Esto evita que si la malla no tenga carrera se caiga el programa
-                if(mallaCurricular.isEmpty()){
-                    archivo.write("\n");
-                    return;
-                }
-                Asignatura rm = (Asignatura) mallaCurricular.get(0);
-                archivo.write(String.format("%20s %19s %14d",rm.getCodigoCurso(), rm.getNombreCurso(), rm.getCantidadAlumnos()) + "\n");
-            }else{
-                for(int i = 1 ; i < mallaCurricular.size() ; i++){
-                    Asignatura rm = (Asignatura) mallaCurricular.get(i);
-                    archivo.write(String.format("%40s %19s %14d",rm.getCodigoCurso(),rm.getNombreCurso(), rm.getCantidadAlumnos()) + "\n");
-                }
-            }
-            
-        }catch(IOException e){
-        } 
-    */
     }
     
     /**
