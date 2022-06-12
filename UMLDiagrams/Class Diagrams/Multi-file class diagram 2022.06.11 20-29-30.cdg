@@ -1,0 +1,640 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ClassDiagram name="Multi-file class diagram">
+  <ClassDiagramComponents>
+    <Class name="Alumno" package="Clases" visibility="public" xPosition="1042.0" yPosition="128.0">
+      <Fields>
+        <Field name="nombreAlumno" type="String" visibility="private"/>
+        <Field name="cantidadCreditos" type="int" visibility="private"/>
+        <Field name="rut" type="int" visibility="private"/>
+        <Field name="coleccionRamos" type="ColeccionRamos" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="String" name="nombreAlumno"/>
+          <Argument type="int" name="rut"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getRut" returnType="int" visibility="public"/>
+        <Method name="getNombreAlumno" returnType="String" visibility="public"/>
+        <Method name="getCantidadCreditos" returnType="int" visibility="public"/>
+        <Method name="setRut" returnType="void" visibility="public">
+          <Argument type="int" name="rut"/>
+        </Method>
+        <Method name="setNombreAlumno" returnType="void" visibility="public">
+          <Argument type="String" name="nombreAlumno"/>
+        </Method>
+        <Method name="setCantidadCreditos" returnType="void" visibility="public">
+          <Argument type="int" name="cantidadCreditos"/>
+        </Method>
+        <Method name="mostrarAlumno" returnType="String" visibility="public"/>
+        <Method name="mostrarRamos" returnType="String[]" visibility="public"/>
+        <Method name="agregarRamo" returnType="void" visibility="public">
+          <Argument type="Ramo" name="nuevoRamo"/>
+        </Method>
+        <Method name="eliminarAlumno" returnType="boolean" visibility="public">
+          <Argument type="String" name="codigoAsignatura"/>
+        </Method>
+        <Method name="actualizarRamo" returnType="boolean" visibility="public">
+          <Argument type="String" name="codigoRamo"/>
+          <Argument type="int" name="estadoRamo"/>
+        </Method>
+        <Method name="verificar" returnType="boolean" visibility="public">
+          <Argument type="String" name="codigoCurso"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Asignatura" package="Clases" visibility="public" isAbstract="true" xPosition="2867.0" yPosition="449.0">
+      <Fields>
+        <Field name="cantidadAlumnos" type="int" visibility="private"/>
+        <Field name="esDePrimero" type="boolean" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="String" name="nombreAsignatura"/>
+          <Argument type="String" name="codigoAsignatura"/>
+          <Argument type="int" name="cantidadCreditos"/>
+        </Constructor>
+        <Constructor visibility="public">
+          <Argument type="String" name="nombreAsignatura"/>
+          <Argument type="String" name="codigoAsignatura"/>
+          <Argument type="int" name="cantidadCreditos"/>
+          <Argument type="boolean" name="esDePrimero"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getEsDePrimero" returnType="boolean" visibility="public"/>
+        <Method name="getCantidadAlumnos" returnType="int" visibility="public"/>
+        <Method name="setEsDePrimero" returnType="void" visibility="public">
+          <Argument type="boolean" name="esDePrimero"/>
+        </Method>
+        <Method name="setCantidadAlumnos" returnType="void" visibility="public">
+          <Argument type="int" name="cantidadAlumnos"/>
+        </Method>
+        <Method name="mostrarInformacion" returnType="String" visibility="public" isAbstract="true"/>
+        <Method name="cambiarInformacion" returnType="void" visibility="public" isAbstract="true">
+          <Argument type="String" name="nombreRamo"/>
+          <Argument type="String" name="nombreImpartido"/>
+        </Method>
+        <Method name="aumentarAlumnos" returnType="void" visibility="public"/>
+        <Method name="disminuirAlumnos" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Carrera" package="Clases" visibility="public" xPosition="562.0" yPosition="1695.0">
+      <Fields>
+        <Field name="nombreCarrera" type="String" visibility="private"/>
+        <Field name="cantidadAlumnos" type="int" visibility="private"/>
+        <Field name="coleccionAlumnos" type="ColeccionAlumnos" visibility="private"/>
+        <Field name="coleccionAsignatura" type="ColeccionAsignatura" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="String" name="nombreCarrera"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getCantidadAlumnos" returnType="int" visibility="public"/>
+        <Method name="getNombreCarrera" returnType="String" visibility="public"/>
+        <Method name="setCantidadAlumnos" returnType="void" visibility="public">
+          <Argument type="int" name="cantidadAlumnos"/>
+        </Method>
+        <Method name="setNombreCarrera" returnType="void" visibility="public">
+          <Argument type="String" name="nombreCarrera"/>
+        </Method>
+        <Method name="mostrarListaAlumnos" returnType="String[]" visibility="public"/>
+        <Method name="mostrarCarrera" returnType="String" visibility="public"/>
+        <Method name="mostrarAsignaturas" returnType="String[]" visibility="public"/>
+        <Method name="matricularAlumno" returnType="boolean" visibility="public">
+          <Argument type="Alumno" name="al"/>
+        </Method>
+        <Method name="agregarAsignaturaMalla" returnType="boolean" visibility="public">
+          <Argument type="Asignatura" name="nuevaAsignatura"/>
+        </Method>
+        <Method name="agregarRamoOpcional" returnType="boolean" visibility="public">
+          <Argument type="String" name="nombreAlumno"/>
+          <Argument type="Ramo" name="nuevoRamo"/>
+        </Method>
+        <Method name="eliminarAlumno" returnType="String[]" visibility="public">
+          <Argument type="String" name="nombreAlumno"/>
+        </Method>
+        <Method name="eliminarAlumno" returnType="String[]" visibility="public">
+          <Argument type="int" name="rutAlumno"/>
+        </Method>
+        <Method name="eliminarAsignatura" returnType="boolean" visibility="public">
+          <Argument type="String" name="codigoAsignatura"/>
+        </Method>
+        <Method name="actualizarRamo" returnType="boolean" visibility="public">
+          <Argument type="String" name="nombreAlumno"/>
+          <Argument type="String" name="codigoRamo"/>
+          <Argument type="int" name="estadoRamo"/>
+        </Method>
+        <Method name="editarAlumno" returnType="boolean" visibility="public">
+          <Argument type="String" name="nombreAlumno"/>
+          <Argument type="String" name="nuevoNombreAlumno"/>
+        </Method>
+        <Method name="alumnoMenorCreditos" returnType="Alumno" visibility="public"/>
+        <Method name="alumnosRangoCredito" returnType="ArrayList&lt;String&gt;" visibility="public">
+          <Argument type="int" name="rangoMinimo"/>
+          <Argument type="int" name="rangoMaximo"/>
+        </Method>
+        <Method name="buscarAlumno" returnType="String" visibility="public">
+          <Argument type="String" name="nombreAlumno"/>
+        </Method>
+        <Method name="buscarRamos" returnType="String[]" visibility="public">
+          <Argument type="String" name="nombreAlumno"/>
+        </Method>
+        <Method name="verificarAlumnos" returnType="boolean" visibility="public">
+          <Argument type="String" name="nombreAlumno"/>
+        </Method>
+        <Method name="noContieneAlumnos" returnType="boolean" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="ColeccionAlumnos" package="Clases" visibility="public" xPosition="389.0" yPosition="1125.0">
+      <Fields>
+        <Field name="mapaAlumnos" type="HashMap&lt;String, Alumno&gt;" visibility="private"/>
+        <Field name="listaAlumnos" type="ArrayList&lt;Alumno&gt;" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="mostrarListaAlumnos" returnType="String[]" visibility="public"/>
+        <Method name="agregarAlumno" returnType="void" visibility="public">
+          <Argument type="Alumno" name="al"/>
+        </Method>
+        <Method name="agregarRamoOpcional" returnType="boolean" visibility="public">
+          <Argument type="String" name="nombreAlumno"/>
+          <Argument type="Ramo" name="nuevoRamo"/>
+        </Method>
+        <Method name="eliminarAlumno" returnType="String[]" visibility="public">
+          <Argument type="String" name="nombreAlumno"/>
+        </Method>
+        <Method name="eliminarAlumno" returnType="String[]" visibility="public">
+          <Argument type="int" name="rutAlumno"/>
+        </Method>
+        <Method name="actualizarRamo" returnType="boolean" visibility="public">
+          <Argument type="String" name="nombreAlumno"/>
+          <Argument type="String" name="codigoRamo"/>
+          <Argument type="int" name="estadoRamo"/>
+        </Method>
+        <Method name="editarAlumno" returnType="boolean" visibility="public">
+          <Argument type="String" name="nombreAlumno"/>
+          <Argument type="String" name="nuevoNombreAlumno"/>
+        </Method>
+        <Method name="alumnoMenorCreditos" returnType="Alumno" visibility="public"/>
+        <Method name="alumnosRangoCredito" returnType="ArrayList&lt;String&gt;" visibility="public">
+          <Argument type="int" name="rangoMinimo"/>
+          <Argument type="int" name="rangoMaximo"/>
+        </Method>
+        <Method name="buscarAlumno" returnType="String" visibility="public">
+          <Argument type="String" name="nombreAlumno"/>
+        </Method>
+        <Method name="buscarRamos" returnType="String[]" visibility="public">
+          <Argument type="String" name="nombreAlumno"/>
+        </Method>
+        <Method name="verificarAlumno" returnType="boolean" visibility="public">
+          <Argument type="String" name="nombreAlumno"/>
+        </Method>
+        <Method name="verificarRut" returnType="boolean" visibility="public">
+          <Argument type="int" name="rut"/>
+        </Method>
+        <Method name="noContieneAlumnos" returnType="boolean" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="ColeccionAsignatura" package="Clases" visibility="public" xPosition="1011.0" yPosition="1372.0">
+      <Fields>
+        <Field name="mallaCurricular" type="ArrayList&lt;Asignatura&gt;" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="mostrarAsignaturas" returnType="String[]" visibility="public"/>
+        <Method name="agregarAlumno" returnType="void" visibility="public">
+          <Argument type="Alumno" name="al"/>
+        </Method>
+        <Method name="agregarAsignaturaMalla" returnType="void" visibility="public">
+          <Argument type="Asignatura" name="nuevaAsignatura"/>
+        </Method>
+        <Method name="eliminarAsignatura" returnType="boolean" visibility="public">
+          <Argument type="String" name="codigoAsignatura"/>
+        </Method>
+        <Method name="disminuirAlumnos" returnType="void" visibility="public">
+          <Argument type="String" name="codigoRamo"/>
+        </Method>
+        <Method name="aumentarAlumnos" returnType="void" visibility="public">
+          <Argument type="String" name="codigoRamo"/>
+        </Method>
+        <Method name="verificar" returnType="boolean" visibility="public">
+          <Argument type="String" name="codigoAsignatura"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="ColeccionCarreras" package="Clases" visibility="public" xPosition="1438.0" yPosition="1671.0">
+      <Fields>
+        <Field name="listaCarreras" type="ArrayList&lt;Carrera&gt;" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="mostrarAsignaturasCarrera" returnType="String[]" visibility="public">
+          <Argument type="String" name="nombreCarrera"/>
+        </Method>
+        <Method name="mostrarCarreras" returnType="String[]" visibility="public"/>
+        <Method name="mostrarListaAlumnos" returnType="String[]" visibility="public">
+          <Argument type="String" name="nombreCarrera"/>
+        </Method>
+        <Method name="agregarCarrera" returnType="boolean" visibility="public">
+          <Argument type="String" name="nombreCarrera"/>
+        </Method>
+        <Method name="agregarAsignaturaMalla" returnType="boolean" visibility="public">
+          <Argument type="Asignatura" name="nuevaAsignatura"/>
+          <Argument type="String" name="nombreCarrera"/>
+        </Method>
+        <Method name="agregarRamoOpcional" returnType="boolean" visibility="public">
+          <Argument type="String" name="nombreAlumno"/>
+          <Argument type="Ramo" name="nuevoRamo"/>
+          <Argument type="String" name="escuela"/>
+          <Argument type="ColeccionCursos" name="mapa_Cursos"/>
+        </Method>
+        <Method name="matricularAlumno" returnType="boolean" visibility="public">
+          <Argument type="Alumno" name="al"/>
+          <Argument type="String" name="nombreCarrera"/>
+        </Method>
+        <Method name="eliminarCarrera" returnType="boolean" visibility="public">
+          <Argument type="String" name="nombreCarrera"/>
+        </Method>
+        <Method name="eliminarAlumno" returnType="boolean" visibility="public">
+          <Argument type="int" name="rut"/>
+          <Argument type="String" name="nombreCarrera"/>
+          <Argument type="ColeccionCursos" name="mapa_Cursos"/>
+        </Method>
+        <Method name="eliminarAlumno" returnType="boolean" visibility="public">
+          <Argument type="String" name="nombreAlumno"/>
+          <Argument type="String" name="nombreCarrera"/>
+          <Argument type="ColeccionCursos" name="mapa_Cursos"/>
+        </Method>
+        <Method name="eliminarAsignatura" returnType="boolean" visibility="public">
+          <Argument type="String" name="nombreCarrera"/>
+          <Argument type="String" name="codigoAsignatura"/>
+        </Method>
+        <Method name="actualizarRamo" returnType="boolean" visibility="public">
+          <Argument type="String" name="nombreAlumno"/>
+          <Argument type="String" name="codigoAsignatura"/>
+          <Argument type="int" name="estadoRamo"/>
+          <Argument type="ColeccionCursos" name="mapa_Cursos"/>
+        </Method>
+        <Method name="editarCarrera" returnType="boolean" visibility="public">
+          <Argument type="String" name="nombreCarrera"/>
+          <Argument type="String" name="nuevoNombreCarrera"/>
+        </Method>
+        <Method name="editarAlumno" returnType="boolean" visibility="public">
+          <Argument type="String" name="nombreAlumno"/>
+          <Argument type="String" name="nuevoNombreAlumno"/>
+        </Method>
+        <Method name="alumnosMenorCantCreditos" returnType="String[]" visibility="public"/>
+        <Method name="alumnosRangoCredito" returnType="ArrayList&lt;String&gt;" visibility="public">
+          <Argument type="int" name="rangoMinimo"/>
+          <Argument type="int" name="rangoMaximo"/>
+        </Method>
+        <Method name="buscarAlumno" returnType="String" visibility="public">
+          <Argument type="String" name="nombreCarrera"/>
+          <Argument type="String" name="nombreAlumno"/>
+        </Method>
+        <Method name="buscarRamosAlumno" returnType="String[]" visibility="public">
+          <Argument type="String" name="nombreCarrera"/>
+          <Argument type="String" name="nombreAlumno"/>
+        </Method>
+        <Method name="buscarRamosAlumno" returnType="String[]" visibility="public">
+          <Argument type="String" name="nombreAlumno"/>
+        </Method>
+        <Method name="noContieneCarrera" returnType="boolean" visibility="public"/>
+        <Method name="noContieneAlumnos" returnType="boolean" visibility="public"/>
+        <Method name="reporteCarrera" returnType="String" visibility="public"/>
+        <Method name="reporteAlumnos" returnType="String" visibility="public"/>
+        <Method name="reporteCursos" returnType="String" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="ColeccionCursos" package="Clases" visibility="public" xPosition="2313.0" yPosition="1055.0">
+      <Fields>
+        <Field name="mapaCursos" type="HashMap&lt;String, Asignatura&gt;" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="mostrarCursos" returnType="ArrayList&lt;String&gt;" visibility="public"/>
+        <Method name="agregarMalla" returnType="void" visibility="public">
+          <Argument type="Asignatura" name="nuevaAsignatura"/>
+        </Method>
+        <Method name="agregarRamoOpcional" returnType="void" visibility="public">
+          <Argument type="Ramo" name="nuevoRamo"/>
+          <Argument type="String" name="escuela"/>
+        </Method>
+        <Method name="editarAsignatura" returnType="boolean" visibility="public">
+          <Argument type="String" name="codigoAsignatura"/>
+          <Argument type="String" name="nuevoNombre"/>
+          <Argument type="String" name="nuevaInformacion"/>
+        </Method>
+        <Method name="buscarAsignatura" returnType="String" visibility="public">
+          <Argument type="String" name="codigoAsignatura"/>
+        </Method>
+        <Method name="disminuirAlumnos" returnType="void" visibility="public">
+          <Argument type="String" name="codigo"/>
+        </Method>
+        <Method name="aumentarAlumnos" returnType="void" visibility="public">
+          <Argument type="String" name="codigo"/>
+        </Method>
+        <Method name="verificar" returnType="boolean" visibility="public">
+          <Argument type="String" name="codigoCurso"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="ColeccionRamos" package="Clases" visibility="public" xPosition="515.0" yPosition="92.0">
+      <Fields>
+        <Field name="ramosAlumno" type="ArrayList&lt;Ramo&gt;" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="getCantidadCreditos" returnType="int" visibility="public">
+          <Argument type="String" name="codigoRamo"/>
+        </Method>
+        <Method name="mostrarRamos" returnType="String[]" visibility="public"/>
+        <Method name="agregarRamo" returnType="void" visibility="public">
+          <Argument type="Ramo" name="nuevoRamo"/>
+        </Method>
+        <Method name="eliminarAlumno" returnType="boolean" visibility="public">
+          <Argument type="String" name="codigoAsignatura"/>
+        </Method>
+        <Method name="actualizarRamo" returnType="boolean" visibility="public">
+          <Argument type="String" name="codigoRamo"/>
+          <Argument type="int" name="estadoRamo"/>
+        </Method>
+        <Method name="verificarCodigoCurso" returnType="boolean" visibility="public">
+          <Argument type="String" name="codigoCurso"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Curso" package="Clases" visibility="public" isAbstract="true" xPosition="1488.0" yPosition="521.0">
+      <Fields>
+        <Field name="nombreCurso" type="String" visibility="private"/>
+        <Field name="codigoCurso" type="String" visibility="private"/>
+        <Field name="cantidadCreditos" type="int" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="String" name="nombreCurso"/>
+          <Argument type="String" name="codigoCurso"/>
+          <Argument type="int" name="cantidadCreditos"/>
+        </Constructor>
+        <Constructor visibility="public">
+          <Argument type="String" name="nombreCurso"/>
+          <Argument type="String" name="codigoCurso"/>
+          <Argument type="int" name="cantidadCreditos"/>
+          <Argument type="boolean" name="esDePrimero"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getNombreCurso" returnType="String" visibility="public"/>
+        <Method name="getCodigoCurso" returnType="String" visibility="public"/>
+        <Method name="getCantidadCreditos" returnType="int" visibility="public"/>
+        <Method name="setNombreCurso" returnType="void" visibility="public">
+          <Argument type="String" name="nombreCurso"/>
+        </Method>
+        <Method name="setCodigoCurso" returnType="void" visibility="public">
+          <Argument type="String" name="codigoCurso"/>
+        </Method>
+        <Method name="setCantidadCreditos" returnType="void" visibility="public">
+          <Argument type="int" name="cantidadCreditos"/>
+        </Method>
+        <Method name="mostrarInformacion" returnType="String" visibility="public" isAbstract="true"/>
+      </Methods>
+    </Class>
+    <Class name="Instituto" package="Clases" visibility="public" xPosition="2407.0" yPosition="1444.0">
+      <Fields>
+        <Field name="listaCarreras" type="ColeccionCarreras" visibility="private"/>
+        <Field name="mapaCursos" type="ColeccionCursos" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="mostrarCursos" returnType="ArrayList&lt;String&gt;" visibility="public"/>
+        <Method name="mostrarAsignaturasCarrera" returnType="String[]" visibility="public">
+          <Argument type="String" name="nombreCarrera"/>
+        </Method>
+        <Method name="mostrarCarreras" returnType="String[]" visibility="public"/>
+        <Method name="mostrarListaAlumnos" returnType="String[]" visibility="public">
+          <Argument type="String" name="nombreCarrera"/>
+        </Method>
+        <Method name="agregarCarrera" returnType="boolean" visibility="public">
+          <Argument type="String" name="nombreCarrera"/>
+        </Method>
+        <Method name="agregarMalla" returnType="boolean" visibility="public">
+          <Argument type="Asignatura" name="nuevaAsignatura"/>
+          <Argument type="String" name="nombreCarrera"/>
+        </Method>
+        <Method name="agregarRamoOpcional" returnType="boolean" visibility="public">
+          <Argument type="String" name="nombreAlumno"/>
+          <Argument type="Ramo" name="nuevoRamo"/>
+          <Argument type="String" name="escuela"/>
+        </Method>
+        <Method name="matricularAlumno" returnType="boolean" visibility="public">
+          <Argument type="Alumno" name="al"/>
+          <Argument type="String" name="nombreCarrera"/>
+        </Method>
+        <Method name="eliminarCarrera" returnType="boolean" visibility="public">
+          <Argument type="String" name="nombreCarrera"/>
+        </Method>
+        <Method name="eliminarAlumno" returnType="boolean" visibility="public">
+          <Argument type="int" name="rut"/>
+          <Argument type="String" name="nombreCarrera"/>
+        </Method>
+        <Method name="eliminarAlumno" returnType="boolean" visibility="public">
+          <Argument type="String" name="nombreAlumno"/>
+          <Argument type="String" name="nombreCarrera"/>
+        </Method>
+        <Method name="eliminarAsignatura" returnType="boolean" visibility="public">
+          <Argument type="String" name="nombreCarrera"/>
+          <Argument type="String" name="codigoAsignatura"/>
+        </Method>
+        <Method name="actualizarRamo" returnType="boolean" visibility="public">
+          <Argument type="String" name="nombreAlumno"/>
+          <Argument type="String" name="codigoAsignatura"/>
+          <Argument type="int" name="estadoRamo"/>
+        </Method>
+        <Method name="editarCarrera" returnType="boolean" visibility="public">
+          <Argument type="String" name="nombreCarrera"/>
+          <Argument type="String" name="nuevoNombreCarrera"/>
+        </Method>
+        <Method name="editarAlumno" returnType="boolean" visibility="public">
+          <Argument type="String" name="nombreAlumno"/>
+          <Argument type="String" name="nuevoNombreAlumno"/>
+        </Method>
+        <Method name="editarAsignatura" returnType="boolean" visibility="public">
+          <Argument type="String" name="codigoAsignatura"/>
+          <Argument type="String" name="nuevoNombre"/>
+          <Argument type="String" name="nuevaInformacion"/>
+        </Method>
+        <Method name="alumnosMenorCantCreditos" returnType="String[]" visibility="public"/>
+        <Method name="alumnosRangoCredito" returnType="ArrayList&lt;String&gt;" visibility="public">
+          <Argument type="int" name="rangoMinimo"/>
+          <Argument type="int" name="rangoMaximo"/>
+        </Method>
+        <Method name="buscarAlumno" returnType="String" visibility="public">
+          <Argument type="String" name="nombreCarrera"/>
+          <Argument type="String" name="nombreAlumno"/>
+        </Method>
+        <Method name="buscarRamosAlumno" returnType="String[]" visibility="public">
+          <Argument type="String" name="nombreCarrera"/>
+          <Argument type="String" name="nombreAlumno"/>
+        </Method>
+        <Method name="buscarRamosAlumno" returnType="String[]" visibility="public">
+          <Argument type="String" name="nombreAlumno"/>
+        </Method>
+        <Method name="buscarAsignatura" returnType="String" visibility="public">
+          <Argument type="String" name="codigoAsignatura"/>
+        </Method>
+        <Method name="noContieneCarrera" returnType="boolean" visibility="public"/>
+        <Method name="noContieneAlumnos" returnType="boolean" visibility="public"/>
+        <Method name="crearReporte" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Obligatorio" package="Clases" visibility="public" xPosition="2073.0" yPosition="337.0">
+      <Fields>
+        <Field name="carrera" type="String" visibility="package"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="String" name="nombre"/>
+          <Argument type="String" name="codigo"/>
+          <Argument type="int" name="totalCreditos"/>
+          <Argument type="boolean" name="esDePrimero"/>
+          <Argument type="String" name="carrera"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getCarrera" returnType="String" visibility="public"/>
+        <Method name="setCarrera" returnType="void" visibility="public">
+          <Argument type="String" name="carrera"/>
+        </Method>
+        <Method name="mostrarInformacion" returnType="String" visibility="public"/>
+        <Method name="cambiarInformacion" returnType="void" visibility="public">
+          <Argument type="String" name="nombreRamo"/>
+          <Argument type="String" name="nombreImpartido"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Opcional" package="Clases" visibility="public" xPosition="2206.0" yPosition="51.0">
+      <Fields>
+        <Field name="escuela" type="String" visibility="package"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="String" name="nombre"/>
+          <Argument type="String" name="codigo"/>
+          <Argument type="int" name="totalCreditos"/>
+          <Argument type="String" name="escuela"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getEscuela" returnType="String" visibility="public"/>
+        <Method name="setEscuela" returnType="void" visibility="public">
+          <Argument type="String" name="escuela"/>
+        </Method>
+        <Method name="mostrarInformacion" returnType="String" visibility="public"/>
+        <Method name="cambiarInformacion" returnType="void" visibility="public">
+          <Argument type="String" name="nombreRamo"/>
+          <Argument type="String" name="nombreImpartido"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Ramo" package="Clases" visibility="public" xPosition="36.0" yPosition="650.0">
+      <Fields>
+        <Field name="estadoRamo" type="int" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="String" name="nombre"/>
+          <Argument type="String" name="codigo"/>
+          <Argument type="int" name="totalCreditos"/>
+        </Constructor>
+        <Constructor visibility="public">
+          <Argument type="String" name="nombre"/>
+          <Argument type="String" name="codigo"/>
+          <Argument type="int" name="totalCreditos"/>
+          <Argument type="int" name="estadoRamo"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getEstadoRamo" returnType="int" visibility="public"/>
+        <Method name="setEstadoRamo" returnType="void" visibility="public">
+          <Argument type="int" name="estadoRamo"/>
+        </Method>
+        <Method name="mostrarInformacion" returnType="String" visibility="public"/>
+        <Method name="actualizarRamo" returnType="boolean" visibility="public">
+          <Argument type="int" name="estadoRamo"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Main" package="Ventanas" visibility="public" xPosition="3002.0" yPosition="1439.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String[]" name="args"/>
+        </Method>
+        <Method name="insertarDatosPrimerizos" returnType="void" visibility="public" isStatic="true">
+          <Argument type="Instituto" name="inst"/>
+        </Method>
+      </Methods>
+    </Class>
+  </ClassDiagramComponents>
+  <ClassDiagramRelations>
+    <HasRelation name="mapaCursos" source="Clases.Instituto" target="Clases.ColeccionCursos" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Clases.Instituto" target="Clases.Asignatura" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Clases.ColeccionCarreras" target="Clases.Ramo" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="listaAlumnos" source="Clases.ColeccionAlumnos" target="Clases.Alumno" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="ArrayList&lt;Alumno&gt;"/>
+    <UseRelation source="Clases.Carrera" target="Clases.Alumno" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Clases.Carrera" target="Clases.Asignatura" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Clases.ColeccionRamos" target="Clases.Ramo" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="listaCarreras" source="Clases.Instituto" target="Clases.ColeccionCarreras" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Clases.ColeccionCursos" target="Clases.Asignatura" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="coleccionAlumnos" source="Clases.Carrera" target="Clases.ColeccionAlumnos" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Clases.ColeccionAlumnos" target="Clases.Alumno" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Clases.ColeccionAsignatura" target="Clases.Asignatura" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="coleccionAsignatura" source="Clases.Carrera" target="Clases.ColeccionAsignatura" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="mapaCursos" source="Clases.ColeccionCursos" target="Clases.Asignatura" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="HashMap&lt;String, Asignatura&gt;"/>
+    <HasRelation name="mallaCurricular" source="Clases.ColeccionAsignatura" target="Clases.Asignatura" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="ArrayList&lt;Asignatura&gt;"/>
+    <UseRelation source="Clases.Carrera" target="Clases.Ramo" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="listaCarreras" source="Clases.ColeccionCarreras" target="Clases.Carrera" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="ArrayList&lt;Carrera&gt;"/>
+    <HasRelation name="mapaAlumnos" source="Clases.ColeccionAlumnos" target="Clases.Alumno" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="HashMap&lt;String, Alumno&gt;"/>
+    <IsRelation name="is" source="Clases.Opcional" target="Clases.Asignatura"/>
+    <UseRelation source="Clases.ColeccionCarreras" target="Clases.Alumno" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Clases.ColeccionCursos" target="Clases.Ramo" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="ramosAlumno" source="Clases.ColeccionRamos" target="Clases.Ramo" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="ArrayList&lt;Ramo&gt;"/>
+    <UseRelation source="Clases.Alumno" target="Clases.Ramo" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Clases.Instituto" target="Clases.Ramo" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="coleccionRamos" source="Clases.Alumno" target="Clases.ColeccionRamos" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Clases.ColeccionAlumnos" target="Clases.Ramo" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Clases.Instituto" target="Clases.Alumno" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Clases.ColeccionAsignatura" target="Clases.Alumno" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="Clases.Ramo" target="Clases.Curso"/>
+    <IsRelation name="is" source="Clases.Asignatura" target="Clases.Curso"/>
+    <IsRelation name="is" source="Clases.Obligatorio" target="Clases.Asignatura"/>
+    <UseRelation source="Clases.ColeccionCarreras" target="Clases.Curso" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Ventanas.Main" target="Clases.Instituto" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Clases.ColeccionCarreras" target="Clases.Asignatura" sourceCardinality="1..1" targetCardinality="1..1"/>
+  </ClassDiagramRelations>
+</ClassDiagram>
