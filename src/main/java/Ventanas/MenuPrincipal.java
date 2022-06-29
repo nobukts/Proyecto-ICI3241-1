@@ -1,6 +1,5 @@
 package Ventanas;
 
-import Clases.FormaEspecial;
 import Clases.Instituto;
 
 public class MenuPrincipal extends javax.swing.JFrame {
@@ -161,7 +160,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private void botonReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonReporteActionPerformed
         Aviso avisoEmergente = new Aviso();
         if(!inst.noContieneCarrera()){
-            inst.setFormatoSalida(new FormaEspecial());
             inst.crearReporte();
             avisoEmergente.cambiarAviso("Se genero el reporte de las carreras");
         }else{
