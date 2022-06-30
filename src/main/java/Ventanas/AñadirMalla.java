@@ -4,8 +4,11 @@
  */
 package Ventanas;
 
+import javax.swing.JOptionPane;
+
 import Clases.Instituto;
 import Clases.Obligatorio;
+import Exceptions.CodigoMalEscritoException;
 
 /**
  *
@@ -157,26 +160,42 @@ public class AñadirMalla extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    private String getCodigoCurso() throws CodigoMalEscritoException{
+        String codigoCurso = campoCodigo.getText();
+        if(codigoCurso.length() == 6){
+
+        }else{
+            throw new CodigoMalEscritoException();
+        }
+        return codigoCurso;
+    }
+
     private void botonAñadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAñadirActionPerformed
         // TODO add your handling code here:
         String nombreCarrera = campoCarrera.getSelectedItem().toString();
         String nombreCurso = campoNombre.getText();
-        String codigoCurso = campoCodigo.getText();
-        int cantCreditos = (Integer) campoCreditos.getValue();
-        boolean esDePrimero = primerSemestreCheck.isSelected();
-        Aviso avisoEmergente = new Aviso();
-        
-        if(inst.agregarMalla(new Obligatorio(nombreCurso, codigoCurso, cantCreditos, esDePrimero, nombreCarrera), nombreCarrera)){
-            avisoEmergente.cambiarAviso("Se ingreso a la malla el ramo " + nombreCurso);
-        }else{
-            avisoEmergente.cambiarAviso("No se pudo ingresar a la malla el ramo " + nombreCurso);
+        try {
+            String codigoCurso = getCodigoCurso();
+
+            int cantCreditos = (Integer) campoCreditos.getValue();
+            boolean esDePrimero = primerSemestreCheck.isSelected();
+            Aviso avisoEmergente = new Aviso();
+            
+            if(inst.agregarMalla(new Obligatorio(nombreCurso, codigoCurso, cantCreditos, esDePrimero, nombreCarrera), nombreCarrera)){
+                avisoEmergente.cambiarAviso("Se ingreso a la malla el ramo " + nombreCurso);
+            }else{
+                avisoEmergente.cambiarAviso("No se pudo ingresar a la malla el ramo " + nombreCurso);
+            }
+            
+            avisoEmergente.setVisible(true);
+            campoNombre.setText("");
+            campoCodigo.setText("");
+            campoCreditos.setValue(0);
+            primerSemestreCheck.setSelected(false);
+            
+        } catch (CodigoMalEscritoException e) {
+            JOptionPane.showMessageDialog(null, "Escribió mal el codigo");
         }
-        
-        avisoEmergente.setVisible(true);
-        campoNombre.setText("");
-        campoCodigo.setText("");
-        campoCreditos.setValue(0);
-        primerSemestreCheck.setSelected(false);
         
     }//GEN-LAST:event_botonAñadirActionPerformed
 

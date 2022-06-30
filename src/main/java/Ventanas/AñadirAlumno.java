@@ -4,8 +4,11 @@
  */
 package Ventanas;
 
+import javax.swing.JOptionPane;
+
 import Clases.Alumno;
 import Clases.Instituto;
+import Exceptions.RunMalEscritoException;
 
 /**
  *
@@ -130,24 +133,41 @@ public class AñadirAlumno extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    private int getRun() throws RunMalEscritoException, NumberFormatException{
+        String run = campoRun.getText();
+        if(run.length() != 8){
+            throw new RunMalEscritoException();
+        }
+        return Integer.parseInt(run);
+        
+    }
+
     private void botonAñadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAñadirActionPerformed
         // TODO add your handling code here:
         String nombreCarrera = campoCarrera.getSelectedItem().toString();
         String nombreAlumno = campoNombre.getText();
-        int run = Integer.parseInt(campoRun.getText());
-        Aviso avisoEmergente = new Aviso();
         
-        if(inst.matricularAlumno(new Alumno(nombreAlumno, run), nombreCarrera)){
-            avisoEmergente.cambiarAviso("Se matriculo a " + nombreAlumno);
-        }else{
-            avisoEmergente.cambiarAviso("No se pudo matricular alumno " + nombreAlumno);
+        try {
+            int run = getRun();
+
+            Aviso avisoEmergente = new Aviso();
+            if(inst.matricularAlumno(new Alumno(nombreAlumno, run), nombreCarrera)){
+                avisoEmergente.cambiarAviso("Se matriculo a " + nombreAlumno);
+            }else{
+                avisoEmergente.cambiarAviso("No se pudo matricular alumno " + nombreAlumno);
+            }
+            
+            avisoEmergente.setVisible(true);
+            campoNombre.setText("");
+            campoCarrera.setSelectedIndex(-1);
+            campoNombre.setText("");
+            campoRun.setText("");
+        } catch (RunMalEscritoException e) {
+            JOptionPane.showMessageDialog(null, "Escribió mal el run (No tiene 8 digitos)");
+        } catch (NumberFormatException n) {
+            JOptionPane.showMessageDialog(null, "Escribió mal el codigo (Tiene algun caracter)");
         }
         
-        avisoEmergente.setVisible(true);
-        campoNombre.setText("");
-        campoCarrera.setSelectedIndex(-1);
-        campoNombre.setText("");
-        campoRun.setText("");
         
     }//GEN-LAST:event_botonAñadirActionPerformed
 
