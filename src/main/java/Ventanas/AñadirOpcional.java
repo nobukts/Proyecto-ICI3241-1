@@ -4,8 +4,11 @@
  */
 package Ventanas;
 
+import javax.swing.JOptionPane;
+
 import Clases.Instituto;
 import Clases.Ramo;
+import Exceptions.CodigoMalEscritoException;
 
 /**
  *
@@ -143,27 +146,42 @@ public class AñadirOpcional extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    private String getCodigoCurso() throws CodigoMalEscritoException{
+        String codigoCurso = campoCodigo.getText();
+        if(codigoCurso.length() == 6){
+
+        }else{
+            throw new CodigoMalEscritoException();
+        }
+        return codigoCurso;
+    }
+    
     private void botonAñadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAñadirActionPerformed
         // TODO add your handling code here:
-        String nombreAlumno = campoNombreA.getText();
-        String nombreCurso = campoNombre.getText();
-        String codigoCurso = campoCodigo.getText();
-        String nombreEscuela = campoEscuela.getText();
-        int cantCreditos = (Integer) campoCreditos.getValue();
-        Aviso avisoEmergente = new Aviso();
-        
-        if(inst.agregarRamoOpcional(nombreAlumno, new Ramo(nombreCurso, codigoCurso, cantCreditos), nombreEscuela)){
-            avisoEmergente.cambiarAviso("Se ingreso el ramo " + nombreCurso + " al alumno " + nombreAlumno);
-        }else{
-            avisoEmergente.cambiarAviso("No se pudo ingresar el ramo " + nombreCurso + " al alumno " + nombreAlumno);
+        try {
+            String nombreAlumno = campoNombreA.getText();
+            String nombreCurso = campoNombre.getText();
+            String codigoCurso = getCodigoCurso();
+            String nombreEscuela = campoEscuela.getText();
+            int cantCreditos = (Integer) campoCreditos.getValue();
+            Aviso avisoEmergente = new Aviso();
+            
+            if(inst.agregarRamoOpcional(nombreAlumno, new Ramo(nombreCurso, codigoCurso, cantCreditos), nombreEscuela)){
+                avisoEmergente.cambiarAviso("Se ingreso el ramo " + nombreCurso + " al alumno " + nombreAlumno);
+            }else{
+                avisoEmergente.cambiarAviso("No se pudo ingresar el ramo " + nombreCurso + " al alumno " + nombreAlumno);
+            }
+            
+            avisoEmergente.setVisible(true);
+            campoNombreA.setText("");
+            campoNombre.setText("");
+            campoCodigo.setText("");
+            campoCreditos.setValue(0);
+            campoEscuela.setText("");
+        } catch (CodigoMalEscritoException e) {
+            JOptionPane.showMessageDialog(null, "Escribió mal el codigo");
         }
         
-        avisoEmergente.setVisible(true);
-        campoNombreA.setText("");
-        campoNombre.setText("");
-        campoCodigo.setText("");
-        campoCreditos.setValue(0);
-        campoEscuela.setText("");
     }//GEN-LAST:event_botonAñadirActionPerformed
 
     private void botonAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAtrasActionPerformed

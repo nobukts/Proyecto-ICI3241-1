@@ -19,24 +19,20 @@ public class FormaEspecial implements FormatoSalida {
             try (FileWriter archivo = new FileWriter("reporte.txt")) {
                 String[] infoSeparada;
 
-                archivo.write("[Nombres alumnos] + [RUT alumnos] + [Cantidad creditos]\n");
+                archivo.write("Nombres alumnos + RUT alumnos + Cantidad creditos\n");
                 archivo.write(infoAlumnos);
                 
                 archivo.write("---------------------------------------------\n");
-                archivo.write("[Nombre de la carrera] + [Cantidad Alumnos]\n");
+                archivo.write("Nombre de la carrera + Cantidad Alumnos\n");
                 archivo.write(infoCarreras);
                 
                 archivo.write("---------------------------------------------\n");
-                archivo.write("_____________\n");
-                archivo.write("[OBLIGATORIO]\n");
-                archivo.write("^^^^^^^^^^^^^\n");
-                archivo.write("[Nombre del curso              ] + [Codigo del curso] + [Cantidad de creditos] + [Carrera o Escuela] + [cantidad de alumnos] + [Es de primero?]\n");
+                archivo.write("OBLIGATORIO\n");
+                archivo.write("Nombre del curso               + Codigo del curso + Cantidad de creditos + Carrera o Escuela + cantidad de alumnos + Es de primero?\n");
                 archivo.write(infoCursos);
 
-                archivo.write("__________\n");
-                archivo.write("[OPCIONAL]\n");
-                archivo.write("^^^^^^^^^^\n");
-                archivo.write("[Nombre del curso              ] + [Codigo del curso] + [Cantidad de creditos] + [Carrera o Escuela] + [cantidad de alumnos] + [Es de primero?]\n");
+                archivo.write("OPCIONAL\n");
+                archivo.write("Nombre del curso               + Codigo del curso + Cantidad de creditos + Carrera o Escuela + cantidad de alumnos + Es de primero?\n");
                 
                 for(int i = 0 ; i < infoObtenida.size() ; i++){
                     infoSeparada = infoObtenida.get(i).split("-");

@@ -135,7 +135,7 @@ public class AñadirAlumno extends javax.swing.JFrame {
 
     private int getRun() throws RunMalEscritoException, NumberFormatException{
         String run = campoRun.getText();
-        if(run.length() != 8){
+        if(run.length() < 6 || run.length() > 8){
             throw new RunMalEscritoException();
         }
         return Integer.parseInt(run);
@@ -144,10 +144,9 @@ public class AñadirAlumno extends javax.swing.JFrame {
 
     private void botonAñadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAñadirActionPerformed
         // TODO add your handling code here:
-        String nombreCarrera = campoCarrera.getSelectedItem().toString();
-        String nombreAlumno = campoNombre.getText();
-        
         try {
+            String nombreCarrera = campoCarrera.getSelectedItem().toString();
+            String nombreAlumno = campoNombre.getText();
             int run = getRun();
 
             Aviso avisoEmergente = new Aviso();
@@ -163,7 +162,7 @@ public class AñadirAlumno extends javax.swing.JFrame {
             campoNombre.setText("");
             campoRun.setText("");
         } catch (RunMalEscritoException e) {
-            JOptionPane.showMessageDialog(null, "Escribió mal el run (No tiene 8 digitos)");
+            JOptionPane.showMessageDialog(null, "Escribió mal el run (No tiene de 6 a 8 digitos)");
         } catch (NumberFormatException n) {
             JOptionPane.showMessageDialog(null, "Escribió mal el codigo (Tiene algun caracter)");
         }

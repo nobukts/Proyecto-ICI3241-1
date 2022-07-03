@@ -172,9 +172,9 @@ public class AñadirMalla extends javax.swing.JFrame {
 
     private void botonAñadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAñadirActionPerformed
         // TODO add your handling code here:
-        String nombreCarrera = campoCarrera.getSelectedItem().toString();
-        String nombreCurso = campoNombre.getText();
         try {
+            String nombreCarrera = campoCarrera.getSelectedItem().toString();
+            String nombreCurso = campoNombre.getText();
             String codigoCurso = getCodigoCurso();
 
             int cantCreditos = (Integer) campoCreditos.getValue();
