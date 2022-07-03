@@ -103,10 +103,11 @@ public class EliminarCarrera extends javax.swing.JFrame {
         String nombreCarrera = campoCarrera.getSelectedItem().toString();
         Aviso avisoEmergente = new Aviso();
 
-        if(inst.eliminarCarrera(nombreCarrera)){
+        if(inst.mostrarListaAlumnos(nombreCarrera).length == 0){
+            inst.eliminarCarrera(nombreCarrera);
             avisoEmergente.cambiarAviso("Se ha eliminado con exito la carrera " + nombreCarrera);
         }else{
-            avisoEmergente.cambiarAviso("No se pudo eliminar la carrera " + nombreCarrera);
+            avisoEmergente.cambiarAviso("No se pudo eliminar la carrera " + nombreCarrera + " debido a que hay alumnos cursando la carrera");
         }
         
         actualizarInformacion();
