@@ -5,7 +5,7 @@
 package Ventanas;
 
 import Clases.FormaNormal;
-import Clases.FormaEspecial;
+import Clases.FormaSoloCursos;
 import Clases.Instituto;
 
 /**
@@ -49,7 +49,7 @@ public class MenuReporte extends javax.swing.JFrame {
             }
         });
 
-        botonEspecial.setText("Reporte Especial");
+        botonEspecial.setText("Reporte \"Solo Cursos\"");
         botonEspecial.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonEspecialActionPerformed(evt);
@@ -74,7 +74,7 @@ public class MenuReporte extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(147, 147, 147)
+                        .addGap(132, 132, 132)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(botonEspecial, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(botonNormal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
@@ -117,7 +117,7 @@ public class MenuReporte extends javax.swing.JFrame {
 
     private void botonEspecialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEspecialActionPerformed
         Aviso mensajeEmergente = new Aviso();
-        inst.setFormatoSalida(new FormaEspecial());
+        inst.setFormatoSalida(new FormaSoloCursos());
         inst.crearReporte();
         mensajeEmergente.cambiarAviso("Se ha generado el reporte de forma especial");
         mensajeEmergente.setVisible(true);

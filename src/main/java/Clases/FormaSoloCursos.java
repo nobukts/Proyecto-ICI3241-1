@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 import Interfaces.FormatoSalida;
 
-public class FormaEspecial implements FormatoSalida {
+public class FormaSoloCursos implements FormatoSalida {
     public void crearReporte(String infoCarreras, String infoAlumnos, String infoCursos, ArrayList<String> infoObtenida){
         //Se crea el archivo reporte
         try{

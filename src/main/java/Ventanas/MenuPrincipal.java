@@ -1,6 +1,6 @@
 package Ventanas;
 
-import Clases.FormaEspecial;
+import Clases.FormaSoloCursos;
 import Clases.Instituto;
 
 public class MenuPrincipal extends javax.swing.JFrame {

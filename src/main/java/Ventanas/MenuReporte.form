@@ -31,7 +31,7 @@
           <Group type="102" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="147" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="132" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="botonEspecial" max="32767" attributes="0"/>
                           <Component id="botonNormal" max="32767" attributes="0"/>
@@ -81,7 +81,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="botonEspecial">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Reporte Especial"/>
+        <Property name="text" type="java.lang.String" value="Reporte &quot;Solo Cursos&quot;"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonEspecialActionPerformed"/>
