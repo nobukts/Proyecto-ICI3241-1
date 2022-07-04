@@ -4,7 +4,10 @@
  */
 package Ventanas;
 
+import javax.swing.JOptionPane;
+
 import Clases.Instituto;
+import Exceptions.CodigoMalEscritoException;
 
 /**
  *
@@ -127,22 +130,37 @@ public class EditarAsignatura extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_botonAtrasActionPerformed
 
-    private void botonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEditarActionPerformed
-        String codigoAsignatura = campoCodigo.getText();
-        String nombreNuevo = campoNombre.getText();
-        String infoNueva = campoInfo.getText();
-        Aviso avisoEmergente = new Aviso();
-        
-        if(inst.editarAsignatura(codigoAsignatura, nombreNuevo, infoNueva)){
-            avisoEmergente.cambiarAviso("Se ha actualizado la informacion de la asignatura");
+    private String getCodigoCurso() throws CodigoMalEscritoException{
+        String codigoCurso = campoCodigo.getText();
+        if(codigoCurso.length() == 6){
+
         }else{
-            avisoEmergente.cambiarAviso("No se ha podido actualizar la informacion de la asignatura");
+            throw new CodigoMalEscritoException();
+        }
+        return codigoCurso;
+    }
+    
+    private void botonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEditarActionPerformed
+        try {
+            String codigoAsignatura = getCodigoCurso();
+            String nombreNuevo = campoNombre.getText();
+            String infoNueva = campoInfo.getText();
+            Aviso avisoEmergente = new Aviso();
+            
+            if(inst.editarAsignatura(codigoAsignatura, nombreNuevo, infoNueva)){
+                avisoEmergente.cambiarAviso("Se ha actualizado la informacion de la asignatura");
+            }else{
+                avisoEmergente.cambiarAviso("No se ha podido actualizar la informacion de la asignatura");
+            }
+            
+            avisoEmergente.setVisible(true);
+            campoCodigo.setText("");
+            campoNombre.setText("");
+            campoInfo.setText("");
+        } catch (CodigoMalEscritoException e) {
+            JOptionPane.showMessageDialog(null, "Escribió mal el codigo");
         }
         
-        avisoEmergente.setVisible(true);
-        campoCodigo.setText("");
-        campoNombre.setText("");
-        campoInfo.setText("");
     }//GEN-LAST:event_botonEditarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

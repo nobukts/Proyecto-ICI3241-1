@@ -1,5 +1,6 @@
 package Ventanas;
 
+import Clases.FormaSoloCursos;
 import Clases.Instituto;
 
 public class MenuPrincipal extends javax.swing.JFrame {
@@ -158,14 +159,15 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_botonMostrarActionPerformed
 
     private void botonReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonReporteActionPerformed
-        Aviso avisoEmergente = new Aviso();
         if(!inst.noContieneCarrera()){
-            inst.crearReporte();
-            avisoEmergente.cambiarAviso("Se genero el reporte de las carreras");
+            MenuReporte menuR = new MenuReporte(inst);
+            this.dispose();
+            menuR.setVisible(true);
         }else{
+            Aviso avisoEmergente = new Aviso();
             avisoEmergente.cambiarAviso("No se puede generar el reporte, porque no hay informacion");
+            avisoEmergente.setVisible(true);
         }
-        avisoEmergente.setVisible(true);
     }//GEN-LAST:event_botonReporteActionPerformed
 
     private void botonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarActionPerformed

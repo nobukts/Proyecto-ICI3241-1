@@ -4,7 +4,10 @@
  */
 package Ventanas;
 
+import javax.swing.JOptionPane;
+
 import Clases.Instituto;
+import Exceptions.RunMalEscritoException;
 
 /**
  *
@@ -200,21 +203,37 @@ public class EliminarAlumno extends javax.swing.JFrame {
         avisoEmergente.setVisible(true);
     }//GEN-LAST:event_botonEliminarXNombreActionPerformed
 
+    private int getRun() throws RunMalEscritoException, NumberFormatException{
+        String run = campoRun.getText();
+        if(run.length() < 6 || run.length() > 8){
+            throw new RunMalEscritoException();
+        }
+        return Integer.parseInt(run);
+        
+    }
+
     private void botonEliminarXRunActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarXRunActionPerformed
         // TODO add your handling code here:
-        String nombreCarrera = campoCarrera.getSelectedItem().toString();
-        int run = Integer.parseInt(campoRun.getText());
-        Aviso avisoEmergente = new Aviso();
-        
-        if(inst.eliminarAlumno(run, nombreCarrera)){
-            avisoEmergente.cambiarAviso("Se elimino con exito al alumno con RUN " + run);
-        }else{
-            avisoEmergente.cambiarAviso("No se pudo eliminar al alumno con RUN " + run);
+        try {
+            String nombreCarrera = campoCarrera.getSelectedItem().toString();
+            int run = getRun();
+            Aviso avisoEmergente = new Aviso();
+            
+            if(inst.eliminarAlumno(run, nombreCarrera)){
+                avisoEmergente.cambiarAviso("Se elimino con exito al alumno con RUN " + run);
+            }else{
+                avisoEmergente.cambiarAviso("No se pudo eliminar al alumno con RUN " + run);
+            }
+            
+            avisoEmergente.setVisible(true);
+            campoCarrera.setSelectedIndex(0);
+            campoRun.setText("");
+        } catch (RunMalEscritoException e) {
+            JOptionPane.showMessageDialog(null, "Escribió mal el run (No tiene de 6 a 8 digitos)");
+        } catch (NumberFormatException n) {
+            JOptionPane.showMessageDialog(null, "Escribió mal el codigo (Tiene algun caracter)");
         }
         
-        avisoEmergente.setVisible(true);
-        campoCarrera.setSelectedIndex(0);
-        campoRun.setText("");
     }//GEN-LAST:event_botonEliminarXRunActionPerformed
 
     private void botonAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAtrasActionPerformed

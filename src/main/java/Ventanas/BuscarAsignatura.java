@@ -5,6 +5,9 @@
 package Ventanas;
 
 import Clases.Instituto;
+import Exceptions.CodigoMalEscritoException;
+
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -154,31 +157,46 @@ public class BuscarAsignatura extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void botonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBuscarActionPerformed
-        String codigoAsignatura = campoCodigoAsignatura.getText();
-        String info = inst.buscarAsignatura(codigoAsignatura);
+    private String getCodigoCurso() throws CodigoMalEscritoException{
+        String codigoCurso = campoCodigoAsignatura.getText();
+        if(codigoCurso.length() == 6){
 
-        if(info != null){
-            String[] infoSeparada = info.split("-");
-            DefaultTableModel tabla1 = new DefaultTableModel();
-            tabla1.addColumn("Nombre de la asignatura");
-            tabla1.addColumn("Codigo de la asignatura");
-            tabla1.addColumn("Cantidad de creditos");
-            tabla1.addColumn("Carrera o Escuela");
-            tabla1.addColumn("Cantidad de alumnos");
-            tabla1.addColumn("¿Es de primero?");
-            tabla1.addColumn("¿De que tipo es?");
-
-            tabla1.addRow(infoSeparada);
-            tablaInfo.setModel(tabla1);
-            jPanel1.setVisible(true);
         }else{
-            Aviso avisoEmergente = new Aviso();
-            avisoEmergente.cambiarAviso("No esta registrada la asignatura " + codigoAsignatura);
-            avisoEmergente.setVisible(true);
+            throw new CodigoMalEscritoException();
+        }
+        return codigoCurso;
+    }
+    
+    private void botonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBuscarActionPerformed
+        try {
+            String codigoAsignatura = getCodigoCurso();
+            String info = inst.buscarAsignatura(codigoAsignatura);
+
+            if(info != null){
+                String[] infoSeparada = info.split("-");
+                DefaultTableModel tabla1 = new DefaultTableModel();
+                tabla1.addColumn("Nombre de la asignatura");
+                tabla1.addColumn("Codigo de la asignatura");
+                tabla1.addColumn("Cantidad de creditos");
+                tabla1.addColumn("Carrera o Escuela");
+                tabla1.addColumn("Cantidad de alumnos");
+                tabla1.addColumn("¿Es de primero?");
+                tabla1.addColumn("¿De que tipo es?");
+
+                tabla1.addRow(infoSeparada);
+                tablaInfo.setModel(tabla1);
+                jPanel1.setVisible(true);
+            }else{
+                Aviso avisoEmergente = new Aviso();
+                avisoEmergente.cambiarAviso("No esta registrada la asignatura " + codigoAsignatura);
+                avisoEmergente.setVisible(true);
+            }
+            
+            campoCodigoAsignatura.setText("");
+        } catch (CodigoMalEscritoException e) {
+            JOptionPane.showMessageDialog(null, "Escribió mal el codigo");
         }
         
-        campoCodigoAsignatura.setText("");
     }//GEN-LAST:event_botonBuscarActionPerformed
 
     private void botonAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAtrasActionPerformed
